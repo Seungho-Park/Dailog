@@ -11,8 +11,7 @@ import ComposableArchitecture
 import FeatureSplashInterfaces
 
 public struct DefaultSplashStore: SplashStore {
-    
-    public var body: some Reducer<SplashState, SplashAction> {
+    public var reduce: Reduce<SplashState, SplashAction> {
         Reduce { state, action in
             
             return .none

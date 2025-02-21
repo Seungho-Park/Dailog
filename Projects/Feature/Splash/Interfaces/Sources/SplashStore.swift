@@ -7,6 +7,7 @@
 //
 
 import ComposableArchitecture
+import SharedUIInterfaces
 
 public enum SplashState: Equatable {
     case hi
@@ -21,6 +22,6 @@ public enum SplashAction {
     case action
 }
 
-public protocol SplashStore: Reducer where State == SplashState, Action == SplashAction {
+public protocol SplashStore: DailogStore where State == SplashState, Action == SplashAction {
     
 }
