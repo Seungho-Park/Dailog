@@ -13,7 +13,7 @@ public protocol DailogStore: Reducer {
 }
 
 public extension DailogStore {
-    var body: some Reducer<State, Action> {
+    var body: some ReducerOf<Self> {
         reduce
     }
 }

@@ -2,18 +2,18 @@
 //  Project.swift
 //  Manifests
 //
-//  Created by 박승호 on 2/20/25.
+//  Created by 박승호 on 2/22/25.
 //
 
 import ProjectDescription
 import ProjectDescriptionHelpers
 import ModulePlugin
 
-let project: Project = .makeProject(
-    name: "Feature\(Module.Feature.splash.rawValue)",
+let project = Project.makeProject(
+    name: "Feature\(Module.Feature.calendar.rawValue)",
     targets: [
         .feature(
-            interfaces: .splash,
+            interfaces: .calendar,
             factory: .init(
                 dependencies: [
                     .domain
@@ -21,35 +21,35 @@ let project: Project = .makeProject(
             )
         ),
         .feature(
-            implements: .splash,
+            implements: .calendar,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .splash)
+                    .feature(interfaces: .calendar)
                 ]
             )
         ),
         .feature(
-            testing: .splash,
+            testing: .calendar,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .splash)
+                    .feature(interfaces: .calendar)
                 ]
             )
         ),
         .feature(
-            tests: .splash,
+            tests: .calendar,
             factory: .init(
                 dependencies: [
-                    .feature(implements: .splash),
-                    .feature(testing: .splash)
+                    .feature(implements: .calendar),
+                    .feature(testing: .calendar)
                 ]
             )
         ),
         .feature(
-            example: .splash,
+            example: .calendar,
             factory: .init(
                 dependencies: [
-                    .feature(implements: .splash)
+                    .feature(implements: .calendar)
                 ]
             )
         )

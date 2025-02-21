@@ -7,31 +7,40 @@
 //
 import SwiftUI
 import SharedUI
+import ComposableArchitecture
+import FeatureSplashInterfaces
 
-public struct SplashView: View {
-    public init() {  }
+public struct SplashView<Store: SplashStore>: View {
+    public let store: StoreOf<Store>
+    
+    public init(store: StoreOf<Store>) {
+        self.store = store
+    }
     
     public var body: some View {
-        GeometryReader { geometry in
-            VStack(spacing: 25) {
-                Text("AppName".localized)
-                    .font(.jalnan(56))
-                
-                Text("AppSubTitle".localized)
-                    .font(.jalnan(17))
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            DailogView {
+                GeometryReader { geometry in
+                    VStack(spacing: 25) {
+                        Text("AppName".localized)
+                            .font(.jalnan(56))
+                        
+                        Text("AppSubTitle".localized)
+                            .font(.jalnan(17))
+                    }
+                    .frame(width: geometry.size.width)
+                    .position(
+                        x: geometry.size.width/2,
+                        y: geometry.size.height/2.5
+                    )
+                }
+                .background {
+                    Image.bgLaunchScreen
+                }
+                .onAppear {
+                    viewStore.send(.didAppear)
+                }
             }
-            .frame(width: geometry.size.width)
-            .position(
-                x: geometry.size.width/2,
-                y: geometry.size.height/2.5
-            )
-        }
-        .background {
-            Image.bgLaunchScreen
         }
     }
-}
-
-#Preview {
-    SplashView()
 }

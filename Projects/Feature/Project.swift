@@ -16,7 +16,11 @@ let project: Project = .makeProject(
             .init(
                 dependencies: [
                     .domain,
-                    .feature(implements: .splash)
+                    .feature(implements: .splash),
+                    .feature(implements: .main),
+                    .feature(implements: .home),
+                    .feature(implements: .calendar),
+                    .feature(implements: .settings)
                 ]
             )
         )

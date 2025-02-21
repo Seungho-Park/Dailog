@@ -10,16 +10,21 @@ import ComposableArchitecture
 import SharedUIInterfaces
 
 public enum SplashState: Equatable {
-    case hi
-    case dd
+    case load
+    case appear
+    case notRegistered
+    case authorized
     
     public init() {
-        self = .hi
+        self = .load
     }
 }
 
-public enum SplashAction {
-    case action
+public enum SplashAction: Equatable {
+    case didAppear
+    case requestAppTrackingAuthorization
+    case requestPushNotificationPermission
+    case showMainScene
 }
 
 public protocol SplashStore: DailogStore where State == SplashState, Action == SplashAction {

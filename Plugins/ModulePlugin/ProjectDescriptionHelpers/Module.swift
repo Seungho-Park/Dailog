@@ -17,6 +17,10 @@ public enum Module {
 public extension Module {
     enum Feature: String {
         case splash = "Splash"
+        case main = "Main"
+        case home = "Home"
+        case calendar = "Calendar"
+        case settings = "Settings"
     }
 }
 

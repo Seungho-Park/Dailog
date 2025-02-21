@@ -10,13 +10,14 @@ import SwiftUI
 import SharedUI
 import SharedUIInterfaces
 import FeatureSplash
+import FeatureMainInterfaces
 
 @main
 struct DailogApp: App {
     var body: some Scene {
         UIAppearance.setup()
         return WindowGroup {
-            SplashView()
+            SplashView<DefaultSplashStore>(store: .init(initialState: DefaultSplashStore.State.appear, reducer: { DefaultSplashStore().reduce }))
         }
     }
 }

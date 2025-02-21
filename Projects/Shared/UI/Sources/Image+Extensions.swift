@@ -9,7 +9,5 @@
 import SwiftUI
 
 public extension Image {
-    static var bgLaunchScreen: Self {
-        return .init("bg_launch_screen", bundle: .module)
-    }
+    static let bgLaunchScreen = SharedUIAsset.Images.bgLaunchScreen.swiftUIImage
 }

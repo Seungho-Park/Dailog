@@ -21,14 +21,11 @@ public extension ProjectDescription.InfoPlist {
                 "CFBundleExecutable": "$(EXECUTABLE_NAME)",
                 "CFBundlePackageType": "$(PRODUCT_BUNDLE_PACKAGE_TYPE)",
                 "UILaunchStoryboardName": "LaunchScreen",
+                "NSUserTrackingUsageDescription": "Test",
                 "UIApplicationSceneManifest": [
                     "UIApplicationSupportsMultipleScenes": false,
                     "UISceneConfigurations": [
-                        "UIWindowSceneSessionRoleApplication": [
-                            [
-                                
-                            ]
-                        ]
+                        
                     ]
                 ]
             ]
