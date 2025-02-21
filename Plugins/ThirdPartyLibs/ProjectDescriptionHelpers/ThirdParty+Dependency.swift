@@ -9,6 +9,8 @@ import ProjectDescription
 
 public extension ProjectDescription.TargetDependency {
     enum SPM {
-        public static let TCA: TargetDependency = .external(name: "ComposableArchitecture")
+        public static let RxSwift: TargetDependency = .external(name: "RxSwift")
+        public static let FlexLayout: TargetDependency = .external(name: "FlexLayout")
+        public static let PinLayout: TargetDependency = .external(name: "PinLayout")
     }
 }

@@ -17,7 +17,8 @@ let project: Project = .makeProject(
             interfaces: .ui,
             factory: .init(
                 dependencies: [
-                    .SPM.TCA
+                    .SPM.FlexLayout,
+                    .SPM.PinLayout
                 ]
             )
         ),

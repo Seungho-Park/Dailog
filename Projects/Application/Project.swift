@@ -28,7 +28,11 @@ let project: Project = .makeProject(
                         "INFOPLIST_KEY_CFBundleDisplayName" : "\(Project.Environment.appName)",
                         "CURRENT_PROJECT_VERSION":"1",
                         "MARKETING_VERSION":"1.0.0",
-                        "INFOPLIST_KEY_LSApplicationCategoryType":"public.app-category.lifestyle"
+                        "INFOPLIST_KEY_LSApplicationCategoryType":"public.app-category.lifestyle",
+                        "DEBUG_INFORMATION_FORMAT":"dwarf-with-dsym",
+                        "OTHER_LDFLAGS": [
+                            "$(inherited) -ObjC"
+                        ]
                     ]
                 )
             )

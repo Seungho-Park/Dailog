@@ -6,22 +6,16 @@
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
-import SwiftUI
+import UIKit
 
-public struct DailogView<Content: View>: View {
-    let content: Content
+public class DailogView: UIView {
     
-    public init(@ViewBuilder content: ()-> Content) {
-        self.content = content()
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.layer.contents = UIImage.bgLaunchScreen?.cgImage
     }
     
-    public var body: some View {
-        content
-            .background {
-                Image.bgLaunchScreen
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
-            }
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented.")
     }
 }

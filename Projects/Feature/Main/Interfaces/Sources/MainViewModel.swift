@@ -1,5 +1,5 @@
 //
-//  FeatureMainApp.swift
+//  MainViewModel.swift
 //  FeatureMain
 //
 //  Created by 박승호 on 2/22/25.
