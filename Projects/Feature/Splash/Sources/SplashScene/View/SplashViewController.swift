@@ -36,6 +36,11 @@ public final class SplashViewController<VM: SplashViewModel>: DailogViewControll
         return view
     }()
     
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
     public override func configure() {
         super.configure()
         
@@ -52,13 +57,21 @@ public final class SplashViewController<VM: SplashViewModel>: DailogViewControll
             }
     }
     
+    public override func bind() {
+        super.bind()
+        
+        _ = viewModel.transform(
+            input: .init(
+                viewDidAppear: self.rx.viewDidAppear.map { _ in }.asObservable()
+            )
+        )
+    }
+    
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         contentsView
             .pin
-            .width(of: view)
-            .top(25%)
-            .hCenter()
+            .vCenter(-7.4%)
     }
 }

@@ -18,7 +18,10 @@ let project: Project = .makeProject(
             factory: .init(
                 dependencies: [
                     .SPM.FlexLayout,
-                    .SPM.PinLayout
+                    .SPM.PinLayout,
+                    .SPM.RxCocoa,
+                    .SPM.RxSwift,
+                    .SPM.RxRelay
                 ]
             )
         ),

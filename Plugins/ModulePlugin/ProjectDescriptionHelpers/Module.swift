@@ -40,5 +40,6 @@ public extension Module {
     enum Shared: String {
         case ui = "UI"
         case utils = "Utils"
+        case thirdPartyLibs = "ThirdPartyLibs"
     }
 }

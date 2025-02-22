@@ -18,6 +18,7 @@ final class AppCoordinator: Coordinator {
         self.dependencies = dependencies
     }
     
+    
     func start() {
         let diContainer = dependencies.makeSplashSceneDIContainer()
         let coordinator = diContainer.makeSplashSceneFlowCoordinator(navController: navigationController)

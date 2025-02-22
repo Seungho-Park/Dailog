@@ -13,12 +13,14 @@ public protocol Coordinator {
     
     func start()
     
-    func transition(scene: Scene, transitionStyle: TransitionStyle, animated: Bool)
+    @discardableResult
+    func transition(scene: Scene, transitionStyle: TransitionStyle, animated: Bool)-> UIViewController
     func close(animated: Bool, completion: @escaping ()-> Void)
 }
 
 public extension Coordinator {
-    func transition(scene: Scene, transitionStyle: TransitionStyle, animated: Bool) {
+    @discardableResult
+    func transition(scene: Scene, transitionStyle: TransitionStyle, animated: Bool)-> UIViewController {
         let vc = scene.instantiate()
         
         switch transitionStyle {
@@ -48,6 +50,8 @@ public extension Coordinator {
         case .modal:
             navigationController.topViewController?.present(vc, animated: animated)
         }
+        
+        return vc
     }
     
     func close(animated: Bool, completion: @escaping ()-> Void) {

@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let coordinator = AppCoordinator(navigationController: .init(), dependencies: appDIContainer)
-        
+        coordinator.navigationController.navigationBar.isHidden = true
         window?.rootViewController = coordinator.navigationController
         window?.makeKeyAndVisible()
         

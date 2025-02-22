@@ -18,7 +18,7 @@ public final class DefaultSplashSceneDIContainer: SplashSceneDIContainer {
 }
 
 extension DefaultSplashSceneDIContainer: SplashSceneFlowCoordinatorDependencies {
-    public func makeSplashViewModel() -> any SplashViewModel {
-        return DefaultSplashViewModel()
+    public func makeSplashViewModel(action: SplashViewModelAction) -> any SplashViewModel {
+        return DefaultSplashViewModel(action: action)
     }
 }

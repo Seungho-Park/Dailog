@@ -13,7 +13,8 @@ let project: Project = .makeProject(
     name: "Shared",
     targets: [
         .shared(.init(dependencies: [
-            .shared(implements: .ui)
+            .shared(implements: .ui),
+            .shared(implements: .thirdPartyLibs)
         ]))
     ]
 )

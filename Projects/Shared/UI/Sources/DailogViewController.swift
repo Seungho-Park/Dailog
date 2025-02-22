@@ -8,12 +8,14 @@
 
 import UIKit
 import SharedUIInterfaces
+import RxSwift
 import PinLayout
 import FlexLayout
 
 open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinable {
     public var viewModel: VM!
     public let container = DailogView(frame: .zero)
+    public let disposeBag = DisposeBag()
     
     open override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,8 +10,8 @@ import UIKit
 import FeatureSplashInterfaces
 
 public final class DefaultSplashSceneFlowCoordinator: SplashSceneFlowCoordinator {
-    private var dependencies: SplashSceneFlowCoordinatorDependencies
-    public var navigationController: UINavigationController
+    public let dependencies: SplashSceneFlowCoordinatorDependencies
+    public let navigationController: UINavigationController
     
     public init(navigationController: UINavigationController, dependencies: SplashSceneFlowCoordinatorDependencies) {
         self.navigationController = navigationController
@@ -19,6 +19,25 @@ public final class DefaultSplashSceneFlowCoordinator: SplashSceneFlowCoordinator
     }
     
     public func start() {
-        transition(scene: SplashScene.splash(dependencies.makeSplashViewModel()), transitionStyle: .root, animated: false)
+        transition(
+            scene: SplashScene.splash(
+                dependencies.makeSplashViewModel(
+                    action: .init(
+                        showMainScene: showMainScene,
+                        showLoginScene: showLoginScene
+                    )
+                )
+            ),
+            transitionStyle: .root,
+            animated: false
+        )
+    }
+    
+    public func showMainScene() {
+        print("ShowMainScene")
+    }
+    
+    public func showLoginScene() {
+        print("ShowLoginScene")
     }
 }
