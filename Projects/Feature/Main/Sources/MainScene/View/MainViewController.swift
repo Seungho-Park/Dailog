@@ -14,18 +14,28 @@ import SharedUI
 public final class MainViewController<VM: MainViewModel>: DailogViewController<VM> {
     private lazy var tabController: UITabBarController = {
         let tabBar = UITabBarController()
+        tabBar.view.backgroundColor = .clear
         return tabBar
     }()
+    
+    public var viewControllers: [UIViewController] {
+        get { tabController.viewControllers ?? [] }
+        set { tabController.viewControllers = newValue }
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     public override func configure() {
         super.configure()
         self.addChild(tabController)
-        self.view.addSubview(tabController.view)
+        self.container.addSubview(tabController.view)
     }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tabController.view.pin.all(self.view.pin.safeArea)
+        tabController.view.pin.top(self.container.pin.safeArea.top).left(self.container.pin.safeArea.left).right(self.container.pin.safeArea.right).bottom()
     }
 }

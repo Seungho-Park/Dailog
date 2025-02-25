@@ -8,6 +8,16 @@
 
 import SharedUIInterfaces
 
-public protocol MainViewModel: ViewModel {
+public struct MainViewModelInput {
+    
+    public init() {  }
+}
+
+public struct MainViewModelOutput {
+    
+    public init() {  }
+}
+
+public protocol MainViewModel: ViewModel where Input == MainViewModelInput, Output == MainViewModelOutput {
     
 }

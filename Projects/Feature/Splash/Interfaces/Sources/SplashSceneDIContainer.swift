@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
+import SharedUIInterfaces
 
-public protocol SplashSceneDIContainer {
+public protocol SplashSceneDIContainer: DIContainer {
     
-    func makeSplashSceneFlowCoordinator(navController: UINavigationController)-> any SplashSceneFlowCoordinator
 }

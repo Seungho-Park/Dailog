@@ -13,6 +13,11 @@ import SharedUIInterfaces
 extension FeatureMainInterfaces.MainScene: SharedUIInterfaces.Scene {
     
     public func instantiate() -> UIViewController {
-        return .init()
+        switch self {
+        case .main(let viewModel, let viewControllers):
+            let vc = MainViewController.create(viewModel: viewModel as! DefaultMainViewModel)
+            vc.viewControllers = viewControllers
+            return vc
+        }
     }
 }

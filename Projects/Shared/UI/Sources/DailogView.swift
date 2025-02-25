@@ -12,7 +12,8 @@ public class DailogView: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layer.contents = UIImage.bgLaunchScreen?.cgImage
+        self.backgroundColor = .clear
+//        self.layer.contents = UIImage.bgLaunchScreen?.cgImage
     }
     
     required public init?(coder: NSCoder) {

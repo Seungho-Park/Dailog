@@ -8,16 +8,35 @@
 
 import UIKit
 import FeatureSplashInterfaces
+import FeatureMainInterfaces
+import SharedUIInterfaces
 
 public final class DefaultSplashSceneDIContainer: SplashSceneDIContainer {
-    public init() {  }
+    public struct Dependencies {
+        let mainSceneDIContainer: ()-> DIContainer
+        
+        public init(
+            mainSceneDIContainer: @escaping ()-> DIContainer
+        ) {
+            self.mainSceneDIContainer = mainSceneDIContainer
+        }
+    }
     
-    public func makeSplashSceneFlowCoordinator(navController: UINavigationController)-> any SplashSceneFlowCoordinator {
+    private let dependencies: Dependencies
+    
+    public init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
+    
+    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
         return DefaultSplashSceneFlowCoordinator(navigationController: navController, dependencies: self)
     }
 }
 
 extension DefaultSplashSceneDIContainer: SplashSceneFlowCoordinatorDependencies {
+    public func makeMainSceneDIContainer() -> any DIContainer {
+        return dependencies.mainSceneDIContainer()
+    }
     public func makeSplashViewModel(action: SplashViewModelAction) -> any SplashViewModel {
         return DefaultSplashViewModel(action: action)
     }

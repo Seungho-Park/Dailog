@@ -7,10 +7,28 @@
 //
 import UIKit
 import FeatureSplash
-import FeatureSplashInterfaces
+import FeatureMain
+import FeatureHome
+import SharedUIInterfaces
 
 final class AppDIContainer {
-    func makeSplashSceneDIContainer()-> any SplashSceneDIContainer {
-        return DefaultSplashSceneDIContainer()
+    func makeSplashSceneDIContainer()-> any DIContainer {
+        return DefaultSplashSceneDIContainer(
+            dependencies: .init(
+                mainSceneDIContainer: makeMainSceneDIContainer
+            )
+        )
+    }
+    
+    private func makeMainSceneDIContainer()-> any DIContainer {
+        return DefaultMainSceneDIContainer(
+            dependencies: .init(
+                homeSceneDIContainer: makeHomeSceneDIContainer
+            )
+        )
+    }
+    
+    private func makeHomeSceneDIContainer()-> any DIContainer {
+        return DefaultHomeSceneDIContainer()
     }
 }

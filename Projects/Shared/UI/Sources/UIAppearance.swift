@@ -9,6 +9,7 @@
 import Foundation
 import CoreGraphics
 import CoreText
+import UIKit
 
 public final class UIAppearance {
     private init() {  }
@@ -16,6 +17,7 @@ public final class UIAppearance {
     public static func setup() {
         do {
             try loadFont()
+            setupTabBar()
         } catch {
             print(error)
         }
@@ -32,5 +34,28 @@ public final class UIAppearance {
         } else {
             throw LoadError.font
         }
+    }
+    
+    private static func setupTabBar() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .tabBar
+        appearance.shadowColor = nil
+        
+        let tabBarItemAppearance = UITabBarItemAppearance()
+        tabBarItemAppearance.normal.titleTextAttributes = [
+            NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12, weight: .medium),
+            NSAttributedString.Key.foregroundColor:UIColor.tabBarItemColor
+        ]
+        
+        tabBarItemAppearance.selected.titleTextAttributes = [
+            NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12, weight: .bold),
+            NSAttributedString.Key.foregroundColor:UIColor.tabBarItemSelectedsColor
+        ]
+        
+        appearance.stackedLayoutAppearance = tabBarItemAppearance
+        
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
     }
 }

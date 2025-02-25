@@ -18,7 +18,9 @@ let project: Project = .makeProject(
             factory: .init(
                 dependencies: [
                     .SPM.RxSwift,
-                    .SPM.RxRelay
+                    .SPM.RxRelay,
+                    .SPM.FirebaseAnalytics,
+                    .SPM.FirebaseCrashlytics
                 ]
             )
         )

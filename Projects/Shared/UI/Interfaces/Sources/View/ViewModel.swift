@@ -13,6 +13,7 @@ public protocol ViewModel {
     associatedtype Input
     associatedtype Output
     
+    var isNavigationBarHidden: Bool { get }
     var disposeBag: DisposeBag { get }
     
     func transform(input: Input)-> Output

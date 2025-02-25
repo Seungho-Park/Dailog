@@ -15,6 +15,7 @@ import UserNotifications
 
 public final class DefaultSplashViewModel: SplashViewModel {
     public let disposeBag = DisposeBag()
+    public let isNavigationBarHidden: Bool = true
     public var action: SplashViewModelAction
     
     public init(action: SplashViewModelAction) {
@@ -53,7 +54,7 @@ public final class DefaultSplashViewModel: SplashViewModel {
             }
             
             return Disposables.create()
-        }
+        }.observe(on: MainScheduler.asyncInstance)
     }
     
     public func requestAppTrackingPermission() -> Observable<String> {
@@ -66,6 +67,6 @@ public final class DefaultSplashViewModel: SplashViewModel {
             }
             
             return Disposables.create()
-        }
+        }.observe(on: MainScheduler.asyncInstance)
     }
 }

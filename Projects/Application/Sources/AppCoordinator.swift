@@ -19,9 +19,10 @@ final class AppCoordinator: Coordinator {
     }
     
     
-    func start() {
+    @discardableResult
+    func start()-> UIViewController {
         let diContainer = dependencies.makeSplashSceneDIContainer()
-        let coordinator = diContainer.makeSplashSceneFlowCoordinator(navController: navigationController)
-        coordinator.start()
+        let coordinator = diContainer.makeCoordinator(navController: navigationController)
+        return coordinator.start()
     }
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
+import UIKit
+
 public enum MainScene {
-    
+    case main(any MainViewModel, [UIViewController])
 }

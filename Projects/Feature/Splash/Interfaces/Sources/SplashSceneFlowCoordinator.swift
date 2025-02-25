@@ -8,8 +8,10 @@
 
 import UIKit
 import SharedUIInterfaces
+import FeatureMainInterfaces
 
 public protocol SplashSceneFlowCoordinatorDependencies {
+    func makeMainSceneDIContainer()-> DIContainer
     func makeSplashViewModel(action: SplashViewModelAction)-> any SplashViewModel
 }
 

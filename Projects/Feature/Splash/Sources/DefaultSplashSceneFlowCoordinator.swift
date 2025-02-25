@@ -18,8 +18,9 @@ public final class DefaultSplashSceneFlowCoordinator: SplashSceneFlowCoordinator
         self.dependencies = dependencies
     }
     
-    public func start() {
-        transition(
+    @discardableResult
+    public func start()-> UIViewController {
+        return transition(
             scene: SplashScene.splash(
                 dependencies.makeSplashViewModel(
                     action: .init(
@@ -34,7 +35,9 @@ public final class DefaultSplashSceneFlowCoordinator: SplashSceneFlowCoordinator
     }
     
     public func showMainScene() {
-        print("ShowMainScene")
+        let diContainer = dependencies.makeMainSceneDIContainer()
+        let coordinator = diContainer.makeCoordinator(navController: navigationController)
+        coordinator.start()
     }
     
     public func showLoginScene() {

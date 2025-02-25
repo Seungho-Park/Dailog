@@ -24,7 +24,10 @@ let project = Project.makeProject(
             implements: .main,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .main)
+                    .feature(interfaces: .main),
+                    .feature(interfaces: .home),
+                    .feature(interfaces: .calendar),
+                    .feature(interfaces: .settings)
                 ]
             )
         ),

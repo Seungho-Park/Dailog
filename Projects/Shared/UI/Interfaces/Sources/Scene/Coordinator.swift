@@ -11,7 +11,8 @@ import UIKit
 public protocol Coordinator {
     var navigationController: UINavigationController { get }
     
-    func start()
+    @discardableResult
+    func start()-> UIViewController
     
     @discardableResult
     func transition(scene: Scene, transitionStyle: TransitionStyle, animated: Bool)-> UIViewController

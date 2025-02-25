@@ -10,7 +10,9 @@ import UIKit
 import SharedUIInterfaces
 
 public protocol MainSceneFlowCoordinatorDependencies {
+    func makeHomeSceneDIContainer()-> any DIContainer
     
+    func makeMainViewModel()-> any MainViewModel
 }
 
 public protocol MainSceneFlowCoordinator: Coordinator {
