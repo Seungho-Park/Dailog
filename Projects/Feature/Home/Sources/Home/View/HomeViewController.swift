@@ -9,7 +9,10 @@
 import UIKit
 import SharedUI
 import FeatureHomeInterfaces
+import RxSwift
 
 public final class HomeViewController<VM: HomeViewModel>: DailogViewController<VM> {
-    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
