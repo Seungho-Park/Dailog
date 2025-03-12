@@ -46,7 +46,9 @@ let project: Project = .makeProject(
                         "DEBUG_INFORMATION_FORMAT":"dwarf-with-dsym",
                         "OTHER_LDFLAGS": [
                             "$(inherited) -ObjC"
-                        ]
+                        ],
+                        "ENABLE_USER_SCRIPT_SANDBOXING": true,
+                        "GENERATE_ASSET_SYMBOL_EXTENSIONS": true
                     ]
                 ),
                 launchArguments: [

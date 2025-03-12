@@ -22,6 +22,7 @@ let project: Project = .makeProject(
         .core(
             implements: .storage,
             factory: .init(
+                resources: "Resources/**",
                 dependencies: [
                     .core(interfaces: .storage)
                 ]

@@ -49,13 +49,15 @@ public extension ProjectDescription.Target {
             entitlements: ProjectDescription.Entitlements? = nil,
             scripts: [ProjectDescription.TargetScript] = [],
             dependencies: [ProjectDescription.TargetDependency],
-            settings: ProjectDescription.Settings? = .settings(
-                base: [
-                    "OTHER_LDFLAGS": [
-                        "$(inherited) -ObjC"
-                    ]
-                ]
-            ),
+            settings: ProjectDescription.Settings? = .settings(base: [
+                "DEFINES_MODULE": false,
+                "DEBUG_INFORMATION_FORMAT":"dwarf-with-dsym",
+                "OTHER_LDFLAGS": [
+                    "$(inherited) -ObjC"
+                ],
+                "ENABLE_USER_SCRIPT_SANDBOXING": true,
+                "GENERATE_ASSET_SYMBOL_EXTENSIONS": true
+            ]),
             coreDataModels: [ProjectDescription.CoreDataModel] = [],
             environmentVariables: [String : ProjectDescription.EnvironmentVariable] = [:],
             launchArguments: [ProjectDescription.LaunchArgument] = [],

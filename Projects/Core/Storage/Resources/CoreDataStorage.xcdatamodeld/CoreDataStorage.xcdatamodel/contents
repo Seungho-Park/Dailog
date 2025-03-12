@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D70" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="DiaryEntity" representedClassName="DiaryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="UserLoginEntity" inverseName="diaryEntities" inverseEntity="UserLoginEntity"/>
+    </entity>
+    <entity name="UserLoginEntity" representedClassName="UserLoginEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="provider" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="registeredAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="token" attributeType="String"/>
+        <attribute name="userId" attributeType="String"/>
+        <relationship name="diaryEntities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiaryEntity" inverseName="user" inverseEntity="DiaryEntity"/>
+    </entity>
+</model>

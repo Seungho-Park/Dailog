@@ -44,7 +44,7 @@ public extension ProjectDescription.TargetDependency {
     }
     
     static func domain(implements module: Module.Domain)-> TargetDependency {
-        return .project(target: "Shared\(module)", path: .domain(module), status: .required)
+        return .project(target: "Domain\(module)", path: .domain(module), status: .required)
     }
 }
 
