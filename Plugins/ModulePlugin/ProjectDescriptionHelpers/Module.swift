@@ -19,7 +19,8 @@ public extension Module {
         case splash = "Splash"
         case main = "Main"
         case home = "Home"
-        case calendar = "Calendar"
+        case history = "History"
+        case remind = "Remind"
         case settings = "Settings"
     }
 }
@@ -31,8 +32,8 @@ public extension Module {
 }
 
 public extension Module {
-    enum Core {
-        
+    enum Core: String {
+        case storage = "Storage"
     }
 }
 

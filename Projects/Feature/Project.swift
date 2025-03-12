@@ -19,7 +19,7 @@ let project: Project = .makeProject(
                     .feature(implements: .splash),
                     .feature(implements: .main),
                     .feature(implements: .home),
-                    .feature(implements: .calendar),
+                    .feature(implements: .history),
                     .feature(implements: .settings)
                 ]
             )

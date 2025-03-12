@@ -52,6 +52,26 @@ public extension ProjectDescription.TargetDependency {
     static var core: TargetDependency {
         return .project(target: "Core", path: .core, status: .required)
     }
+    
+    static func core(interfaces module: Module.Core)-> TargetDependency {
+        return .project(target: "Core\(module.rawValue)Interfaces", path: .core(module), status: .required)
+    }
+    
+    static func core(implements module: Module.Core)-> TargetDependency {
+        return .project(target: "Core\(module.rawValue)", path: .core(module), status: .required)
+    }
+    
+    static func core(testing module: Module.Core)-> TargetDependency {
+        return .project(target: "Core\(module.rawValue)Testing", path: .core(module), status: .required)
+    }
+    
+    static func core(tests module: Module.Core)-> TargetDependency {
+        return .project(target: "Core\(module.rawValue)Tests", path: .core(module), status: .required)
+    }
+    
+    static func core(example module: Module.Core)-> TargetDependency {
+        return .project(target: "Core\(module.rawValue)Example", path: .core(module), status: .required)
+    }
 }
 
 public extension ProjectDescription.TargetDependency {

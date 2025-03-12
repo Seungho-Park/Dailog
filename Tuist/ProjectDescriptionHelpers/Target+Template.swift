@@ -183,15 +183,50 @@ public extension ProjectDescription.Target {
     }
 }
 
-
 public extension ProjectDescription.Target {
     static func core(_ factory: TargetFactory)-> Self {
         var factory = factory
         factory.name = "Core"
         return factory.toTarget()
     }
+    
+    static func core(interfaces module: Module.Core, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Core\(module.rawValue)Interfaces"
+        factory.sources = .interfaces
+        return factory.toTarget()
+    }
+    
+    static func core(implements module: Module.Core, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Core\(module.rawValue)"
+        return factory.toTarget()
+    }
+    
+    static func core(testing module: Module.Core, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Core\(module.rawValue)Testing"
+        factory.sources = .testing
+        return factory.toTarget()
+    }
+    
+    static func core(tests module: Module.Core, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Core\(module.rawValue)Tests"
+        factory.product = .unitTests
+        factory.sources = .tests
+        return factory.toTarget()
+    }
+    
+    static func core(example module: Module.Core, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Core\(module.rawValue)Example"
+        factory.product = .app
+        factory.sources = .example
+        factory.infoPlist = .example
+        return factory.toTarget()
+    }
 }
-
 
 public extension ProjectDescription.Target {
     static func shared(_ factory: TargetFactory)-> Self {

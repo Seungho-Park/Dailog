@@ -28,6 +28,10 @@ public extension ProjectDescription.Path {
     static var core: Self {
         return .relativeToRoot("Projects/Core")
     }
+    
+    static func core(_ module: Module.Core)-> Self {
+        return .relativeToRoot("Projects/Core/\(module.rawValue)")
+    }
 }
 
 public extension ProjectDescription.Path {

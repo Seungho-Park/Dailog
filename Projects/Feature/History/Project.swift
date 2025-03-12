@@ -10,10 +10,10 @@ import ProjectDescriptionHelpers
 import ModulePlugin
 
 let project = Project.makeProject(
-    name: "Feature\(Module.Feature.calendar.rawValue)",
+    name: "Feature\(Module.Feature.history.rawValue)",
     targets: [
         .feature(
-            interfaces: .calendar,
+            interfaces: .history,
             factory: .init(
                 dependencies: [
                     .domain
@@ -21,35 +21,35 @@ let project = Project.makeProject(
             )
         ),
         .feature(
-            implements: .calendar,
+            implements: .history,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .calendar)
+                    .feature(interfaces: .history)
                 ]
             )
         ),
         .feature(
-            testing: .calendar,
+            testing: .history,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .calendar)
+                    .feature(interfaces: .history)
                 ]
             )
         ),
         .feature(
-            tests: .calendar,
+            tests: .history,
             factory: .init(
                 dependencies: [
-                    .feature(implements: .calendar),
-                    .feature(testing: .calendar)
+                    .feature(implements: .history),
+                    .feature(testing: .history)
                 ]
             )
         ),
         .feature(
-            example: .calendar,
+            example: .history,
             factory: .init(
                 dependencies: [
-                    .feature(implements: .calendar)
+                    .feature(implements: .history)
                 ]
             )
         )

@@ -26,7 +26,7 @@ let project = Project.makeProject(
                 dependencies: [
                     .feature(interfaces: .main),
                     .feature(interfaces: .home),
-                    .feature(interfaces: .calendar),
+                    .feature(interfaces: .history),
                     .feature(interfaces: .settings)
                 ]
             )
