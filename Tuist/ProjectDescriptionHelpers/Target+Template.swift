@@ -51,7 +51,6 @@ public extension ProjectDescription.Target {
             dependencies: [ProjectDescription.TargetDependency],
             settings: ProjectDescription.Settings? = .settings(base: [
                 "DEFINES_MODULE": false,
-                "DEBUG_INFORMATION_FORMAT":"dwarf-with-dsym",
                 "OTHER_LDFLAGS": [
                     "$(inherited) -ObjC"
                 ],

@@ -14,9 +14,14 @@ import SharedUIInterfaces
 public final class DefaultMainSceneDIContainer: MainSceneDIContainer {
     public struct Dependencies {
         public let homeSceneDIContainer: ()-> any DIContainer
+        public let historySceneDIContainer: ()-> any DIContainer
         
-        public init(homeSceneDIContainer: @escaping () -> any DIContainer) {
+        public init(
+            homeSceneDIContainer: @escaping () -> any DIContainer,
+            historySceneDIContainer: @escaping ()-> any DIContainer
+        ) {
             self.homeSceneDIContainer = homeSceneDIContainer
+            self.historySceneDIContainer = historySceneDIContainer
         }
     }
     
@@ -35,6 +40,10 @@ public final class DefaultMainSceneDIContainer: MainSceneDIContainer {
 extension DefaultMainSceneDIContainer: MainSceneFlowCoordinatorDependencies {
     public func makeHomeSceneDIContainer() -> any DIContainer {
         return dependencies.homeSceneDIContainer()
+    }
+    
+    public func makeHistorySceneDIContainer() -> any DIContainer {
+        return dependencies.historySceneDIContainer()
     }
     
     public func makeMainViewModel() -> any MainViewModel {

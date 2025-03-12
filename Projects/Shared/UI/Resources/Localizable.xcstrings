@@ -46,6 +46,17 @@
         }
       }
     },
+    "History" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기록"
+          }
+        }
+      }
+    },
     "Home" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -53,6 +64,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "홈"
+          }
+        }
+      }
+    },
+    "Reminder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회상"
           }
         }
       }

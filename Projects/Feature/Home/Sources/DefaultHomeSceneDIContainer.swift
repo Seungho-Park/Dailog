@@ -13,13 +13,13 @@ import SharedUIInterfaces
 public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
     public init() {  }
     
-    public func makeCoordinator(navController: UINavigationController) -> any SharedUIInterfaces.Coordinator {
+    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
         return DefaultHomeSceneFlowCoordinator(navigationController: navController, dependencies: self)
     }
 }
 
-extension DefaultHomeSceneDIContainer: HomeSceneFlowCoordinatorDependencies {
-    public func makeHomeViewModel() -> any FeatureHomeInterfaces.HomeViewModel {
+extension DefaultHomeSceneDIContainer {
+    public func makeHomeViewModel() -> any HomeViewModel {
         return DefaultHomeViewModel()
     }
 }

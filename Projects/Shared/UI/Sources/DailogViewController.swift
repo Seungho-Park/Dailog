@@ -18,44 +18,58 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
     public let container = DailogView(frame: .zero)
     public let disposeBag = DisposeBag()
     
-    public lazy var navigationBar: NavigationBar = {
-        let navBar = NavigationBar(frame: .zero)
-        return navBar
-    }()
-    
     open override func viewDidLoad() {
         super.viewDidLoad()
         
+        #if DEBUG
+            print("\(Self.self): \(#function)")
+        #endif
     }
     
-    open override func loadView() {
-        let view = UIImageView(image: .bgLaunchScreen)
-        view.contentMode = .scaleToFill
-        self.view = view
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        #if DEBUG
+            print("\(Self.self): \(#function)")
+        #endif
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        #if DEBUG
+            print("\(Self.self): \(#function)")
+        #endif
+    }
+    
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+                
+        #if DEBUG
+            print("\(Self.self): \(#function)")
+        #endif
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        #if DEBUG
+            print("\(Self.self): \(#function)")
+        #endif
     }
     
     open func configure() {
+        self.view.backgroundColor = .clear
+        
         view.addSubview(container)
-        view.addSubview(navigationBar)
     }
     
     open func bind() {
-        Observable.just(viewModel.isNavigationBarHidden)
-            .asDriver(onErrorJustReturn: true)
-            .drive(navigationBar.rx.isHidden)
-            .disposed(by: disposeBag)
+        
     }
     
     open override func viewDidLayoutSubviews() {
-        navigationBar.pin
-            .top(self.view.pin.safeArea.top)
-            .left().right()
-            .height(50)
-        
-        container.pin
-            .below(of: navigationBar)
-            .left().right().bottom()
-        
+        container.pin.all()
         container.flex.layout()
         
         super.viewDidLayoutSubviews()

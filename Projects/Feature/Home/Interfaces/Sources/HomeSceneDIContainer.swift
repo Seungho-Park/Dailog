@@ -8,6 +8,6 @@
 
 import SharedUIInterfaces
 
-public protocol HomeSceneDIContainer: DIContainer {
+public protocol HomeSceneDIContainer: DIContainer, HomeSceneFlowCoordinatorDependencies {
     
 }

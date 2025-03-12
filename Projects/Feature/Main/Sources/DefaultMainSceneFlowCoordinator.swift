@@ -23,12 +23,16 @@ public final class DefaultMainSceneFlowCoordinator: MainSceneFlowCoordinator {
         let homeSceneDIContainer = dependencies.makeHomeSceneDIContainer()
         let homeSceneFlowCoordinator = homeSceneDIContainer.makeCoordinator(navController: navigationController)
         
+        let historySceneDIContainer = dependencies.makeHistorySceneDIContainer()
+        let historySceneFlowCoordinator = historySceneDIContainer.makeCoordinator(navController: navigationController)
+        
         
         return transition(
             scene: MainScene.main(
                 dependencies.makeMainViewModel(),
                 [
-                    homeSceneFlowCoordinator.start()
+                    homeSceneFlowCoordinator.start(),
+                    historySceneFlowCoordinator.start()
                 ]
             ),
             transitionStyle: .root,

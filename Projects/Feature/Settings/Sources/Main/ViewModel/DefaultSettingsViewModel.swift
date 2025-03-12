@@ -13,7 +13,6 @@ import SharedUIInterfaces
 
 public final class DefaultSettingsViewModel: SettingsViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
-    public var isNavigationBarHidden: Bool = true
     
     public init() {
         

@@ -13,6 +13,7 @@ public class DailogView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .clear
+        self.isUserInteractionEnabled = true
 //        self.layer.contents = UIImage.bgLaunchScreen?.cgImage
     }
     

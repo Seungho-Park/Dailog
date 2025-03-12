@@ -9,6 +9,7 @@ import UIKit
 import FeatureSplash
 import FeatureMain
 import FeatureHome
+import FeatureHistory
 import SharedUIInterfaces
 
 final class AppDIContainer {
@@ -23,12 +24,17 @@ final class AppDIContainer {
     private func makeMainSceneDIContainer()-> any DIContainer {
         return DefaultMainSceneDIContainer(
             dependencies: .init(
-                homeSceneDIContainer: makeHomeSceneDIContainer
+                homeSceneDIContainer: makeHomeSceneDIContainer,
+                historySceneDIContainer: makeHistorySceneDIContainer
             )
         )
     }
     
     private func makeHomeSceneDIContainer()-> any DIContainer {
         return DefaultHomeSceneDIContainer()
+    }
+    
+    private func makeHistorySceneDIContainer()-> any DIContainer {
+        return DefaultHistorySceneDIContainer()
     }
 }

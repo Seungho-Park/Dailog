@@ -11,7 +11,7 @@ import FeatureSplashInterfaces
 import FeatureMainInterfaces
 import SharedUI
 
-public final class MainViewController<VM: MainViewModel>: DailogViewController<VM> {
+public final class MainViewController<VM: MainViewModel>: DailogViewController<VM>, UITabBarControllerDelegate {
     private lazy var tabController: UITabBarController = {
         let tabBar = UITabBarController()
         tabBar.view.backgroundColor = .clear
@@ -23,6 +23,8 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
         set { tabController.viewControllers = newValue }
     }
     
+    public lazy var navigationBar = NavigationBar(frame: .zero)
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -30,12 +32,31 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
     public override func configure() {
         super.configure()
         self.addChild(tabController)
+        self.container.addSubview(navigationBar)
         self.container.addSubview(tabController.view)
+        tabController.didMove(toParent: self)
     }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tabController.view.pin.top(self.container.pin.safeArea.top).left(self.container.pin.safeArea.left).right(self.container.pin.safeArea.right).bottom()
+        navigationBar.pin.top(self.view.pin.safeArea.top)
+            .left().right()
+            .height(50)
+        
+        tabController.view.pin
+            .below(of: navigationBar)
+            .left(self.container.pin.safeArea.left)
+            .right(self.container.pin.safeArea.right)
+            .bottom()
+    }
+    
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("Select: \(viewController.self)")
+    }
+    
+    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        print("Select2: \(viewController.self)")
+        return true
     }
 }

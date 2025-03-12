@@ -12,7 +12,6 @@ import FeatureHomeInterfaces
 
 
 public final class DefaultHomeViewModel: HomeViewModel {
-    public var isNavigationBarHidden: Bool = true
     public let disposeBag: DisposeBag = DisposeBag()
     
     public func transform(input: HomeViewModelInput) -> HomeViewModelOutput {

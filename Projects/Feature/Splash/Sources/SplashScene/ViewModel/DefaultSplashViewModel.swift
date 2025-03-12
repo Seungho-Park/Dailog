@@ -15,7 +15,6 @@ import UserNotifications
 
 public final class DefaultSplashViewModel: SplashViewModel {
     public let disposeBag = DisposeBag()
-    public let isNavigationBarHidden: Bool = true
     public var action: SplashViewModelAction
     
     public init(action: SplashViewModelAction) {

@@ -19,8 +19,10 @@ let project: Project = .makeProject(
                     "Resources/Assets.xcassets",
                     "Resources/LaunchScreen.storyboard",
                     "Resources/InfoPlist.xcstrings",
-                    "Resources/GoogleService-Info.plist"
+                    "Resources/GoogleService-Info.plist",
+                    
                 ],
+                entitlements: .file(path: "Resources/Dailog.entitlements"),
                 scripts: [
                     .post(path: .relativeToRoot("Tuist/.build/checkouts/firebase-ios-sdk/Crashlytics/run"),
                         name: "Firebase Crashlystics",

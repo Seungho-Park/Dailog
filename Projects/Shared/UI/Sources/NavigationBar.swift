@@ -18,7 +18,6 @@ public final class NavigationBar: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configure()
     }
     
