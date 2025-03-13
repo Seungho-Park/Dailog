@@ -14,13 +14,9 @@ extension SettingsScene: SharedUIInterfaces.Scene {
     
     public func instantiate() -> UIViewController {
         switch self {
-        case .main(let viewModel):
+        case .settings(let viewModel):
             let vc = SettingsViewController.create(viewModel: viewModel as! DefaultSettingsViewModel)
-            let tabBarItem = UITabBarItem()
-            tabBarItem.title = "Settings".localized
-            tabBarItem.image = UIImage(systemName: "gearshape")?.withTintColor(.tabBarItemColor, renderingMode: .alwaysOriginal)
-            tabBarItem.image = UIImage(systemName: "gearshape")?.withTintColor(.tabBarItemSelectedsColor, renderingMode: .alwaysOriginal)
-            vc.tabBarItem = tabBarItem
+            vc.tabBarItem = UITabBarItem(title: "Settings".localized, image: UIImage(systemName: "gearshape"), tag: 3)
             return vc
         }
     }

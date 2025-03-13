@@ -12,6 +12,8 @@ import SharedUIInterfaces
 public protocol MainSceneFlowCoordinatorDependencies {
     func makeHomeSceneDIContainer()-> any DIContainer
     func makeHistorySceneDIContainer()-> any DIContainer
+    func makeReminderSceneDIContainer()-> any DIContainer
+    func makeSettingsSceneDIContainer()-> any DIContainer
     
     func makeMainViewModel()-> any MainViewModel
 }

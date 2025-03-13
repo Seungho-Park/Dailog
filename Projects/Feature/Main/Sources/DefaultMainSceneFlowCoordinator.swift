@@ -26,13 +26,20 @@ public final class DefaultMainSceneFlowCoordinator: MainSceneFlowCoordinator {
         let historySceneDIContainer = dependencies.makeHistorySceneDIContainer()
         let historySceneFlowCoordinator = historySceneDIContainer.makeCoordinator(navController: navigationController)
         
+        let reminderSceneDIContainer = dependencies.makeReminderSceneDIContainer()
+        let reminderSceneFlowCoordinator = reminderSceneDIContainer.makeCoordinator(navController: navigationController)
+        
+        let settingsSceneDIContainer = dependencies.makeSettingsSceneDIContainer()
+        let settingsSceneFlowCoordinator = settingsSceneDIContainer.makeCoordinator(navController: navigationController)
         
         return transition(
             scene: MainScene.main(
                 dependencies.makeMainViewModel(),
                 [
                     homeSceneFlowCoordinator.start(),
-                    historySceneFlowCoordinator.start()
+                    historySceneFlowCoordinator.start(),
+                    reminderSceneFlowCoordinator.start(),
+                    settingsSceneFlowCoordinator.start()
                 ]
             ),
             transitionStyle: .root,

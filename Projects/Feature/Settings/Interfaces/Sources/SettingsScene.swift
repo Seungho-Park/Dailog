@@ -7,5 +7,5 @@
 //
 
 public enum SettingsScene {
-    case main(any SettingsViewModel)
+    case settings(any SettingsViewModel)
 }

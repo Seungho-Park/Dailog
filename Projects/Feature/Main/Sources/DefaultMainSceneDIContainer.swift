@@ -15,13 +15,19 @@ public final class DefaultMainSceneDIContainer: MainSceneDIContainer {
     public struct Dependencies {
         public let homeSceneDIContainer: ()-> any DIContainer
         public let historySceneDIContainer: ()-> any DIContainer
+        public let reminderSceneDIContainer: ()-> any DIContainer
+        public let settingsSceneDIContainer: ()-> any DIContainer
         
         public init(
             homeSceneDIContainer: @escaping () -> any DIContainer,
-            historySceneDIContainer: @escaping ()-> any DIContainer
+            historySceneDIContainer: @escaping ()-> any DIContainer,
+            reminderSceneDIContainer: @escaping ()-> any DIContainer,
+            settingsSceneDIContainer: @escaping ()-> any DIContainer
         ) {
             self.homeSceneDIContainer = homeSceneDIContainer
             self.historySceneDIContainer = historySceneDIContainer
+            self.reminderSceneDIContainer = reminderSceneDIContainer
+            self.settingsSceneDIContainer = settingsSceneDIContainer
         }
     }
     
@@ -44,6 +50,14 @@ extension DefaultMainSceneDIContainer: MainSceneFlowCoordinatorDependencies {
     
     public func makeHistorySceneDIContainer() -> any DIContainer {
         return dependencies.historySceneDIContainer()
+    }
+    
+    public func makeReminderSceneDIContainer() -> any DIContainer {
+        return dependencies.reminderSceneDIContainer()
+    }
+    
+    public func makeSettingsSceneDIContainer() -> any DIContainer {
+        return dependencies.settingsSceneDIContainer()
     }
     
     public func makeMainViewModel() -> any MainViewModel {

@@ -11,6 +11,8 @@ import FeatureMain
 import FeatureHome
 import FeatureHistory
 import SharedUIInterfaces
+import FeatureReminder
+import FeatureSettings
 
 final class AppDIContainer {
     func makeSplashSceneDIContainer()-> any DIContainer {
@@ -25,7 +27,9 @@ final class AppDIContainer {
         return DefaultMainSceneDIContainer(
             dependencies: .init(
                 homeSceneDIContainer: makeHomeSceneDIContainer,
-                historySceneDIContainer: makeHistorySceneDIContainer
+                historySceneDIContainer: makeHistorySceneDIContainer,
+                reminderSceneDIContainer: makeReminderSceneDIContainer,
+                settingsSceneDIContainer: makeSettingsSceneDIContainer
             )
         )
     }
@@ -36,5 +40,13 @@ final class AppDIContainer {
     
     private func makeHistorySceneDIContainer()-> any DIContainer {
         return DefaultHistorySceneDIContainer()
+    }
+    
+    private func makeReminderSceneDIContainer()-> any DIContainer {
+        return DefaultReminderSceneDIContainer()
+    }
+    
+    private func makeSettingsSceneDIContainer()-> any DIContainer {
+        return DefaultSettingsSceneDIContainer()
     }
 }
