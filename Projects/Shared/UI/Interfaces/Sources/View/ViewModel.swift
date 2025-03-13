@@ -14,6 +14,13 @@ public protocol ViewModel {
     associatedtype Output
     
     var disposeBag: DisposeBag { get }
+    var background: BackgroundType { get }
     
     func transform(input: Input)-> Output
+}
+
+public extension ViewModel {
+    var background: BackgroundType {
+        return .clear
+    }
 }

@@ -31,6 +31,9 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
     
     public override func configure() {
         super.configure()
+        
+        self.view.layer.contents = UIImage.bgLaunchScreen?.cgImage
+        
         self.addChild(tabController)
         self.container.addSubview(navigationBar)
         self.container.addSubview(tabController.view)

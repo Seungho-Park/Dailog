@@ -8,6 +8,8 @@
 
 import Foundation
 import RxSwift
+import SharedUIInterfaces
+import SharedUI
 import AppTrackingTransparency
 import AdAttributionKit
 import FeatureSplashInterfaces
@@ -15,6 +17,7 @@ import UserNotifications
 
 public final class DefaultSplashViewModel: SplashViewModel {
     public let disposeBag = DisposeBag()
+    public let background: BackgroundType = .image(.bgLaunchScreen)
     public var action: SplashViewModelAction
     
     public init(action: SplashViewModelAction) {

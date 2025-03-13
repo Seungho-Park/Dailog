@@ -48,10 +48,14 @@ public final class UIAppearance {
             NSAttributedString.Key.foregroundColor:UIColor.tabBarItemColor
         ]
         
+        tabBarItemAppearance.normal.iconColor = UIColor.tabBarItemColor
+        
         tabBarItemAppearance.selected.titleTextAttributes = [
             NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12, weight: .bold),
             NSAttributedString.Key.foregroundColor:UIColor.tabBarItemSelectedsColor
         ]
+        
+        tabBarItemAppearance.selected.iconColor = UIColor.tabBarItemSelectedsColor
         
         appearance.stackedLayoutAppearance = tabBarItemAppearance
         

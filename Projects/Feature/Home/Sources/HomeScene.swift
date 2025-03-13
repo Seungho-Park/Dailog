@@ -17,11 +17,7 @@ extension FeatureHomeInterfaces.HomeScene: SharedUIInterfaces.Scene {
         case .home(let viewModel):
             let vc = HomeViewController.create(viewModel: viewModel as! DefaultHomeViewModel)
             vc.restorationIdentifier = "HomeViewController"
-            let tabBarItem = UITabBarItem()
-            tabBarItem.title = "Home".localized
-            tabBarItem.image = UIImage(systemName: "house")?.withTintColor(.tabBarItemColor, renderingMode: .alwaysOriginal)
-            tabBarItem.selectedImage = UIImage(systemName: "house")?.withTintColor(.tabBarItemSelectedsColor, renderingMode: .alwaysOriginal)
-            tabBarItem.tag = 0
+            let tabBarItem = UITabBarItem(title: "Home".localized, image: UIImage(systemName: "house"), tag: 0)
             vc.tabBarItem = tabBarItem
             return vc
         }

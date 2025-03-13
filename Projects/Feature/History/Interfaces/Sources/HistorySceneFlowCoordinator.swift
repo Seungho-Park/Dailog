@@ -9,7 +9,7 @@
 import SharedUIInterfaces
 
 public protocol HistorySceneFlowCoordinatorDependencies {
-    
+    func makeHistoryViewModel()-> any HistoryViewModel
 }
 
 public protocol HistorySceneFlowCoordinator: Coordinator {

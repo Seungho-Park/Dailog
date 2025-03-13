@@ -7,10 +7,13 @@
 //
 
 import FeatureMainInterfaces
+import SharedUIInterfaces
+import SharedUI
 import RxSwift
 
 public final class DefaultMainViewModel: MainViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
+    public let background: BackgroundType = .image(.bgLaunchScreen)
     
     public func transform(input: MainViewModelInput) -> MainViewModelOutput {
         return .init()

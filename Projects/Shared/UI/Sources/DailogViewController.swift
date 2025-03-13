@@ -58,6 +58,12 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
         #endif
     }
     
+    open override func loadView() {
+        let view = UIImageView(frame: .zero)
+        view.isUserInteractionEnabled = true
+        self.view = view
+    }
+    
     open func configure() {
         self.view.backgroundColor = .clear
         
@@ -65,7 +71,21 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
     }
     
     open func bind() {
-        
+        Observable
+            .just(viewModel.background)
+            .asDriver(onErrorJustReturn: .clear)
+            .drive { [weak self] type in
+                (self?.view as? UIImageView)?.image = nil
+                self?.view.backgroundColor = .clear
+                switch type {
+                case .image(let image):
+                    (self?.view as? UIImageView)?.image = image
+                case .color(let color):
+                    self?.view.backgroundColor = UIColor(named: color, in: .module, compatibleWith: nil)
+                default: break
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     open override func viewDidLayoutSubviews() {

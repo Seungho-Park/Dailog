@@ -20,3 +20,9 @@ public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
         return DefaultHistorySceneFlowCoordinator(navigationController: navController, dependencies: self)
     }
 }
+
+extension DefaultHistorySceneDIContainer {
+    public func makeHistoryViewModel() -> any HistoryViewModel {
+        return DefaultHistoryViewModel()
+    }
+}

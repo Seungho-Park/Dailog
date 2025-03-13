@@ -22,10 +22,6 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
     
     @discardableResult
     public func start() -> UIViewController {
-        let vc = HistoryViewController()
-        vc.restorationIdentifier = "HistoryViewController"
-        vc.view.backgroundColor = .red
-        vc.tabBarItem = .init(title: "History".localized, image: UIImage(systemName: "x.circle"), tag: 1)
-        return vc
+        return HistoryScene.history(dependencies.makeHistoryViewModel()).instantiate()
     }
 }
