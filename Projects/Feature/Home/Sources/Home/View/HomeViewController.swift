@@ -10,30 +10,13 @@ import UIKit
 import SharedUI
 import FeatureHomeInterfaces
 import RxSwift
+import RxCocoa
 
 public final class HomeViewController<VM: HomeViewModel>: DailogViewController<VM> {
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.numberOfLines = 1
-        label.font = .ownglyph(30, .bold)
-        label.text = "오늘 하루는 어떠셨나요?"
-        label.textColor = .title
-        return label
-    }()
-    
-    private lazy var subtitleLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.numberOfLines = 1
-        label.font = .ownglyph(28, .medium)
-        label.text = "지금 느끼는 감정을 기록해보세요."
-        label.textColor = .title
-        return label
-    }()
-    
+    private let promptView: PromptView = PromptView(frame: .zero)
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("prompt_title_1".prompt)
     }
     
     public override func configure() {
@@ -43,19 +26,21 @@ public final class HomeViewController<VM: HomeViewModel>: DailogViewController<V
             .addItem()
             .marginHorizontal(12)
             .define { flex in
-                flex.addItem()
-                    .marginTop(40)
-                    .define { flex in
-                        flex.addItem(titleLabel)
-                            .marginBottom(3)
-                        flex.addItem(subtitleLabel)
-                            .marginTop(3)
-                    }
+                flex.addItem(promptView)
             }
     }
     
     public override func bind() {
         super.bind()
+        
+        let output = self.viewModel.transform(input: .init())
+        
+        output.prompt
+            .drive { [weak self] prompt in
+                self?.promptView.title = prompt.title
+                self?.promptView.subtitle = prompt.subtitle
+            }
+            .disposed(by: disposeBag)
     }
     
     public override func viewDidLayoutSubviews() {

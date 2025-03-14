@@ -29,7 +29,7 @@ open class DefaultNavigationBar: UIView, NavigationBar {
         label.numberOfLines = 1
         label.textColor = .title
         label.text = "Title"
-        label.font = .ownglyph(24, .bold)
+        label.font = .ownglyph(sizeOf: 24, weight: .bold)
         label.textAlignment = .center
         return label
     }()

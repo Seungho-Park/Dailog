@@ -15,6 +15,8 @@ import FeatureReminder
 import FeatureSettings
 
 final class AppDIContainer {
+    private let config = ApplicationConfig()
+    
     func makeSplashSceneDIContainer()-> any DIContainer {
         return DefaultSplashSceneDIContainer(
             dependencies: .init(
@@ -35,7 +37,7 @@ final class AppDIContainer {
     }
     
     private func makeHomeSceneDIContainer()-> any DIContainer {
-        return DefaultHomeSceneDIContainer()
+        return DefaultHomeSceneDIContainer(dependencies: .init())
     }
     
     private func makeHistorySceneDIContainer()-> any DIContainer {

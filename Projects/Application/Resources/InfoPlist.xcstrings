@@ -4,7 +4,19 @@
     "CFBundleDisplayName" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dailog"
+          }
+        },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dailog"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dailog"
@@ -15,6 +27,18 @@
             "state" : "translated",
             "value" : "데일로그"
           }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dailog"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dailog"
+          }
         }
       }
     },
@@ -22,9 +46,39 @@
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dailog"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "Dailog"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dailog"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dailog"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dailog"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Dailog"
           }
         }
@@ -33,16 +87,40 @@
     "NSUserTrackingUsageDescription" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تقوم هذه التطبيق بتحليل سلوك المستخدمين لجمع البيانات من أجل تقديم تجربة مستخدم محسّنة."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allowing us to collect data helps us analyze user behavior and improve your experience with the app."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このアプリは、ユーザーの行動を分析し、改善されたユーザー体験を提供するためにデータを収集します"
+          }
+        },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "이 앱은 사용자 행동을 분석하여 개선된 사용자 경험을 제공하기 위해 데이터를 수집합니다."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "แอปนี้วิเคราะห์พฤติกรรมของผู้ใช้เพื่อรวบรวมข้อมูลเพื่อมอบประสบการณ์ผู้ใช้ที่ดีขึ้น"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ứng dụng này phân tích hành vi người dùng để thu thập dữ liệu nhằm cung cấp trải nghiệm người dùng được cải thiện."
           }
         }
       }

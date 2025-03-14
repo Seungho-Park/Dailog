@@ -7,7 +7,16 @@
 //
 
 import SharedUIInterfaces
+import DomainHomeInterfaces
+
+public struct HomeSceneDIContainerDependencies {
+    
+    public init() {
+    }
+}
 
 public protocol HomeSceneDIContainer: DIContainer, HomeSceneFlowCoordinatorDependencies {
+    var dependencies: HomeSceneDIContainerDependencies { get }
     
+    func makeFetchRandomPromptUsecase() -> FetchRandomPromptUsecase
 }

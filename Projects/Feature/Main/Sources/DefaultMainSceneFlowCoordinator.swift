@@ -8,6 +8,8 @@
 
 import UIKit
 import FeatureMainInterfaces
+import SharedUIInterfaces
+import SharedUI
 
 public final class DefaultMainSceneFlowCoordinator: MainSceneFlowCoordinator {
     public let navigationController: UINavigationController
@@ -32,15 +34,17 @@ public final class DefaultMainSceneFlowCoordinator: MainSceneFlowCoordinator {
         let settingsSceneDIContainer = dependencies.makeSettingsSceneDIContainer()
         let settingsSceneFlowCoordinator = settingsSceneDIContainer.makeCoordinator(navController: navigationController)
         
+        let viewControllers = [
+            homeSceneFlowCoordinator.start(),
+            historySceneFlowCoordinator.start(),
+            reminderSceneFlowCoordinator.start(),
+            settingsSceneFlowCoordinator.start()
+        ]
+        
         return transition(
             scene: MainScene.main(
                 dependencies.makeMainViewModel(),
-                [
-                    homeSceneFlowCoordinator.start(),
-                    historySceneFlowCoordinator.start(),
-                    reminderSceneFlowCoordinator.start(),
-                    settingsSceneFlowCoordinator.start()
-                ]
+                Locale.direction == .leftToRight ? viewControllers : viewControllers.reversed()
             ),
             transitionStyle: .root,
             animated: true

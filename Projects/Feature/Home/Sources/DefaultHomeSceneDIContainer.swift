@@ -8,18 +8,34 @@
 
 import UIKit
 import FeatureHomeInterfaces
+import DomainHomeInterfaces
+import DomainHome
 import SharedUIInterfaces
 
 public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
-    public init() {  }
+    public let dependencies: HomeSceneDIContainerDependencies
+    
+    public init(dependencies: HomeSceneDIContainerDependencies) {
+        self.dependencies = dependencies
+    }
     
     public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
         return DefaultHomeSceneFlowCoordinator(navigationController: navController, dependencies: self)
+    }
+    
+    public func makeFetchRandomPromptUsecase() -> FetchRandomPromptUsecase {
+        return FetchRandomPromptUsecaseImpl(repository: makeHomeRepository())
     }
 }
 
 extension DefaultHomeSceneDIContainer {
     public func makeHomeViewModel() -> any HomeViewModel {
-        return DefaultHomeViewModel()
+        return DefaultHomeViewModel(fetchRandomPromptUsecase: makeFetchRandomPromptUsecase())
+    }
+}
+
+extension DefaultHomeSceneDIContainer {
+    private func makeHomeRepository()-> HomeRepository {
+        return HomeRepositoryImpl()
     }
 }

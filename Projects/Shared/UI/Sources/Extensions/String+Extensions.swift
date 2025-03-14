@@ -11,8 +11,4 @@ public extension String {
     var localized: String {
         NSLocalizedString(self, bundle: .module, comment: "")
     }
-    
-    var prompt: String {
-        NSLocalizedString(self, tableName: "Prompt", bundle: .module, comment: "")
-    }
 }

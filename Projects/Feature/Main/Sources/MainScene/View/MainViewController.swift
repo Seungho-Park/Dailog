@@ -20,7 +20,19 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
     
     public var viewControllers: [UIViewController] {
         get { tabController.viewControllers ?? [] }
-        set { tabController.viewControllers = newValue }
+        set {
+            tabController.viewControllers = newValue
+            switch Locale.direction {
+            case .leftToRight:
+                if tabController.selectedIndex != 0 {
+                    tabController.selectedIndex = 0
+                }
+            case .rightToLeft:
+                if tabController.selectedIndex != newValue.count-1 {
+                    tabController.selectedIndex = newValue.count-1
+                }
+            }
+        }
     }
     
     public override func viewDidLoad() {

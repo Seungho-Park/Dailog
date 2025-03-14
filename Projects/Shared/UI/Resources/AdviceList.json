@@ -1,0 +1,2354 @@
+{
+    "advices": [
+        {
+            "id": 1,
+            "translation": {
+                "ko": {
+                    "text": "오늘의 어려움이 내일의 성공을 만든다.",
+                    "author": {
+                        "name": "윌리엄 셰익스피어",
+                        "description": "영국의 극작가"
+                    }
+                },
+                "en": {
+                    "text": "Today's difficulties shape tomorrow's success.",
+                    "author": {
+                        "name": "William Shakespeare",
+                        "description": "English playwright"
+                    }
+                },
+                "jp": {
+                    "text": "今日の困難が明日の成功を作る。",
+                    "author": {
+                        "name": "ウィリアム・シェイクスピア",
+                        "description": "イギリスの劇作家"
+                    }
+                },
+                "vi": {
+                    "text": "Những khó khăn của hôm nay sẽ tạo ra thành công của ngày mai.",
+                    "author": {
+                        "name": "William Shakespeare",
+                        "description": "Nhà soạn kịch người Anh"
+                    }
+                },
+                "th": {
+                    "text": "ความยากลำบากในวันนี้จะสร้างความสำเร็จในวันพรุ่งนี้.",
+                    "author": {
+                        "name": "วิลเลียม เชคสเปียร์",
+                        "description": "นักเขียนบทละครชาวอังกฤษ"
+                    }
+                },
+                "ar": {
+                    "text": "صعوبات اليوم تشكل نجاحات الغد.",
+                    "author": {
+                        "name": "ويليام شكسبير",
+                        "description": "كاتب مسرحي إنجليزي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 2,
+            "translation": {
+                "ko": {
+                    "text": "성공은 내가 아니라 다른 사람의 도움이 있을 때 진정으로 온다.",
+                    "author": {
+                        "name": "헬렌 켈러",
+                        "description": "미국의 작가"
+                    }
+                },
+                "en": {
+                    "text": "Success truly comes when there is help from others, not just yourself.",
+                    "author": {
+                        "name": "Helen Keller",
+                        "description": "American author"
+                    }
+                },
+                "jp": {
+                    "text": "成功は自分だけでなく、他者からの助けがある時に真に訪れます。",
+                    "author": {
+                        "name": "ヘレン・ケラー",
+                        "description": "アメリカの作家"
+                    }
+                },
+                "vi": {
+                    "text": "Thành công thực sự đến khi có sự giúp đỡ từ người khác, không chỉ từ bản thân bạn.",
+                    "author": {
+                        "name": "Helen Keller",
+                        "description": "Tác giả người Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "ความสำเร็จจริงๆ เกิดขึ้นเมื่อมีความช่วยเหลือจากผู้อื่น ไม่ใช่แค่ตัวคุณเอง.",
+                    "author": {
+                        "name": "เฮเลน เคลเลอร์",
+                        "description": "นักเขียนชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "النجاح يأتي حقًا عندما يكون هناك مساعدة من الآخرين، وليس فقط من نفسك.",
+                    "author": {
+                        "name": "هيلين كيلر",
+                        "description": "مؤلفة أمريكية"
+                    }
+                }
+            }
+        },
+        {
+            "id": 3,
+            "translation": {
+                "ko": {
+                    "text": "당신이 할 수 있는 일이라면 지금 시작하세요.",
+                    "author": {
+                        "name": "마크 트웨인",
+                        "description": "미국의 작가"
+                    }
+                },
+                "en": {
+                    "text": "If there is something you can do, start now.",
+                    "author": {
+                        "name": "Mark Twain",
+                        "description": "American author"
+                    }
+                },
+                "jp": {
+                    "text": "あなたができることがあるなら、今すぐ始めなさい。",
+                    "author": {
+                        "name": "マーク・トウェイン",
+                        "description": "アメリカの作家"
+                    }
+                },
+                "vi": {
+                    "text": "Nếu có điều gì bạn có thể làm, hãy bắt đầu ngay bây giờ.",
+                    "author": {
+                        "name": "Mark Twain",
+                        "description": "Tác giả người Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "หากมีสิ่งใดที่คุณทำได้ ให้เริ่มทำเดี๋ยวนี้.",
+                    "author": {
+                        "name": "มาร์ก ทเวน",
+                        "description": "นักเขียนชาวอเม리กัน"
+                    }
+                },
+                "ar": {
+                    "text": "إذا كان هناك شيء يمكنك القيام به، ابدأ الآن.",
+                    "author": {
+                        "name": "مارك توين",
+                        "description": "مؤلف أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 4,
+            "translation": {
+                "ko": {
+                    "text": "삶은 내가 만들고, 내가 살아가는 것이다.",
+                    "author": {
+                        "name": "헬렌 켈러",
+                        "description": "미국의 작가"
+                    }
+                },
+                "en": {
+                    "text": "Life is what I make of it, and how I live it.",
+                    "author": {
+                        "name": "Helen Keller",
+                        "description": "American author"
+                    }
+                },
+                "jp": {
+                    "text": "人生は私が作り、私が生きるものです。",
+                    "author": {
+                        "name": "ヘレン・ケラー",
+                        "description": "アメリカの作家"
+                    }
+                },
+                "vi": {
+                    "text": "Cuộc sống là những gì tôi tạo ra và cách tôi sống.",
+                    "author": {
+                        "name": "Helen Keller",
+                        "description": "Tác giả người Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "ชีวิตคือสิ่งที่ฉันสร้างขึ้นและวิธีที่ฉันใช้ชีวิต.",
+                    "author": {
+                        "name": "เฮเลน เคลเลอร์",
+                        "description": "นักเขียนชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "الحياة هي ما أصنعه منها، وكيف أعيشها.",
+                    "author": {
+                        "name": "هيلين كيلر",
+                        "description": "مؤلفة أمريكية"
+                    }
+                }
+            }
+        },
+        {
+            "id": 5,
+            "translation": {
+                "ko": {
+                    "text": "가장 큰 위험은 아무런 위험도 감수하지 않는 것이다.",
+                    "author": {
+                        "name": "마크 주커버그",
+                        "description": "페이스북 창립자"
+                    }
+                },
+                "en": {
+                    "text": "The biggest risk is not taking any risk.",
+                    "author": {
+                        "name": "Mark Zuckerberg",
+                        "description": "Founder of Facebook"
+                    }
+                },
+                "jp": {
+                    "text": "最大のリスクは、リスクを全く取らないことです。",
+                    "author": {
+                        "name": "マーク・ザッカーバーグ",
+                        "description": "フェイスブック創設者"
+                    }
+                },
+                "vi": {
+                    "text": "Rủi ro lớn nhất là không chấp nhận bất kỳ rủi ro nào.",
+                    "author": {
+                        "name": "Mark Zuckerberg",
+                        "description": "Nhà sáng lập Facebook"
+                    }
+                },
+                "th": {
+                    "text": "ความเสี่ยงที่ใหญ่ที่สุดคือการไม่รับความเสี่ยงใด ๆ.",
+                    "author": {
+                        "name": "มาร์ก ซักเคอร์เบิร์ก",
+                        "description": "ผู้ก่อตั้ง Facebook"
+                    }
+                },
+                "ar": {
+                    "text": "أكبر خطر هو عدم اتخاذ أي مخاطرة.",
+                    "author": {
+                        "name": "مارك زوكربيرغ",
+                        "description": "مؤسس فيسبوك"
+                    }
+                }
+            }
+        },
+        {
+            "id": 6,
+            "translation": {
+                "ko": {
+                    "text": "성공의 비결은 포기하지 않는 것이다.",
+                    "author": {
+                        "name": "윈스턴 처칠",
+                        "description": "영국의 전 총리"
+                    }
+                },
+                "en": {
+                    "text": "The secret of success is to never give up.",
+                    "author": {
+                        "name": "Winston Churchill",
+                        "description": "Former Prime Minister of the UK"
+                    }
+                },
+                "jp": {
+                    "text": "成功の秘訣は諦めないことだ。",
+                    "author": {
+                        "name": "ウィンストン・チャーチル",
+                        "description": "イギリスの元首相"
+                    }
+                },
+                "vi": {
+                    "text": "Bí quyết thành công là không bao giờ bỏ cuộc.",
+                    "author": {
+                        "name": "Winston Churchill",
+                        "description": "Cựu Thủ tướng Anh"
+                    }
+                },
+                "th": {
+                    "text": "เคล็ดลับของความสำเร็จคือไม่ยอมแพ้.",
+                    "author": {
+                        "name": "วินสตัน เชอร์ชิล",
+                        "description": "อดีตนายกรัฐมนตรีของสหราชอาณาจักร"
+                    }
+                },
+                "ar": {
+                    "text": "سر النجاح هو عدم الاستسلام أبدًا.",
+                    "author": {
+                        "name": "ونستون تشرشل",
+                        "description": "رئيس وزراء المملكة المتحدة السابق"
+                    }
+                }
+            }
+        },
+        {
+            "id": 7,
+            "translation": {
+                "ko": {
+                    "text": "꿈을 꾸는 것이 아니라, 행동하는 것이 중요하다.",
+                    "author": {
+                        "name": "월트 디즈니",
+                        "description": "디즈니 창립자"
+                    }
+                },
+                "en": {
+                    "text": "It is not about dreaming, but about taking action.",
+                    "author": {
+                        "name": "Walt Disney",
+                        "description": "Founder of Disney"
+                    }
+                },
+                "jp": {
+                    "text": "夢を見ることではなく、行動することが大切だ。",
+                    "author": {
+                        "name": "ウォルト・ディズニー",
+                        "description": "ディズニー創設者"
+                    }
+                },
+                "vi": {
+                    "text": "Không chỉ là mơ ước, mà là hành động.",
+                    "author": {
+                        "name": "Walt Disney",
+                        "description": "Nhà sáng lập Disney"
+                    }
+                },
+                "th": {
+                    "text": "ไม่ใช่แค่ฝัน แต่ต้องลงมือทำ.",
+                    "author": {
+                        "name": "วอลต์ ดิสนีย์",
+                        "description": "ผู้ก่อตั้ง Disney"
+                    }
+                },
+                "ar": {
+                    "text": "الأمر لا يتعلق بالحلم فقط، بل بالتحرك والفعل.",
+                    "author": {
+                        "name": "والت ديزني",
+                        "description": "مؤسس ديزني"
+                    }
+                }
+            }
+        },
+        {
+            "id": 8,
+            "translation": {
+                "ko": {
+                    "text": "모든 위대한 업적은 작은 한 걸음에서 시작된다.",
+                    "author": {
+                        "name": "노자",
+                        "description": "중국 고대 철학자"
+                    }
+                },
+                "en": {
+                    "text": "Every great achievement begins with a small step.",
+                    "author": {
+                        "name": "Lao Tzu",
+                        "description": "Ancient Chinese philosopher"
+                    }
+                },
+                "jp": {
+                    "text": "すべての偉大な業績は小さな一歩から始まる。",
+                    "author": {
+                        "name": "老子",
+                        "description": "中国の古代哲学者"
+                    }
+                },
+                "vi": {
+                    "text": "Mọi thành tựu vĩ đại đều bắt đầu từ một bước nhỏ.",
+                    "author": {
+                        "name": "Lão Tử",
+                        "description": "Nhà triết học cổ đại Trung Quốc"
+                    }
+                },
+                "th": {
+                    "text": "ทุกความสำเร็จที่ยิ่งใหญ่เริ่มต้นจากก้าวเล็ก ๆ.",
+                    "author": {
+                        "name": "เล่าจื๊อ",
+                        "description": "นักปรัชญาจีนโบราณ"
+                    }
+                },
+                "ar": {
+                    "text": "كل إنجاز عظيم يبدأ بخطوة صغيرة.",
+                    "author": {
+                        "name": "لاو تزو",
+                        "description": "فيلسوف صيني قديم"
+                    }
+                }
+            }
+        },
+        {
+            "id": 9,
+            "translation": {
+                "ko": {
+                    "text": "실패를 두려워하지 마라. 실패 속에서 배운다.",
+                    "author": {
+                        "name": "토마스 에디슨",
+                        "description": "미국의 발명가"
+                    }
+                },
+                "en": {
+                    "text": "Do not fear failure. You learn from failure.",
+                    "author": {
+                        "name": "Thomas Edison",
+                        "description": "American inventor"
+                    }
+                },
+                "jp": {
+                    "text": "失敗を恐れるな。失敗から学ぶのだ。",
+                    "author": {
+                        "name": "トーマス・エジソン",
+                        "description": "アメリカの発明家"
+                    }
+                },
+                "vi": {
+                    "text": "Đừng sợ thất bại. Bạn học được từ thất bại.",
+                    "author": {
+                        "name": "Thomas Edison",
+                        "description": "Nhà phát minh người Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "อย่ากลัวความล้มเหลว คุณเรียนรู้จากความล้มเหลว.",
+                    "author": {
+                        "name": "โทมัส เอดิสัน",
+                        "description": "นักประดิษฐ์ชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "لا تخف من الفشل. تتعلم من الفشل.",
+                    "author": {
+                        "name": "توماس إديسون",
+                        "description": "مخترع أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 10,
+            "translation": {
+                "ko": {
+                    "text": "오늘을 붙잡아라. 내일은 알 수 없다.",
+                    "author": {
+                        "name": "호라티우스",
+                        "description": "고대 로마 시인"
+                    }
+                },
+                "en": {
+                    "text": "Seize today. Tomorrow is uncertain.",
+                    "author": {
+                        "name": "Horace",
+                        "description": "Ancient Roman poet"
+                    }
+                },
+                "jp": {
+                    "text": "今日をつかめ。明日は分からない。",
+                    "author": {
+                        "name": "ホラティウス",
+                        "description": "古代ローマの詩人"
+                    }
+                },
+                "vi": {
+                    "text": "Hãy nắm bắt hôm nay. Ngày mai không thể đoán trước được.",
+                    "author": {
+                        "name": "Horace",
+                        "description": "Nhà thơ La Mã cổ đại"
+                    }
+                },
+                "th": {
+                    "text": "จงยึดมั่นในวันนี้ พรุ่งนี้ไม่มีใครรู้.",
+                    "author": {
+                        "name": "โฮเรซ",
+                        "description": "กวีโรมันโบราณ"
+                    }
+                },
+                "ar": {
+                    "text": "تمسك باليوم. الغد غير مؤكد.",
+                    "author": {
+                        "name": "هوراس",
+                        "description": "شاعر روماني قديم"
+                    }
+                }
+            }
+        },
+        {
+            "id": 11,
+            "translation": {
+                "ko": {
+                    "text": "위대한 것은 작은 시작에서 비롯된다.",
+                    "author": {
+                        "name": "키케로",
+                        "description": "고대 로마 정치가"
+                    }
+                },
+                "en": {
+                    "text": "Great things start from small beginnings.",
+                    "author": {
+                        "name": "Cicero",
+                        "description": "Ancient Roman statesman"
+                    }
+                },
+                "jp": {
+                    "text": "偉大なことは小さな始まりから生まれる。",
+                    "author": {
+                        "name": "キケロ",
+                        "description": "古代ローマの政治家"
+                    }
+                },
+                "vi": {
+                    "text": "Những điều vĩ đại bắt đầu từ những khởi đầu nhỏ.",
+                    "author": {
+                        "name": "Cicero",
+                        "description": "Chính khách La Mã cổ đại"
+                    }
+                },
+                "th": {
+                    "text": "สิ่งที่ยิ่งใหญ่เริ่มจากสิ่งเล็ก ๆ.",
+                    "author": {
+                        "name": "ซิเซโร",
+                        "description": "นักการเมืองโรมันโบราณ"
+                    }
+                },
+                "ar": {
+                    "text": "الأشياء العظيمة تبدأ من البدايات الصغيرة.",
+                    "author": {
+                        "name": "شيشرون",
+                        "description": "رجل دولة روماني قديم"
+                    }
+                }
+            }
+        },
+        {
+            "id": 12,
+            "translation": {
+                "ko": {
+                    "text": "행복은 이미 가진 것을 소중히 여기는 데 있다.",
+                    "author": {
+                        "name": "달라이 라마",
+                        "description": "티베트의 정신적 지도자"
+                    }
+                },
+                "en": {
+                    "text": "Happiness lies in cherishing what you already have.",
+                    "author": {
+                        "name": "Dalai Lama",
+                        "description": "Spiritual leader of Tibet"
+                    }
+                },
+                "jp": {
+                    "text": "幸せはすでに持っているものを大切にすることにある。",
+                    "author": {
+                        "name": "ダライ・ラマ",
+                        "description": "チベットの精神的指導者"
+                    }
+                },
+                "vi": {
+                    "text": "Hạnh phúc nằm ở việc trân trọng những gì bạn đã có.",
+                    "author": {
+                        "name": "Đạt Lai Lạt Ma",
+                        "description": "Lãnh tụ tinh thần của Tây Tạng"
+                    }
+                },
+                "th": {
+                    "text": "ความสุขอยู่ที่การเห็นคุณค่าของสิ่งที่คุณมีอยู่แล้ว.",
+                    "author": {
+                        "name": "ดาไลลามะ",
+                        "description": "ผู้นำทางจิตวิญญาณของทิเบต"
+                    }
+                },
+                "ar": {
+                    "text": "السعادة تكمن في تقدير ما تملكه بالفعل.",
+                    "author": {
+                        "name": "الدالاي لاما",
+                        "description": "القائد الروحي للتبت"
+                    }
+                }
+            }
+        },
+        {
+            "id": 13,
+            "translation": {
+                "ko": {
+                    "text": "기회는 준비된 자에게 찾아온다.",
+                    "author": {
+                        "name": "세네카",
+                        "description": "고대 로마 철학자"
+                    }
+                },
+                "en": {
+                    "text": "Luck is what happens when preparation meets opportunity.",
+                    "author": {
+                        "name": "Seneca",
+                        "description": "Ancient Roman philosopher"
+                    }
+                },
+                "jp": {
+                    "text": "幸運とは、準備が機会に出会うことである。",
+                    "author": {
+                        "name": "セネカ",
+                        "description": "古代ローマの哲学者"
+                    }
+                },
+                "vi": {
+                    "text": "May mắn là khi sự chuẩn bị gặp cơ hội.",
+                    "author": {
+                        "name": "Seneca",
+                        "description": "Nhà triết học La Mã cổ đại"
+                    }
+                },
+                "th": {
+                    "text": "โชคดีเกิดขึ้นเมื่อการเตรียมตัวพบกับโอกาส.",
+                    "author": {
+                        "name": "เซเนกา",
+                        "description": "นักปรัชญาโรมันโบราณ"
+                    }
+                },
+                "ar": {
+                    "text": "الحظ هو ما يحدث عندما تلتقي الاستعدادات بالفرص.",
+                    "author": {
+                        "name": "سينيكا",
+                        "description": "فيلسوف روماني قديم"
+                    }
+                }
+            }
+        },
+        {
+            "id": 14,
+            "translation": {
+                "ko": {
+                    "text": "네 자신의 한계를 정하지 마라.",
+                    "author": {
+                        "name": "브루스 리",
+                        "description": "무술가, 배우"
+                    }
+                },
+                "en": {
+                    "text": "Do not set limits on yourself.",
+                    "author": {
+                        "name": "Bruce Lee",
+                        "description": "Martial artist, actor"
+                    }
+                },
+                "jp": {
+                    "text": "自分自身に限界を設けるな。",
+                    "author": {
+                        "name": "ブルース・リー",
+                        "description": "武道家、俳優"
+                    }
+                },
+                "vi": {
+                    "text": "Đừng đặt giới hạn cho bản thân.",
+                    "author": {
+                        "name": "Bruce Lee",
+                        "description": "Võ sĩ, diễn viên"
+                    }
+                },
+                "th": {
+                    "text": "อย่าจำกัดตัวเอง.",
+                    "author": {
+                        "name": "บรูซ ลี",
+                        "description": "นักศิลปะการต่อสู้, นักแสดง"
+                    }
+                },
+                "ar": {
+                    "text": "لا تضع حدودًا لنفسك.",
+                    "author": {
+                        "name": "بروس لي",
+                        "description": "فنان قتالي، ممثل"
+                    }
+                }
+            }
+        },
+        {
+            "id": 15,
+            "translation": {
+                "ko": {
+                    "text": "남을 변화시키려면 먼저 자신이 변해야 한다.",
+                    "author": {
+                        "name": "마하트마 간디",
+                        "description": "인도의 독립운동가"
+                    }
+                },
+                "en": {
+                    "text": "Be the change you wish to see in the world.",
+                    "author": {
+                        "name": "Mahatma Gandhi",
+                        "description": "Indian independence activist"
+                    }
+                },
+                "jp": {
+                    "text": "世界を変えたいなら、まず自分が変わりなさい。",
+                    "author": {
+                        "name": "マハトマ・ガンジー",
+                        "description": "インドの独立運動家"
+                    }
+                },
+                "vi": {
+                    "text": "Hãy là sự thay đổi mà bạn muốn thấy trên thế giới.",
+                    "author": {
+                        "name": "Mahatma Gandhi",
+                        "description": "Nhà hoạt động độc lập của Ấn Độ"
+                    }
+                },
+                "th": {
+                    "text": "จงเป็นการเปลี่ยนแปลงที่คุณต้องการเห็นในโลก.",
+                    "author": {
+                        "name": "มหาตมะ คานธี",
+                        "description": "นักเคลื่อนไหวเพื่ออิสรภาพของอินเดีย"
+                    }
+                },
+                "ar": {
+                    "text": "كن التغيير الذي تريد أن تراه في العالم.",
+                    "author": {
+                        "name": "المهاتما غاندي",
+                        "description": "ناشط استقلال الهند"
+                    }
+                }
+            }
+        },
+        {
+            "id": 16,
+            "translation": {
+                "ko": {
+                    "text": "어제보다 나은 오늘을 만들어라.",
+                    "author": {
+                        "name": "존 우든",
+                        "description": "미국 농구 코치"
+                    }
+                },
+                "en": {
+                    "text": "Make today better than yesterday.",
+                    "author": {
+                        "name": "John Wooden",
+                        "description": "American basketball coach"
+                    }
+                },
+                "jp": {
+                    "text": "昨日より良い今日を作ろう。",
+                    "author": {
+                        "name": "ジョン・ウッデン",
+                        "description": "アメリカのバスケットボールコーチ"
+                    }
+                },
+                "vi": {
+                    "text": "Hãy làm hôm nay tốt hơn hôm qua.",
+                    "author": {
+                        "name": "John Wooden",
+                        "description": "Huấn luyện viên bóng rổ Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "ทำให้วันนี้ดีกว่าเมื่อวาน.",
+                    "author": {
+                        "name": "จอห์น วูเดน",
+                        "description": "โค้ชบาสเกตบอลชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "اجعل اليوم أفضل من الأمس.",
+                    "author": {
+                        "name": "جون وودن",
+                        "description": "مدرب كرة سلة أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 17,
+            "translation": {
+                "ko": {
+                    "text": "실패는 성공의 발판이다.",
+                    "author": {
+                        "name": "토마스 에디슨",
+                        "description": "발명가"
+                    }
+                },
+                "en": {
+                    "text": "Failure is the stepping stone to success.",
+                    "author": {
+                        "name": "Thomas Edison",
+                        "description": "Inventor"
+                    }
+                },
+                "jp": {
+                    "text": "失敗は成功への踏み台である。",
+                    "author": {
+                        "name": "トーマス・エジソン",
+                        "description": "発明家"
+                    }
+                },
+                "vi": {
+                    "text": "Thất bại là bước đệm cho thành công.",
+                    "author": {
+                        "name": "Thomas Edison",
+                        "description": "Nhà phát minh"
+                    }
+                },
+                "th": {
+                    "text": "ความล้มเหลวเป็นก้าวแรกของความสำเร็จ.",
+                    "author": {
+                        "name": "โทมัส เอดิสัน",
+                        "description": "นักประดิษฐ์"
+                    }
+                },
+                "ar": {
+                    "text": "الفشل هو حجر الأساس للنجاح.",
+                    "author": {
+                        "name": "توماس إديسون",
+                        "description": "مخترع"
+                    }
+                }
+            }
+        },
+        {
+            "id": 18,
+            "translation": {
+                "ko": {
+                    "text": "작은 성취들이 모여 위대한 성공을 만든다.",
+                    "author": {
+                        "name": "빈스 롬바르디",
+                        "description": "미국 미식축구 감독"
+                    }
+                },
+                "en": {
+                    "text": "Small achievements add up to great success.",
+                    "author": {
+                        "name": "Vince Lombardi",
+                        "description": "American football coach"
+                    }
+                },
+                "jp": {
+                    "text": "小さな達成が積み重なり、大きな成功を生む。",
+                    "author": {
+                        "name": "ヴィンス・ロンバルディ",
+                        "description": "アメリカンフットボールコーチ"
+                    }
+                },
+                "vi": {
+                    "text": "Những thành tựu nhỏ cộng lại tạo thành thành công lớn.",
+                    "author": {
+                        "name": "Vince Lombardi",
+                        "description": "Huấn luyện viên bóng bầu dục Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "ความสำเร็จเล็ก ๆ น้อย ๆ สะสมเป็นความสำเร็จที่ยิ่งใหญ่.",
+                    "author": {
+                        "name": "วินซ์ ลอมบาร์ดี",
+                        "description": "โค้ชอเมริกันฟุต볼"
+                    }
+                },
+                "ar": {
+                    "text": "الإنجازات الصغيرة تتراكم لتشكل نجاحًا كبيرًا.",
+                    "author": {
+                        "name": "فينس لومباردي",
+                        "description": "مدرب كرة القدم الأمريكية"
+                    }
+                }
+            }
+        },
+        {
+            "id": 19,
+            "translation": {
+                "ko": {
+                    "text": "네가 할 수 있다고 믿는다면, 이미 반은 이룬 것이다.",
+                    "author": {
+                        "name": "시어도어 루즈벨트",
+                        "description": "미국 제26대 대통령"
+                    }
+                },
+                "en": {
+                    "text": "Believe you can and you're halfway there.",
+                    "author": {
+                        "name": "Theodore Roosevelt",
+                        "description": "26th President of the United States"
+                    }
+                },
+                "jp": {
+                    "text": "できると信じれば、すでに半分達成したようなものだ。",
+                    "author": {
+                        "name": "セオドア・ルーズベルト",
+                        "description": "アメリカ合衆国第26代大統領"
+                    }
+                },
+                "vi": {
+                    "text": "Hãy tin rằng bạn có thể, và bạn đã đi được nửa chặng đường.",
+                    "author": {
+                        "name": "Theodore Roosevelt",
+                        "description": "Tổng thống thứ 26 của Hoa Kỳ"
+                    }
+                },
+                "th": {
+                    "text": "เชื่อว่าคุณทำได้และคุณไปได้ครึ่งทางแล้ว.",
+                    "author": {
+                        "name": "ธีโอดอร์ รูสเวลต์",
+                        "description": "ประธานาธิบดีสหรัฐฯ คนที่ 26"
+                    }
+                },
+                "ar": {
+                    "text": "آمن أنك تستطيع، وستكون قد قطعت نصف الطريق.",
+                    "author": {
+                        "name": "ثيودور روزفلت",
+                        "description": "الرئيس السادس والعشرون للولايات المتحدة"
+                    }
+                }
+            }
+        },
+        {
+            "id": 20,
+            "translation": {
+                "ko": {
+                    "text": "시간을 현명하게 사용하라. 그것이 인생이다.",
+                    "author": {
+                        "name": "브루스 리",
+                        "description": "무술가, 배우"
+                    }
+                },
+                "en": {
+                    "text": "Use time wisely. It is life itself.",
+                    "author": {
+                        "name": "Bruce Lee",
+                        "description": "Martial artist, actor"
+                    }
+                },
+                "jp": {
+                    "text": "時間を賢く使え。それが人生だ。",
+                    "author": {
+                        "name": "ブルース・リー",
+                        "description": "武道家、俳優"
+                    }
+                },
+                "vi": {
+                    "text": "Hãy sử dụng thời gian một cách khôn ngoan. Đó là cuộc sống.",
+                    "author": {
+                        "name": "Bruce Lee",
+                        "description": "Võ sĩ, diễn viên"
+                    }
+                },
+                "th": {
+                    "text": "ใช้เวลาอย่างชาญฉลาด นั่นคือชีวิต.",
+                    "author": {
+                        "name": "บรูซ ลี",
+                        "description": "นักศิลปะการต่อสู้, นักแสดง"
+                    }
+                },
+                "ar": {
+                    "text": "استخدم الوقت بحكمة، فهو الحياة نفسها.",
+                    "author": {
+                        "name": "بروس لي",
+                        "description": "فنان قتالي، ممثل"
+                    }
+                }
+            }
+        },
+        {
+            "id": 21,
+            "translation": {
+                "ko": {
+                    "text": "무엇을 하든 최선을 다하라.",
+                    "author": {
+                        "name": "마하트마 간디",
+                        "description": "인도 독립운동가"
+                    }
+                },
+                "en": {
+                    "text": "Whatever you do, do it with all your might.",
+                    "author": {
+                        "name": "Mahatma Gandhi",
+                        "description": "Indian independence leader"
+                    }
+                },
+                "jp": {
+                    "text": "何をするにしても、全力を尽くせ。",
+                    "author": {
+                        "name": "マハトマ・ガンジー",
+                        "description": "インド独立運動指導者"
+                    }
+                },
+                "vi": {
+                    "text": "Dù bạn làm gì, hãy làm hết sức mình.",
+                    "author": {
+                        "name": "Mahatma Gandhi",
+                        "description": "Nhà lãnh đạo độc lập Ấn Độ"
+                    }
+                },
+                "th": {
+                    "text": "ไม่ว่าคุณจะทำอะไร ให้ทำด้วยสุดกำลังของคุณ.",
+                    "author": {
+                        "name": "มหาตมะ คานธี",
+                        "description": "ผู้นำการเคลื่อนไหวเพื่อเอกราชของอินเดีย"
+                    }
+                },
+                "ar": {
+                    "text": "مهما فعلت، افعله بكل قوتك.",
+                    "author": {
+                        "name": "المهاتما غاندي",
+                        "description": "زعيم حركة الاستقلال الهندية"
+                    }
+                }
+            }
+        },
+        {
+            "id": 22,
+            "translation": {
+                "ko": {
+                    "text": "변화는 당신 안에서 시작된다.",
+                    "author": {
+                        "name": "달라이 라마",
+                        "description": "티베트 정신적 지도자"
+                    }
+                },
+                "en": {
+                    "text": "Change begins within you.",
+                    "author": {
+                        "name": "Dalai Lama",
+                        "description": "Tibetan spiritual leader"
+                    }
+                },
+                "jp": {
+                    "text": "変化はあなたの中から始まる。",
+                    "author": {
+                        "name": "ダライ・ラマ",
+                        "description": "チベットの精神的指導者"
+                    }
+                },
+                "vi": {
+                    "text": "Sự thay đổi bắt đầu từ chính bạn.",
+                    "author": {
+                        "name": "Dalai Lama",
+                        "description": "Nhà lãnh đạo tinh thần Tây Tạng"
+                    }
+                },
+                "th": {
+                    "text": "การเปลี่ยนแปลงเริ่มต้นจากภายในตัวคุณ.",
+                    "author": {
+                        "name": "ดาไลลามะ",
+                        "description": "ผู้นำทางจิตวิญญาณของทิเบต"
+                    }
+                },
+                "ar": {
+                    "text": "التغيير يبدأ من داخلك.",
+                    "author": {
+                        "name": "الدالاي لاما",
+                        "description": "الزعيم الروحي للتبت"
+                    }
+                }
+            }
+        },
+        {
+            "id": 23,
+            "translation": {
+                "ko": {
+                    "text": "오늘이 당신의 남은 인생 중 첫 번째 날이다.",
+                    "author": {
+                        "name": "찰스 디킨스",
+                        "description": "영국 소설가"
+                    }
+                },
+                "en": {
+                    "text": "Today is the first day of the rest of your life.",
+                    "author": {
+                        "name": "Charles Dickens",
+                        "description": "British novelist"
+                    }
+                },
+                "jp": {
+                    "text": "今日は残りの人生の最初の日だ。",
+                    "author": {
+                        "name": "チャールズ・ディケンズ",
+                        "description": "イギリスの小説家"
+                    }
+                },
+                "vi": {
+                    "text": "Hôm nay là ngày đầu tiên của phần còn lại trong cuộc đời bạn.",
+                    "author": {
+                        "name": "Charles Dickens",
+                        "description": "Tiểu thuyết gia Anh"
+                    }
+                },
+                "th": {
+                    "text": "วันนี้เป็นวันแรกของชีวิตที่เหลืออยู่ของคุณ.",
+                    "author": {
+                        "name": "ชาร์ลส์ ดิกเกนส์",
+                        "description": "นักเขียนชาวอังกฤษ"
+                    }
+                },
+                "ar": {
+                    "text": "اليوم هو أول يوم في بقية حياتك.",
+                    "author": {
+                        "name": "تشارلز ديكنز",
+                        "description": "روائي بريطاني"
+                    }
+                }
+            }
+        },
+        {
+            "id": 24,
+            "translation": {
+                "ko": {
+                    "text": "꿈을 꾸는 사람이 세상을 바꾼다.",
+                    "author": {
+                        "name": "월트 디즈니",
+                        "description": "애니메이터, 기업가"
+                    }
+                },
+                "en": {
+                    "text": "The ones who dream change the world.",
+                    "author": {
+                        "name": "Walt Disney",
+                        "description": "Animator, entrepreneur"
+                    }
+                },
+                "jp": {
+                    "text": "夢を見る人が世界を変える。",
+                    "author": {
+                        "name": "ウォルト・ディズニー",
+                        "description": "アニメーター、起業家"
+                    }
+                },
+                "vi": {
+                    "text": "Những người mơ ước thay đổi thế giới.",
+                    "author": {
+                        "name": "Walt Disney",
+                        "description": "Họa sĩ hoạt hình, doanh nhân"
+                    }
+                },
+                "th": {
+                    "text": "ผู้ที่มีความฝันเปลี่ยนแปลงโลก.",
+                    "author": {
+                        "name": "วอลต์ ดิสนีย์",
+                        "description": "นักสร้างแอนิเมชัน, นักธุรกิจ"
+                    }
+                },
+                "ar": {
+                    "text": "أولئك الذين يحلمون يغيرون العالم.",
+                    "author": {
+                        "name": "والت ديزني",
+                        "description": "رسام رسوم متحركة، رجل أعمال"
+                    }
+                }
+            }
+        },
+        {
+            "id": 25,
+            "translation": {
+                "ko": {
+                    "text": "목표 없이 항해하는 것은 어디로 가도 상관없다는 뜻이다.",
+                    "author": {
+                        "name": "세네카",
+                        "description": "고대 로마 철학자"
+                    }
+                },
+                "en": {
+                    "text": "To sail without a goal means you don’t care where you end up.",
+                    "author": {
+                        "name": "Seneca",
+                        "description": "Ancient Roman philosopher"
+                    }
+                },
+                "jp": {
+                    "text": "目標なしに航海することは、どこに行っても構わないということだ。",
+                    "author": {
+                        "name": "セネカ",
+                        "description": "古代ローマの哲学者"
+                    }
+                },
+                "vi": {
+                    "text": "Đi biển mà không có mục tiêu nghĩa là bạn không quan tâm đến nơi mình đến.",
+                    "author": {
+                        "name": "Seneca",
+                        "description": "Nhà triết học La Mã cổ đại"
+                    }
+                },
+                "th": {
+                    "text": "การล่องเรือโดยไม่มีเป้าหมายหมายถึงคุณไม่สนใจว่าจะไปที่ไหน.",
+                    "author": {
+                        "name": "เซเนกา",
+                        "description": "นักปรัชญาโรมันโบราณ"
+                    }
+                },
+                "ar": {
+                    "text": "الإبحار بدون هدف يعني أنك لا تهتم بالمكان الذي ستصل إليه.",
+                    "author": {
+                        "name": "سينيكا",
+                        "description": "فيلسوف روماني قديم"
+                    }
+                }
+            }
+        },
+        {
+            "id": 26,
+            "translation": {
+                "ko": {
+                    "text": "성공은 최선을 다한 결과일 뿐, 목적이 아니다.",
+                    "author": {
+                        "name": "헤렌",
+                        "description": "독일 역사학자"
+                    }
+                },
+                "en": {
+                    "text": "Success is merely the result of doing your best, not the goal.",
+                    "author": {
+                        "name": "Heeren",
+                        "description": "German historian"
+                    }
+                },
+                "jp": {
+                    "text": "成功は最善を尽くした結果であり、目的ではない。",
+                    "author": {
+                        "name": "ヘーレン",
+                        "description": "ドイツの歴史家"
+                    }
+                },
+                "vi": {
+                    "text": "Thành công chỉ là kết quả của việc cố gắng hết mình, không phải là mục tiêu.",
+                    "author": {
+                        "name": "Heeren",
+                        "description": "Nhà sử học Đức"
+                    }
+                },
+                "th": {
+                    "text": "ความสำเร็จเป็นเพียงผลลัพธ์ของการทำให้ดีที่สุด ไม่ใช่เป้าหมาย.",
+                    "author": {
+                        "name": "เฮเรน",
+                        "description": "นักประวัติศาสตร์ชาวเยอรมัน"
+                    }
+                },
+                "ar": {
+                    "text": "النجاح ليس سوى نتيجة لبذل قصارى جهدك، وليس الهدف.",
+                    "author": {
+                        "name": "هيرين",
+                        "description": "مؤرخ ألماني"
+                    }
+                }
+            }
+        },
+        {
+            "id": 27,
+            "translation": {
+                "ko": {
+                    "text": "작은 성취들이 위대한 성공을 만든다.",
+                    "author": {
+                        "name": "빈스 롬바르디",
+                        "description": "미국 미식축구 감독"
+                    }
+                },
+                "en": {
+                    "text": "Small achievements lead to great success.",
+                    "author": {
+                        "name": "Vince Lombardi",
+                        "description": "American football coach"
+                    }
+                },
+                "jp": {
+                    "text": "小さな成功が偉大な成功を生む。",
+                    "author": {
+                        "name": "ヴィンス・ロンバルディ",
+                        "description": "アメリカンフットボールのコーチ"
+                    }
+                },
+                "vi": {
+                    "text": "Những thành tựu nhỏ tạo nên thành công vĩ đại.",
+                    "author": {
+                        "name": "Vince Lombardi",
+                        "description": "Huấn luyện viên bóng bầu dục Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "ความสำเร็จเล็กๆ นำไปสู่ความสำเร็จที่ยิ่งใหญ่.",
+                    "author": {
+                        "name": "วินซ์ ลอมบาร์ดี",
+                        "description": "โค้ชอเมริกันฟุตบอล"
+                    }
+                },
+                "ar": {
+                    "text": "الإنجازات الصغيرة تؤدي إلى نجاح كبير.",
+                    "author": {
+                        "name": "فينس لومباردي",
+                        "description": "مدرب كرة القدم الأمريكية"
+                    }
+                }
+            }
+        },
+        {
+            "id": 28,
+            "translation": {
+                "ko": {
+                    "text": "당신이 두려워하는 일을 하라. 그러면 두려움이 사라진다.",
+                    "author": {
+                        "name": "랄프 왈도 에머슨",
+                        "description": "미국 철학자, 시인"
+                    }
+                },
+                "en": {
+                    "text": "Do what you fear, and the fear will disappear.",
+                    "author": {
+                        "name": "Ralph Waldo Emerson",
+                        "description": "American philosopher, poet"
+                    }
+                },
+                "jp": {
+                    "text": "あなたが恐れることをしなさい。そうすれば恐怖は消える。",
+                    "author": {
+                        "name": "ラルフ・ワルド・エマーソン",
+                        "description": "アメリカの哲学者、詩人"
+                    }
+                },
+                "vi": {
+                    "text": "Hãy làm điều bạn sợ, và nỗi sợ hãi sẽ biến mất.",
+                    "author": {
+                        "name": "Ralph Waldo Emerson",
+                        "description": "Nhà triết học, nhà thơ Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "จงทำสิ่งที่คุณกลัว แล้วความกลัวจะหายไป.",
+                    "author": {
+                        "name": "ราล์ฟ วอลโด เอเมอร์สัน",
+                        "description": "นักปรัชญาและกวีชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "افعل ما تخافه، وسيختفي الخوف.",
+                    "author": {
+                        "name": "رالف والدو إيمرسون",
+                        "description": "فيلسوف وشاعر أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 29,
+            "translation": {
+                "ko": {
+                    "text": "쉬운 길은 종종 우리를 가장 힘든 곳으로 이끈다.",
+                    "author": {
+                        "name": "헨리 포드",
+                        "description": "미국 기업가, 포드 자동차 창립자"
+                    }
+                },
+                "en": {
+                    "text": "The easy path often leads to the hardest destination.",
+                    "author": {
+                        "name": "Henry Ford",
+                        "description": "American industrialist, founder of Ford Motor Company"
+                    }
+                },
+                "jp": {
+                    "text": "楽な道はしばしば最も困難な場所へと導く。",
+                    "author": {
+                        "name": "ヘンリー・フォード",
+                        "description": "アメリカの実業家、フォード・モーター創設者"
+                    }
+                },
+                "vi": {
+                    "text": "Con đường dễ dàng thường dẫn đến nơi khó khăn nhất.",
+                    "author": {
+                        "name": "Henry Ford",
+                        "description": "Nhà công nghiệp Mỹ, người sáng lập Ford"
+                    }
+                },
+                "th": {
+                    "text": "เส้นทางที่ง่ายมักจะนำไปสู่จุดหมายที่ยากที่สุด.",
+                    "author": {
+                        "name": "เฮนรี ฟอร์ด",
+                        "description": "นักอุตสาหกรรมชาวอเมริกัน ผู้ก่อตั้งฟอร์ดมอ터"
+                    }
+                },
+                "ar": {
+                    "text": "الطريق السهل غالبًا ما يقود إلى الوجهة الأصعب.",
+                    "author": {
+                        "name": "هنري فورد",
+                        "description": "صناعي أمريكي، مؤسس شركة فورد"
+                    }
+                }
+            }
+        },
+        {
+            "id": 30,
+            "translation": {
+                "ko": {
+                    "text": "자신을 믿는 것이 모든 성공의 시작이다.",
+                    "author": {
+                        "name": "노먼 빈센트 필",
+                        "description": "미국 작가, 목사"
+                    }
+                },
+                "en": {
+                    "text": "Believing in yourself is the beginning of all success.",
+                    "author": {
+                        "name": "Norman Vincent Peale",
+                        "description": "American author, minister"
+                    }
+                },
+                "jp": {
+                    "text": "自分を信じることが、すべての成功の始まりである。",
+                    "author": {
+                        "name": "ノーマン・ヴィンセント・ピール",
+                        "description": "アメリカの作家、牧師"
+                    }
+                },
+                "vi": {
+                    "text": "Tin vào chính mình là khởi đầu của mọi thành công.",
+                    "author": {
+                        "name": "Norman Vincent Peale",
+                        "description": "Nhà văn, mục sư Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "การเชื่อมั่นในตัวเองคือจุดเริ่มต้นของความสำเร็จทั้งหมด.",
+                    "author": {
+                        "name": "นอร์แมน วินเซนต์ พีล",
+                        "description": "นักเขียนและศาสนาจารย์ชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "الإيمان بنفسك هو بداية كل نجاح.",
+                    "author": {
+                        "name": "نورمان فنسنت بيل",
+                        "description": "كاتب وواعظ أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 31,
+            "translation": {
+                "ko": {
+                    "text": "포기하지 않는 한 실패는 없다.",
+                    "author": {
+                        "name": "엘버트 허버드",
+                        "description": "미국 작가, 철학자"
+                    }
+                },
+                "en": {
+                    "text": "There is no failure except in no longer trying.",
+                    "author": {
+                        "name": "Elbert Hubbard",
+                        "description": "American writer, philosopher"
+                    }
+                },
+                "jp": {
+                    "text": "諦めない限り、失敗はない。",
+                    "author": {
+                        "name": "エルバート・ハバード",
+                        "description": "アメリカの作家、哲学者"
+                    }
+                },
+                "vi": {
+                    "text": "Không có thất bại trừ khi bạn ngừng cố gắng.",
+                    "author": {
+                        "name": "Elbert Hubbard",
+                        "description": "Nhà văn, triết gia Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "ไม่มีความล้มเหลวหากคุณไม่ยอมแพ้.",
+                    "author": {
+                        "name": "เอลเบิร์ต ฮับบาร์ด",
+                        "description": "นักเขียนและนักปรัชญาชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "لا يوجد فشل إلا في التوقف عن المحاولة.",
+                    "author": {
+                        "name": "إلبرت هوبارد",
+                        "description": "كاتب وفيلسوف أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 32,
+            "translation": {
+                "ko": {
+                    "text": "어제보다 나은 오늘을 만들기 위해 노력하라.",
+                    "author": {
+                        "name": "달라이 라마",
+                        "description": "티베트의 정신적 지도자"
+                    }
+                },
+                "en": {
+                    "text": "Strive to make today better than yesterday.",
+                    "author": {
+                        "name": "Dalai Lama",
+                        "description": "Spiritual leader of Tibet"
+                    }
+                },
+                "jp": {
+                    "text": "昨日よりも良い今日を作るために努力しなさい。",
+                    "author": {
+                        "name": "ダライ・ラマ",
+                        "description": "チベットの精神的指導者"
+                    }
+                },
+                "vi": {
+                    "text": "Cố gắng làm cho hôm nay tốt hơn hôm qua.",
+                    "author": {
+                        "name": "Dalai Lama",
+                        "description": "Lãnh đạo tinh thần của Tây Tạng"
+                    }
+                },
+                "th": {
+                    "text": "พยายามทำให้วันนี้ดีกว่าเมื่อวาน.",
+                    "author": {
+                        "name": "ดาไลลามะ",
+                        "description": "ผู้นำทางจิตวิญญาณของทิเบต"
+                    }
+                },
+                "ar": {
+                    "text": "اسعَ لجعل اليوم أفضل من الأمس.",
+                    "author": {
+                        "name": "الدالاي لاما",
+                        "description": "القائد الروحي للتبت"
+                    }
+                }
+            }
+        },
+        {
+            "id": 33,
+            "translation": {
+                "ko": {
+                    "text": "가장 어려운 순간이 가장 위대한 순간이 될 수 있다.",
+                    "author": {
+                        "name": "프리드리히 니체",
+                        "description": "독일 철학자"
+                    }
+                },
+                "en": {
+                    "text": "The hardest moments can become the greatest ones.",
+                    "author": {
+                        "name": "Friedrich Nietzsche",
+                        "description": "German philosopher"
+                    }
+                },
+                "jp": {
+                    "text": "最も困難な瞬間が最も素晴らしい瞬間になり得る。",
+                    "author": {
+                        "name": "フリードリヒ・ニーチェ",
+                        "description": "ドイツの哲学者"
+                    }
+                },
+                "vi": {
+                    "text": "Những khoảnh khắc khó khăn nhất có thể trở thành những khoảnh khắc vĩ đại nhất.",
+                    "author": {
+                        "name": "Friedrich Nietzsche",
+                        "description": "Nhà triết học Đức"
+                    }
+                },
+                "th": {
+                    "text": "ช่วงเวลาที่ยากที่สุดอาจกลายเป็นช่วงเวลาที่ยิ่งใหญ่ที่สุด.",
+                    "author": {
+                        "name": "ฟรีดริช นีทเชอ",
+                        "description": "นักปรัชญาชาวเยอรมัน"
+                    }
+                },
+                "ar": {
+                    "text": "أصعب اللحظات قد تصبح أعظم اللحظات.",
+                    "author": {
+                        "name": "فريدريش نيتشه",
+                        "description": "فيلسوف ألماني"
+                    }
+                }
+            }
+        },
+        {
+            "id": 34,
+            "translation": {
+                "ko": {
+                    "text": "성공은 자신을 믿는 것에서 시작된다.",
+                    "author": {
+                        "name": "월트 디즈니",
+                        "description": "미국 애니메이터, 기업가"
+                    }
+                },
+                "en": {
+                    "text": "Success begins with believing in yourself.",
+                    "author": {
+                        "name": "Walt Disney",
+                        "description": "American animator, entrepreneur"
+                    }
+                },
+                "jp": {
+                    "text": "成功は自分を信じることから始まる。",
+                    "author": {
+                        "name": "ウォルト・ディズニー",
+                        "description": "アメリカのアニメーター、実業家"
+                    }
+                },
+                "vi": {
+                    "text": "Thành công bắt đầu từ việc tin vào chính mình.",
+                    "author": {
+                        "name": "Walt Disney",
+                        "description": "Nhà làm phim hoạt hình, doanh nhân Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "ความสำเร็จเริ่มต้นจากการเชื่อมั่นในตัวเอง.",
+                    "author": {
+                        "name": "วอลต์ ดิสนีย์",
+                        "description": "นักสร้างแอนิเมชั่นและนักธุรกิจชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "يبدأ النجاح بالإيمان بنفسك.",
+                    "author": {
+                        "name": "والت ديزني",
+                        "description": "مبتكر الرسوم المتحركة ورجل أعمال أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 35,
+            "translation": {
+                "ko": {
+                    "text": "변화는 고통스러울 수 있지만, 아무것도 하지 않는 것보다 낫다.",
+                    "author": {
+                        "name": "존 F. 케네디",
+                        "description": "미국 제35대 대통령"
+                    }
+                },
+                "en": {
+                    "text": "Change can be painful, but it is better than doing nothing.",
+                    "author": {
+                        "name": "John F. Kennedy",
+                        "description": "35th President of the United States"
+                    }
+                },
+                "jp": {
+                    "text": "変化は痛みを伴うことがあるが、何もしないよりは良い。",
+                    "author": {
+                        "name": "ジョン・F・ケネディ",
+                        "description": "アメリカ第35代大統領"
+                    }
+                },
+                "vi": {
+                    "text": "Sự thay đổi có thể đau đớn, nhưng vẫn tốt hơn là không làm gì.",
+                    "author": {
+                        "name": "John F. Kennedy",
+                        "description": "Tổng thống thứ 35 của Hoa Kỳ"
+                    }
+                },
+                "th": {
+                    "text": "การเปลี่ยนแปลงอาจเจ็บปวด แต่มันดีกว่าการไม่ทำอะไรเลย.",
+                    "author": {
+                        "name": "จอห์น เอฟ. เคนเนดี",
+                        "description": "ประธานาธิบดีสหรัฐฯ คนที่ 35"
+                    }
+                },
+                "ar": {
+                    "text": "يمكن أن يكون التغيير مؤلمًا، لكنه أفضل من عدم فعل شيء.",
+                    "author": {
+                        "name": "جون كينيدي",
+                        "description": "الرئيس الخامس والثلاثون للولايات المتحدة"
+                    }
+                }
+            }
+        },
+        {
+            "id": 36,
+            "translation": {
+                "ko": {
+                    "text": "자신의 한계를 정하는 것은 오직 자기 자신뿐이다.",
+                    "author": {
+                        "name": "마이클 펠프스",
+                        "description": "미국 수영 선수, 올림픽 금메달리스트"
+                    }
+                },
+                "en": {
+                    "text": "You can't put a limit on anything. The more you dream, the farther you get.",
+                    "author": {
+                        "name": "Michael Phelps",
+                        "description": "American swimmer, Olympic gold medalist"
+                    }
+                },
+                "jp": {
+                    "text": "自分の限界を決めるのは自分自身だけだ。",
+                    "author": {
+                        "name": "マイケル・フェルプス",
+                        "description": "アメリカの水泳選手、オリンピック金メダリスト"
+                    }
+                },
+                "vi": {
+                    "text": "Chỉ có bạn mới có thể đặt ra giới hạn của chính mình.",
+                    "author": {
+                        "name": "Michael Phelps",
+                        "description": "Vận động viên bơi lội người Mỹ, huy chương vàng Olympic"
+                    }
+                },
+                "th": {
+                    "text": "มีเพียงตัวคุณเองเท่านั้นที่กำหนดขีดจำกัดของตัวเอง.",
+                    "author": {
+                        "name": "ไมเคิล เฟลป์ส",
+                        "description": "นักว่ายน้ำชาวอเมริกัน, เจ้าของเหรียญทองโอลิมปิก"
+                    }
+                },
+                "ar": {
+                    "text": "أنت الوحيد الذي يمكنه تحديد حدودك.",
+                    "author": {
+                        "name": "مايكل فيلبس",
+                        "description": "سباح أمريكي، حاصل على ميداليات ذهبية أولمبية"
+                    }
+                }
+            }
+        },
+        {
+            "id": 37,
+            "translation": {
+                "ko": {
+                    "text": "행복은 소유가 아니라 태도에서 온다.",
+                    "author": {
+                        "name": "달라이 라마",
+                        "description": "티베트의 정신적 지도자"
+                    }
+                },
+                "en": {
+                    "text": "Happiness is not something ready-made. It comes from your own actions.",
+                    "author": {
+                        "name": "Dalai Lama",
+                        "description": "Spiritual leader of Tibet"
+                    }
+                },
+                "jp": {
+                    "text": "幸福は所有ではなく、態度から生まれる。",
+                    "author": {
+                        "name": "ダライ・ラマ",
+                        "description": "チベットの精神的指導者"
+                    }
+                },
+                "vi": {
+                    "text": "Hạnh phúc không phải là thứ có sẵn mà đến từ hành động của chính bạn.",
+                    "author": {
+                        "name": "Dalai Lama",
+                        "description": "Lãnh đạo tinh thần của Tây Tạng"
+                    }
+                },
+                "th": {
+                    "text": "ความสุขไม่ได้มาจากการครอบครอง แต่มาจากทัศนคติ.",
+                    "author": {
+                        "name": "ดาไลลามะ",
+                        "description": "ผู้นำทางจิตวิญญาณของทิเบต"
+                    }
+                },
+                "ar": {
+                    "text": "السعادة ليست شيئًا جاهزًا، بل تأتي من أفعالك الخاصة.",
+                    "author": {
+                        "name": "الدالاي لاما",
+                        "description": "القائد الروحي للتبت"
+                    }
+                }
+            }
+        },
+        {
+            "id": 38,
+            "translation": {
+                "ko": {
+                    "text": "실패는 성공의 어머니이다.",
+                    "author": {
+                        "name": "명언 속담",
+                        "description": "한국 속담"
+                    }
+                },
+                "en": {
+                    "text": "Failure is the mother of success.",
+                    "author": {
+                        "name": "Proverb",
+                        "description": "Korean proverb"
+                    }
+                },
+                "jp": {
+                    "text": "失敗は成功の母である。",
+                    "author": {
+                        "name": "ことわざ",
+                        "description": "韓国のことわざ"
+                    }
+                },
+                "vi": {
+                    "text": "Thất bại là mẹ của thành công.",
+                    "author": {
+                        "name": "Tục ngữ",
+                        "description": "Tục ngữ Hàn Quốc"
+                    }
+                },
+                "th": {
+                    "text": "ความล้มเหลวคือแม่ของความสำเร็จ.",
+                    "author": {
+                        "name": "สุภาษิต",
+                        "description": "สุภาษิตเกาหลี"
+                    }
+                },
+                "ar": {
+                    "text": "الفشل هو أم النجاح.",
+                    "author": {
+                        "name": "مثل",
+                        "description": "مثل كوري"
+                    }
+                }
+            }
+        },
+        {
+            "id": 39,
+            "translation": {
+                "ko": {
+                    "text": "작은 변화가 큰 차이를 만든다.",
+                    "author": {
+                        "name": "존 우든",
+                        "description": "미국 농구 코치"
+                    }
+                },
+                "en": {
+                    "text": "Little things make big things happen.",
+                    "author": {
+                        "name": "John Wooden",
+                        "description": "American basketball coach"
+                    }
+                },
+                "jp": {
+                    "text": "小さな変化が大きな違いを生む。",
+                    "author": {
+                        "name": "ジョン・ウッデン",
+                        "description": "アメリカのバスケットボールコーチ"
+                    }
+                },
+                "vi": {
+                    "text": "Những điều nhỏ bé tạo nên sự khác biệt lớn.",
+                    "author": {
+                        "name": "John Wooden",
+                        "description": "Huấn luyện viên bóng rổ người Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "สิ่งเล็กๆ น้อยๆ ทำให้เกิดสิ่งที่ยิ่งใหญ่.",
+                    "author": {
+                        "name": "จอห์น วูเดน",
+                        "description": "โค้ชบาสเกตบอลชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "الأشياء الصغيرة تصنع فرقًا كبيرًا.",
+                    "author": {
+                        "name": "جون وودن",
+                        "description": "مدرب كرة سلة أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 40,
+            "translation": {
+                "ko": {
+                    "text": "당신이 걷는 길이 당신을 만든다.",
+                    "author": {
+                        "name": "토니 로빈스",
+                        "description": "미국 동기부여 연설가, 작가"
+                    }
+                },
+                "en": {
+                    "text": "The path you walk determines who you become.",
+                    "author": {
+                        "name": "Tony Robbins",
+                        "description": "American motivational speaker, author"
+                    }
+                },
+                "jp": {
+                    "text": "歩む道があなたを作る。",
+                    "author": {
+                        "name": "トニー・ロビンズ",
+                        "description": "アメリカのモチベーショナルスピーカー、作家"
+                    }
+                },
+                "vi": {
+                    "text": "Con đường bạn đi quyết định con người bạn trở thành.",
+                    "author": {
+                        "name": "Tony Robbins",
+                        "description": "Diễn giả truyền động lực, tác giả người Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "เส้นทางที่คุณเดินกำหนดตัวตนของคุณ.",
+                    "author": {
+                        "name": "โทนี่ ร็อบบินส์",
+                        "description": "นักพูดสร้างแรงบันดาลใจชาวอเมริกัน, นักเขียน"
+                    }
+                },
+                "ar": {
+                    "text": "الطريق الذي تسير فيه يحدد من تصبح.",
+                    "author": {
+                        "name": "توني روبنز",
+                        "description": "متحدث تحفيزي أمريكي، كاتب"
+                    }
+                }
+            }
+        },
+        {
+            "id": 41,
+            "translation": {
+                "ko": {
+                    "text": "오늘의 노력이 내일의 성공을 만든다.",
+                    "author": {
+                        "name": "존 맥스웰",
+                        "description": "미국 리더십 전문가, 작가"
+                    }
+                },
+                "en": {
+                    "text": "Today's efforts create tomorrow's success.",
+                    "author": {
+                        "name": "John Maxwell",
+                        "description": "American leadership expert, author"
+                    }
+                },
+                "jp": {
+                    "text": "今日の努力が明日の成功を生む。",
+                    "author": {
+                        "name": "ジョン・マクスウェル",
+                        "description": "アメリカのリーダーシップ専門家、作家"
+                    }
+                },
+                "vi": {
+                    "text": "Nỗ lực hôm nay tạo nên thành công ngày mai.",
+                    "author": {
+                        "name": "John Maxwell",
+                        "description": "Chuyên gia lãnh đạo người Mỹ, tác giả"
+                    }
+                },
+                "th": {
+                    "text": "ความพยายามในวันนี้สร้างความสำเร็จในวันพรุ่งนี้.",
+                    "author": {
+                        "name": "จอห์น แม็กซ์เวลล์",
+                        "description": "ผู้เชี่ยวชาญด้านภาวะผู้นำชาวอเมริกัน, นักเขียน"
+                    }
+                },
+                "ar": {
+                    "text": "جهود اليوم تصنع نجاح الغد.",
+                    "author": {
+                        "name": "جون ماكسويل",
+                        "description": "خبير القيادة الأمريكي، كاتب"
+                    }
+                }
+            }
+        },
+        {
+            "id": 42,
+            "translation": {
+                "ko": {
+                    "text": "실패를 두려워하지 말고, 도전을 즐겨라.",
+                    "author": {
+                        "name": "리처드 브랜슨",
+                        "description": "버진 그룹 창립자, 기업가"
+                    }
+                },
+                "en": {
+                    "text": "Don't be afraid of failure. Enjoy the challenge.",
+                    "author": {
+                        "name": "Richard Branson",
+                        "description": "Founder of Virgin Group, entrepreneur"
+                    }
+                },
+                "jp": {
+                    "text": "失敗を恐れず、挑戦を楽しめ。",
+                    "author": {
+                        "name": "リチャード・ブランソン",
+                        "description": "ヴァージングループ創設者、起業家"
+                    }
+                },
+                "vi": {
+                    "text": "Đừng sợ thất bại. Hãy tận hưởng thử thách.",
+                    "author": {
+                        "name": "Richard Branson",
+                        "description": "Người sáng lập Virgin Group, doanh nhân"
+                    }
+                },
+                "th": {
+                    "text": "อย่ากลัวความล้มเหลว สนุกกับความท้าทาย.",
+                    "author": {
+                        "name": "ริชาร์ด แบรนสัน",
+                        "description": "ผู้ก่อตั้งเวอร์จิ้นกรุ๊ป, ผู้ประกอบการ"
+                    }
+                },
+                "ar": {
+                    "text": "لا تخف من الفشل. استمتع بالتحدي.",
+                    "author": {
+                        "name": "ريتشارد برانسون",
+                        "description": "مؤسس مجموعة فيرجن، رجل أعمال"
+                    }
+                }
+            }
+        },
+        {
+            "id": 43,
+            "translation": {
+                "ko": {
+                    "text": "포기는 가장 확실한 실패다.",
+                    "author": {
+                        "name": "엘버트 허버드",
+                        "description": "미국 작가, 철학자"
+                    }
+                },
+                "en": {
+                    "text": "Giving up is the only sure way to fail.",
+                    "author": {
+                        "name": "Elbert Hubbard",
+                        "description": "American writer, philosopher"
+                    }
+                },
+                "jp": {
+                    "text": "諦めることは確実な失敗である。",
+                    "author": {
+                        "name": "エルバート・ハバード",
+                        "description": "アメリカの作家、哲学者"
+                    }
+                },
+                "vi": {
+                    "text": "Bỏ cuộc là cách chắc chắn nhất để thất bại.",
+                    "author": {
+                        "name": "Elbert Hubbard",
+                        "description": "Nhà văn, triết gia người Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "การยอมแพ้เป็นหนทางเดียวที่แน่นอนของความล้มเหลว.",
+                    "author": {
+                        "name": "เอลเบิร์ต ฮับบาร์ด",
+                        "description": "นักเขียนชาวอเมริกัน, นักปรัชญา"
+                    }
+                },
+                "ar": {
+                    "text": "الاستسلام هو الطريقة الوحيدة المؤكدة للفشل.",
+                    "author": {
+                        "name": "إلبرت هوبارد",
+                        "description": "كاتب وفيلسوف أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 44,
+            "translation": {
+                "ko": {
+                    "text": "한 번의 성공보다 수많은 실패에서 배워라.",
+                    "author": {
+                        "name": "빌 게이츠",
+                        "description": "마이크로소프트 공동 창립자"
+                    }
+                },
+                "en": {
+                    "text": "It's fine to celebrate success, but it is more important to heed the lessons of failure.",
+                    "author": {
+                        "name": "Bill Gates",
+                        "description": "Co-founder of Microsoft"
+                    }
+                },
+                "jp": {
+                    "text": "一度の成功よりも、多くの失敗から学べ。",
+                    "author": {
+                        "name": "ビル・ゲイツ",
+                        "description": "マイクロソフト共同創設者"
+                    }
+                },
+                "vi": {
+                    "text": "Học từ nhiều lần thất bại quan trọng hơn một lần thành công.",
+                    "author": {
+                        "name": "Bill Gates",
+                        "description": "Đồng sáng lập Microsoft"
+                    }
+                },
+                "th": {
+                    "text": "เรียนรู้จากความล้มเหลวมากกว่าความสำเร็จครั้งเดียว.",
+                    "author": {
+                        "name": "บิล เกตส์",
+                        "description": "ผู้ร่วมก่อตั้งไมโครซอฟท์"
+                    }
+                },
+                "ar": {
+                    "text": "من الجيد الاحتفال بالنجاح، ولكن الأهم هو التعلم من الفشل.",
+                    "author": {
+                        "name": "بيل غيتس",
+                        "description": "المؤسس المشارك لمايكروسوفت"
+                    }
+                }
+            }
+        },
+        {
+            "id": 45,
+            "translation": {
+                "ko": {
+                    "text": "네가 가야 할 길을 가라, 그리고 사람들이 말하게 내버려 둬라.",
+                    "author": {
+                        "name": "단테 알리기에리",
+                        "description": "이탈리아 시인, 철학자"
+                    }
+                },
+                "en": {
+                    "text": "Follow your own path, and let people talk.",
+                    "author": {
+                        "name": "Dante Alighieri",
+                        "description": "Italian poet, philosopher"
+                    }
+                },
+                "jp": {
+                    "text": "自分の道を行け、そして人々に話させておけ。",
+                    "author": {
+                        "name": "ダンテ・アリギエーリ",
+                        "description": "イタリアの詩人、哲学者"
+                    }
+                },
+                "vi": {
+                    "text": "Hãy đi con đường của riêng bạn, và để mọi người nói.",
+                    "author": {
+                        "name": "Dante Alighieri",
+                        "description": "Nhà thơ, triết gia người Ý"
+                    }
+                },
+                "th": {
+                    "text": "เดินตามทางของคุณ และปล่อยให้คนอื่นพูดไป.",
+                    "author": {
+                        "name": "ดันเต้ อาลีกีเอรี",
+                        "description": "กวีและนักปรัชญาชาวอิตาลี"
+                    }
+                },
+                "ar": {
+                    "text": "اتبع طريقك الخاص، ودع الناس يتحدثون.",
+                    "author": {
+                        "name": "دانتي أليغييري",
+                        "description": "شاعر وفيلسوف إيطالي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 46,
+            "translation": {
+                "ko": {
+                    "text": "어두운 밤이 지나면 반드시 새벽이 온다.",
+                    "author": {
+                        "name": "할릴 지브란",
+                        "description": "레바논 시인, 철학자"
+                    }
+                },
+                "en": {
+                    "text": "After the darkest night, the dawn always comes.",
+                    "author": {
+                        "name": "Kahlil Gibran",
+                        "description": "Lebanese poet, philosopher"
+                    }
+                },
+                "jp": {
+                    "text": "最も暗い夜の後には、必ず夜明けが来る。",
+                    "author": {
+                        "name": "ハリール・ジブラーン",
+                        "description": "レバノンの詩人、哲学者"
+                    }
+                },
+                "vi": {
+                    "text": "Sau đêm tối nhất, bình minh luôn đến.",
+                    "author": {
+                        "name": "Kahlil Gibran",
+                        "description": "Nhà thơ, triết gia người Li-băng"
+                    }
+                },
+                "th": {
+                    "text": "หลังจากค่ำคืนที่มืดมิดที่สุด เช้ารุ่งเสมอ.",
+                    "author": {
+                        "name": "คาลิล ยิบราน",
+                        "description": "กวีและนักปรัชญาชาวเลบานอน"
+                    }
+                },
+                "ar": {
+                    "text": "بعد أحلك ليلة، يأتي الفجر دائمًا.",
+                    "author": {
+                        "name": "جبران خليل جبران",
+                        "description": "شاعر وفيلسوف لبناني"
+                    }
+                }
+            }
+        },
+        {
+            "id": 47,
+            "translation": {
+                "ko": {
+                    "text": "고통 없이는 성취도 없다.",
+                    "author": {
+                        "name": "벤저민 프랭클린",
+                        "description": "미국 정치인, 과학자, 작가"
+                    }
+                },
+                "en": {
+                    "text": "Without pain, there is no gain.",
+                    "author": {
+                        "name": "Benjamin Franklin",
+                        "description": "American politician, scientist, writer"
+                    }
+                },
+                "jp": {
+                    "text": "苦しみなしに成果なし。",
+                    "author": {
+                        "name": "ベンジャミン・フランクリン",
+                        "description": "アメリカの政治家、科学者、作家"
+                    }
+                },
+                "vi": {
+                    "text": "Không có đau đớn, không có thành công.",
+                    "author": {
+                        "name": "Benjamin Franklin",
+                        "description": "Chính trị gia, nhà khoa học, nhà văn người Mỹ"
+                    }
+                },
+                "th": {
+                    "text": "หากไม่มีความเจ็บปวด ก็ไม่มีความสำเร็จ.",
+                    "author": {
+                        "name": "เบนจามิน แฟรงคลิน",
+                        "description": "นักการเมือง นักวิทยาศาสตร์ และนักเขียนชาวอเมริกัน"
+                    }
+                },
+                "ar": {
+                    "text": "بدون ألم، لا يوجد مكسب.",
+                    "author": {
+                        "name": "بنيامين فرانكلين",
+                        "description": "سياسي وعالم وكاتب أمريكي"
+                    }
+                }
+            }
+        },
+        {
+            "id": 48,
+            "translation": {
+                "ko": {
+                    "text": "당신이 할 수 있다고 믿으면, 반은 성공한 것이다.",
+                    "author": {
+                        "name": "시어도어 루스벨트",
+                        "description": "미국 제26대 대통령"
+                    }
+                },
+                "en": {
+                    "text": "Believe you can, and you're halfway there.",
+                    "author": {
+                        "name": "Theodore Roosevelt",
+                        "description": "26th President of the United States"
+                    }
+                },
+                "jp": {
+                    "text": "自分ができると信じれば、もう半分達成したも同然だ。",
+                    "author": {
+                        "name": "セオドア・ルーズベルト",
+                        "description": "アメリカ合衆国第26代大統領"
+                    }
+                },
+                "vi": {
+                    "text": "Hãy tin rằng bạn có thể làm được, và bạn đã đi được nửa chặng đường.",
+                    "author": {
+                        "name": "Theodore Roosevelt",
+                        "description": "Tổng thống thứ 26 của Hoa Kỳ"
+                    }
+                },
+                "th": {
+                    "text": "เชื่อว่าคุณทำได้ และคุณเดินทางไปครึ่งทางแล้ว.",
+                    "author": {
+                        "name": "ธีโอดอร์ รูสเวลต์",
+                        "description": "ประธานาธิบดีสหรัฐอเมริกาคนที่ 26"
+                    }
+                },
+                "ar": {
+                    "text": "آمن أنك تستطيع، وستكون قد قطعت نصف الطريق.",
+                    "author": {
+                        "name": "ثيودور روزفلت",
+                        "description": "الرئيس السادس والعشرون للولايات المتحدة"
+                    }
+                }
+            }
+        },
+        {
+            "id": 49,
+            "translation": {
+                "ko": {
+                    "text": "작은 기회로부터 위대한 것이 시작된다.",
+                    "author": {
+                        "name": "데모스테네스",
+                        "description": "고대 그리스 정치가, 웅변가"
+                    }
+                },
+                "en": {
+                    "text": "Small opportunities are often the beginning of great enterprises.",
+                    "author": {
+                        "name": "Demosthenes",
+                        "description": "Ancient Greek statesman, orator"
+                    }
+                },
+                "jp": {
+                    "text": "小さな機会が、大きな成功の始まりとなる。",
+                    "author": {
+                        "name": "デモステネス",
+                        "description": "古代ギリシャの政治家、弁論家"
+                    }
+                },
+                "vi": {
+                    "text": "Những cơ hội nhỏ thường là khởi đầu của những sự nghiệp vĩ đại.",
+                    "author": {
+                        "name": "Demosthenes",
+                        "description": "Chính trị gia, nhà hùng biện người Hy Lạp cổ đại"
+                    }
+                },
+                "th": {
+                    "text": "โอกาสเล็ก ๆ มักเป็นจุดเริ่มต้นของสิ่งที่ยิ่งใหญ่.",
+                    "author": {
+                        "name": "เดโมสเทเนส",
+                        "description": "นักการเมืองและนักพูดชาวกรีกโบราณ"
+                    }
+                },
+                "ar": {
+                    "text": "الفرص الصغيرة غالبًا ما تكون بداية لمشاريع عظيمة.",
+                    "author": {
+                        "name": "ديموستينيس",
+                        "description": "رجل دولة وخطيب يوناني قديم"
+                    }
+                }
+            }
+        },
+        {
+            "id": 50,
+            "translation": {
+                "ko": {
+                    "text": "변화를 두려워하지 말고, 그것을 기회로 삼아라.",
+                    "author": {
+                        "name": "잭 웰치",
+                        "description": "전 GE 회장, 경영자"
+                    }
+                },
+                "en": {
+                    "text": "Don't fear change. Embrace it as an opportunity.",
+                    "author": {
+                        "name": "Jack Welch",
+                        "description": "Former CEO of GE, businessman"
+                    }
+                },
+                "jp": {
+                    "text": "変化を恐れず、それをチャンスとして受け入れろ。",
+                    "author": {
+                        "name": "ジャック・ウェルチ",
+                        "description": "元GE会長、経営者"
+                    }
+                },
+                "vi": {
+                    "text": "Đừng sợ thay đổi. Hãy xem đó là cơ hội.",
+                    "author": {
+                        "name": "Jack Welch",
+                        "description": "Cựu CEO của GE, doanh nhân"
+                    }
+                },
+                "th": {
+                    "text": "อย่ากลัวการเปลี่ยนแปลง จงมองว่ามันเป็นโอกาส.",
+                    "author": {
+                        "name": "แจ็ค เวลช์",
+                        "description": "อดีตซีอีโอของ GE, นักธุรกิจ"
+                    }
+                },
+                "ar": {
+                    "text": "لا تخف من التغيير. اعتبره فرصة.",
+                    "author": {
+                        "name": "جاك ويلش",
+                        "description": "الرئيس التنفيذي السابق لشركة GE، رجل أعمال"
+                    }
+                }
+            }
+        }
+    ]
+}

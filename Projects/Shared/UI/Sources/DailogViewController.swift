@@ -127,6 +127,7 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
         } else {
             container.pin.all()
         }
+        
         container.flex.layout()
     }
 }
