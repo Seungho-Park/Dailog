@@ -11,9 +11,12 @@ import SharedUI
 import FeatureHomeInterfaces
 import RxSwift
 import RxCocoa
+import FlexLayout
 
 public final class HomeViewController<VM: HomeViewModel>: DailogViewController<VM> {
     private let promptView: PromptView = PromptView(frame: .zero)
+    private let adviceView: AdviceView = AdviceView(frame: .zero)
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,10 +26,22 @@ public final class HomeViewController<VM: HomeViewModel>: DailogViewController<V
         super.configure()
         
         container.flex
-            .addItem()
+            .direction(.column)
             .marginHorizontal(12)
             .define { flex in
                 flex.addItem(promptView)
+                
+                flex.addItem()
+                    .define { flex in
+                        flex.addItem(adviceView)
+                    }
+                    .marginHorizontal(12)
+                    .justifyContent(.center)
+                    .grow(1)
+                
+                flex.addItem()
+                    .backgroundColor(.orange)
+                    .height(30)
             }
     }
     
@@ -45,5 +60,7 @@ public final class HomeViewController<VM: HomeViewModel>: DailogViewController<V
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+//        adviceView.pin.vCenter().marginBottom(container.pin.safeArea.bottom)
     }
 }

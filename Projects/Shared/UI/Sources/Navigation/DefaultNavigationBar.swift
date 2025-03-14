@@ -45,30 +45,27 @@ open class DefaultNavigationBar: UIView, NavigationBar {
     
     public func configure() {
         self.backgroundColor = .clear
+        self.addSubview(container)
         
-        self.flex
-            .addItem(container)
-            .direction(.row)
-            .height(50)
-            
         container
             .flex
-            .addItem(backButton)
-            .position(.absolute)
-            .width(45)
-            .vertically(1)
-        
-        container.flex
-            .addItem(titleLabel)
-            .position(.absolute)
-            .horizontally(0)
-            .vertically(1)
+            .direction(.row)
+            .define { flex in
+                flex.addItem(backButton)
+                    .vertically(1)
+                    .left(0)
+                
+                flex.addItem(titleLabel)
+                    .position(.absolute)
+                    .horizontally(0)
+                    .vertically(1)
+            }
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.pin.top().left().right().height(50)
-        self.flex.layout(mode: .fitContainer)
+        container.pin.all()
+        self.container.flex.layout(mode: .fitContainer)
     }
 }

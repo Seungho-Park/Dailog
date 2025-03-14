@@ -118,16 +118,18 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if let navigationBar = navigationBar {            
+        if let navigationBar = navigationBar {
+            navigationBar.pin
+                .all(view.pin.safeArea)
+                .height(50)
+            
             container.pin
                 .below(of: navigationBar)
-                .left()
-                .right()
-                .bottom()
+                .all(view.pin.safeArea)
         } else {
-            container.pin.all()
+            container.pin.all(container.superview!.pin.safeArea)
         }
         
-        container.flex.layout()
+        container.flex.layout(mode: .fitContainer)
     }
 }

@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 
 public final class PromptView: UIView {
+    private let containerView = UIView(frame: .zero)
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel.make(frame: .zero)
         label.numberOfLines = 0
@@ -50,16 +52,16 @@ public final class PromptView: UIView {
     
     private func configure() {
         self.backgroundColor = .clear
+        self.addSubview(containerView)
         
-        self.flex
+        self.containerView.flex
             .addItem()
             .direction(.column)
             .define { flex in
                 flex.addItem(titleLabel)
                     .marginBottom(6)
                 
-                flex
-                    .addItem(subtitleLabel)
+                flex.addItem(subtitleLabel)
                     .marginTop(6)
             }
     }
@@ -67,7 +69,8 @@ public final class PromptView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.flex.layout()
+        self.containerView.pin.all()
+        self.containerView.flex.layout()
     }
 }
 

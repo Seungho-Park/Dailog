@@ -40,13 +40,14 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
     }
     
     public override func configure() {
-        super.configure()
-        
+        self.view.backgroundColor = .clear
         self.view.layer.contents = UIImage.bgLaunchScreen?.cgImage
         
         self.addChild(tabController)
-        self.container.addSubview(tabController.view)
+        self.view.addSubview(tabController.view)
         tabController.didMove(toParent: self)
+        
+        tabController.view.addSubview(container)
     }
     
     public override func viewDidLayoutSubviews() {
