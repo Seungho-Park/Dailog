@@ -23,8 +23,6 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
         set { tabController.viewControllers = newValue }
     }
     
-    public lazy var navigationBar = NavigationBar(frame: .zero)
-    
     public override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -35,7 +33,6 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
         self.view.layer.contents = UIImage.bgLaunchScreen?.cgImage
         
         self.addChild(tabController)
-        self.container.addSubview(navigationBar)
         self.container.addSubview(tabController.view)
         tabController.didMove(toParent: self)
     }
@@ -43,12 +40,8 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        navigationBar.pin.top(self.view.pin.safeArea.top)
-            .left().right()
-            .height(50)
-        
         tabController.view.pin
-            .below(of: navigationBar)
+            .top(self.container.pin.safeArea.top)
             .left(self.container.pin.safeArea.left)
             .right(self.container.pin.safeArea.right)
             .bottom()

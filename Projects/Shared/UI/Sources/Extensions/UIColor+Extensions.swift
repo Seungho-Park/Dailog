@@ -13,6 +13,9 @@ public extension UIColor {
         return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: alpha)
     }
     
+    static let navigationTitle = UIColor(resource: .init(name: "NavigationTitle", bundle: .module))
+    static let title: UIColor = UIColor(resource: .init(name: "TitleColor", bundle: .module))
+    
     static let tabBar: UIColor = UIColor(resource: .init(name: "Tabbar", bundle: .module))
     static let icon: UIColor = UIColor(resource: .init(name: "IconColor", bundle: .module))
     static let tabBarItemColor: UIColor = UIColor(resource: .init(name: "TabBarItemColor", bundle: .module))

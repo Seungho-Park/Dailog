@@ -40,7 +40,7 @@ public extension ProjectDescription.Path {
     }
     
     static func domain(_ module: Module.Domain)-> Self {
-        return .relativeToRoot("Projects/Domain/\(module)")
+        return .relativeToRoot("Projects/Domain/\(module.rawValue)")
     }
 }
 

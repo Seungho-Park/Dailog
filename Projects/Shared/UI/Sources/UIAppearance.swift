@@ -15,24 +15,29 @@ public final class UIAppearance {
     private init() {  }
     
     public static func setup() {
-        do {
-            try loadFont()
-            setupTabBar()
-        } catch {
-            print(error)
-        }
+        loadFont()
+        setupTabBar()
     }
     
-    private static func loadFont() throws {
-        if let fontUrl = Bundle.module.url(forResource: "Jalnan2", withExtension: "otf"),
-           let dataProvider = CGDataProvider(url: fontUrl as CFURL),
-           let newFont = CGFont(dataProvider) {
-            var error: Unmanaged<CFError>?
-            if !CTFontManagerRegisterGraphicsFont(newFont, &error) {
-                throw LoadError.font
+    private static func loadFont() {
+        let fontUrls: [String:URL?] = [
+            "Jalnan2": Bundle.module.url(forResource: "Jalnan2", withExtension: "otf"),
+            "SejongGeulggot": Bundle.module.url(forResource: "SejongGeulggot", withExtension: "otf"),
+            "Ownglyph wiseelist": Bundle.module.url(forResource: "Ownglyph wiseelist", withExtension: "ttf"),
+            "Ownglyph smartiam": Bundle.module.url(forResource: "Ownglyph smartiam", withExtension: "ttf"),
+            "Ownglyph konghae": Bundle.module.url(forResource: "Ownglyph konghae", withExtension: "ttf")
+        ]
+        
+        for (key, url) in fontUrls {
+            guard let url = url, CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+            else {
+                print("Load font failed: \(key)")
+                continue
             }
-        } else {
-            throw LoadError.font
+        }
+        
+        for font in UIFont.familyNames {
+            print(font)
         }
     }
     

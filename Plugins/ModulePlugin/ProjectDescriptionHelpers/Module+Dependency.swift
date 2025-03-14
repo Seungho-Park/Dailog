@@ -43,8 +43,24 @@ public extension ProjectDescription.TargetDependency {
         return .project(target: "Domain", path: .domain, status: .required)
     }
     
+    static func domain(interfaces module: Module.Domain)-> TargetDependency {
+        return .project(target: "Domain\(module.rawValue)Interfaces", path: .domain(module), status: .required)
+    }
+    
     static func domain(implements module: Module.Domain)-> TargetDependency {
-        return .project(target: "Domain\(module)", path: .domain(module), status: .required)
+        return .project(target: "Domain\(module.rawValue)", path: .domain(module), status: .required)
+    }
+    
+    static func domain(testing module: Module.Domain)-> TargetDependency {
+        return .project(target: "Domain\(module.rawValue)Testing", path: .domain(module), status: .required)
+    }
+    
+    static func domain(tests module: Module.Domain)-> TargetDependency {
+        return .project(target: "Domain\(module.rawValue)Tests", path: .domain(module), status: .required)
+    }
+    
+    static func domain(example module: Module.Domain)-> TargetDependency {
+        return .project(target: "Domain\(module.rawValue)Example", path: .domain(module), status: .required)
     }
 }
 

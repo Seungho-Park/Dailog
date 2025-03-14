@@ -55,7 +55,7 @@ public extension ProjectDescription.Target {
                     "$(inherited) -ObjC"
                 ],
                 "ENABLE_USER_SCRIPT_SANDBOXING": true,
-                "GENERATE_ASSET_SYMBOL_EXTENSIONS": true
+                "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": false
             ]),
             coreDataModels: [ProjectDescription.CoreDataModel] = [],
             environmentVariables: [String : ProjectDescription.EnvironmentVariable] = [:],
@@ -180,6 +180,43 @@ public extension ProjectDescription.Target {
     static func domain(_ factory: TargetFactory)-> Self {
         var factory = factory
         factory.name = "Domain"
+        return factory.toTarget()
+    }
+    
+    static func domain(interfaces module: Module.Domain, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Domain\(module.rawValue)Interfaces"
+        factory.sources = .interfaces
+        return factory.toTarget()
+    }
+    
+    static func domain(implements module: Module.Domain, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Domain\(module.rawValue)"
+        return factory.toTarget()
+    }
+    
+    static func domain(testing module: Module.Domain, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Domain\(module.rawValue)Testing"
+        factory.sources = .testing
+        return factory.toTarget()
+    }
+    
+    static func domain(tests module: Module.Domain, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Domain\(module.rawValue)Tests"
+        factory.product = .unitTests
+        factory.sources = .tests
+        return factory.toTarget()
+    }
+    
+    static func domain(example module: Module.Domain, factory: TargetFactory)-> Self {
+        var factory = factory
+        factory.name = "Domain\(module.rawValue)Example"
+        factory.product = .app
+        factory.sources = .example
+        factory.infoPlist = .example
         return factory.toTarget()
     }
 }

@@ -27,8 +27,8 @@ public extension Module {
 }
 
 public extension Module {
-    enum Domain {
-        
+    enum Domain: String {
+        case home = "Home"
     }
 }
 
