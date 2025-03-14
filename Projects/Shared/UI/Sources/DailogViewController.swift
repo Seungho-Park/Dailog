@@ -103,7 +103,6 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
                 case .default(let title):
                     self.navigationBar = DefaultNavigationBar(frame: .zero)
                     self.navigationBar?.title = title
-                    self.view.addSubview(self.navigationBar!)
                     let isRoot = (self.navigationController?.viewControllers.count ?? 0) <= 1
                     (self.navigationBar as! DefaultNavigationBar)
                         .backButton
@@ -118,16 +117,23 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        let view = container.superview ?? self.view!
+        
         if let navigationBar = navigationBar {
+            view.addSubview(navigationBar)
             navigationBar.pin
-                .all(view.pin.safeArea)
+                .top(view.pin.safeArea)
+                .left(view.pin.safeArea)
+                .right(view.pin.safeArea)
                 .height(50)
             
             container.pin
                 .below(of: navigationBar)
-                .all(view.pin.safeArea)
+                .left(view.pin.safeArea)
+                .right(view.pin.safeArea)
+                .bottom(view.pin.safeArea)
         } else {
-            container.pin.all(container.superview!.pin.safeArea)
+            container.pin.all(view.pin.safeArea)
         }
         
         container.flex.layout(mode: .fitContainer)

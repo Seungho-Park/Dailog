@@ -46,17 +46,13 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
         self.addChild(tabController)
         self.view.addSubview(tabController.view)
         tabController.didMove(toParent: self)
-        
-        tabController.view.addSubview(container)
     }
     
     public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
         tabController.view.pin
-            .top(self.container.pin.safeArea.top)
-            .left(self.container.pin.safeArea.left)
-            .right(self.container.pin.safeArea.right)
+            .top(self.view.pin.safeArea)
+            .left(self.view.pin.safeArea)
+            .right(self.view.pin.safeArea)
             .bottom()
     }
     
