@@ -16,7 +16,7 @@ public final class PromptView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel.make(frame: .zero)
         label.numberOfLines = 0
-        label.font = .ownglyph(sizeOf: 26, weight: .bold)
+        label.font = .cursive(sizeOf: 28, weight: .bold)
         label.textColor = .title
         label.lineBreakMode = .byTruncatingTail
         return label
@@ -25,19 +25,27 @@ public final class PromptView: UIView {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel.make(frame: .zero)
         label.numberOfLines = 0
-        label.font = .ownglyph(sizeOf: 22, weight: .medium)
+        label.font = .cursive(sizeOf: 24, weight: .medium)
         label.textColor = .title
         return label
     }()
     
     public var title: String {
         get { return titleLabel.text ?? "" }
-        set { return titleLabel.text = newValue }
+        set {
+            titleLabel.text = newValue
+            titleLabel.flex.markDirty()
+            containerView.flex.layout()
+        }
     }
     
     public var subtitle: String {
         get { subtitleLabel.text ?? "" }
-        set { subtitleLabel.text = newValue }
+        set {
+            subtitleLabel.text = newValue
+            subtitleLabel.flex.markDirty()
+            containerView.flex.layout()
+        }
     }
     
     public override init(frame: CGRect) {

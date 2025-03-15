@@ -21,6 +21,11 @@ public extension AdviceList.Advice {
     struct Translation: Decodable {
         public let text: String
         public let author: Author
+        
+        public init(text: String, author: Author) {
+            self.text = text
+            self.author = author
+        }
     }
 }
 
@@ -28,5 +33,10 @@ public extension AdviceList.Advice.Translation {
     struct Author: Decodable {
         public let name: String
         public let description: String
+        
+        public init(name: String, description: String) {
+            self.name = name
+            self.description = description
+        }
     }
 }

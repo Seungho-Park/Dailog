@@ -54,8 +54,7 @@ public extension ProjectDescription.Target {
                 "OTHER_LDFLAGS": [
                     "$(inherited) -ObjC"
                 ],
-                "ENABLE_USER_SCRIPT_SANDBOXING": true,
-                "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": false
+                "ENABLE_USER_SCRIPT_SANDBOXING": false
             ]),
             coreDataModels: [ProjectDescription.CoreDataModel] = [],
             environmentVariables: [String : ProjectDescription.EnvironmentVariable] = [:],

@@ -26,11 +26,18 @@ public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
     public func makeFetchRandomPromptUsecase() -> FetchRandomPromptUsecase {
         return FetchRandomPromptUsecaseImpl(repository: makeHomeRepository())
     }
+    
+    public func makeFetchRandomAdviceUsecase() -> any FetchRandomAdviceUsecase {
+        return FetchRandomAdviceUsecaseImpl(repository: makeHomeRepository())
+    }
 }
 
 extension DefaultHomeSceneDIContainer {
     public func makeHomeViewModel() -> any HomeViewModel {
-        return DefaultHomeViewModel(fetchRandomPromptUsecase: makeFetchRandomPromptUsecase())
+        return DefaultHomeViewModel(
+            fetchRandomPromptUsecase: makeFetchRandomPromptUsecase(),
+            fetchRandomAdviceUsecase: makeFetchRandomAdviceUsecase()
+        )
     }
 }
 

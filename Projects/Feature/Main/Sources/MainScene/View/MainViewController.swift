@@ -15,6 +15,7 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
     private lazy var tabController: UITabBarController = {
         let tabBar = UITabBarController()
         tabBar.view.backgroundColor = .clear
+        tabBar.delegate = self
         return tabBar
     }()
     
@@ -22,16 +23,16 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
         get { tabController.viewControllers ?? [] }
         set {
             tabController.viewControllers = newValue
-            switch Locale.direction {
-            case .leftToRight:
-                if tabController.selectedIndex != 0 {
-                    tabController.selectedIndex = 0
-                }
-            case .rightToLeft:
-                if tabController.selectedIndex != newValue.count-1 {
-                    tabController.selectedIndex = newValue.count-1
-                }
-            }
+//            switch Locale.direction {
+//            case .leftToRight:
+//                if tabController.selectedIndex != 0 {
+//                    tabController.selectedIndex = 0
+//                }
+//            case .rightToLeft:
+//                if tabController.selectedIndex != newValue.count-1 {
+//                    tabController.selectedIndex = newValue.count-1
+//                }
+//            }
         }
     }
     

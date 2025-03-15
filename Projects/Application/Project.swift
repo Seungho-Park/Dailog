@@ -49,8 +49,7 @@ let project: Project = .makeProject(
                         "OTHER_LDFLAGS": [
                             "$(inherited) -ObjC"
                         ],
-                        "ENABLE_USER_SCRIPT_SANDBOXING": true,
-                        "GENERATE_ASSET_SYMBOL_EXTENSIONS": true
+                        "ENABLE_USER_SCRIPT_SANDBOXING": false
                     ]
                 ),
                 launchArguments: [

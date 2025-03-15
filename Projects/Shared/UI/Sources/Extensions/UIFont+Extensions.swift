@@ -16,12 +16,39 @@ public extension UIFont {
         return UIFont(name: "SejongGeulggot", size: size) ?? .systemFont(ofSize: size, weight: .regular)
     }
     
-    static func ownglyph(sizeOf size: CGFloat, weight: UIFont.Weight)-> UIFont {
+    static func cursive(sizeOf size: CGFloat, weight: UIFont.Weight)-> UIFont {
+        switch Locale.preferredLanguages.first?.split(separator: "-")[0] ?? "en" {
+        case "ja":
+            return UIFont(name: "Natsume", size: size)!
+        case "en":
+            return UIFont(name: "Patrick Hand", size: size)!
+        case "ko": return cursiveKorean(size, weight: weight)
+        case "ar": return cursiveArabic(size, weight: weight)
+        default: return UIFont.systemFont(ofSize: size, weight: weight)
+        }
+    }
+    
+    private static func cursiveKorean(_ size: CGFloat, weight: UIFont.Weight)-> UIFont {
         switch weight {
         case .bold: return UIFont(name: "Ownglyph smartiam", size: size) ?? .systemFont(ofSize: size, weight: .bold)
         case .medium: return UIFont(name: "Ownglyph konghae", size: size) ?? .systemFont(ofSize: size, weight: .medium)
         case .regular: fallthrough
         default: return UIFont(name: "Ownglyph wiseelist", size: size) ?? .systemFont(ofSize: size, weight: .regular)
+        }
+    }
+    
+    private static func cursiveArabic(_ size: CGFloat, weight: UIFont.Weight)-> UIFont {
+        switch weight {
+        case .thin: fallthrough
+        case .regular: return UIFont(name: "Lateef-Regular", size: size)!
+        case .medium: return UIFont(name: "Lateef-Medium", size: size)!
+        case .light: return UIFont(name: "Lateef-Light", size: size)!
+        case .ultraLight: return UIFont(name: "Lateef-ExtraLight", size: size)!
+        case .bold: return UIFont(name: "Lateef-Bold", size: size)!
+        case .semibold: return UIFont(name: "Lateef-SemiBold", size: size)!
+        case .black: fallthrough
+        case .heavy: return UIFont(name: "Lateef-ExtraBold", size: size)!
+        default: return UIFont(name: "Lateef-Regular", size: size)!
         }
     }
     

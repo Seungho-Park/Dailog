@@ -20,14 +20,6 @@ public final class UIAppearance {
     }
     
     private static func loadFont() {
-        let fontUrls: [String:URL?] = [
-            "Jalnan2": Bundle.module.url(forResource: "Jalnan2", withExtension: "otf"),
-            "SejongGeulggot": Bundle.module.url(forResource: "SejongGeulggot", withExtension: "otf"),
-            "Ownglyph wiseelist": Bundle.module.url(forResource: "Ownglyph wiseelist", withExtension: "ttf"),
-            "Ownglyph smartiam": Bundle.module.url(forResource: "Ownglyph smartiam", withExtension: "ttf"),
-            "Ownglyph konghae": Bundle.module.url(forResource: "Ownglyph konghae", withExtension: "ttf")
-        ]
-        
         for (key, url) in fontUrls {
             guard let url = url, CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
             else {
@@ -66,5 +58,34 @@ public final class UIAppearance {
         
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
+}
+
+extension UIAppearance {
+    static var fontUrls: [String: URL?] {
+        return [
+            "PatrickHand-Regular": Bundle.module.url(forResource: "PatrickHand-Regular", withExtension: "ttf"),
+            
+            // Korean -
+            "Jalnan2": Bundle.module.url(forResource: "Jalnan2", withExtension: "otf"),
+            "SejongGeulggot": Bundle.module.url(forResource: "SejongGeulggot", withExtension: "otf"),
+            "Ownglyph wiseelist": Bundle.module.url(forResource: "Ownglyph wiseelist", withExtension: "ttf"),
+            "Ownglyph smartiam": Bundle.module.url(forResource: "Ownglyph smartiam", withExtension: "ttf"),
+            "Ownglyph konghae": Bundle.module.url(forResource: "Ownglyph konghae", withExtension: "ttf"),
+            
+            //Japanese -
+            "mogihaPen": Bundle.module.url(forResource: "mogihaPen", withExtension: "ttf"),
+            "natumemozi": Bundle.module.url(forResource: "natumemozi", withExtension: "ttf"),
+            
+            
+            //Arabic
+            "Lateef-Regular": Bundle.module.url(forResource: "Lateef-Regular", withExtension: "ttf"),
+            "Lateef-Medium": Bundle.module.url(forResource: "Lateef-Medium", withExtension: "ttf"),
+            "Lateef-Light": Bundle.module.url(forResource: "Lateef-Light", withExtension: "ttf"),
+            "Lateef-ExtraLight": Bundle.module.url(forResource: "Lateef-ExtraLight", withExtension: "ttf"),
+            "Lateef-ExtraBold": Bundle.module.url(forResource: "Lateef-ExtraBold", withExtension: "ttf"),
+            "Lateef-Bold": Bundle.module.url(forResource: "Lateef-Bold", withExtension: "ttf"),
+            "Lateef-SemiBold": Bundle.module.url(forResource: "Lateef-SemiBold", withExtension: "ttf"),
+        ]
     }
 }

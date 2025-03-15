@@ -19,4 +19,5 @@ public protocol HomeSceneDIContainer: DIContainer, HomeSceneFlowCoordinatorDepen
     var dependencies: HomeSceneDIContainerDependencies { get }
     
     func makeFetchRandomPromptUsecase() -> FetchRandomPromptUsecase
+    func makeFetchRandomAdviceUsecase() -> FetchRandomAdviceUsecase
 }

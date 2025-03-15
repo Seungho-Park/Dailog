@@ -44,7 +44,7 @@ public final class DefaultMainSceneFlowCoordinator: MainSceneFlowCoordinator {
         return transition(
             scene: MainScene.main(
                 dependencies.makeMainViewModel(),
-                Locale.direction == .leftToRight ? viewControllers : viewControllers.reversed()
+                viewControllers//Locale.direction == .leftToRight ? viewControllers : viewControllers.reversed()
             ),
             transitionStyle: .root,
             animated: true
