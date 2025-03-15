@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 public protocol NavigationBar: UIView {
     var container: UIView { get }

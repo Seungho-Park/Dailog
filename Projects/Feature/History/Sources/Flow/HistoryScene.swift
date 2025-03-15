@@ -14,7 +14,7 @@ extension FeatureHistoryInterfaces.HistoryScene: SharedUIInterfaces.Scene {
     public func instantiate() -> UIViewController {
         switch self {
         case .history(let viewModel):
-            let vc = HistoryViewController(nibName: nil, bundle: nil)
+            let vc = HistoryViewController<DefaultHistoryViewModel>.create(viewModel: viewModel as! DefaultHistoryViewModel)
             vc.restorationIdentifier = "HistoryViewController"
             vc.view.backgroundColor = .clear
             vc.tabBarItem = .init(title: "History".localized, image: UIImage(systemName: "list.bullet"), tag: 1)

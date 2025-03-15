@@ -11,7 +11,8 @@ import FeatureSplashInterfaces
 import FeatureMainInterfaces
 import SharedUI
 
-public final class MainViewController<VM: MainViewModel>: DailogViewController<VM>, UITabBarControllerDelegate {
+public final class MainViewController<VM: MainViewModel>: DailogViewController<VM>, UITabBarControllerDelegate, UIViewControllerAnimatedTransitioning {
+    
     private lazy var tabController: UITabBarController = {
         let tabBar = UITabBarController()
         tabBar.view.backgroundColor = .clear
@@ -58,11 +59,29 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
     }
     
     public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("Select: \(viewController.self)")
     }
     
     public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        print("Select2: \(viewController.self)")
         return true
+    }
+    
+    public func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> (any UIViewControllerAnimatedTransitioning)? {
+        return self
+    }
+    
+    public func transitionDuration(using transitionContext: (any UIViewControllerContextTransitioning)?) -> TimeInterval {
+        .zero
+    }
+    
+    public func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
+        guard let view = transitionContext.view(forKey: .to)
+        else {
+            return
+        }
+            
+        let container = transitionContext.containerView
+        container.addSubview(view)
+
+        transitionContext.completeTransition(true)
     }
 }

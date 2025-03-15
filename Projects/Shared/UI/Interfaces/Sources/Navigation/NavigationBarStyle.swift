@@ -9,4 +9,5 @@
 public enum NavigationBarStyle {
     case none
     case `default`(title: String?)
+    case filter
 }

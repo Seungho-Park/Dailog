@@ -82,7 +82,7 @@ public final class PromptView: UIView {
     }
 }
 
-public extension Reactive where Base == PromptView {
+public extension Reactive where Base: PromptView {
     var title: Binder<String> {
         return Binder(base) { view, newValue in
             view.title = newValue

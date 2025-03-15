@@ -10,6 +10,6 @@ import UIKit
 
 public enum BackgroundType {
     case image(UIImage?)
-    case color(name: String)
+    case color(UIColor)
     case clear
 }
