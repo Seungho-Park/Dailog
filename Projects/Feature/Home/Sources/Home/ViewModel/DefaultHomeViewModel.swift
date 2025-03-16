@@ -37,12 +37,6 @@ public final class DefaultHomeViewModel: HomeViewModel {
             .share()
         
         viewDidAppear
-            .subscribe { _ in
-                print("ViewDidAppear!!!")
-            }
-            .disposed(by: disposeBag)
-        
-        viewDidAppear
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.fetchRandomPromptUsecase.execute()

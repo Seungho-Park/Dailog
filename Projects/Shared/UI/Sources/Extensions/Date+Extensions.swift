@@ -12,7 +12,7 @@ public extension Date {
     func formattedString()-> String {
         let df = DateFormatter()
         df.dateFormat = getLanguageFormat()
-        df.locale = getLocaleFromLangCode()
+        df.locale = Locale.getLocaleFromLangCode()
         return df.string(from: self)
     }
     
@@ -28,15 +28,5 @@ public extension Date {
         }
     }
     
-    private func getLocaleFromLangCode()-> Locale {
-        switch Locale.preferredLanguages.first?.split(separator: "-")[0] ?? "en" {
-        case "ar": return Locale(identifier: "ar_SA")
-        case "ja": return Locale(identifier: "ja_JP")
-        case "en": return Locale(identifier: "en_US")
-        case "ko": return Locale(identifier: "ko_KR")
-        case "vi": return Locale(identifier: "vi_VN")
-        case "th": return Locale(identifier: "th_TH")
-        default: return Locale(identifier: "en_US")
-        }
-    }
+    
 }

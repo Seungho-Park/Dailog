@@ -27,7 +27,8 @@ public extension UIColor {
     
     static let softCoral: UIColor = UIColor(resource: .init(name: "SoftCoral", bundle: .module))
     static let softCoralHighlight: UIColor = UIColor(resource: .init(name: "SoftCoralHighlight", bundle: .module))
-    static let darkGray: UIColor = UIColor(resource: .init(name: "DarkGray", bundle: .module))
+    static let deepGray: UIColor = UIColor(resource: .init(name: "DarkGray", bundle: .module))
+    static let cream: UIColor = UIColor(resource: .init(name: "Cream", bundle: .module))
     
     static let tabBar: UIColor = UIColor(resource: .init(name: "Tabbar", bundle: .module))
     static let icon: UIColor = UIColor(resource: .init(name: "IconColor", bundle: .module))

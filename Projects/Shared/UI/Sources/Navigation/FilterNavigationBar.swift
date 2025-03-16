@@ -24,7 +24,7 @@ open class FilterNavigationBar: UIView, NavigationBar {
             button.subviews
                 .forEach {
                     guard let view = $0 as? UILabel else { return }
-                    view.textColor = button.state == .highlighted ? .lightGray : .darkGray
+                    view.textColor = button.state == .highlighted ? .lightGray : .deepGray
                 }
         }
         return button
@@ -35,7 +35,7 @@ open class FilterNavigationBar: UIView, NavigationBar {
         label.numberOfLines = 1
         label.font = .apple(sizeOf: 18, weight: .bold)
         label.text = "전체"
-        label.textColor = .darkGray
+        label.textColor = .deepGray
         return label
     }()
     
@@ -44,7 +44,7 @@ open class FilterNavigationBar: UIView, NavigationBar {
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 12)
         label.text = "▼"
-        label.textColor = .darkGray
+        label.textColor = .deepGray
         return label
     }()
     
