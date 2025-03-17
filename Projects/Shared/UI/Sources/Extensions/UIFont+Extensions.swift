@@ -20,11 +20,20 @@ public extension UIFont {
         switch Locale.preferredLanguages.first?.split(separator: "-")[0] ?? "en" {
         case "ja":
             return UIFont(name: "Natsume", size: size)!
-        case "en":
-            return UIFont(name: "Patrick Hand", size: size)!
+        case "en": return cursiveEnglish(size, weight: weight)
         case "ko": return cursiveKorean(size, weight: weight)
         case "ar": return cursiveArabic(size, weight: weight)
         default: return UIFont.systemFont(ofSize: size, weight: weight)
+        }
+    }
+    
+    private static func cursiveEnglish(_ size: CGFloat, weight: UIFont.Weight)-> UIFont {
+        switch weight {
+        case .light: fallthrough
+        case .regular: return UIFont(name: "Gaegu-Light", size: size)!
+        case .medium: return UIFont(name: "Gaegu-Regular", size: size)!
+        case .bold: return UIFont(name: "Gaegu-Bold", size: size)!
+        default: return UIFont(name: "Gaegu-Regular", size: size)!
         }
     }
     

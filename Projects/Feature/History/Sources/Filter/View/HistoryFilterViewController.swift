@@ -212,9 +212,7 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     }
     
     public override func viewDidLayoutSubviews() {
-        outsideView.pin
-            .bottom()
-            .left().right().top()
+        outsideView.pin.all()
         
         container.pin
             .below(of: self.view)
@@ -230,10 +228,6 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
         UIView.animate(withDuration: 0.2) { [weak self] in
             guard let self = self else { return }
             self.outsideView.alpha = 1
-            
-            outsideView.pin
-                .above(of: container)
-                .left().right().top()
             
             container.pin
                 .left().right()

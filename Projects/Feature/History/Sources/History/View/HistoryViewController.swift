@@ -12,9 +12,18 @@ import FeatureHistoryInterfaces
 
 public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<VM> {
     
+    private let emptyDataView = EmptyDataView(frame: .zero)
     
     public override func configure() {
         super.configure()
+        
+        container.flex
+            .define { flex in
+                flex.addItem(emptyDataView)
+                    .position(.absolute)
+                    .horizontally(0)
+                    .vertically(0)
+            }
     }
     
     public override func viewDidAppear(_ animated: Bool) {
