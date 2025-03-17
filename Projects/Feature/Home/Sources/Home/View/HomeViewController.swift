@@ -85,7 +85,8 @@ public final class HomeViewController<VM: HomeViewModel>: DailogViewController<V
         
         let output = self.viewModel.transform(
             input: .init(
-                viewWillAppear: self.rx.viewWillAppear.map { _ in }.asObservable()
+                viewWillAppear: self.rx.viewWillAppear.map { _ in }.asObservable(),
+                writeButtonTapped: writeButton.rx.tap.asObservable()
             )
         )
         
@@ -116,13 +117,13 @@ public final class HomeViewController<VM: HomeViewModel>: DailogViewController<V
     }
     
     private func showAdiceWithAnimation() {
-        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.adviceView.alpha = 1
         }, completion: nil)
     }
     
     private func showPromptWithAnimation() {
-        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.promptView.alpha = 1
         })
         
@@ -130,7 +131,7 @@ public final class HomeViewController<VM: HomeViewModel>: DailogViewController<V
     }
     
     private func showWriteMemoryButtonWithAnimation() {
-        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.writeButton.alpha = 1
         }, completion: nil)
     }

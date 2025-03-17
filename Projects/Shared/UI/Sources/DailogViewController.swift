@@ -66,6 +66,7 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
         let view = UIImageView(frame: .zero)
         view.contentMode = .scaleAspectFill
         view.isUserInteractionEnabled = true
+        view.layer.masksToBounds = true
         self.view = view
     }
     
@@ -93,6 +94,7 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
         case .default(let title):
             self.navigationBar = DefaultNavigationBar(frame: .zero)
             self.navigationBar?.title = title
+            
             let isRoot = (self.navigationController?.viewControllers.count ?? 0) <= 1
             (self.navigationBar as! DefaultNavigationBar)
                 .backButton

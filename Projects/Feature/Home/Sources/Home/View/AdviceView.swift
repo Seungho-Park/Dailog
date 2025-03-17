@@ -23,7 +23,7 @@ public final class AdviceView: UIView {
     private let authorLabel: UILabel = {
         let label = UILabel.make(frame: .zero)
         label.numberOfLines = 1
-        label.font = .cursive(sizeOf: 12, weight: .regular)
+        label.font = .cursive(sizeOf: 14, weight: .regular)
         label.textColor = .title
         return label
     }()

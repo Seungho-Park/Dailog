@@ -13,6 +13,7 @@ import FeatureHistory
 import SharedUIInterfaces
 import FeatureReminder
 import FeatureSettings
+import FeatureWrite
 
 final class AppDIContainer {
     private let config = ApplicationConfig()
@@ -37,7 +38,9 @@ final class AppDIContainer {
     }
     
     private func makeHomeSceneDIContainer()-> any DIContainer {
-        return DefaultHomeSceneDIContainer(dependencies: .init())
+        return DefaultHomeSceneDIContainer(dependencies: .init(
+            diaryWriteDIContainer: makeDiaryWriteDIContainer
+        ))
     }
     
     private func makeHistorySceneDIContainer()-> any DIContainer {
@@ -50,5 +53,9 @@ final class AppDIContainer {
     
     private func makeSettingsSceneDIContainer()-> any DIContainer {
         return DefaultSettingsSceneDIContainer()
+    }
+    
+    private func makeDiaryWriteDIContainer()-> any DIContainer {
+        return DefaultWriteSceneDIContainer()
     }
 }

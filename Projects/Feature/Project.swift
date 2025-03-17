@@ -22,7 +22,8 @@ let project: Project = .makeProject(
                     .feature(implements: .home),
                     .feature(implements: .history),
                     .feature(implements: .reminder),
-                    .feature(implements: .settings)
+                    .feature(implements: .settings),
+                    .feature(implements: .write)
                 ]
             )
         )

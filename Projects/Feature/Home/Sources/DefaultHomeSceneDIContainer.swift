@@ -12,7 +12,7 @@ import DomainHomeInterfaces
 import DomainHome
 import SharedUIInterfaces
 
-public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
+public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {    
     public let dependencies: HomeSceneDIContainerDependencies
     
     public init(dependencies: HomeSceneDIContainerDependencies) {
@@ -33,10 +33,15 @@ public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
 }
 
 extension DefaultHomeSceneDIContainer {
-    public func makeHomeViewModel() -> any HomeViewModel {
+    public func makeDiaryWriteSceneDIContainer() -> any DIContainer {
+        return dependencies.diaryWriteDIContainer()
+    }
+    
+    public func makeHomeViewModel(actions: HomeViewModelAction) -> any HomeViewModel {
         return DefaultHomeViewModel(
             fetchRandomPromptUsecase: makeFetchRandomPromptUsecase(),
-            fetchRandomAdviceUsecase: makeFetchRandomAdviceUsecase()
+            fetchRandomAdviceUsecase: makeFetchRandomAdviceUsecase(),
+            actions: actions
         )
     }
 }

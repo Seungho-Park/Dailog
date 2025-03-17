@@ -16,7 +16,8 @@ let project: Project = .makeProject(
             .init(
                 dependencies: [
                     .core,
-                    .domain(implements: .home)
+                    .domain(implements: .home),
+                    .domain(implements: .write)
                 ]
             )
         )

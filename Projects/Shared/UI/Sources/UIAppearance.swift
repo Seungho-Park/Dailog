@@ -72,9 +72,9 @@ extension UIAppearance {
             // Korean -
             "Jalnan2": Bundle.module.url(forResource: "Jalnan2", withExtension: "otf"),
             "SejongGeulggot": Bundle.module.url(forResource: "SejongGeulggot", withExtension: "otf"),
-            "Ownglyph wiseelist": Bundle.module.url(forResource: "Ownglyph wiseelist", withExtension: "ttf"),
-            "Ownglyph smartiam": Bundle.module.url(forResource: "Ownglyph smartiam", withExtension: "ttf"),
-            "Ownglyph konghae": Bundle.module.url(forResource: "Ownglyph konghae", withExtension: "ttf"),
+            "온글잎 하루나눔": Bundle.module.url(forResource: "온글잎 하루나눔", withExtension: "ttf"),
+            "온글잎 쑴체": Bundle.module.url(forResource: "온글잎 쑴체", withExtension: "ttf"),
+            "온글잎 류뚱체": Bundle.module.url(forResource: "온글잎 류뚱체", withExtension: "ttf"),
             
             //Japanese -
             "mogihaPen": Bundle.module.url(forResource: "mogihaPen", withExtension: "ttf"),

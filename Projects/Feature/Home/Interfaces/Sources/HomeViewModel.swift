@@ -11,13 +11,26 @@ import RxCocoa
 import SharedUIInterfaces
 import DomainHomeInterfaces
 
-public struct HomeViewModelInput {
-    public let viewWillAppear: Observable<Void>
+public struct HomeViewModelAction {
+    public let showWriteScene: ()-> Void
     
     public init(
-        viewWillAppear: Observable<Void>
+        showWriteScene: @escaping () -> Void
+    ) {
+        self.showWriteScene = showWriteScene
+    }
+}
+
+public struct HomeViewModelInput {
+    public let viewWillAppear: Observable<Void>
+    public let writeButtonTapped: Observable<Void>
+    
+    public init(
+        viewWillAppear: Observable<Void>,
+        writeButtonTapped: Observable<Void>
     ) {
         self.viewWillAppear = viewWillAppear
+        self.writeButtonTapped = writeButtonTapped
     }
 }
 
@@ -35,6 +48,8 @@ public struct HomeViewModelOutput {
 }
 
 public protocol HomeViewModel: ViewModel where Input == HomeViewModelInput, Output == HomeViewModelOutput {
+    var actions: HomeViewModelAction { get }
+    
     var fetchRandomPromptUsecase: FetchRandomPromptUsecase { get }
     var fetchRandomAdviceUsecase: FetchRandomAdviceUsecase { get }
 }

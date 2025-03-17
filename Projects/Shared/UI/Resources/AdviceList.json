@@ -1745,22 +1745,22 @@
                 "ko": {
                     "text": "실패는 성공의 어머니이다.",
                     "author": {
-                        "name": "명언 속담",
-                        "description": "한국 속담"
+                        "name": "토마스 에디슨",
+                        "description": "미국의 발명가"
                     }
                 },
                 "en": {
                     "text": "Failure is the mother of success.",
                     "author": {
-                        "name": "Proverb",
-                        "description": "Korean proverb"
+                        "name": "Thomas Edison",
+                        "description": "American inventor"
                     }
                 },
                 "ja": {
                     "text": "失敗は成功の母である。",
                     "author": {
-                        "name": "ことわざ",
-                        "description": "韓国のことわざ"
+                        "name": "トーマス・エジソン",
+                        "description": "アメリカの発明家"
                     }
                 },
                 "vi": {

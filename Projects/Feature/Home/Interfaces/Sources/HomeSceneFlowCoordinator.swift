@@ -10,7 +10,9 @@ import UIKit
 import SharedUIInterfaces
 
 public protocol HomeSceneFlowCoordinatorDependencies {
-    func makeHomeViewModel()-> any HomeViewModel
+    func makeDiaryWriteSceneDIContainer()-> any DIContainer
+    
+    func makeHomeViewModel(actions: HomeViewModelAction)-> any HomeViewModel
 }
 
 public protocol HomeSceneFlowCoordinator: Coordinator {

@@ -23,12 +23,15 @@ public extension Module {
         case history = "History"
         case reminder = "Reminder"
         case settings = "Settings"
+        
+        case write = "Write"
     }
 }
 
 public extension Module {
     enum Domain: String {
         case home = "Home"
+        case write = "Write"
     }
 }
 

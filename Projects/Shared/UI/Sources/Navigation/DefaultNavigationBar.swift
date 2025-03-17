@@ -9,6 +9,9 @@
 import UIKit
 import SharedUIInterfaces
 import FlexLayout
+import PinLayout
+import RxSwift
+import RxCocoa
 
 open class DefaultNavigationBar: UIView, NavigationBar {
     public let container = UIView(frame: .zero)
@@ -20,7 +23,8 @@ open class DefaultNavigationBar: UIView, NavigationBar {
     
     public let backButton: UIButton = {
         let button = UIButton(frame: .zero)
-        button.setImage(UIImage(systemName: "chevron.backward")?.withTintColor(.navigationTitle, renderingMode: .alwaysOriginal), for: .normal)
+        button.setImage(UIImage(systemName: "chevron.backward")?.withTintColor(.deepGray, renderingMode: .alwaysOriginal), for: .normal)
+        button.contentHorizontalAlignment = .leading
         return button
     }()
     
@@ -50,15 +54,19 @@ open class DefaultNavigationBar: UIView, NavigationBar {
         container
             .flex
             .direction(.row)
+            .paddingHorizontal(12)
+            .alignItems(.center)
+            .justifyContent(Locale.direction == .leftToRight ? .start : .end)
             .define { flex in
                 flex.addItem(backButton)
-                    .vertically(1)
-                    .left(0)
+                    .width(48)
+                    .aspectRatio(1)
+//                    .marginVertical(1)
                 
                 flex.addItem(titleLabel)
                     .position(.absolute)
-                    .horizontally(0)
                     .vertically(1)
+                    .horizontally(0)
             }
     }
     
@@ -66,6 +74,6 @@ open class DefaultNavigationBar: UIView, NavigationBar {
         super.layoutSubviews()
         
         container.pin.all()
-        self.container.flex.layout(mode: .fitContainer)
+        container.flex.layout(mode: .fitContainer)
     }
 }

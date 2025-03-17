@@ -49,7 +49,8 @@ let project: Project = .makeProject(
                         "OTHER_LDFLAGS": [
                             "$(inherited) -ObjC"
                         ],
-                        "ENABLE_USER_SCRIPT_SANDBOXING": false
+                        "ENABLE_USER_SCRIPT_SANDBOXING": false,
+                        "INFOPLIST_KEY_UILaunchStoryboardName":"LaunchScreen"
                     ]
                 ),
                 launchArguments: [

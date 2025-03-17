@@ -71,6 +71,9 @@ public final class EmptyDataView: UIView {
         addSubview(container)
         
         container.flex
+            .margin(20)
+        
+        container.flex
             .addItem()
             .justifyContent(.center)
             .alignItems(.center)
@@ -106,7 +109,7 @@ public final class EmptyDataView: UIView {
         super.layoutSubviews()
         
         writeButton.layer.cornerRadius = writeButton.frame.width/2
-        container.pin.all().margin(20)
+        container.pin.all()
         container.flex.layout()
     }
 }

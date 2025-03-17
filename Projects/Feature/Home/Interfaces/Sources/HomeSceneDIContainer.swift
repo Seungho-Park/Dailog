@@ -10,8 +10,10 @@ import SharedUIInterfaces
 import DomainHomeInterfaces
 
 public struct HomeSceneDIContainerDependencies {
+    public let diaryWriteDIContainer: ()-> any DIContainer
     
-    public init() {
+    public init(diaryWriteDIContainer: @escaping ()-> any DIContainer) {
+        self.diaryWriteDIContainer = diaryWriteDIContainer
     }
 }
 

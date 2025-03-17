@@ -19,7 +19,10 @@ public extension UIFont {
     static func cursive(sizeOf size: CGFloat, weight: UIFont.Weight)-> UIFont {
         switch Locale.preferredLanguages.first?.split(separator: "-")[0] ?? "en" {
         case "ja":
-            return UIFont(name: "Natsume", size: size)!
+            switch weight {
+            case .regular: return UIFont(name: "MogihaPenFont", size: size)!
+            default: return UIFont(name: "Natsume", size: size)!
+            }
         case "en": return cursiveEnglish(size, weight: weight)
         case "ko": return cursiveKorean(size, weight: weight)
         case "ar": return cursiveArabic(size, weight: weight)
@@ -39,10 +42,10 @@ public extension UIFont {
     
     private static func cursiveKorean(_ size: CGFloat, weight: UIFont.Weight)-> UIFont {
         switch weight {
-        case .bold: return UIFont(name: "Ownglyph smartiam", size: size) ?? .systemFont(ofSize: size, weight: .bold)
-        case .medium: return UIFont(name: "Ownglyph konghae", size: size) ?? .systemFont(ofSize: size, weight: .medium)
+        case .bold: return UIFont(name: "Ownglyph soomini", size: size) ?? .systemFont(ofSize: size, weight: .bold)
+        case .medium: return UIFont(name: "Ownglyph ryuttung", size: size) ?? .systemFont(ofSize: size, weight: .medium)
         case .regular: fallthrough
-        default: return UIFont(name: "Ownglyph wiseelist", size: size) ?? .systemFont(ofSize: size, weight: .regular)
+        default: return UIFont(name: "Ownglyph haru nanum", size: size) ?? .systemFont(ofSize: size, weight: .regular)
         }
     }
     

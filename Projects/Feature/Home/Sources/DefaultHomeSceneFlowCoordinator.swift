@@ -23,6 +23,19 @@ public final class DefaultHomeSceneFlowCoordinator: HomeSceneFlowCoordinator {
     public var navigationController: UINavigationController
     
     public func start() -> UIViewController {
-        return HomeScene.home(dependencies.makeHomeViewModel()).instantiate()
+        return HomeScene.home(
+            dependencies.makeHomeViewModel(
+                actions: .init(
+                    showWriteScene: showWriteDiaryScene
+                )
+            )
+        ).instantiate()
+    }
+    
+    private func showWriteDiaryScene() {
+        let diContainer = dependencies.makeDiaryWriteSceneDIContainer()
+        let coordinator = diContainer.makeCoordinator(navController: navigationController)
+        
+        coordinator.start()
     }
 }

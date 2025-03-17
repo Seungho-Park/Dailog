@@ -18,13 +18,16 @@ public final class DefaultHomeViewModel: HomeViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
     public let navigationBarStyle: NavigationBarStyle = .default(title: Date().formattedString())
     
+    public let actions: HomeViewModelAction
     public let fetchRandomPromptUsecase: FetchRandomPromptUsecase
     public let fetchRandomAdviceUsecase: FetchRandomAdviceUsecase
     
     public init(
         fetchRandomPromptUsecase: FetchRandomPromptUsecase,
-        fetchRandomAdviceUsecase: FetchRandomAdviceUsecase
+        fetchRandomAdviceUsecase: FetchRandomAdviceUsecase,
+        actions: HomeViewModelAction
     ) {
+        self.actions = actions
         self.fetchRandomPromptUsecase = fetchRandomPromptUsecase
         self.fetchRandomAdviceUsecase = fetchRandomAdviceUsecase
     }
@@ -54,6 +57,9 @@ public final class DefaultHomeViewModel: HomeViewModel {
             .bind(to: advice)
             .disposed(by: disposeBag)
         
+        input.writeButtonTapped
+            .bind(onNext: actions.showWriteScene)
+            .disposed(by: disposeBag)
         
         return .init(
             prompt: prompt.asDriver(),

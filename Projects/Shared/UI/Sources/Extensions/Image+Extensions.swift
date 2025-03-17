@@ -10,4 +10,9 @@ import UIKit
 
 public extension UIImage {
     static let bgLaunchScreen = UIImage(named: SharedUIAsset.Images.bgLaunchScreen.name, in: .module, with: nil)
+    
+    static let back = UIImage(named: "Back", in: .module, with: nil)
+    static let gallery = UIImage(named: "Gallery", in: .module, with: nil)
+    static let camera = UIImage(named: "Camera", in: .module, with: nil)
+    static let hideKeyboard = UIImage(named: "HideKeyboard", in: .module, with: nil)
 }
