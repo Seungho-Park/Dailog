@@ -18,7 +18,7 @@ public enum Emotion: CaseIterable {
     case sad
     case angry
     
-    var string: String {
+    public var string: String {
         switch self {
         case .happy: return "Happy".localized
         case .excited: return "Excited".localized
@@ -31,7 +31,7 @@ public enum Emotion: CaseIterable {
         }
     }
     
-    var emoji: String {
+    public var emoji: String {
         switch self {
         case .happy: return "😊"
         case .angry: return "😡"

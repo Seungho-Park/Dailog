@@ -47,7 +47,7 @@ public final class EmptyDataView: UIView {
                 "+",
                 attributes: .init(
                     [
-                        NSAttributedString.Key.foregroundColor : btn.state != .highlighted ? UIColor.component(1, 1, 1).cgColor : UIColor.component(1, 1, 1, 0.6).cgColor,
+                        NSAttributedString.Key.foregroundColor : btn.state != .highlighted ? UIColor.component(255, 255, 255) : UIColor.component(255, 255, 255, 0.6),
                         NSAttributedString.Key.font: UIFont.cursive(sizeOf: 48, weight: .medium)
                     ]
                 )

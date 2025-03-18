@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DomainWriteInterfaces
 
 public final class EmotionButton: UIView {
     private let container = {
@@ -42,6 +43,18 @@ public final class EmotionButton: UIView {
         label.text = "Happy".localized
         return label
     }()
+    
+    public var selected: Emotion? = nil {
+        didSet {
+            emotionLabel.flex.isIncludedInLayout(selected != nil)
+            emotionDescLabel.text = selected == nil ? "UnSelected".localized : selected!.string
+            emotionLabel.text = selected == nil ? "" : selected!.emoji
+            
+            emotionLabel.flex.markDirty()
+            emotionDescLabel.flex.markDirty()
+            container.flex.layout()
+        }
+    }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

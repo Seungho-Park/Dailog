@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DomainWriteInterfaces
 
 public final class DiaryWriteHeaderView: UIView {
     private let container = UIView(frame: .zero)
@@ -21,6 +22,12 @@ public final class DiaryWriteHeaderView: UIView {
         label.font = .cursive(sizeOf: 18, weight: .medium)
         return label
     }()
+    
+    public var emotion: Emotion? = nil {
+        didSet {
+            emotionButton.selected = emotion
+        }
+    }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

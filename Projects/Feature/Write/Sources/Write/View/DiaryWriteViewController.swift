@@ -68,9 +68,8 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
         let output = viewModel.transform(input: .init())
         
         output.emotion
-            .compactMap { $0 }
             .distinctUntilChanged()
-            .drive { print($0) }
+            .drive(headerView.rx.emotion)
             .disposed(by: disposeBag)
     }
 }
