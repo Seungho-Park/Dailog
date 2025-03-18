@@ -34,7 +34,7 @@ public final class EmotionListItemCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.layer.masksToBounds = false
-        contentView.layer.shadowOpacity = 0.8
+        contentView.layer.shadowOpacity = 0.3
         contentView.layer.shadowOffset = CGSize(width: 2, height: 2)
         contentView.layer.shadowRadius = 3
         

@@ -8,9 +8,11 @@
 
 import UIKit
 import DomainWriteInterfaces
+import RxCocoa
+import RxSwift
 
 public final class EmotionButton: UIView {
-    private let container = {
+    let container = {
         let button = UIButton(frame: .zero)
         let config = UIButton.Configuration.plain()
         button.configuration = config
@@ -46,7 +48,7 @@ public final class EmotionButton: UIView {
     
     public var selected: Emotion? = nil {
         didSet {
-            emotionLabel.flex.isIncludedInLayout(selected != nil)
+            emotionLabel.flex.display(selected != nil ? .flex : .none)
             emotionDescLabel.text = selected == nil ? "UnSelected".localized : selected!.string
             emotionLabel.text = selected == nil ? "" : selected!.emoji
             
@@ -86,5 +88,11 @@ public final class EmotionButton: UIView {
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension Reactive where Base: EmotionButton {
+    var tap: ControlEvent<Void> {
+        return self.base.container.rx.tap
     }
 }

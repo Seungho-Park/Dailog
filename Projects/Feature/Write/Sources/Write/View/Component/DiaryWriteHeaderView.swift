@@ -12,7 +12,7 @@ import DomainWriteInterfaces
 public final class DiaryWriteHeaderView: UIView {
     private let container = UIView(frame: .zero)
     
-    private let emotionButton = EmotionButton(frame: .zero)
+    let emotionButton = EmotionButton(frame: .zero)
     
     private let dateLabel: UILabel = {
         let label = UILabel(frame: .zero)
@@ -37,7 +37,7 @@ public final class DiaryWriteHeaderView: UIView {
     
     private func configure() {
         addSubview(container)
-        container.flex.addItem()
+        container.flex
             .direction(.row)
             .define { flex in
                 flex.addItem(emotionButton)

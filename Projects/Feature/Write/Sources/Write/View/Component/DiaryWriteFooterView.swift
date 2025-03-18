@@ -12,13 +12,13 @@ public final class DiaryWriteFooterView: UIView {
     
     private let container = UIView(frame: .zero)
     
-    private let showGalleryButton: UIButton = {
+    let showGalleryButton: UIButton = {
         let btn = UIButton(frame: .zero)
         btn.setImage(.gallery, for: .normal)
         return btn
     }()
     
-    private let showCameraButton: UIButton = {
+    let showCameraButton: UIButton = {
         let btn = UIButton(frame: .zero)
         btn.setImage(.camera, for: .normal)
         return btn

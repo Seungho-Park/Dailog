@@ -12,16 +12,35 @@ import RxSwift
 import RxCocoa
 
 public struct DiaryWriteViewModelAction {
-    public let showSelectEmotion: ()-> Void
+    public let showSelectEmotion: ()-> Observable<Emotion?>
+    public let showPhotoAlbum: ()-> Void
+    public let showDeviceCamera: ()-> Void
     
-    public init(showSelectEmotion: @escaping () -> Void) {
+    public init(
+        showSelectEmotion: @escaping () -> Observable<Emotion?>,
+        showPhotoAlbum: @escaping ()-> Void,
+        showDeviceCamera: @escaping ()-> Void
+    ) {
         self.showSelectEmotion = showSelectEmotion
+        self.showPhotoAlbum = showPhotoAlbum
+        self.showDeviceCamera = showDeviceCamera
     }
 }
 
 public struct DiaryWriteViewModelInput {
+    public let emotionButtonTapped: Observable<Void>
+    public let addPhotoButtonTapped: Observable<Void>
+    public let captureCameraButtonTapped: Observable<Void>
     
-    public init() {  }
+    public init(
+        emotionButtonTapped: Observable<Void>,
+        addPhotoButtonTapped: Observable<Void>,
+        captureCameraButtonTapped: Observable<Void>
+    ) {
+        self.emotionButtonTapped = emotionButtonTapped
+        self.addPhotoButtonTapped = addPhotoButtonTapped
+        self.captureCameraButtonTapped = captureCameraButtonTapped
+    }
 }
 
 public struct DiaryWriteViewModelOutput {

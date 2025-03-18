@@ -23,43 +23,31 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
     open override func viewDidLoad() {
         super.viewDidLoad()
         
+        printLogLifeCycle(#function)
+        
         configure()
         bind()
-        #if DEBUG
-            print("\(Self.self): \(#function)")
-        #endif
     }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        #if DEBUG
-            print("\(Self.self): \(#function)")
-        #endif
+        printLogLifeCycle(#function)
     }
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        #if DEBUG
-            print("\(Self.self): \(#function)")
-        #endif
+        printLogLifeCycle(#function)
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-                
-        #if DEBUG
-            print("\(Self.self): \(#function)")
-        #endif
+        printLogLifeCycle(#function)
     }
     
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        #if DEBUG
-            print("\(Self.self): \(#function)")
-        #endif
+        printLogLifeCycle(#function)
     }
     
     open override func loadView() {
@@ -126,5 +114,11 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
         }
         
         container.flex.layout(mode: .fitContainer)
+    }
+    
+    private func printLogLifeCycle(_ function: String) {
+        #if DEBUG
+        print("\(Self.self): \(function)")
+        #endif
     }
 }

@@ -17,5 +17,7 @@ public protocol WriteSceneFlowCoordinatorDependencies {
 public protocol WriteSceneFlowCoordinator: Coordinator {
     var dependencies: WriteSceneFlowCoordinatorDependencies { get }
     
-    func showSelectEmotionScene()
+    func showSelectEmotionScene(completion: @escaping (Emotion?)-> Void)
+    func showPhotoAlbumScene()
+    func showDeviceCamera()
 }

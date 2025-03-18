@@ -32,10 +32,23 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public func transform(input: DiaryWriteViewModelInput) -> DiaryWriteViewModelOutput {
         let emotion: BehaviorRelay<Emotion?> = .init(value: emotion)
         
-        emotion
-            .filter { $0 == nil }
-            .map { _ in }
-            .bind(onNext: actions.showSelectEmotion)
+        Observable.merge(
+            input.emotionButtonTapped,
+            emotion.take(1).filter { $0 == nil }.map { _ in }
+        )
+        .withUnretained(self)
+        .flatMap { owner, _ in
+            return owner.actions.showSelectEmotion()
+        }
+        .bind(to: emotion)
+        .disposed(by: disposeBag)
+        
+        input.addPhotoButtonTapped
+            .bind(onNext: actions.showPhotoAlbum)
+            .disposed(by: disposeBag)
+        
+        input.captureCameraButtonTapped
+            .bind(onNext: actions.showDeviceCamera)
             .disposed(by: disposeBag)
         
         return .init(

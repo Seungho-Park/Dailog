@@ -65,7 +65,13 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
             }
             .disposed(by: disposeBag)
         
-        let output = viewModel.transform(input: .init())
+        let output = viewModel.transform(
+            input: .init(
+                emotionButtonTapped: headerView.emotionButton.rx.tap.asObservable(),
+                addPhotoButtonTapped: footerView.showGalleryButton.rx.tap.asObservable(),
+                captureCameraButtonTapped: footerView.showCameraButton.rx.tap.asObservable()
+            )
+        )
         
         output.emotion
             .distinctUntilChanged()

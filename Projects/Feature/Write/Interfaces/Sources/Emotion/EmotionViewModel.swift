@@ -12,9 +12,9 @@ import RxSwift
 import RxCocoa
 
 public struct EmotionViewModelActions {
-    public let selectEmotion: (Emotion) -> Void
+    public let selectEmotion: (Emotion?) -> Void
 
-    public init(selectEmotion: @escaping (Emotion) -> Void) {
+    public init(selectEmotion: @escaping (Emotion?) -> Void) {
         self.selectEmotion = selectEmotion
     }
 }

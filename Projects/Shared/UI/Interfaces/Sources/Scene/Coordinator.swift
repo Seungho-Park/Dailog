@@ -16,7 +16,7 @@ public protocol Coordinator {
     
     @discardableResult
     func transition(scene: Scene, transitionStyle: TransitionStyle, animated: Bool)-> UIViewController
-    func close(animated: Bool, completion: @escaping ()-> Void)
+    func close(animated: Bool, completion: (()-> Void)?)
 }
 
 public extension Coordinator {
@@ -55,7 +55,7 @@ public extension Coordinator {
         return vc
     }
     
-    func close(animated: Bool, completion: @escaping ()-> Void) {
+    func close(animated: Bool, completion: (()-> Void)? = nil) {
         if let presentedVC = navigationController.topViewController?.presentedViewController {
             presentedVC.dismiss(animated: animated, completion: completion)
         } else if navigationController.viewControllers.count > 1 {
