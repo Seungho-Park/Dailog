@@ -20,21 +20,31 @@ public final class DefaultWriteSceneFlowCoordinator: WriteSceneFlowCoordinator {
     }
     
     public func start() -> UIViewController {
-        let vc = DiaryWriteViewController.create(
-            viewModel: DefaultDiaryWriteViewModel(
-                emotion: nil,
-                actions: .init(
-                    showSelectEmotion: showSelectEmotionScene
+        transition(
+            scene: DiaryWriteScene.write(
+                dependencies.makeDiaryWriteViewModel(
+                    emotion: nil,
+                    actions: .init(
+                        showSelectEmotion: showSelectEmotionScene
+                    )
                 )
-            )
+            ),
+            transitionStyle: .push,
+            animated: true
         )
-        navigationController.pushViewController(vc, animated: true)
-        return vc
     }
     
     public func showSelectEmotionScene() {
-        let vc = EmotionViewController.create(viewModel: DefaultEmotionViewModel())
-        vc.view.backgroundColor = .white
-        navigationController.topViewController?.present(vc, animated: true)
+        transition(
+            scene: DiaryWriteScene.emotion(
+                dependencies.makeEmotionViewModel(
+                    actions: .init(
+                        selectEmotion: { _ in }
+                    )
+                )
+            ),
+            transitionStyle: .modal,
+            animated: true
+        )
     }
 }

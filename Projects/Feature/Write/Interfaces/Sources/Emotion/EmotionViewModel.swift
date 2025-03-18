@@ -7,10 +7,25 @@
 //
 
 import SharedUIInterfaces
+import DomainWriteInterfaces
+import RxSwift
+import RxCocoa
+
+public struct EmotionViewModelActions {
+    public let selectEmotion: (Emotion) -> Void
+
+    public init(selectEmotion: @escaping (Emotion) -> Void) {
+        self.selectEmotion = selectEmotion
+    }
+}
 
 public struct EmotionViewModelInput {
     
-    public init() {  }
+    public let select: Observable<Emotion?>
+    
+    public init(select: Observable<Emotion?>) {
+        self.select = select
+    }
 }
 
 public struct EmotionViewModelOutput {
@@ -19,5 +34,5 @@ public struct EmotionViewModelOutput {
 }
 
 public protocol EmotionViewModel: ViewModel where Input == EmotionViewModelInput, Output == EmotionViewModelOutput {
-    
+    var actions: EmotionViewModelActions { get }
 }

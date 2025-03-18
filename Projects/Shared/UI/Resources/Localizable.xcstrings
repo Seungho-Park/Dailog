@@ -613,7 +613,7 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "اختر شعورك الآن واحتفظ بذكرياتك."
           }
         },
@@ -625,25 +625,25 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "今の気持ちを選んで、思い出を残しましょう。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "지금 기분을 선택해 추억을 남겨보세요"
+            "state" : "translated",
+            "value" : "지금 기분을 선택해 추억을 남겨보세요."
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "เลือกความรู้สึกของคุณตอนนี้ แล้วบันทึกความทรงจำ"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hãy chọn cảm xúc của bạn lúc này và lưu lại kỷ niệm."
           }
         }
@@ -654,7 +654,7 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "الفرح والحزن وكل المشاعر ثمينة."
           }
         },
@@ -666,25 +666,25 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "喜びも悲しみも、すべての感情が大切です。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "기쁨도, 슬픔도, 모든 감정이 소중해요"
+            "state" : "translated",
+            "value" : "기쁨도, 슬픔도, 모든 감정이 소중해요."
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "ความสุข ความเศร้า และทุกความรู้สึกล้วนมีค่า"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Niềm vui, nỗi buồn và mọi cảm xúc đều đáng trân trọng."
           }
         }

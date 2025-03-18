@@ -97,6 +97,15 @@ public final class EmotionViewController<VM: EmotionViewModel>: DailogViewContro
     public override func bind() {
         super.bind()
         
+        _ = viewModel.transform(
+            input: .init(
+                select: Observable<Emotion?>.merge(
+                    skipButton.rx.tap.map { _-> Emotion? in nil }.asObservable(),
+                    collectionView.rx.modelSelected(Emotion.self).map { emotion-> Emotion? in return emotion }.asObservable()
+                )
+            )
+        )
+        
         Observable.just(Emotion.allCases)
             .asDriver(onErrorJustReturn: [])
             .drive(collectionView.rx.items) { view, row, item in

@@ -7,9 +7,11 @@
 //
 
 import SharedUIInterfaces
+import DomainWriteInterfaces
 
 public protocol WriteSceneFlowCoordinatorDependencies {
-    
+    func makeDiaryWriteViewModel(emotion: Emotion?, actions: DiaryWriteViewModelAction)-> any DiaryWriteViewModel
+    func makeEmotionViewModel(actions: EmotionViewModelActions)-> any EmotionViewModel
 }
 
 public protocol WriteSceneFlowCoordinator: Coordinator {

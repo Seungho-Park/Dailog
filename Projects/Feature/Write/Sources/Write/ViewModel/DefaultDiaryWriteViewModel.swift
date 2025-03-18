@@ -37,8 +37,6 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
             .map { _ in }
             .bind(onNext: actions.showSelectEmotion)
             .disposed(by: disposeBag)
-            
-            
         
         return .init(
             emotion: emotion.asDriver()
