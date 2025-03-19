@@ -15,7 +15,7 @@ public final class TextView: UIView, UITextViewDelegate {
         let view = UITextView(frame: .zero)
         view.backgroundColor = .clear
         view.font = .cursive(sizeOf: 20, weight: .medium)
-        view.textColor = .deepGray
+        view.textColor = .textColor
         view.contentInset = .zero
         view.textAlignment = Locale.direction == .leftToRight ? .left : .right
         return view

@@ -20,6 +20,7 @@ let project: Project = .makeProject(
                     "Resources/LaunchScreen.storyboard",
                     "Resources/InfoPlist.xcstrings",
                     "Resources/GoogleService-Info.plist",
+                    "Resources/LaunchScreen/**"
                     
                 ],
                 entitlements: .file(path: "Resources/Dailog.entitlements"),

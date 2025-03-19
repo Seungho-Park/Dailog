@@ -18,7 +18,7 @@ public final class EmotionListItemCell: UICollectionViewCell {
         let label = UILabel.make(frame: .zero)
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.numberOfLines = 1
-        label.textColor = .deepGray
+        label.textColor = .textColor
         return label
     }()
     

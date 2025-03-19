@@ -32,7 +32,7 @@ public final class EmotionButton: UIView {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 1
         label.font = .cursive(sizeOf: 16, weight: .medium)
-        label.textColor = .deepGray
+        label.textColor = .textColor
         label.text = "😀"
         return label
     }()
@@ -41,7 +41,7 @@ public final class EmotionButton: UIView {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 1
         label.font = .cursive(sizeOf: 18, weight: .medium)
-        label.textColor = .deepGray
+        label.textColor = .textColor
         label.text = "Happy".localized
         return label
     }()

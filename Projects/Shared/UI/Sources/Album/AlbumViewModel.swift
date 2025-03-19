@@ -16,11 +16,14 @@ public final class AlbumViewModel: ViewModel {
     
     public struct Input {
         let viewWillAppear: Observable<Void>
+        let selectedItems: Observable<[AlbumItemCellViewModel]>
         
         public init(
-            viewWillAppear: Observable<Void>
+            viewWillAppear: Observable<Void>,
+            selectedItems: Observable<[AlbumItemCellViewModel]>
         ) {
             self.viewWillAppear = viewWillAppear
+            self.selectedItems = selectedItems
         }
     }
     
@@ -57,6 +60,15 @@ public final class AlbumViewModel: ViewModel {
                 $0.enumerated().map { AlbumItemCellViewModel(idx: $0.offset, photo: $0.element) }
             }
             .bind(to: photos)
+            .disposed(by: disposeBag)
+        
+        input.selectedItems
+            .bind {
+                var values = photos.value
+                for i in 0..<values.count { values[i].selectedIdx = nil }
+                for i in $0 { values[i.idx].selectedIdx = i.selectedIdx }
+                photos.accept(values)
+            }
             .disposed(by: disposeBag)
         
         return .init(

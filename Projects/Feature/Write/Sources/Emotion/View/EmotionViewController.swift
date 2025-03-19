@@ -20,7 +20,7 @@ public final class EmotionViewController<VM: EmotionViewModel>: DailogViewContro
         let label = UILabel.make(frame: .zero)
         label.font = .cursive(sizeOf: 20, weight: .bold)
         label.text = "Select Emotion Title".localized
-        label.textColor = .deepGray
+        label.textColor = .textColor
         label.numberOfLines = 0
         return label
     }()
@@ -29,7 +29,7 @@ public final class EmotionViewController<VM: EmotionViewModel>: DailogViewContro
         let label = UILabel.make(frame: .zero)
         label.font = .cursive(sizeOf: 16, weight: .medium)
         label.text = "Select Emotion Subtitle".localized
-        label.textColor = .deepGray
+        label.textColor = .textColor
         label.numberOfLines = 1
         return label
     }()
@@ -53,7 +53,7 @@ public final class EmotionViewController<VM: EmotionViewModel>: DailogViewContro
             button.configuration?.attributedTitle = AttributedString(
                 "Skip".localized,
                 attributes: .init([
-                    .foregroundColor : button.state != .highlighted ? UIColor.deepGray : UIColor.lightGray,
+                    .foregroundColor : button.state != .highlighted ? UIColor.textColor : UIColor.textColor.withAlphaComponent(0.6),
                     .font: UIFont.cursive(sizeOf: 16, weight: .medium),
                     .underlineStyle : NSUnderlineStyle.single.rawValue,
                     .baselineOffset: 6

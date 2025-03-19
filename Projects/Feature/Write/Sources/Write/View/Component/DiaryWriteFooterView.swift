@@ -50,7 +50,7 @@ public final class DiaryWriteFooterView: UIView {
             .define { flex in
                 flex.addItem()
                     .height(1)
-                    .backgroundColor(.lightGray)
+                    .backgroundColor(.separatorColor)
                     .marginBottom(10)
                 
                 flex.addItem()

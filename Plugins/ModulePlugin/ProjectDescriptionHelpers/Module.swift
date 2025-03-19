@@ -25,6 +25,7 @@ public extension Module {
         case settings = "Settings"
         
         case write = "Write"
+        case photo = "Photo"
     }
 }
 

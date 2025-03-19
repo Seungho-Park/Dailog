@@ -33,7 +33,7 @@ public final class HomeViewController<VM: HomeViewModel>: DailogViewController<V
                     [
                         NSAttributedString.Key.font: UIFont.cursive(sizeOf: 24, weight: .medium),
                         NSAttributedString.Key.foregroundColor: btn.state == .highlighted ?
-                        UIColor.component(255, 255, 255, 0.6) : UIColor.component(255, 255, 255)
+                        UIColor.btnTextColor.withAlphaComponent(0.6) : UIColor.btnTextColor.withAlphaComponent
                     ]
                 )
             )

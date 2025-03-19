@@ -15,6 +15,9 @@ import RxCocoa
 
 public final class AlbumViewController: DailogViewController<AlbumViewModel> {
     
+    private var entries: [AlbumItemCellViewModel] = []
+    private var selectedItems: BehaviorRelay<[AlbumItemCellViewModel]> = .init(value: [])
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -39,9 +42,16 @@ public final class AlbumViewController: DailogViewController<AlbumViewModel> {
         
         let output = viewModel.transform(
             input: .init(
-                viewWillAppear: rx.viewWillAppear.map { _ in }.asObservable()
+                viewWillAppear: rx.viewWillAppear.map { _ in }.asObservable(),
+                selectedItems: selectedItems.asObservable()
             )
         )
+        
+        output.photos
+            .drive { [weak self] photos in
+                self?.entries = photos
+            }
+            .disposed(by: disposeBag)
         
         output.photos
             .drive(collectionView.rx.items) { view, row, item in
@@ -73,5 +83,34 @@ extension AlbumViewController: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.75
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var items = selectedItems.value
+        guard let cell = collectionView.cellForItem(at: indexPath) as? AlbumItemCell else {
+            return
+        }
+        items.append(entries[indexPath.row])
+        cell.select(order: items.count)
+        selectedItems.accept(items)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        var items = selectedItems.value
+        guard let index = items.firstIndex(where: { item in
+            item.idx == indexPath.row
+        }) else {
+            return
+        }
+        
+        (collectionView.cellForItem(at: indexPath) as? AlbumItemCell)?.select(order: nil)
+        items.remove(at: index)
+        
+        for i in 0..<items.count {
+            items[i].selectedIdx = i + 1
+            (collectionView.cellForItem(at: .init(row: items[i].idx, section: 0)) as? AlbumItemCell)?.select(order: i + 1)
+        }
+        
+        selectedItems.accept(items)
     }
 }

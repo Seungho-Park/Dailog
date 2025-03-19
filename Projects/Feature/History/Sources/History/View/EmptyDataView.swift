@@ -15,7 +15,7 @@ public final class EmptyDataView: UIView {
     private let container = UIView()
     
     private let imageView: UIImageView = {
-        let imageView = UIImageView(image: .init(systemName: "text.page.slash")?.withTintColor(.deepGray, renderingMode: .alwaysOriginal))
+        let imageView = UIImageView(image: .init(systemName: "text.page.slash")?.withTintColor(.textColor, renderingMode: .alwaysOriginal))
         return imageView
     }()
     
@@ -23,7 +23,7 @@ public final class EmptyDataView: UIView {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 1
         label.text = "No diary data".localized
-        label.textColor = .deepGray
+        label.textColor = .textColor
         label.font = .cursive(sizeOf: 24, weight: .bold)
         return label
     }()
@@ -32,7 +32,7 @@ public final class EmptyDataView: UIView {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 1
         label.text = "Tap the + button below to write your diary".localized
-        label.textColor = .deepGray
+        label.textColor = .textColor
         label.font = .cursive(sizeOf: 16, weight: .medium)
         return label
     }()
@@ -47,7 +47,7 @@ public final class EmptyDataView: UIView {
                 "+",
                 attributes: .init(
                     [
-                        NSAttributedString.Key.foregroundColor : btn.state != .highlighted ? UIColor.component(255, 255, 255) : UIColor.component(255, 255, 255, 0.6),
+                        NSAttributedString.Key.foregroundColor : btn.state != .highlighted ? UIColor.btnTextColor : UIColor.btnTextColor.withAlphaComponent(0.6),
                         NSAttributedString.Key.font: UIFont.cursive(sizeOf: 48, weight: .medium)
                     ]
                 )

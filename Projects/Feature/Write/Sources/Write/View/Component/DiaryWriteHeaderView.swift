@@ -18,7 +18,7 @@ public final class DiaryWriteHeaderView: UIView {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 1
         label.text = "2025.03.17(월)"
-        label.textColor = .deepGray
+        label.textColor = .textColor
         label.font = .cursive(sizeOf: 18, weight: .medium)
         return label
     }()

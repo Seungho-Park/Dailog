@@ -6,12 +6,45 @@
       "scale" : "1x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "add_photo_alternate_16dp_F4EDE6_FILL0_wght400_GRAD0_opsz20.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
       "filename" : "Gallery@x2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "add_photo_alternate_24dp_F4EDE6_FILL0_wght400_GRAD0_opsz24.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
       "filename" : "Gallery@x3.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "add_photo_alternate_36dp_F4EDE6_FILL0_wght400_GRAD0_opsz40.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

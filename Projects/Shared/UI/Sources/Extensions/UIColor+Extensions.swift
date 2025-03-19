@@ -25,10 +25,16 @@ public extension UIColor {
     static let navigationTitle = UIColor(resource: .init(name: "NavigationTitle", bundle: .module))
     static let title: UIColor = UIColor(resource: .init(name: "TitleColor", bundle: .module))
     
+    static let bgButton: UIColor = UIColor(resource: .init(name: "SoftCoral", bundle: .module))
+    static let btnTextColor: UIColor = UIColor(resource: .init(name: "ButtonText", bundle: .module))
+    
     static let softCoral: UIColor = UIColor(resource: .init(name: "SoftCoral", bundle: .module))
     static let softCoralHighlight: UIColor = UIColor(resource: .init(name: "SoftCoralHighlight", bundle: .module))
     static let deepGray: UIColor = UIColor(resource: .init(name: "DarkGray", bundle: .module))
     static let cream: UIColor = UIColor(resource: .init(name: "Cream", bundle: .module))
+    
+    static let separatorColor: UIColor = UIColor(resource: .init(name: "Separator", bundle: .module))
+    static let textColor: UIColor = UIColor(resource: .init(name: "TextColor", bundle: .module))
     
     static let tabBar: UIColor = UIColor(resource: .init(name: "Tabbar", bundle: .module))
     static let icon: UIColor = UIColor(resource: .init(name: "IconColor", bundle: .module))

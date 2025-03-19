@@ -23,7 +23,7 @@ open class DefaultNavigationBar: UIView, NavigationBar {
     
     public let backButton: UIButton = {
         let button = UIButton(frame: .zero)
-        button.setImage(UIImage(systemName: "chevron.backward")?.withTintColor(.deepGray, renderingMode: .alwaysOriginal), for: .normal)
+        button.setImage(UIImage(systemName: "chevron.backward")?.withTintColor(.textColor, renderingMode: .alwaysOriginal), for: .normal)
         button.contentHorizontalAlignment = .leading
         return button
     }()

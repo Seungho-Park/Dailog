@@ -16,12 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundSplash" translatesAutoresizingMaskIntoConstraints="NO" id="UUT-38-DSQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="UUT-38-DSQ">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UUT-38-DSQ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="JNg-tX-vm9"/>
                             <constraint firstAttribute="bottom" secondItem="UUT-38-DSQ" secondAttribute="bottom" id="Tof-6Z-7zN"/>
@@ -36,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BackgroundSplash" width="1024" height="1024"/>
+        <image name="LaunchScreen.png" width="1024" height="1024"/>
     </resources>
 </document>
