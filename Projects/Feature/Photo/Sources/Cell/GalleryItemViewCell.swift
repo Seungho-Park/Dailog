@@ -23,7 +23,7 @@ public final class GalleryItemViewCell: UICollectionViewCell {
     private let borderView: UIView = {
         let view = UIView(frame: .zero)
         view.backgroundColor = .clear
-        view.layer.borderWidth = 5
+        view.layer.borderWidth = 4
         view.layer.borderColor = UIColor.softCoral.cgColor
         view.isHidden = true
         return view
@@ -68,7 +68,7 @@ public final class GalleryItemViewCell: UICollectionViewCell {
     }
     
     public func fill(viewModel: GalleryItemViewModel) {
-        if let data = viewModel.photo {
+        if let data = viewModel.imageData {
             imageView.image = UIImage(data: data)
         } else {
             imageView.image = UIImage(named: "x.mark")

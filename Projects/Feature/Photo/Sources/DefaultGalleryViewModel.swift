@@ -11,10 +11,9 @@ import RxSwift
 import RxCocoa
 import Photos
 import FeaturePhotoInterfaces
+import UIKit
 
 public final class DefaultGalleryViewModel: GalleryViewModel {
-    private var cache: NSCache<NSString, NSData> = .init()
-    
     public let disposeBag: DisposeBag = DisposeBag()
     
     public init() {  }
@@ -121,29 +120,22 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
         var resultDict: [Int: GalleryItemViewModel] = [:]
         let group = DispatchGroup()
         
-        let imageManager = PHImageManager.default()
-        let targetSize = CGSize(width: 250, height: 250)
+        let imageManager = PHCachingImageManager()
+        let targetSize = CGSize(width: 150, height: 150)
         let options = PHImageRequestOptions()
-        options.isSynchronous = false
-        options.deliveryMode = .highQualityFormat
+        options.isSynchronous = true
+        options.deliveryMode = .opportunistic
         options.isNetworkAccessAllowed = true
+        options.resizeMode = .fast
         
         for i in 0..<assets.count {
             let asset = assets[i]
-            group.enter()
-            
-            if let cachedImage = cache.object(forKey: asset.localIdentifier as NSString) {
-                let imageData = Data(cachedImage)
-                resultDict[i] = GalleryItemViewModel(idx: i, photo: imageData, selectedIdx: nil)
-                group.leave()
-            } else {
-                imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options) { image, _ in
-                    if let imageData = image?.pngData() {
-                        resultDict[i] = GalleryItemViewModel(idx: i, photo: imageData, selectedIdx: nil)
-                        self.cache.setObject(imageData as NSData, forKey: asset.localIdentifier as NSString)
-                    }
-                    group.leave()
+//            group.enter()
+            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options) { image, _ in
+                if let imageData = image?.pngData() {
+                    resultDict[i] = GalleryItemViewModel(idx: i, asset: asset, imageData: imageData, selectedIdx: nil)
                 }
+//                group.leave()
             }
         }
         

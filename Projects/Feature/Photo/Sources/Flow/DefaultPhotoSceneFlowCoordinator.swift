@@ -23,12 +23,37 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
     }
     
     public func start() -> UIViewController {
-        let vc = GalleryViewController<DefaultGalleryViewModel>.create(viewModel: dependencies.makeGalleryViewModel() as! DefaultGalleryViewModel)
-        navigationController.topViewController?.present(vc, animated: true)
-        return vc
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            print("카메라를 사용할 수 없습니다.")
+            return navigationController
+        }
+
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.delegate = self
+        picker.allowsEditing = true
+
+        self.navigationController.topViewController?.present(picker, animated: true, completion: nil)
+//        let vc = GalleryViewController<DefaultGalleryViewModel>.create(viewModel: dependencies.makeGalleryViewModel() as! DefaultGalleryViewModel)
+//        navigationController.topViewController?.present(vc, animated: true)
+//        return vc
+        return picker
+    }
+    
+    deinit {
+        print("Deinit: \(Self.self)")
     }
 }
 
 extension DefaultPhotoSceneFlowCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.editedImage] as? UIImage {
+            print("사진 찍힘")
+        } else if let image = info[.originalImage] as? UIImage {
+            // 편집되지 않은 원본 이미지 처리
+            print("원본 이미지: \(image)")
+        }
+    }
     
 }
