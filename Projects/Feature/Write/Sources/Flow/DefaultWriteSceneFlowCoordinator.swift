@@ -71,22 +71,20 @@ public final class DefaultWriteSceneFlowCoordinator: NSObject, WriteSceneFlowCoo
     }
     
     public func showPhotoAlbumScene() {
-        requestPhotoLibraryPermission { [weak self] isSuccess in
-            guard let self = self, isSuccess else { return }
-            
-//            var config = PHPickerConfiguration()
-//            config.selectionLimit = 3
-//            config.filter = .images
+        let diContainer = dependencies.makePhotoSceneDIContainer()
+        let coordinator = diContainer.makeCoordinator(navController: navigationController)
+        coordinator.start()
+        
+//        requestPhotoLibraryPermission { [weak self] isSuccess in
+//            guard let self = self, isSuccess else { return }
 //            
-//            let imagePicker = PHPickerViewController(configuration: config)
-//            imagePicker.delegate = self
-//            self.navigationController.topViewController?.present(imagePicker, animated: true, completion: nil)
-            
-            let viewModel = AlbumViewModel()
-            let vc = AlbumViewController.create(viewModel: viewModel)
-            
-            self.navigationController.topViewController?.present(vc, animated: true, completion: nil)
-        }
+//            
+//            
+//            let viewModel = AlbumViewModel()
+//            let vc = AlbumViewController.create(viewModel: viewModel)
+//            
+//            self.navigationController.topViewController?.present(vc, animated: true, completion: nil)
+//        }
         
     }
     
@@ -104,19 +102,19 @@ public final class DefaultWriteSceneFlowCoordinator: NSObject, WriteSceneFlowCoo
         self.navigationController.topViewController?.present(picker, animated: true, completion: nil)
     }
     
-    private func requestPhotoLibraryPermission(completion: @escaping (Bool)-> Void) {
-        let status = PHPhotoLibrary.authorizationStatus()
-        
-        if status == .notDetermined {
-            PHPhotoLibrary.requestAuthorization { newStatus in
-                DispatchQueue.main.async {
-                    completion(true)
-                }
-            }
-        } else {
-            completion(status == .authorized)
-        }
-    }
+//    private func requestPhotoLibraryPermission(completion: @escaping (Bool)-> Void) {
+//        let status = PHPhotoLibrary.authorizationStatus()
+//        
+//        if status == .notDetermined {
+//            PHPhotoLibrary.requestAuthorization { newStatus in
+//                DispatchQueue.main.async {
+//                    completion(true)
+//                }
+//            }
+//        } else {
+//            completion(status == .authorized)
+//        }
+//    }
 }
 
 extension DefaultWriteSceneFlowCoordinator: PHPickerViewControllerDelegate, UIImagePickerControllerDelegate {

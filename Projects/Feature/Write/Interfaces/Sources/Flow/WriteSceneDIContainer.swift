@@ -8,6 +8,14 @@
 
 import SharedUIInterfaces
 
-public protocol WriteSceneDIContainer: DIContainer, WriteSceneFlowCoordinatorDependencies {
+public struct WriteSceneDIContainerDependencies {
+    public let photoSceneDIContainer: ()-> any DIContainer
     
+    public init(photoSceneDIContainer: @escaping () -> any DIContainer) {
+        self.photoSceneDIContainer = photoSceneDIContainer
+    }
+}
+
+public protocol WriteSceneDIContainer: DIContainer, WriteSceneFlowCoordinatorDependencies {
+    var dependencies: WriteSceneDIContainerDependencies { get }
 }

@@ -11,6 +11,8 @@ import SharedUIInterfaces
 import FeaturePhotoInterfaces
 
 public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
+    
+    public init() {  }
     public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
         return DefaultPhotoSceneFlowCoordinator(navigationController: navController, dependencies: self)
     }

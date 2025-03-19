@@ -34,7 +34,9 @@ public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
 
 extension DefaultHomeSceneDIContainer {
     public func makeDiaryWriteSceneDIContainer() -> any DIContainer {
-        return dependencies.diaryWriteDIContainer()
+        return dependencies.diaryWriteDIContainer(
+            
+        )
     }
     
     public func makeHomeViewModel(actions: HomeViewModelAction) -> any HomeViewModel {

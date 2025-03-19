@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FeaturePhotoInterfaces
 import Photos
 
 public final class GalleryItemViewCell: UICollectionViewCell {
@@ -34,7 +35,8 @@ public final class GalleryItemViewCell: UICollectionViewCell {
         label.backgroundColor = .softCoral
         label.textColor = .white
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.layer.masksToBounds = true
         return label
     }()
     
@@ -59,23 +61,17 @@ public final class GalleryItemViewCell: UICollectionViewCell {
                 flex.addItem(countLabel)
                     .marginTop(10)
                     .marginRight(10)
-                    .padding(10)
+                    .width(25)
+                    .height(25)
             }
             .alignItems(.end)
     }
     
-    public func fill(viewModel: AlbumItemCellViewModel) {
-        let imageManager = PHImageManager.default()
-            
-        let targetSize = CGSize(width: self.bounds.width * 2, height: self.bounds.height * 2)
-            
-        let options = PHImageRequestOptions()
-        options.isSynchronous = false
-        options.deliveryMode = .highQualityFormat
-        options.isNetworkAccessAllowed = true
-            
-        imageManager.requestImage(for: viewModel.photo, targetSize: targetSize, contentMode: .aspectFill, options: options) { [weak self] image, _ in
-            self?.imageView.image = image
+    public func fill(viewModel: GalleryItemViewModel) {
+        if let data = viewModel.photo {
+            imageView.image = UIImage(data: data)
+        } else {
+            imageView.image = UIImage(named: "x.mark")
         }
         
         if let selectedIdx = viewModel.selectedIdx {
@@ -85,6 +81,9 @@ public final class GalleryItemViewCell: UICollectionViewCell {
             borderView.isHidden = true
             countLabel.text = nil
         }
+        
+        countLabel.flex.markDirty()
+        container.flex.layout()
     }
     
     public func select(order: Int?) {
@@ -110,8 +109,10 @@ public final class GalleryItemViewCell: UICollectionViewCell {
     public override func prepareForReuse() {
         super.prepareForReuse()
         
+        countLabel.layer.cornerRadius = countLabel.frame.width/2
         borderView.isHidden = true
         countLabel.text = nil
+        imageView.image = nil
     }
     
     required public init?(coder: NSCoder) {

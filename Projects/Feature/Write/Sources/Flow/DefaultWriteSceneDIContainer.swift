@@ -12,8 +12,18 @@ import SharedUIInterfaces
 import DomainWriteInterfaces
 
 public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
+    public let dependencies: WriteSceneDIContainerDependencies
     
-    public init() {  }
+    
+    public init(
+        dependencies: WriteSceneDIContainerDependencies
+    ) {
+        self.dependencies = dependencies
+    }
+    
+    public func makePhotoSceneDIContainer() -> any DIContainer {
+        return dependencies.photoSceneDIContainer()
+    }
     
     public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
         return DefaultWriteSceneFlowCoordinator(navigationController: navController, dependencies: self)

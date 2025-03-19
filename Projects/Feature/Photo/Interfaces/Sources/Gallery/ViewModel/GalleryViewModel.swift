@@ -12,17 +12,24 @@ import RxCocoa
 
 public struct GalleryViewModelInput {
     public let viewWillAppear: Observable<Void>
+    public let itemSelected: Observable<Int>
     
     public init(
-        viewWillAppear: Observable<Void>
+        viewWillAppear: Observable<Void>,
+        itemSelected: Observable<Int>
     ) {
         self.viewWillAppear = viewWillAppear
+        self.itemSelected = itemSelected
     }
 }
 
 public struct GalleryViewModelOutput {
-    
-    public init() {  }
+    public let cellItems: Driver<[GalleryItemViewModel]>
+    public init(
+        cellItems: Driver<[GalleryItemViewModel]>
+    ) {
+        self.cellItems = cellItems
+    }
 }
 
 public protocol GalleryViewModel: ViewModel where Input == GalleryViewModelInput, Output == GalleryViewModelOutput {
