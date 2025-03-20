@@ -55,7 +55,7 @@ public final class HomeViewController<VM: HomeViewModel>: DailogViewController<V
     }
     
     public override func configure() {
-        self.navigationBar = HomeNavigationBar()
+        self.navigationBar = HomeNavigationBar.init()
         super.configure()
         
         container.flex

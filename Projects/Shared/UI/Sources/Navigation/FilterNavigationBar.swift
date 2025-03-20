@@ -9,15 +9,12 @@
 import UIKit
 import SharedUIInterfaces
 
-public final class FilterNavigationBar: UIView, NavigationBar {
-    public var items: [SharedUIInterfaces.NavigationBarButton] = []
-    public var title: String = "전체"
-    
+public final class FilterNavigationBar: NavigationBar {    
     private let container = UIView()
     private lazy var filterButton = NavigationBarFilterButton()
     
     public convenience init(title: String) {
-        self.init(frame: .zero)
+        self.init(items: [], title: title)
         self.title = title
         items.append(filterButton)
         configure()

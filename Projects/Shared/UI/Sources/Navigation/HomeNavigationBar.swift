@@ -9,9 +9,7 @@
 import UIKit
 import SharedUIInterfaces
 
-public final class HomeNavigationBar: UIView, NavigationBar {
-    public var items: [NavigationBarButton] = []
-    public var title: String = "DAILOG"
+public final class HomeNavigationBar: NavigationBar {
     private var timer: Timer?
     
     private let container = UIView()
@@ -36,8 +34,8 @@ public final class HomeNavigationBar: UIView, NavigationBar {
     
     private let backButton = NavigationBackButton()
     
-    convenience init() {
-        self.init(frame: .zero)
+    public convenience init() {
+        self.init(items: [], title: "")
         items.append(backButton)
         configure()
         setupTimer()

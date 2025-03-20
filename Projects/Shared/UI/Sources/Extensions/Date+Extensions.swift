@@ -9,9 +9,9 @@
 import Foundation
 
 public extension Date {
-    func formattedString()-> String {
+    func formattedString(format: String? = nil)-> String {
         let df = DateFormatter()
-        df.dateFormat = getLanguageFormat()
+        df.dateFormat = format ?? getLanguageFormat()
         df.locale = Locale.getLocaleFromLangCode()
         return df.string(from: self)
     }

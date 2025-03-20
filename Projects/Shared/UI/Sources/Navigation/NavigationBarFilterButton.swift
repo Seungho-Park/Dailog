@@ -18,16 +18,14 @@ public final class NavigationBarFilterButton: NavigationBarButton {
         label.font = .apple(sizeOf: 18, weight: .bold)
         label.text = "전체"
         label.textColor = .textColor
+        label.font = .cursive(sizeOf: 22, weight: .bold)
         return label
     }()
     
-    private lazy var arrowLabel: UILabel = {
-        let label = UILabel.make(frame: .zero)
-        label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 12)
-        label.text = "▼"
-        label.textColor = .textColor
-        return label
+    private lazy var dropDownImage: UIImageView = {
+        let view = UIImageView(image: .dropDown)
+        view.contentMode = .scaleAspectFill
+        return view
     }()
     
     public override init(type: NavigationItem = .filter) {
@@ -37,7 +35,7 @@ public final class NavigationBarFilterButton: NavigationBarButton {
         self.configuration = .plain()
         self.configurationUpdateHandler = { [weak self] btn in
             self?.textLabel.textColor = btn.state != .highlighted ? .textColor : .textColor.withAlphaComponent(0.6)
-            self?.arrowLabel.textColor = btn.state != .highlighted ? .textColor : .textColor.withAlphaComponent(0.6)
+            self?.dropDownImage.alpha = btn.state != .highlighted ? 1 : 0.6
         }
         
         configure()
@@ -54,11 +52,12 @@ public final class NavigationBarFilterButton: NavigationBarButton {
             .define { flex in
                 flex.addItem(textLabel)
                     .vertically(1)
-                    .paddingRight(8)
                 
-                flex.addItem(arrowLabel)
-                    .paddingLeft(8)
+                flex.addItem(dropDownImage)
+                    .width(18)
+                    .height(18)
             }
+            .alignItems(.center)
     }
     
     public override func layoutSubviews() {

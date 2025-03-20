@@ -11,9 +11,25 @@ import SharedUIInterfaces
 import FeatureHistoryInterfaces
 
 public final class DefaultHistoryViewModel: HistoryViewModel {
+    public let actions: HistoryViewModelAction
     public let disposeBag: DisposeBag = DisposeBag()
     
+    public init(actions: HistoryViewModelAction) {
+        self.actions = actions
+    }
+    
     public func transform(input: FeatureHistoryInterfaces.HistoryViewModelInput) -> FeatureHistoryInterfaces.HistoryViewModelOutput {
+        
+        input.filterButtonTapped?
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                owner.actions.showSelectFilter()
+            }
+            .subscribe {
+                print($0)
+            }
+            .disposed(by: disposeBag)
+        
         return .init()
     }
 }

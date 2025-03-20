@@ -22,7 +22,7 @@ public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
 }
 
 extension DefaultHistorySceneDIContainer {
-    public func makeHistoryViewModel() -> any HistoryViewModel {
-        return DefaultHistoryViewModel()
+    public func makeHistoryViewModel(actions: HistoryViewModelAction) -> any HistoryViewModel {
+        return DefaultHistoryViewModel(actions: actions)
     }
 }

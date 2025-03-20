@@ -6,14 +6,31 @@
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
+import Foundation
 import SharedUIInterfaces
+import SharedUI
 import RxSwift
 import RxCocoa
 
 public enum HistoryFilterType: Int {
-    case all = 0
+    case all
     case year
     case month
+    
+//    public func toDateString()-> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale.getLocaleFromLangCode()
+//        switch self {
+//        case .all: return "All".localized
+//        case .year(let year):
+//            
+//        case .month(let year, let month):
+//            dateFormatter.dateFormat = "yyyy-M"
+//            let date = dateFormatter.date(from: "\(year)-\(month)")
+//            dateFormatter.setLocalizedDateFormatFromTemplate("yyyy MMMM")
+//            return dateFormatter.string(from: date!)
+//        }
+//    }
 }
 
 public struct HistoryFilterViewModelInput {

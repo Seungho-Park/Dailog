@@ -9,6 +9,8 @@
 import UIKit
 import FeatureHistoryInterfaces
 import SharedUI
+import RxSwift
+import RxCocoa
 
 public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinator {
     public var dependencies: any HistorySceneFlowCoordinatorDependencies
@@ -22,6 +24,20 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
     
     @discardableResult
     public func start() -> UIViewController {
-        return HistoryScene.history(dependencies.makeHistoryViewModel()).instantiate()
+        return HistoryScene.history(
+            dependencies.makeHistoryViewModel(
+                actions: .init(
+                    showSelectFilter: showSelectFilterScene
+                )
+            )
+        ).instantiate()
+    }
+    
+    public func showSelectFilterScene() -> Observable<HistoryFilterType?> {
+        let vc = HistoryFilterViewController<DefaultHistoryFilterViewModel>(viewModel: DefaultHistoryFilterViewModel())
+        vc.modalPresentationStyle = .overFullScreen
+        self.navigationController.topViewController?.present(vc, animated: false)
+        
+        return Observable.just(nil)
     }
 }

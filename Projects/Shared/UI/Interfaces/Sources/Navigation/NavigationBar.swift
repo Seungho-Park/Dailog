@@ -11,13 +11,24 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-public protocol NavigationBar: UIView {
-    var items: [NavigationBarButton] { get set }
-    var title: String { get }
+open class NavigationBar: UIView {
+    public var items: [NavigationBarButton] = []
+    public var title: String
+    
+    public init(items: [NavigationBarButton], title: String) {
+        self.items = items
+        self.title = title
+        
+        super.init(frame: .zero)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension Reactive where Base: NavigationBar {
-    var tap: ControlEvent<NavigationItem> {
+    public var tap: ControlEvent<NavigationItem> {
         return ControlEvent(
             events: Observable.merge(
                 base.items.map { item in

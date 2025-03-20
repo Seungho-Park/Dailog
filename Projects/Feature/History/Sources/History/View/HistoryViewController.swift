@@ -8,7 +8,10 @@
 
 import UIKit
 import SharedUI
+import SharedUIInterfaces
 import FeatureHistoryInterfaces
+import RxSwift
+import RxCocoa
 
 public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<VM> {
     
@@ -29,13 +32,15 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let vc = HistoryFilterViewController<DefaultHistoryFilterViewModel>(viewModel: DefaultHistoryFilterViewModel())
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: false)
     }
     
     public override func bind() {
         super.bind()
+        
+        let output = viewModel.transform(
+            input: .init(
+                filterButtonTapped: navigationBar?.rx.tap.compactMap { $0 }.filter { $0 == .filter }.map { _ in }.asObservable()
+            )
+        )
     }
 }

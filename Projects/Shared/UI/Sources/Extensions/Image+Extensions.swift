@@ -16,4 +16,6 @@ public extension UIImage {
     static let gallery = UIImage(named: "Gallery", in: .module, with: nil)
     static let camera = UIImage(named: "Camera", in: .module, with: nil)
     static let hideKeyboard = UIImage(named: "HideKeyboard", in: .module, with: nil)
+    
+    static let dropDown = UIImage(named: "DropDown", in: .module, with: nil)
 }

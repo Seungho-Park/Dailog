@@ -7,11 +7,14 @@
 //
 
 import SharedUIInterfaces
+import RxSwift
 
 public protocol HistorySceneFlowCoordinatorDependencies {
-    func makeHistoryViewModel()-> any HistoryViewModel
+    func makeHistoryViewModel(actions: HistoryViewModelAction)-> any HistoryViewModel
 }
 
 public protocol HistorySceneFlowCoordinator: Coordinator {
     var dependencies: HistorySceneFlowCoordinatorDependencies { get }
+    
+    func showSelectFilterScene()-> Observable<HistoryFilterType?>
 }

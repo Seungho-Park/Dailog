@@ -142,9 +142,19 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
-            return filterType == .all ? 1 : years.count
+            if filterType == .all {
+                return 1
+            } else if filterType == .month && Locale.dateType == .mm_yyyy {
+                return months.count
+            } else {
+                return years.count
+            }
         } else {
-            return months.count
+            if Locale.dateType == .mm_yyyy {
+                return years.count
+            } else {
+                return months.count
+            }
         }
     }
     
@@ -161,7 +171,15 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
         label.frame = CGRect(x: 0, y: 0, width: componentSize.width - 20, height: componentSize.height)
         
         if component == 0 {
-            label.text = filterType == .all ? "\("All".localized)" : "\(years[row])"
+            if filterType == .all {
+                label.text = "All".localized
+            } else {
+                if filterType == .month && Locale.dateType == .mm_yyyy {
+                    label.text = "\(months[row])"
+                } else {
+                    label.text = "\(years[row])"
+                }
+            }
             
             if filterType != .month { label.textAlignment = .center }
             else {
@@ -171,7 +189,11 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
                 }
             }
         } else {
-            label.text = "\(months[row])"
+            if Locale.dateType == .mm_yyyy {
+                label.text = "\(years[row])"
+            } else {
+                label.text = "\(months[row])"
+            }
             switch Locale.direction {
             case .leftToRight: label.textAlignment = .left
             case .rightToLeft: label.textAlignment = .right
