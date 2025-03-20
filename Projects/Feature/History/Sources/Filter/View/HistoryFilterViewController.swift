@@ -15,9 +15,14 @@ import SharedUI
 import FeatureHistoryInterfaces
 
 public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: DailogViewController<VM>, UIPickerViewDataSource, UIPickerViewDelegate {
-    private let outsideView = {
+    private lazy var outsideView = {
         let view = UIView(frame: .zero)
+        view.alpha = 0
         view.backgroundColor = .component(0, 0, 0, 0.6)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(touchedOutside))
+        view.addGestureRecognizer(tap)
+        
         return view
     }()
     
@@ -54,8 +59,8 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     }()
     
     private var filterType: HistoryFilterType = .all
-    private var years: [String] = []
-    private var months: [String] = []
+    private var years: [Int] = []
+    private var months: [Int] = []
     
     private lazy var pickerView: UIPickerView = {
         let picker = UIPickerView(frame: .zero)
@@ -77,11 +82,6 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     public override func configure() {
         self.view.addSubview(outsideView)
         self.view.addSubview(container)
-        
-        outsideView.alpha = 0
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(touchedOutside))
-        self.outsideView.addGestureRecognizer(tap)
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         container.addGestureRecognizer(panGesture)
@@ -163,42 +163,10 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     }
     
     public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let label = (view as? UILabel) ?? UILabel(frame: .zero)
-        label.adjustsFontSizeToFitWidth = true
-        label.font = .cursive(sizeOf: 26, weight: .medium)
+        let label = configureLabel(from: view, for: pickerView, inComponent: component)
         
-        let componentSize = pickerView.rowSize(forComponent: component)
-        label.frame = CGRect(x: 0, y: 0, width: componentSize.width - 20, height: componentSize.height)
-        
-        if component == 0 {
-            if filterType == .all {
-                label.text = "All".localized
-            } else {
-                if filterType == .month && Locale.dateType == .mm_yyyy {
-                    label.text = "\(months[row])"
-                } else {
-                    label.text = "\(years[row])"
-                }
-            }
-            
-            if filterType != .month { label.textAlignment = .center }
-            else {
-                switch Locale.direction {
-                case .leftToRight: label.textAlignment = .right
-                case .rightToLeft: label.textAlignment = .left
-                }
-            }
-        } else {
-            if Locale.dateType == .mm_yyyy {
-                label.text = "\(years[row])"
-            } else {
-                label.text = "\(months[row])"
-            }
-            switch Locale.direction {
-            case .leftToRight: label.textAlignment = .left
-            case .rightToLeft: label.textAlignment = .right
-            }
-        }
+        label.text = getText(forRow: row, inComponent: component)
+        label.textAlignment = getTextAlignment(forComponent: component)
         
         return label
     }
@@ -270,5 +238,43 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
         } completion: { _ in
             super.dismiss(animated: false, completion: completion)
         }
+    }
+}
+
+
+// MARK: - PickerView Label 설정
+private extension HistoryFilterViewController {
+    private func configureLabel(from view: UIView?, for pickerView: UIPickerView, inComponent component: Int) -> UILabel {
+        let label = (view as? UILabel) ?? UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.font = .cursive(sizeOf: 26, weight: .medium)
+        
+        let componentSize = pickerView.rowSize(forComponent: component)
+        label.frame = CGRect(x: 0, y: 0, width: componentSize.width - 20, height: componentSize.height)
+        
+        return label
+    }
+
+    private func getText(forRow row: Int, inComponent component: Int) -> String {
+        if component == 0 {
+            guard filterType != .all else { return "All".localized }
+            
+            if filterType == .month && Locale.dateType == .mm_yyyy {
+                return months[row].monthString
+            }
+            
+            return years[row].yearString
+        } else {
+            return Locale.dateType == .mm_yyyy ? years[row].yearString : months[row].monthString
+        }
+    }
+
+    private func getTextAlignment(forComponent component: Int) -> NSTextAlignment {
+        guard filterType == .month else { return .center }
+        
+        if component == 0 {
+            return Locale.direction == .leftToRight ? .right : .left
+        }
+        return Locale.direction == .leftToRight ? .left : .right
     }
 }

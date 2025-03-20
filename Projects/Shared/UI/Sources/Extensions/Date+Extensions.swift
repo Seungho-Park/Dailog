@@ -21,7 +21,7 @@ public extension Date {
         case "ko": return "yyyy/MM/dd (EEE)"
         case "ja": return "yyyy年MM月dd日 (EEE)"
         case "ar": return "dd/MM/yyyy, EEEE"
-        case "en": return "(EEE) MM/dd/yyyy"
+        case "en": return "EEE, MMM dd, yyyy"
         case "vi": return "dd/MM/yyyy (EEE)"
         case "th": return "dd/MM/yyyy (EEEE)"
         default: return "(EEE) MM/dd/yyyy"

@@ -35,7 +35,7 @@ public final class HomeNavigationBar: NavigationBar {
     private let backButton = NavigationBackButton()
     
     public convenience init() {
-        self.init(items: [], title: "")
+        self.init(items: [], title: "DAILOG")
         items.append(backButton)
         configure()
         setupTimer()
@@ -60,6 +60,7 @@ public final class HomeNavigationBar: NavigationBar {
                 }
             }
             .justifyContent(.center)
+            .alignItems(.center)
             .marginHorizontal(12)
     }
     

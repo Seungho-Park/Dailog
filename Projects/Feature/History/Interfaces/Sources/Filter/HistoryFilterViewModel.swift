@@ -51,13 +51,13 @@ public struct HistoryFilterViewModelInput {
 
 public struct HistoryFilterViewModelOutput {
     public let filterType: Driver<HistoryFilterType>
-    public let years: Driver<[String]>
-    public let months: Driver<[String]>
+    public let years: Driver<[Int]>
+    public let months: Driver<[Int]>
     
     public init(
         filterType: Driver<HistoryFilterType>,
-        years: Driver<[String]>,
-        months: Driver<[String]>
+        years: Driver<[Int]>,
+        months: Driver<[Int]>
     ) {
         self.filterType = filterType
         self.years = years
