@@ -16,7 +16,8 @@ let project: Project = .makeProject(
             .init(
                 dependencies: [
                     .shared,
-                    .core(implements: .storage)
+                    .core(implements: .storage),
+                    .core(implements: .photo)
                 ]
             )
         )

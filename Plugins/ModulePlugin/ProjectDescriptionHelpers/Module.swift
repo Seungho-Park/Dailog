@@ -33,12 +33,14 @@ public extension Module {
     enum Domain: String {
         case home = "Home"
         case write = "Write"
+        case photo = "Photo"
     }
 }
 
 public extension Module {
     enum Core: String {
         case storage = "Storage"
+        case photo = "Photo"
     }
 }
 

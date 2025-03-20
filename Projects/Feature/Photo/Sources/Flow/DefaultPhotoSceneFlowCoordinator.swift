@@ -31,12 +31,10 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         let picker = UIImagePickerController()
         picker.sourceType = .camera
         picker.delegate = self
-        picker.allowsEditing = true
+        picker.allowsEditing = false
+        picker.cameraCaptureMode = .photo
 
         self.navigationController.topViewController?.present(picker, animated: true, completion: nil)
-//        let vc = GalleryViewController<DefaultGalleryViewModel>.create(viewModel: dependencies.makeGalleryViewModel() as! DefaultGalleryViewModel)
-//        navigationController.topViewController?.present(vc, animated: true)
-//        return vc
         return picker
     }
     

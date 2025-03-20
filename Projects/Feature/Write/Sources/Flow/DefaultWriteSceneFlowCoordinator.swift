@@ -74,47 +74,13 @@ public final class DefaultWriteSceneFlowCoordinator: NSObject, WriteSceneFlowCoo
         let diContainer = dependencies.makePhotoSceneDIContainer()
         let coordinator = diContainer.makeCoordinator(navController: navigationController)
         coordinator.start()
-        
-//        requestPhotoLibraryPermission { [weak self] isSuccess in
-//            guard let self = self, isSuccess else { return }
-//            
-//            
-//            
-//            let viewModel = AlbumViewModel()
-//            let vc = AlbumViewController.create(viewModel: viewModel)
-//            
-//            self.navigationController.topViewController?.present(vc, animated: true, completion: nil)
-//        }
-        
     }
     
     public func showDeviceCamera() {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            print("카메라를 사용할 수 없습니다.")
-            return
-        }
-
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-//        picker.delegate = self
-        picker.allowsEditing = false
-
-        self.navigationController.topViewController?.present(picker, animated: true, completion: nil)
+        let diContainer = dependencies.makePhotoSceneDIContainer()
+        let coordinator = diContainer.makeCoordinator(navController: navigationController)
+        coordinator.start()
     }
-    
-//    private func requestPhotoLibraryPermission(completion: @escaping (Bool)-> Void) {
-//        let status = PHPhotoLibrary.authorizationStatus()
-//        
-//        if status == .notDetermined {
-//            PHPhotoLibrary.requestAuthorization { newStatus in
-//                DispatchQueue.main.async {
-//                    completion(true)
-//                }
-//            }
-//        } else {
-//            completion(status == .authorized)
-//        }
-//    }
 }
 
 extension DefaultWriteSceneFlowCoordinator: PHPickerViewControllerDelegate, UIImagePickerControllerDelegate {
