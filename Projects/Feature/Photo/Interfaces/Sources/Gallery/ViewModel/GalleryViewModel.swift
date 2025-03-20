@@ -9,6 +9,7 @@
 import SharedUIInterfaces
 import RxSwift
 import RxCocoa
+import DomainPhotoInterfaces
 
 public struct GalleryViewModelInput {
     public let viewWillAppear: Observable<Void>
@@ -34,4 +35,6 @@ public struct GalleryViewModelOutput {
 
 public protocol GalleryViewModel: ViewModel where Input == GalleryViewModelInput, Output == GalleryViewModelOutput {
     
+    var fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase { get }
+    var fetchAssetImageDataUsecase: FetchAssetImageDataUsecase { get }
 }

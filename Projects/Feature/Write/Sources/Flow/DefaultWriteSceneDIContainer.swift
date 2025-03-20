@@ -10,10 +10,11 @@ import UIKit
 import FeatureWriteInterfaces
 import SharedUIInterfaces
 import DomainWriteInterfaces
+import DomainPhotoInterfaces
+import DomainPhoto
 
 public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
     public let dependencies: WriteSceneDIContainerDependencies
-    
     
     public init(
         dependencies: WriteSceneDIContainerDependencies
@@ -30,10 +31,18 @@ public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
     }
     
     public func makeDiaryWriteViewModel(emotion: Emotion?, actions: DiaryWriteViewModelAction) -> any DiaryWriteViewModel {
-        return DefaultDiaryWriteViewModel(emotion: emotion, actions: actions)
+        return DefaultDiaryWriteViewModel(
+            emotion: emotion,
+            fetchPhotoAssetsUsecase: makeFetchPhotoAssetsUsecase(),
+            actions: actions
+        )
     }
     
     public func makeEmotionViewModel(actions: EmotionViewModelActions) -> any EmotionViewModel {
         return DefaultEmotionViewModel(actions: actions)
+    }
+    
+    public func makeFetchPhotoAssetsUsecase() -> any FetchPhotoAssetsUsecase {
+        return FetchPhotoAssetsUsecaseImpl(repository: PhotoRepositoryImpl(photoService: dependencies.photoService))
     }
 }

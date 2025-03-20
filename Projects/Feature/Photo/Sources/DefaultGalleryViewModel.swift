@@ -11,12 +11,21 @@ import RxSwift
 import RxCocoa
 import Photos
 import FeaturePhotoInterfaces
+import DomainPhotoInterfaces
 import UIKit
 
 public final class DefaultGalleryViewModel: GalleryViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
+    public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
+    public let fetchAssetImageDataUsecase: any FetchAssetImageDataUsecase
     
-    public init() {  }
+    public init(
+        fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase,
+        fetchAssetImageDataUsecase: FetchAssetImageDataUsecase
+    ) {
+        self.fetchPhotoAssetsUsecase = fetchPhotoAssetsUsecase
+        self.fetchAssetImageDataUsecase = fetchAssetImageDataUsecase
+    }
     
     public func transform(input: Input) -> Output {
         var selectedItems: [GalleryItemViewModel] = []
@@ -37,14 +46,9 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
                 owner.fetchAllPhotos()
             }
             .withUnretained(self)
-            .flatMap { owner, assets in
-                Observable<[GalleryItemViewModel]>.create { [weak owner] observer in
-                    owner?.assetToViewModel(assets: assets, completion: { viewModels in
-                        observer.onNext(viewModels)
-                        observer.onCompleted()
-                    })
-                    
-                    return Disposables.create()
+            .map { owner, items in
+                items.enumerated().map { [unowned owner] in
+                    GalleryItemViewModel.init(idx: $0.offset, asset: $0.element, image: owner.fetchAssetImageData(asset:completion:))
                 }
             }
             .bind(to: photos)
@@ -116,31 +120,41 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
         }
     }
     
-    private func assetToViewModel(assets: [PHAsset], completion: @escaping ([GalleryItemViewModel]) -> Void) {
-        var resultDict: [Int: GalleryItemViewModel] = [:]
-        let group = DispatchGroup()
-        
-        let imageManager = PHCachingImageManager()
-        let targetSize = CGSize(width: 150, height: 150)
-        let options = PHImageRequestOptions()
-        options.isSynchronous = true
-        options.deliveryMode = .opportunistic
-        options.isNetworkAccessAllowed = true
-        options.resizeMode = .fast
-        
-        for i in 0..<assets.count {
-            let asset = assets[i]
-//            group.enter()
-            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options) { image, _ in
-                if let imageData = image?.pngData() {
-                    resultDict[i] = GalleryItemViewModel(idx: i, asset: asset, imageData: imageData, selectedIdx: nil)
-                }
-//                group.leave()
+//    private func assetToViewModel(assets: [PHAsset], completion: @escaping ([GalleryItemViewModel]) -> Void) {
+//        var resultDict: [Int: GalleryItemViewModel] = [:]
+//        let group = DispatchGroup()
+//        
+//        let imageManager = PHCachingImageManager()
+//        let targetSize = CGSize(width: 150, height: 150)
+//        let options = PHImageRequestOptions()
+//        options.isSynchronous = true
+//        options.deliveryMode = .opportunistic
+//        options.isNetworkAccessAllowed = true
+//        options.resizeMode = .fast
+//        
+//        for i in 0..<assets.count {
+//            let asset = assets[i]
+////            group.enter()
+//            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options) { image, _ in
+//                if let imageData = image?.pngData() {
+//                    resultDict[i] = GalleryItemViewModel(idx: i, asset: asset, imageData: imageData, selectedIdx: nil)
+//                }
+////                group.leave()
+//            }
+//        }
+//        
+//        group.notify(queue: .main) {
+//            completion((0..<assets.count).compactMap { resultDict[$0] })
+//        }
+//    }
+    
+    private func fetchAssetImageData(asset: PHAsset, completion: @escaping (Data?)-> Void) {
+        fetchAssetImageDataUsecase.execute(asset: asset)
+            .map { data-> Data? in return data }
+            .catchAndReturn(nil)
+            .subscribe {
+                completion($0)
             }
-        }
-        
-        group.notify(queue: .main) {
-            completion((0..<assets.count).compactMap { resultDict[$0] })
-        }
+            .disposed(by: disposeBag)
     }
 }

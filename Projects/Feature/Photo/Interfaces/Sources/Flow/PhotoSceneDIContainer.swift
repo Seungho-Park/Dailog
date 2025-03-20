@@ -7,11 +7,20 @@
 //
 
 import SharedUIInterfaces
+import CorePhotoInterfaces
+import DomainPhotoInterfaces
 
 public struct PhotoSceneDIContainerDependencies {
-    public let type: PhotoScene
+    public let photoService: PhotoService
+    
+    public init(photoService: PhotoService) {
+        self.photoService = photoService
+    }
 }
 
 public protocol PhotoSceneDIContainer: DIContainer, PhotoSceneFlowCoordinatorDependencies {
+    var dependencies: PhotoSceneDIContainerDependencies { get }
     
+    func makeFetchPhotoAssetsUsecase() -> FetchPhotoAssetsUsecase
+    func makeFetchAssetImageDataUsecase()-> FetchAssetImageDataUsecase
 }

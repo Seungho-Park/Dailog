@@ -11,13 +11,15 @@ import Photos
 public struct GalleryItemViewModel {
     public let idx: Int
     public let asset: PHAsset
-    public let imageData: Data?
     public var selectedIdx: Int?
     
-    public init(idx: Int, asset: PHAsset, imageData: Data?, selectedIdx: Int? = nil) {
+    public let image: (PHAsset, @escaping (Data?)-> Void)-> Void
+    
+    public init(idx: Int, asset: PHAsset, selectedIdx: Int? = nil, image: @escaping (PHAsset, @escaping (Data?)-> Void)-> Void) {
         self.idx = idx
         self.asset = asset
-        self.imageData = imageData
+//        self.imageData = imageData
         self.selectedIdx = selectedIdx
+        self.image = image
     }
 }

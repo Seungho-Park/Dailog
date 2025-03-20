@@ -9,15 +9,37 @@
 import UIKit
 import SharedUIInterfaces
 import FeaturePhotoInterfaces
+import DomainPhotoInterfaces
+import DomainPhoto
 
 public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
+    public let dependencies: PhotoSceneDIContainerDependencies
+    public init(
+        dependencies: PhotoSceneDIContainerDependencies
+    ) {
+        self.dependencies = dependencies
+    }
     
-    public init() {  }
     public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
         return DefaultPhotoSceneFlowCoordinator(navigationController: navController, dependencies: self)
     }
     
     public func makeGalleryViewModel() -> any GalleryViewModel {
-        return DefaultGalleryViewModel()
+        return DefaultGalleryViewModel(
+            fetchPhotoAssetsUsecase: makeFetchPhotoAssetsUsecase(),
+            fetchAssetImageDataUsecase: makeFetchAssetImageDataUsecase()
+        )
+    }
+    
+    public func makeFetchPhotoAssetsUsecase() -> FetchPhotoAssetsUsecase {
+        return FetchPhotoAssetsUsecaseImpl(repository: makePhotoRepository())
+    }
+    
+    public func makeFetchAssetImageDataUsecase() -> any FetchAssetImageDataUsecase {
+        return FetchAssetImageDataUsecaseImpl(repository: makePhotoRepository())
+    }
+    
+    private func makePhotoRepository()-> PhotoRepository {
+        return PhotoRepositoryImpl(photoService: dependencies.photoService)
     }
 }

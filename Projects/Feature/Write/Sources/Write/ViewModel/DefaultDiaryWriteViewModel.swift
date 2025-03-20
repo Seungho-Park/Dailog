@@ -12,6 +12,8 @@ import SharedUIInterfaces
 import RxSwift
 import RxCocoa
 import DomainWriteInterfaces
+import DomainPhotoInterfaces
+import Photos
 
 public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
@@ -19,17 +21,21 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public let navigationBarStyle: NavigationBarStyle = .default(title: "")
     
     public let emotion: Emotion?
+    public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
     public let actions: DiaryWriteViewModelAction
     
     public init(
         emotion: Emotion?,
+        fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase,
         actions: DiaryWriteViewModelAction
     ) {
         self.emotion = emotion
+        self.fetchPhotoAssetsUsecase = fetchPhotoAssetsUsecase
         self.actions = actions
     }
     
     public func transform(input: DiaryWriteViewModelInput) -> DiaryWriteViewModelOutput {
+        let photoAssets: BehaviorRelay<[PHAsset]> = .init(value: [])
         let emotion: BehaviorRelay<Emotion?> = .init(value: emotion)
         
         Observable.merge(
@@ -41,6 +47,25 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
             return owner.actions.showSelectEmotion()
         }
         .bind(to: emotion)
+        .disposed(by: disposeBag)
+        
+        Observable<Bool>.create { [weak self] observer in
+            guard let self = self else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            observer.onNext(PHPhotoLibrary.authorizationStatus() == .authorized)
+            observer.onCompleted()
+            return Disposables.create()
+        }
+        .filter { $0 }
+        .withUnretained(self)
+        .flatMap { owner, _ in
+            owner.fetchPhotoAssetsUsecase.execute(size: .init(width: 150, height: 150))
+        }
+        .catchAndReturn([])
+        .bind(to: photoAssets)
         .disposed(by: disposeBag)
         
         input.addPhotoButtonTapped

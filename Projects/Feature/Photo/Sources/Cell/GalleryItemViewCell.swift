@@ -68,10 +68,13 @@ public final class GalleryItemViewCell: UICollectionViewCell {
     }
     
     public func fill(viewModel: GalleryItemViewModel) {
-        if let data = viewModel.imageData {
-            imageView.image = UIImage(data: data)
-        } else {
-            imageView.image = UIImage(named: "x.mark")
+        
+        viewModel.image(viewModel.asset) { [weak self] data in
+            guard let data else {
+                self?.imageView.image = UIImage(named: "x.mark")
+                return
+            }
+            self?.imageView.image = UIImage(data: data)
         }
         
         if let selectedIdx = viewModel.selectedIdx {

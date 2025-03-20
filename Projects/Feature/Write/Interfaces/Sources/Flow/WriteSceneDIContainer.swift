@@ -7,15 +7,24 @@
 //
 
 import SharedUIInterfaces
+import CorePhotoInterfaces
+import DomainPhotoInterfaces
 
 public struct WriteSceneDIContainerDependencies {
+    public let photoService: PhotoService
     public let photoSceneDIContainer: ()-> any DIContainer
     
-    public init(photoSceneDIContainer: @escaping () -> any DIContainer) {
+    public init(
+        photoService: PhotoService,
+        photoSceneDIContainer: @escaping () -> any DIContainer
+    ) {
+        self.photoService = photoService
         self.photoSceneDIContainer = photoSceneDIContainer
     }
 }
 
 public protocol WriteSceneDIContainer: DIContainer, WriteSceneFlowCoordinatorDependencies {
     var dependencies: WriteSceneDIContainerDependencies { get }
+    
+    func makeFetchPhotoAssetsUsecase()-> FetchPhotoAssetsUsecase
 }

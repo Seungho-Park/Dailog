@@ -23,19 +23,25 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
     }
     
     public func start() -> UIViewController {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            print("카메라를 사용할 수 없습니다.")
-            return navigationController
-        }
-
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.delegate = self
-        picker.allowsEditing = false
-        picker.cameraCaptureMode = .photo
-
-        self.navigationController.topViewController?.present(picker, animated: true, completion: nil)
-        return picker
+        let vm = dependencies.makeGalleryViewModel() as! DefaultGalleryViewModel
+        let vc = GalleryViewController<DefaultGalleryViewModel>.create(viewModel: vm)
+        navigationController.topViewController?.present(vc, animated: true)
+        
+        
+        return navigationController
+//        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+//            print("카메라를 사용할 수 없습니다.")
+//            return navigationController
+//        }
+//
+//        let picker = UIImagePickerController()
+//        picker.sourceType = .camera
+//        picker.delegate = self
+//        picker.allowsEditing = false
+//        picker.cameraCaptureMode = .photo
+//
+//        self.navigationController.topViewController?.present(picker, animated: true, completion: nil)
+//        return picker
     }
     
     deinit {

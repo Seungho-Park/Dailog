@@ -10,6 +10,7 @@ import SharedUIInterfaces
 import DomainWriteInterfaces
 import RxSwift
 import RxCocoa
+import DomainPhotoInterfaces
 
 public struct DiaryWriteViewModelAction {
     public let showSelectEmotion: ()-> Observable<Emotion?>
@@ -55,5 +56,6 @@ public struct DiaryWriteViewModelOutput {
 
 public protocol DiaryWriteViewModel: ViewModel where Input == DiaryWriteViewModelInput, Output == DiaryWriteViewModelOutput {
     var emotion: Emotion? { get }
+    var fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase { get }
     var actions: DiaryWriteViewModelAction { get }
 }

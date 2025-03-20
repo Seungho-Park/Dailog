@@ -15,9 +15,12 @@ import FeatureReminder
 import FeatureSettings
 import FeatureWrite
 import FeaturePhoto
+import CorePhotoInterfaces
+import CorePhoto
 
 final class AppDIContainer {
     private let config = ApplicationConfig()
+    private lazy var photoService: PhotoService = DefaultPhotoService()
     
     func makeSplashSceneDIContainer()-> any DIContainer {
         return DefaultSplashSceneDIContainer(
@@ -58,11 +61,16 @@ final class AppDIContainer {
     
     private func makeDiaryWriteDIContainer()-> any DIContainer {
         return DefaultWriteSceneDIContainer(
-            dependencies: .init(photoSceneDIContainer: makePhotoSceneDIContainer)
+            dependencies: .init(
+                photoService: photoService,
+                photoSceneDIContainer: makePhotoSceneDIContainer
+            )
         )
     }
     
     private func makePhotoSceneDIContainer()-> any DIContainer {
-        return DefaultPhotoSceneDIContainer()
+        return DefaultPhotoSceneDIContainer(
+            dependencies: .init(photoService: photoService)
+        )
     }
 }
