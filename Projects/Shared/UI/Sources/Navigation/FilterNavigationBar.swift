@@ -2,56 +2,24 @@
 //  FilterNavigationBar.swift
 //  SharedUI
 //
-//  Created by 박승호 on 3/15/25.
+//  Created by 박승호 on 3/21/25.
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
 import UIKit
 import SharedUIInterfaces
 
-open class FilterNavigationBar: UIView, NavigationBar {
-    public var title: String? = "전체"
-    public let container: UIView = .init(frame: .zero)
+public final class FilterNavigationBar: UIView, NavigationBar {
+    public var items: [SharedUIInterfaces.NavigationBarButton] = []
+    public var title: String = "전체"
     
-    private lazy var filterTypeButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        var config = UIButton.Configuration.plain()
-        button.configuration = config
-        button.configurationUpdateHandler = { [weak self] button in
-            guard let self = self else { return }
-            button.configuration?.baseBackgroundColor = .clear
-            
-            button.subviews
-                .forEach {
-                    guard let view = $0 as? UILabel else { return }
-                    view.textColor = button.state == .highlighted ? .textColor.withAlphaComponent(0.6) : .textColor
-                }
-        }
-        return button
-    }()
+    private let container = UIView()
+    private lazy var filterButton = NavigationBarFilterButton()
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel.make(frame: .zero)
-        label.numberOfLines = 1
-        label.font = .apple(sizeOf: 18, weight: .bold)
-        label.text = "전체"
-        label.textColor = .textColor
-        return label
-    }()
-    
-    private lazy var arrowLabel: UILabel = {
-        let label = UILabel.make(frame: .zero)
-        label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 12)
-        label.text = "▼"
-        label.textColor = .textColor
-        return label
-    }()
-    
-    public convenience init(title: String? = nil) {
+    public convenience init(title: String) {
         self.init(frame: .zero)
-        
         self.title = title
+        items.append(filterButton)
         configure()
     }
     
@@ -59,24 +27,18 @@ open class FilterNavigationBar: UIView, NavigationBar {
         self.addSubview(container)
         
         container.flex
-            .addItem(filterTypeButton)
-            .marginLeft(14)
+            .addItem()
             .grow(1)
-            
-        filterTypeButton.flex
             .direction(.row)
+            .justifyContent(.center)
             .define { flex in
-                flex.addItem(titleLabel)
-                    .vertically(1)
-                    .paddingRight(8)
-                
-                flex.addItem(arrowLabel)
-                    .paddingLeft(8)
-                    .marginBottom(1)
+                flex.addItem(filterButton)
             }
+            .marginLeft(12)
+            .justifyContent(.start)
     }
     
-    open override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         container.pin.all()

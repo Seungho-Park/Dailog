@@ -12,7 +12,6 @@ import FeatureHistoryInterfaces
 
 public final class DefaultHistoryViewModel: HistoryViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
-    public let navigationBarStyle: NavigationBarStyle = .filter
     
     public func transform(input: FeatureHistoryInterfaces.HistoryViewModelInput) -> FeatureHistoryInterfaces.HistoryViewModelOutput {
         return .init()

@@ -8,12 +8,34 @@
 import SwiftUI
 
 public extension UIFont {
+    var italic: UIFont {
+        guard let descriptor = self.fontDescriptor.withSymbolicTraits(.traitItalic) else {
+            return self
+        }
+        
+        return UIFont(descriptor: descriptor, size: 0)
+    }
+    
+    func applyingWeight(_ weight: UIFont.Weight) -> UIFont {
+        let newDescriptor = fontDescriptor.addingAttributes([
+            UIFontDescriptor.AttributeName.traits: [UIFontDescriptor.TraitKey.weight: weight]
+        ])
+        return UIFont(descriptor: newDescriptor, size: 0)
+    }
+    
     static func jalnan(_ size: CGFloat)-> UIFont {
         return UIFont(name: "Jalnan2", size: size) ?? .systemFont(ofSize: size, weight: .bold)
     }
     
     static func sejong(sizeOf size: CGFloat)-> UIFont {
         return UIFont(name: "SejongGeulggot", size: size) ?? .systemFont(ofSize: size, weight: .regular)
+    }
+    
+    static func serif(sizeOf size: CGFloat, weight: UIFont.Weight)-> UIFont {
+        switch Locale.preferredLanguages.first?.split(separator: "-")[0] ?? "en" {
+        case "en": return UIFont(name: "Georgia", size: size)!.applyingWeight(.bold)
+        default: return UIFont(name: "Georgia", size: size)!.applyingWeight(weight)
+        }
     }
     
     static func cursive(sizeOf size: CGFloat, weight: UIFont.Weight)-> UIFont {

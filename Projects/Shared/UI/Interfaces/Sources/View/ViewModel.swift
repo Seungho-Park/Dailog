@@ -15,16 +15,11 @@ public protocol ViewModel {
     
     var disposeBag: DisposeBag { get }
     var background: BackgroundType { get }
-    var navigationBarStyle: NavigationBarStyle { get }
     
     func transform(input: Input)-> Output
 }
 
 public extension ViewModel {
-    var navigationBarStyle: NavigationBarStyle {
-        return .none
-    }
-    
     var background: BackgroundType {
         return .clear
     }

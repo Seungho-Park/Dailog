@@ -18,7 +18,6 @@ import Photos
 public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
     public let background: BackgroundType = .image(.bgLaunchScreen)
-    public let navigationBarStyle: NavigationBarStyle = .default(title: "")
     
     public let emotion: Emotion?
     public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
@@ -49,12 +48,7 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
         .bind(to: emotion)
         .disposed(by: disposeBag)
         
-        Observable<Bool>.create { [weak self] observer in
-            guard let self = self else {
-                observer.onCompleted()
-                return Disposables.create()
-            }
-            
+        Observable<Bool>.create { observer in
             observer.onNext(PHPhotoLibrary.authorizationStatus() == .authorized)
             observer.onCompleted()
             return Disposables.create()

@@ -16,7 +16,6 @@ import SharedUI
 
 public final class DefaultHomeViewModel: HomeViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
-    public let navigationBarStyle: NavigationBarStyle = .default(title: Date().formattedString())
     
     public let actions: HomeViewModelAction
     public let fetchRandomPromptUsecase: FetchRandomPromptUsecase

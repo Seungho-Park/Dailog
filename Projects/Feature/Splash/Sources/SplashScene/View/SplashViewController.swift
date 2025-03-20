@@ -18,7 +18,7 @@ public final class SplashViewController<VM: SplashViewModel>: DailogViewControll
         let label = UILabel(frame: .zero)
         label.text = "AppName".localized
         label.numberOfLines = 1
-        label.font = .jalnan(56)
+        label.font = .serif(sizeOf: 56, weight: .bold).italic
         return label
     }()
     

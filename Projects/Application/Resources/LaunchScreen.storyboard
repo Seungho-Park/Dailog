@@ -20,6 +20,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILOG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keP-i9-9v2">
+                                <rect key="frame" x="88.333333333333329" y="330.33333333333331" width="216.66666666666669" height="63.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Georgia-Italic" family="Georgia" pointSize="56"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -28,6 +34,8 @@
                             <constraint firstAttribute="bottom" secondItem="UUT-38-DSQ" secondAttribute="bottom" id="Tof-6Z-7zN"/>
                             <constraint firstAttribute="trailing" secondItem="UUT-38-DSQ" secondAttribute="trailing" id="Wxs-t8-rCr"/>
                             <constraint firstItem="UUT-38-DSQ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="fVd-bp-ayV"/>
+                            <constraint firstItem="keP-i9-9v2" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.85" id="gAl-r4-Iuf"/>
+                            <constraint firstItem="keP-i9-9v2" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zeO-D9-8VR"/>
                         </constraints>
                     </view>
                 </viewController>

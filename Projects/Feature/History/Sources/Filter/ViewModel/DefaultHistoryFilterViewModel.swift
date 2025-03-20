@@ -14,7 +14,6 @@ import Foundation
 
 public final class DefaultHistoryFilterViewModel: HistoryFilterViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
-    public let navigationBarStyle: NavigationBarStyle = .none
     
     public func transform(input: FeatureHistoryInterfaces.HistoryFilterViewModelInput) -> FeatureHistoryInterfaces.HistoryFilterViewModelOutput {
         let filterType: BehaviorRelay<HistoryFilterType> = .init(value: .all)

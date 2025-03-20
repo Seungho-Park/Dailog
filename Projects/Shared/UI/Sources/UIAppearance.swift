@@ -65,6 +65,7 @@ extension UIAppearance {
     static var fontUrls: [String: URL?] {
         return [
             "PatrickHand-Regular": Bundle.module.url(forResource: "PatrickHand-Regular", withExtension: "ttf"),
+            "GildaDisplay-Regular": Bundle.module.url(forResource: "GildaDisplay-Regular", withExtension: "ttf"),
             "Gaegu-Regular": Bundle.module.url(forResource: "Gaegu-Regular", withExtension: "ttf"),
             "Gaegu-Light": Bundle.module.url(forResource: "Gaegu-Light", withExtension: "ttf"),
             "Gaegu-Bold": Bundle.module.url(forResource: "Gaegu-Bold", withExtension: "ttf"),

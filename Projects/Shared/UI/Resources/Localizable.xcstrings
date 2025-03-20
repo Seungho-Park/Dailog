@@ -112,37 +112,37 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dailog"
+            "value" : "DAILOG"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dailog"
+            "value" : "DAILOG"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dailog"
+            "value" : "DAILOG"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "데일로그"
+            "value" : "DAILOG"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dailog"
+            "value" : "DAILOG"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dailog"
+            "value" : "DAILOG"
           }
         }
       }

@@ -27,17 +27,19 @@ public final class DefaultSplashViewModel: SplashViewModel {
     public func transform(input: FeatureSplashInterfaces.SplashViewModelInput) -> FeatureSplashInterfaces.SplashViewModelOutput {
         
         input.viewDidAppear
+            .delay(.milliseconds(300), scheduler: MainScheduler.asyncInstance)
             .withUnretained(self)
-            .flatMap { owner, _ in
+            .concatMap { owner, _ in
                 return owner.requestAppTrackingPermission()
             }
             .withUnretained(self)
-            .flatMap { owner, _ in
+            .concatMap { owner, _ in
                 return owner.requestPushNotificationPermission()
             }
             .map { _ in
                 //TODO: Login 여부 체크 -
             }
+//            .subscribe { print($0) }
             .bind(onNext: action.showMainScene)
             .disposed(by: disposeBag)
         

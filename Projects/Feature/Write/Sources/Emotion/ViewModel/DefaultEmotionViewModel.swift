@@ -14,7 +14,6 @@ import RxCocoa
 
 public final class DefaultEmotionViewModel: EmotionViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
-    public var navigationBarStyle: NavigationBarStyle = .default(title: "")
     public let background: BackgroundType = .image(.bgLaunchScreen)
     
     public let actions: EmotionViewModelActions

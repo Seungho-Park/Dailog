@@ -15,6 +15,7 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
     private let emptyDataView = EmptyDataView(frame: .zero)
     
     public override func configure() {
+        self.navigationBar = FilterNavigationBar(title: "전체")
         super.configure()
         
         container.flex

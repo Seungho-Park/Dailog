@@ -16,9 +16,9 @@ import FlexLayout
 open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinable {
     public var viewModel: VM!
     public let container = DailogView(frame: .zero)
-    
-    private var navigationBar: NavigationBar?
     public let disposeBag = DisposeBag()
+    
+    public var navigationBar: NavigationBar? = nil
     
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +61,9 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
     open func configure() {
         self.view.backgroundColor = .clear
         
+        if let navBar = navigationBar {
+            view.addSubview(navBar)
+        }
         view.addSubview(container)
     }
     
@@ -74,38 +77,20 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
             (view as? UIImageView)?.image = nil
             view.backgroundColor = .clear
         }
-        
-        switch viewModel.navigationBarStyle {
-        case .none:
-            self.navigationBar?.removeFromSuperview()
-            self.navigationBar = nil
-        case .default(let title):
-            self.navigationBar = DefaultNavigationBar(frame: .zero)
-            self.navigationBar?.title = title
-            
-            let isRoot = (self.navigationController?.viewControllers.count ?? 0) <= 1
-            (self.navigationBar as! DefaultNavigationBar)
-                .backButton
-                .flex
-                .isIncludedInLayout(!isRoot)
-        case .filter:
-            self.navigationBar = FilterNavigationBar(title: "전체")
-        }
     }
     
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if let navigationBar = navigationBar {
-            view.addSubview(navigationBar)
-            navigationBar.pin
+        if let navBar = navigationBar {
+            navBar.pin
                 .top(view.pin.safeArea)
                 .left(view.pin.safeArea)
                 .right(view.pin.safeArea)
                 .height(50)
             
             container.pin
-                .below(of: navigationBar)
+                .below(of: navBar)
                 .left(view.pin.safeArea)
                 .right(view.pin.safeArea)
                 .bottom(view.pin.safeArea)
