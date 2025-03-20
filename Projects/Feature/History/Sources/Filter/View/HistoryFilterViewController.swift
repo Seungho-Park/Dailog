@@ -140,26 +140,12 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
             .disposed(by: disposeBag)
     }
     
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            if filterType == .all {
-                return 1
-            } else if filterType == .month && Locale.dateType == .mm_yyyy {
-                return months.count
-            } else {
-                return years.count
-            }
-        } else {
-            if Locale.dateType == .mm_yyyy {
-                return years.count
-            } else {
-                return months.count
-            }
-        }
-    }
-    
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return filterType == .month ? 2 : 1
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return getNumberOfRows(forComponent: component)
     }
     
     public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -206,8 +192,8 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
         
         container.pin
             .below(of: self.view)
-            .left()
-            .right()
+            .left(self.view.pin.safeArea)
+            .right(self.view.pin.safeArea)
             .height(45%)
         
         applyButton.flex
@@ -220,7 +206,8 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
             self.outsideView.alpha = 1
             
             container.pin
-                .left().right()
+                .left(self.view.pin.safeArea)
+                .right(self.view.pin.safeArea)
                 .bottom()
                 .height(45%)
         }
@@ -244,13 +231,36 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
 
 // MARK: - PickerView Label 설정
 private extension HistoryFilterViewController {
+    private func getLabelSpacing(forComponent component: Int)-> CGFloat {
+        switch component {
+        case 0:
+            return Locale.dateType == .yyyy_mm ? -20 : -20
+        case 1:
+            return Locale.dateType == .yyyy_mm ? -20 : -20
+        default: return 0
+        }
+    }
+    private func getNumberOfRows(forComponent component: Int) -> Int {
+        switch component {
+        case 0:
+            return filterType == .all ? 1 : (
+                filterType == .month && Locale.dateType == .mm_yyyy ? months.count : years.count
+            )
+        case 1:
+            return Locale.dateType == .mm_yyyy ? years.count : months.count
+        default:
+            return 0
+        }
+    }
+    
     private func configureLabel(from view: UIView?, for pickerView: UIPickerView, inComponent component: Int) -> UILabel {
         let label = (view as? UILabel) ?? UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.font = .cursive(sizeOf: 26, weight: .medium)
         
         let componentSize = pickerView.rowSize(forComponent: component)
-        label.frame = CGRect(x: 0, y: 0, width: componentSize.width - 20, height: componentSize.height)
+        
+        label.frame = CGRect(x: 0, y: 0, width: componentSize.width + getLabelSpacing(forComponent: component), height: componentSize.height)
         
         return label
     }

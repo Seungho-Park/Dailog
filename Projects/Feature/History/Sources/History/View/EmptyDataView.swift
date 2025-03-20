@@ -24,7 +24,7 @@ public final class EmptyDataView: UIView {
         label.numberOfLines = 1
         label.text = "No diary data".localized
         label.textColor = .textColor
-        label.font = .cursive(sizeOf: 24, weight: .bold)
+        label.font = .cursive(sizeOf: 28, weight: .bold)
         return label
     }()
     
@@ -33,7 +33,7 @@ public final class EmptyDataView: UIView {
         label.numberOfLines = 1
         label.text = "Tap the + button below to write your diary".localized
         label.textColor = .textColor
-        label.font = .cursive(sizeOf: 16, weight: .medium)
+        label.font = .cursive(sizeOf: 18, weight: .medium)
         return label
     }()
     
@@ -101,8 +101,8 @@ public final class EmptyDataView: UIView {
                     .width(60)
                     .height(60)
             }
-            .justifyContent(Locale.direction == .leftToRight ? .end : .start)
-            .alignItems(Locale.direction == .leftToRight ? .end : .start)
+            .justifyContent(.end)
+            .alignItems(.end)
     }
     
     public override func layoutSubviews() {

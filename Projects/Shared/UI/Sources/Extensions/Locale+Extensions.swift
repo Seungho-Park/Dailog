@@ -32,7 +32,7 @@ public extension Locale {
     
     static var dateType: DateType {
         switch Locale.preferredLanguages.first?.split(separator: "-")[0] ?? "en" {
-        case "jp": return .yyyy_mm
+        case "ja": return .yyyy_mm
         case "ko": return .yyyy_mm
         case "hi": fallthrough
         case "ar": fallthrough

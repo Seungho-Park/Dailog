@@ -27,12 +27,12 @@ public final class FilterNavigationBar: NavigationBar {
             .addItem()
             .grow(1)
             .direction(.row)
-            .justifyContent(.center)
+            .alignItems(.center)
             .define { flex in
                 flex.addItem(filterButton)
             }
-            .marginLeft(12)
-            .justifyContent(.start)
+            .justifyContent(Locale.direction == .leftToRight ? .start : .end)
+            .marginHorizontal(12)
     }
     
     public override func layoutSubviews() {

@@ -51,8 +51,7 @@ let project: Project = .makeProject(
                             "$(inherited) -ObjC"
                         ],
                         "ENABLE_USER_SCRIPT_SANDBOXING": false,
-                        "INFOPLIST_KEY_UILaunchStoryboardName":"LaunchScreen",
-                        "INFOPLIST_KEY_UISupportedInterfaceOrientations":["UIInterfaceOrientationPortrait"]
+                        "INFOPLIST_KEY_UILaunchStoryboardName":"LaunchScreen"
                     ]
                 ),
                 launchArguments: [

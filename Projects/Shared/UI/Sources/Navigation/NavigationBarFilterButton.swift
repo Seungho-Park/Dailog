@@ -50,12 +50,22 @@ public final class NavigationBarFilterButton: NavigationBarButton {
             .direction(.row)
             .grow(1)
             .define { flex in
-                flex.addItem(textLabel)
-                    .vertically(1)
-                
-                flex.addItem(dropDownImage)
-                    .width(18)
-                    .height(18)
+                if Locale.direction == .leftToRight {
+                    flex.addItem(textLabel)
+                        .vertically(1)
+                    
+                    flex.addItem(dropDownImage)
+                        .width(18)
+                        .height(18)
+                } else {
+                    flex.addItem(dropDownImage)
+                        .width(18)
+                        .height(18)
+                        .marginRight(5)
+                    
+                    flex.addItem(textLabel)
+                        .vertically(1)
+                }
             }
             .alignItems(.center)
     }

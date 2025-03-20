@@ -56,26 +56,45 @@ public final class DiaryWriteFooterView: UIView {
                 flex.addItem()
                     .direction(.row)
                     .define { flex in
-                        flex.addItem(showGalleryButton)
-                            .height(30)
-                            .width(30)
-                            .marginRight(7.5)
-                        
-                        flex.addItem(showCameraButton)
-                            .width(30)
-                            .height(30)
-                            .marginLeft(7.5)
-                        
-                        flex.addItem()
-                            .grow(1)
-                        
-                        flex.addItem(hideKeyboardButton)
-                            .width(30)
-                            .height(30)
-                            .marginRight(7.5)
+                        if Locale.direction == .leftToRight {
+                            flex.addItem(showGalleryButton)
+                                .height(30)
+                                .width(30)
+                            
+                            flex.addItem(showCameraButton)
+                                .width(30)
+                                .height(30)
+                                .marginLeft(7.5)
+                            
+                            flex.addItem()
+                                .grow(1)
+                            
+                            flex.addItem(hideKeyboardButton)
+                                .width(30)
+                                .height(30)
+                                .marginRight(7.5)
+                        } else {
+                            flex.addItem(hideKeyboardButton)
+                                .width(30)
+                                .height(30)
+                                .marginLeft(7.5)
+                            
+                            flex.addItem()
+                                .grow(1)
+                            
+                            flex.addItem(showCameraButton)
+                                .width(30)
+                                .height(30)
+                                .marginRight(7.5)
+                            
+                            flex.addItem(showGalleryButton)
+                                .height(30)
+                                .width(30)
+                                .marginLeft(7.5)
+                        }
                     }
                     .alignItems(.start)
-                    .marginStart(12)
+                    .marginHorizontal(12)
                     .marginBottom(10)
             }
     }

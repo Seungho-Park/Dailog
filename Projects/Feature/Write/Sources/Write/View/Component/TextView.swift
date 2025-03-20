@@ -17,6 +17,7 @@ public final class TextView: UIView, UITextViewDelegate {
         view.font = .cursive(sizeOf: 20, weight: .medium)
         view.textColor = .textColor
         view.contentInset = .zero
+        view.textContainerInset = .zero
         view.textAlignment = Locale.direction == .leftToRight ? .left : .right
         return view
     }()
@@ -50,12 +51,12 @@ public final class TextView: UIView, UITextViewDelegate {
                     flex.addItem(placeHolderLabel)
                         .position(.absolute)
                         .left(5.5)
-                        .top(7.5)
+                        .top(0)
                 } else {
                     flex.addItem(placeHolderLabel)
                         .position(.absolute)
                         .right(5.5)
-                        .top(7.5)
+                        .top(0)
                 }
             }
             .margin(12)
