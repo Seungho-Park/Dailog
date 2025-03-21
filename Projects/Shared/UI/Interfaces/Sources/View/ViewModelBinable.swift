@@ -19,9 +19,17 @@ public protocol ViewModelBinable: NSObjectProtocol {
 }
 
 public extension ViewModelBinable where Self: UIViewController {
+    private func bindViewModel(viewModel: ViewModelType) {
+        self.viewModel = viewModel
+        self.loadViewIfNeeded()
+        
+        configure()
+        bind()
+    }
+    
     static func create(viewModel: ViewModelType)-> Self {
         let vc = Self.init()
-        vc.viewModel = viewModel
+        vc.bindViewModel(viewModel: viewModel)
         return vc
     }
 }

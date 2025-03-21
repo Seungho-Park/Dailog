@@ -7,13 +7,14 @@
 //
 
 import UIKit
-import SharedUIInterfaces
+import PinLayout
+import FlexLayout
 
 public final class NavigationBackButton: NavigationBarButton {
     private let container = UIView()
     
     let backImage: UIImageView = {
-        let view = UIImageView(image: .back)
+        let view = UIImageView(image: Locale.direction == .leftToRight ? .back : .forward)
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = false
         return view
@@ -22,6 +23,11 @@ public final class NavigationBackButton: NavigationBarButton {
     public override init(type: NavigationItem = .back) {
         super.init(type: type)
         
+        container.isUserInteractionEnabled = false
+        self.configuration = .plain()
+        self.configurationUpdateHandler = { btn in
+            btn.alpha = btn.isHighlighted ? 0.6 : 1
+        }
         configure()
     }
     
@@ -36,7 +42,7 @@ public final class NavigationBackButton: NavigationBarButton {
                     .width(26)
                     .height(26)
             }
-            .marginLeft(8)
+            .marginHorizontal(8)
             .justifyContent(.center)
     }
     

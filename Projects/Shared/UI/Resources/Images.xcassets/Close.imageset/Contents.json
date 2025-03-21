@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "close_16dp_696969_FILL0_wght400_GRAD0_opsz20.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "close_24dp_696969_FILL0_wght400_GRAD0_opsz24.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "close_36dp_696969_FILL0_wght400_GRAD0_opsz40.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

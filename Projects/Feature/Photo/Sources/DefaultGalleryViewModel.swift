@@ -31,8 +31,8 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
         var selectedItems: [GalleryItemViewModel] = []
         let photos: BehaviorRelay<[GalleryItemViewModel]> = .init(value: [])
         
-        let authResult = input.viewWillAppear
-            .take(1)
+        let authResult = input.viewDidLoad
+            .debug()
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.requestPhotoLibraryPermission()
@@ -43,7 +43,7 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
             .filter { $0 }
             .withUnretained(self)
             .flatMap { owner, _ in
-                owner.fetchAllPhotos()
+                owner.fetchPhotoAssetsUsecase.execute(size: .init(width: 150, height: 150))
             }
             .withUnretained(self)
             .map { owner, items in
@@ -119,34 +119,6 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
             return Disposables.create()
         }
     }
-    
-//    private func assetToViewModel(assets: [PHAsset], completion: @escaping ([GalleryItemViewModel]) -> Void) {
-//        var resultDict: [Int: GalleryItemViewModel] = [:]
-//        let group = DispatchGroup()
-//        
-//        let imageManager = PHCachingImageManager()
-//        let targetSize = CGSize(width: 150, height: 150)
-//        let options = PHImageRequestOptions()
-//        options.isSynchronous = true
-//        options.deliveryMode = .opportunistic
-//        options.isNetworkAccessAllowed = true
-//        options.resizeMode = .fast
-//        
-//        for i in 0..<assets.count {
-//            let asset = assets[i]
-////            group.enter()
-//            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options) { image, _ in
-//                if let imageData = image?.pngData() {
-//                    resultDict[i] = GalleryItemViewModel(idx: i, asset: asset, imageData: imageData, selectedIdx: nil)
-//                }
-////                group.leave()
-//            }
-//        }
-//        
-//        group.notify(queue: .main) {
-//            completion((0..<assets.count).compactMap { resultDict[$0] })
-//        }
-//    }
     
     private func fetchAssetImageData(asset: PHAsset, completion: @escaping (Data?)-> Void) {
         fetchAssetImageDataUsecase.execute(asset: asset)

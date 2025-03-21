@@ -24,8 +24,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "데일로그"
+            "state" : "translated",
+            "value" : "DAILOG"
           }
         },
         "th" : {

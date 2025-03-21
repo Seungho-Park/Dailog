@@ -12,14 +12,14 @@ import RxCocoa
 import DomainPhotoInterfaces
 
 public struct GalleryViewModelInput {
-    public let viewWillAppear: Observable<Void>
+    public let viewDidLoad: Observable<Void>
     public let itemSelected: Observable<Int>
     
     public init(
-        viewWillAppear: Observable<Void>,
+        viewDidLoad: Observable<Void>,
         itemSelected: Observable<Int>
     ) {
-        self.viewWillAppear = viewWillAppear
+        self.viewDidLoad = viewDidLoad
         self.itemSelected = itemSelected
     }
 }

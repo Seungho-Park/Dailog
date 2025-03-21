@@ -42,7 +42,7 @@ public final class GalleryViewController<VM: GalleryViewModel>: DailogViewContro
         
         let output = viewModel.transform(
             input: .init(
-                viewWillAppear: rx.viewWillAppear.map { _ in }.asObservable(),
+                viewDidLoad: rx.viewDidLoad.asObservable(),
                 itemSelected: collectionView.rx.modelSelected(GalleryItemViewModel.self).map { $0.idx }.asObservable()
             )
         )

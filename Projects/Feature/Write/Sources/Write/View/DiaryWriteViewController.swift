@@ -24,6 +24,7 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
     }
     
     public override func configure() {
+        self.navigationBar = DefaultNavigationBar(title: "")
         super.configure()
         
         container.flex

@@ -24,9 +24,6 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
         super.viewDidLoad()
         
         printLogLifeCycle(#function)
-        
-        configure()
-        bind()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +74,12 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinab
             (view as? UIImageView)?.image = nil
             view.backgroundColor = .clear
         }
+        
+        rx.viewDidAppear
+            .subscribe { _ in
+                print(self.navigationController?.viewControllers.count)
+            }
+            .disposed(by: disposeBag)
     }
     
     open override func viewDidLayoutSubviews() {
