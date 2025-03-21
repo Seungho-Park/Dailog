@@ -16,8 +16,8 @@ public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
         
     }
     
-    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
-        return DefaultHistorySceneFlowCoordinator(navigationController: navController, dependencies: self)
+    public func makeHistorySceneFlowCoordinator(navigationController: UINavigationController) -> HistorySceneFlowCoordinator {
+        return DefaultHistorySceneFlowCoordinator(navigationController: navigationController, dependencies: self)
     }
 }
 

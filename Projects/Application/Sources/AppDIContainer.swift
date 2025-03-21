@@ -7,14 +7,22 @@
 //
 import UIKit
 import FeatureSplash
+import FeatureSplashInterfaces
 import FeatureMain
+import FeatureMainInterfaces
 import FeatureHome
+import FeatureHomeInterfaces
 import FeatureHistory
+import FeatureHistoryInterfaces
 import SharedUIInterfaces
 import FeatureReminder
+import FeatureReminderInterfaces
 import FeatureSettings
+import FeatureSettingsInterfaces
 import FeatureWrite
+import FeatureWriteInterfaces
 import FeaturePhoto
+import FeaturePhotoInterfaces
 import CorePhotoInterfaces
 import CorePhoto
 
@@ -22,55 +30,48 @@ final class AppDIContainer {
     private let config = ApplicationConfig()
     private lazy var photoService: PhotoService = DefaultPhotoService()
     
-    func makeSplashSceneDIContainer()-> any DIContainer {
+    func makeSplashSceneDIContainer()-> SplashSceneDIContainer {
         return DefaultSplashSceneDIContainer(
             dependencies: .init(
-                mainSceneDIContainer: makeMainSceneDIContainer
+                mainSceneDIContainer: makeMainSceneDIContainer()
             )
         )
     }
     
-    private func makeMainSceneDIContainer()-> any DIContainer {
+    private func makeMainSceneDIContainer()-> MainSceneDIContainer {
         return DefaultMainSceneDIContainer(
             dependencies: .init(
-                homeSceneDIContainer: makeHomeSceneDIContainer,
-                historySceneDIContainer: makeHistorySceneDIContainer,
-                reminderSceneDIContainer: makeReminderSceneDIContainer,
-                settingsSceneDIContainer: makeSettingsSceneDIContainer
+                homeSceneDIContainer: makeHomeSceneDIContainer(),
+                historySceneDIContainer: makeHistorySceneDIContainer(),
+                reminderSceneDIContainer: makeReminderSceneDIContainer(),
+                settingsSceneDIContainer: makeSettingsSceneDIContainer()
             )
         )
     }
     
-    private func makeHomeSceneDIContainer()-> any DIContainer {
+    private func makeHomeSceneDIContainer()-> HomeSceneDIContainer {
         return DefaultHomeSceneDIContainer(dependencies: .init(
-            diaryWriteDIContainer: makeDiaryWriteDIContainer
+            diaryWriteDIContainer: makeDiaryWriteSceneDIContainer()
         ))
     }
     
-    private func makeHistorySceneDIContainer()-> any DIContainer {
+    private func makeHistorySceneDIContainer()-> HistorySceneDIContainer {
         return DefaultHistorySceneDIContainer()
     }
     
-    private func makeReminderSceneDIContainer()-> any DIContainer {
+    private func makeReminderSceneDIContainer()-> ReminderSceneDIContainer {
         return DefaultReminderSceneDIContainer()
     }
     
-    private func makeSettingsSceneDIContainer()-> any DIContainer {
+    private func makeSettingsSceneDIContainer()-> SettingsSceneDIContainer {
         return DefaultSettingsSceneDIContainer()
     }
     
-    private func makeDiaryWriteDIContainer()-> any DIContainer {
-        return DefaultWriteSceneDIContainer(
-            dependencies: .init(
-                photoService: photoService,
-                photoSceneDIContainer: makePhotoSceneDIContainer
-            )
-        )
+    private func makeDiaryWriteSceneDIContainer()-> WriteSceneDIContainer {
+        return DefaultWriteSceneDIContainer(dependencies: .init(photoService: photoService, photoSceneDIContainer: makePhotoSceneDIContainer()))
     }
     
-    private func makePhotoSceneDIContainer()-> any DIContainer {
-        return DefaultPhotoSceneDIContainer(
-            dependencies: .init(photoService: photoService)
-        )
+    private func makePhotoSceneDIContainer()-> PhotoSceneDIContainer {
+        return DefaultPhotoSceneDIContainer(dependencies: .init(photoService: photoService))
     }
 }

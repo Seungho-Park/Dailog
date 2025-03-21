@@ -35,10 +35,10 @@ public final class DefaultHomeViewModel: HomeViewModel {
         let prompt: BehaviorRelay<Prompts.Prompt.Translation> = .init(value: .init(title: "", subtitle: ""))
         let advice: BehaviorRelay<AdviceList.Advice.Translation> = .init(value: .init(text: "", author: .init(name: "", description: "")))
         
-        let viewDidAppear = input.viewWillAppear
+        let viewWillAppear = input.viewWillAppear
             .share()
         
-        viewDidAppear
+        viewWillAppear
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.fetchRandomPromptUsecase.execute()
@@ -47,7 +47,7 @@ public final class DefaultHomeViewModel: HomeViewModel {
             .bind(to: prompt)
             .disposed(by: disposeBag)
         
-        viewDidAppear
+        viewWillAppear
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.fetchRandomAdviceUsecase.execute()

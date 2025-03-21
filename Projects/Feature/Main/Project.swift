@@ -16,7 +16,11 @@ let project = Project.makeProject(
             interfaces: .main,
             factory: .init(
                 dependencies: [
-                    .domain
+                    .domain,
+                    .feature(interfaces: .home),
+                    .feature(interfaces: .history),
+                    .feature(interfaces: .reminder),
+                    .feature(interfaces: .settings)
                 ]
             )
         ),
@@ -24,10 +28,7 @@ let project = Project.makeProject(
             implements: .main,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .main),
-                    .feature(interfaces: .home),
-                    .feature(interfaces: .history),
-                    .feature(interfaces: .settings)
+                    .feature(interfaces: .main)
                 ]
             )
         ),

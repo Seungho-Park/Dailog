@@ -6,8 +6,9 @@
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
+import UIKit
 import SharedUIInterfaces
 
-public protocol SettingsSceneDIContainer: DIContainer, SettingsSceneFlowCoordinatorDependencies {
-    
+public protocol SettingsSceneDIContainer: SettingsSceneFlowCoordinatorDependencies {
+    func makeSettingsSceneFlowCoordinator(navigationController: UINavigationController)-> SettingsSceneFlowCoordinator
 }

@@ -6,9 +6,11 @@
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
+import UIKit
 import SharedUIInterfaces
 import CorePhotoInterfaces
 import DomainPhotoInterfaces
+import Photos
 
 public struct PhotoSceneDIContainerDependencies {
     public let photoService: PhotoService
@@ -18,9 +20,10 @@ public struct PhotoSceneDIContainerDependencies {
     }
 }
 
-public protocol PhotoSceneDIContainer: DIContainer, PhotoSceneFlowCoordinatorDependencies {
+public protocol PhotoSceneDIContainer: PhotoSceneFlowCoordinatorDependencies {
     var dependencies: PhotoSceneDIContainerDependencies { get }
     
+    func makePhotoSceneFlowCoordinator(scene: PhotoScene, navController: UINavigationController, completion: @escaping ([PHAsset])-> Void)-> PhotoSceneFlowCoordinator
     func makeFetchPhotoAssetsUsecase() -> FetchPhotoAssetsUsecase
     func makeFetchAssetImageDataUsecase()-> FetchAssetImageDataUsecase
 }

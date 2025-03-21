@@ -9,6 +9,6 @@
 import UIKit
 import SharedUIInterfaces
 
-public protocol HistorySceneDIContainer: DIContainer, HistorySceneFlowCoordinatorDependencies {
-    
+public protocol HistorySceneDIContainer: HistorySceneFlowCoordinatorDependencies {
+    func makeHistorySceneFlowCoordinator(navigationController: UINavigationController) -> HistorySceneFlowCoordinator
 }

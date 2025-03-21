@@ -11,6 +11,7 @@ import SharedUIInterfaces
 import FeaturePhotoInterfaces
 import DomainPhotoInterfaces
 import DomainPhoto
+import Photos
 
 public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
     public let dependencies: PhotoSceneDIContainerDependencies
@@ -20,8 +21,13 @@ public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
-        return DefaultPhotoSceneFlowCoordinator(navigationController: navController, dependencies: self)
+    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navController: UINavigationController, completion: @escaping ([PHAsset]) -> Void) -> PhotoSceneFlowCoordinator  {
+        return DefaultPhotoSceneFlowCoordinator(
+            scene: scene,
+            navigationController: navController,
+            dependencies: self,
+            completion: completion
+        )
     }
     
     public func makeGalleryViewModel() -> any GalleryViewModel {

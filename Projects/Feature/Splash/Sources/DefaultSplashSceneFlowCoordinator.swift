@@ -35,8 +35,7 @@ public final class DefaultSplashSceneFlowCoordinator: SplashSceneFlowCoordinator
     }
     
     public func showMainScene() {
-        let diContainer = dependencies.makeMainSceneDIContainer()
-        let coordinator = diContainer.makeCoordinator(navController: navigationController)
+        let coordinator = dependencies.makeMainSceneFlowCoordinator(navigationController: navigationController)
         coordinator.start()
     }
     

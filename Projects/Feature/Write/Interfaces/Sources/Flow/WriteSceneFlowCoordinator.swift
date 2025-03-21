@@ -8,10 +8,12 @@
 
 import SharedUIInterfaces
 import DomainWriteInterfaces
+import FeaturePhotoInterfaces
+import UIKit
+import Photos
 
 public protocol WriteSceneFlowCoordinatorDependencies {
-    
-    func makePhotoSceneDIContainer()-> any DIContainer
+    func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([PHAsset])-> Void)-> PhotoSceneFlowCoordinator
     
     func makeDiaryWriteViewModel(emotion: Emotion?, actions: DiaryWriteViewModelAction)-> any DiaryWriteViewModel
     func makeEmotionViewModel(actions: EmotionViewModelActions)-> any EmotionViewModel

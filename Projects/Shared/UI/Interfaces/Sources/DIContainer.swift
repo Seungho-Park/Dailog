@@ -7,7 +7,7 @@
 //
 import UIKit
 
-public protocol DIContainer {
-    
-    func makeCoordinator(navController: UINavigationController)-> Coordinator
-}
+//public protocol DIContainer {
+//    
+//    func makeCoordinator(navController: UINavigationController)-> Coordinator
+//}

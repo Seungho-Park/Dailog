@@ -23,16 +23,16 @@ public final class DefaultMainSceneFlowCoordinator: MainSceneFlowCoordinator {
     @discardableResult
     public func start()-> UIViewController {
         let homeSceneDIContainer = dependencies.makeHomeSceneDIContainer()
-        let homeSceneFlowCoordinator = homeSceneDIContainer.makeCoordinator(navController: navigationController)
+        let homeSceneFlowCoordinator = homeSceneDIContainer.makeHomeSceneFlowCoordinator(navigationController: navigationController)
         
         let historySceneDIContainer = dependencies.makeHistorySceneDIContainer()
-        let historySceneFlowCoordinator = historySceneDIContainer.makeCoordinator(navController: navigationController)
+        let historySceneFlowCoordinator = historySceneDIContainer.makeHistorySceneFlowCoordinator(navigationController: navigationController)
         
         let reminderSceneDIContainer = dependencies.makeReminderSceneDIContainer()
-        let reminderSceneFlowCoordinator = reminderSceneDIContainer.makeCoordinator(navController: navigationController)
+        let reminderSceneFlowCoordinator = reminderSceneDIContainer.makeReminderSceneFlowCoordinator(navigationController: navigationController)
         
         let settingsSceneDIContainer = dependencies.makeSettingsSceneDIContainer()
-        let settingsSceneFlowCoordinator = settingsSceneDIContainer.makeCoordinator(navController: navigationController)
+        let settingsSceneFlowCoordinator = settingsSceneDIContainer.makeSettingsSceneFlowCoordinator(navigationController: navigationController)
         
         let viewControllers = [
             homeSceneFlowCoordinator.start(),

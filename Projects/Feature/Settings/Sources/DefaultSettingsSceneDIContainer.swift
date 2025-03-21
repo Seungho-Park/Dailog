@@ -14,8 +14,8 @@ public final class DefaultSettingsSceneDIContainer: SettingsSceneDIContainer {
     
     public init() {  }
     
-    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
-        return DefaultSettingsSceneFlowCoordinator(navigationController: navController, dependencies: self)
+    public func makeSettingsSceneFlowCoordinator(navigationController: UINavigationController)-> SettingsSceneFlowCoordinator {
+        return DefaultSettingsSceneFlowCoordinator(navigationController: navigationController, dependencies: self)
     }
     
     public func makeSettingsViewModel() -> any SettingsViewModel {

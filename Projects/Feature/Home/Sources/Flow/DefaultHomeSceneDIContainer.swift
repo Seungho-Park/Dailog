@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FeatureWriteInterfaces
 import FeatureHomeInterfaces
 import DomainHomeInterfaces
 import DomainHome
@@ -19,8 +20,8 @@ public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
-        return DefaultHomeSceneFlowCoordinator(navigationController: navController, dependencies: self)
+    public func makeHomeSceneFlowCoordinator(navigationController: UINavigationController) -> HomeSceneFlowCoordinator {
+        return DefaultHomeSceneFlowCoordinator(navigationController: navigationController, dependencies: self)
     }
     
     public func makeFetchRandomPromptUsecase() -> FetchRandomPromptUsecase {
@@ -33,10 +34,8 @@ public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
 }
 
 extension DefaultHomeSceneDIContainer {
-    public func makeDiaryWriteSceneDIContainer() -> any DIContainer {
-        return dependencies.diaryWriteDIContainer(
-            
-        )
+    public func makeWriteSceneFlowCoordinator(navigationController: UINavigationController) -> any WriteSceneFlowCoordinator {
+        return dependencies.diaryWriteDIContainer.makeDiaryWriteSceneFlowCoordinator(navigationController: navigationController)
     }
     
     public func makeHomeViewModel(actions: HomeViewModelAction) -> any HomeViewModel {

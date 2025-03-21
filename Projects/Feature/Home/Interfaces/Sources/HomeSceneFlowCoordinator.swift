@@ -8,9 +8,10 @@
 
 import UIKit
 import SharedUIInterfaces
+import FeatureWriteInterfaces
 
 public protocol HomeSceneFlowCoordinatorDependencies {
-    func makeDiaryWriteSceneDIContainer()-> any DIContainer
+    func makeWriteSceneFlowCoordinator(navigationController: UINavigationController)-> WriteSceneFlowCoordinator
     
     func makeHomeViewModel(actions: HomeViewModelAction)-> any HomeViewModel
 }

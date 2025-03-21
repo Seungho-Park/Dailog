@@ -16,7 +16,8 @@ let project = Project.makeProject(
             interfaces: .write,
             factory: .init(
                 dependencies: [
-                    .domain
+                    .domain,
+                    .feature(interfaces: .photo)
                 ]
             )
         ),

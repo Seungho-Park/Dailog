@@ -13,10 +13,10 @@ import SharedUIInterfaces
 
 public final class DefaultSplashSceneDIContainer: SplashSceneDIContainer {
     public struct Dependencies {
-        let mainSceneDIContainer: ()-> DIContainer
+        let mainSceneDIContainer: MainSceneDIContainer
         
         public init(
-            mainSceneDIContainer: @escaping ()-> DIContainer
+            mainSceneDIContainer: MainSceneDIContainer
         ) {
             self.mainSceneDIContainer = mainSceneDIContainer
         }
@@ -28,14 +28,14 @@ public final class DefaultSplashSceneDIContainer: SplashSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
-        return DefaultSplashSceneFlowCoordinator(navigationController: navController, dependencies: self)
+    public func makeSplashSceneFlowCoordinator(navigationController: UINavigationController)-> SplashSceneFlowCoordinator {
+        return DefaultSplashSceneFlowCoordinator(navigationController: navigationController, dependencies: self)
     }
 }
 
 extension DefaultSplashSceneDIContainer: SplashSceneFlowCoordinatorDependencies {
-    public func makeMainSceneDIContainer() -> any DIContainer {
-        return dependencies.mainSceneDIContainer()
+    public func makeMainSceneFlowCoordinator(navigationController: UINavigationController) -> any MainSceneFlowCoordinator {
+        return dependencies.mainSceneDIContainer.makeMainSceneFlowCoordinator(navigationController: navigationController)
     }
     public func makeSplashViewModel(action: SplashViewModelAction) -> any SplashViewModel {
         return DefaultSplashViewModel(action: action)

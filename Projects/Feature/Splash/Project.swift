@@ -16,7 +16,8 @@ let project: Project = .makeProject(
             interfaces: .splash,
             factory: .init(
                 dependencies: [
-                    .domain
+                    .domain,
+                    .feature(interfaces: .main)
                 ]
             )
         ),

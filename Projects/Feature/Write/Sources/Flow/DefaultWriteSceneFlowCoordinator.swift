@@ -28,6 +28,7 @@ public final class DefaultWriteSceneFlowCoordinator: NSObject, WriteSceneFlowCoo
                 dependencies.makeDiaryWriteViewModel(
                     emotion: nil,
                     actions: .init(
+                        close: { [weak self] in self?.navigationController.popViewController(animated: true) },
                         showSelectEmotion: {
                             return Observable<Emotion?>.create { [weak self] observer in
                                 guard let self = self else {
@@ -71,14 +72,16 @@ public final class DefaultWriteSceneFlowCoordinator: NSObject, WriteSceneFlowCoo
     }
     
     public func showPhotoAlbumScene() {
-        let diContainer = dependencies.makePhotoSceneDIContainer()
-        let coordinator = diContainer.makeCoordinator(navController: navigationController)
+        let coordinator = dependencies.makePhotoSceneFlowCoordinator(scene: .gallery, navigationController: navigationController) { assets in
+            print("Gallery: \(assets)")
+        }
         coordinator.start()
     }
     
     public func showDeviceCamera() {
-        let diContainer = dependencies.makePhotoSceneDIContainer()
-        let coordinator = diContainer.makeCoordinator(navController: navigationController)
+        let coordinator = dependencies.makePhotoSceneFlowCoordinator(scene: .camera, navigationController: navigationController) { assets in
+            print("Camera: \(assets)")
+        }
         coordinator.start()
     }
 }

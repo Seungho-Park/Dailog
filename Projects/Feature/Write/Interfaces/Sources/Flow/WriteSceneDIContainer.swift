@@ -6,25 +6,28 @@
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
+import UIKit
 import SharedUIInterfaces
 import CorePhotoInterfaces
 import DomainPhotoInterfaces
+import FeaturePhotoInterfaces
 
 public struct WriteSceneDIContainerDependencies {
     public let photoService: PhotoService
-    public let photoSceneDIContainer: ()-> any DIContainer
+    public let photoSceneDIContainer: PhotoSceneDIContainer
     
     public init(
         photoService: PhotoService,
-        photoSceneDIContainer: @escaping () -> any DIContainer
+        photoSceneDIContainer: PhotoSceneDIContainer
     ) {
         self.photoService = photoService
         self.photoSceneDIContainer = photoSceneDIContainer
     }
 }
 
-public protocol WriteSceneDIContainer: DIContainer, WriteSceneFlowCoordinatorDependencies {
+public protocol WriteSceneDIContainer: WriteSceneFlowCoordinatorDependencies {
     var dependencies: WriteSceneDIContainerDependencies { get }
     
+    func makeDiaryWriteSceneFlowCoordinator(navigationController: UINavigationController)-> WriteSceneFlowCoordinator
     func makeFetchPhotoAssetsUsecase()-> FetchPhotoAssetsUsecase
 }

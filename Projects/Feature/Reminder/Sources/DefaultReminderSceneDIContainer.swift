@@ -13,8 +13,8 @@ import SharedUIInterfaces
 public final class DefaultReminderSceneDIContainer: ReminderSceneDIContainer {
     public init() {  }
     
-    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
-        return DefaultReminderSceneFlowCoordinator(navigationController: navController, dependencies: self)
+    public func makeReminderSceneFlowCoordinator(navigationController: UINavigationController)-> ReminderSceneFlowCoordinator {
+        return DefaultReminderSceneFlowCoordinator(navigationController: navigationController, dependencies: self)
     }
     
     public func makeReminderViewModel() -> any ReminderViewModel {

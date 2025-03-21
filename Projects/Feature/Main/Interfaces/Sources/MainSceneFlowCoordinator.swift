@@ -8,12 +8,16 @@
 
 import UIKit
 import SharedUIInterfaces
+import FeatureHomeInterfaces
+import FeatureHistoryInterfaces
+import FeatureReminderInterfaces
+import FeatureSettingsInterfaces
 
 public protocol MainSceneFlowCoordinatorDependencies {
-    func makeHomeSceneDIContainer()-> any DIContainer
-    func makeHistorySceneDIContainer()-> any DIContainer
-    func makeReminderSceneDIContainer()-> any DIContainer
-    func makeSettingsSceneDIContainer()-> any DIContainer
+    func makeHomeSceneDIContainer()-> HomeSceneDIContainer
+    func makeHistorySceneDIContainer()-> HistorySceneDIContainer
+    func makeReminderSceneDIContainer()-> ReminderSceneDIContainer
+    func makeSettingsSceneDIContainer()-> SettingsSceneDIContainer
     
     func makeMainViewModel()-> any MainViewModel
 }

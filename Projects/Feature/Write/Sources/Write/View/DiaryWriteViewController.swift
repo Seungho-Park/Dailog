@@ -68,6 +68,7 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
         
         let output = viewModel.transform(
             input: .init(
+                backButtonTapped: navigationBar?.rx.tap.filter { $0 == .back }.map { _ in }.asObservable(),
                 emotionButtonTapped: headerView.emotionButton.rx.tap.asObservable(),
                 addPhotoButtonTapped: footerView.showGalleryButton.rx.tap.asObservable(),
                 captureCameraButtonTapped: footerView.showCameraButton.rx.tap.asObservable()

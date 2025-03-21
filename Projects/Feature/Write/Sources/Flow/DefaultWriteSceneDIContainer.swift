@@ -9,9 +9,11 @@
 import UIKit
 import FeatureWriteInterfaces
 import SharedUIInterfaces
+import FeaturePhotoInterfaces
 import DomainWriteInterfaces
 import DomainPhotoInterfaces
 import DomainPhoto
+import Photos
 
 public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
     public let dependencies: WriteSceneDIContainerDependencies
@@ -22,12 +24,12 @@ public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    public func makePhotoSceneDIContainer() -> any DIContainer {
-        return dependencies.photoSceneDIContainer()
+    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([PHAsset]) -> Void) -> any PhotoSceneFlowCoordinator {
+        return dependencies.photoSceneDIContainer.makePhotoSceneFlowCoordinator(scene: scene, navController: navigationController, completion: completion)
     }
     
-    public func makeCoordinator(navController: UINavigationController) -> any Coordinator {
-        return DefaultWriteSceneFlowCoordinator(navigationController: navController, dependencies: self)
+    public func makeDiaryWriteSceneFlowCoordinator(navigationController: UINavigationController)-> WriteSceneFlowCoordinator {
+        return DefaultWriteSceneFlowCoordinator(navigationController: navigationController, dependencies: self)
     }
     
     public func makeDiaryWriteViewModel(emotion: Emotion?, actions: DiaryWriteViewModelAction) -> any DiaryWriteViewModel {

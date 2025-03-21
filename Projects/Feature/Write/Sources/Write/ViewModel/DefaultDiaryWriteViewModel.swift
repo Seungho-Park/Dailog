@@ -62,6 +62,10 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
         .bind(to: photoAssets)
         .disposed(by: disposeBag)
         
+        input.backButtonTapped?
+            .bind(onNext: actions.close)
+            .disposed(by: disposeBag)
+        
         input.addPhotoButtonTapped
             .bind(onNext: actions.showPhotoAlbum)
             .disposed(by: disposeBag)
