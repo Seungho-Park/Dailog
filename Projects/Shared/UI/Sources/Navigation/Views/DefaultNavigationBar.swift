@@ -15,6 +15,7 @@ import RxCocoa
 
 public final class DefaultNavigationBar: NavigationBar {
     private let container = UIView()
+    private let backButton: NavigationBackButton = .init()
     
     public init(title: String = "") {
         super.init(title: title)

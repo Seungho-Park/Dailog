@@ -10,17 +10,29 @@ import SharedUIInterfaces
 import RxSwift
 import RxCocoa
 import DomainPhotoInterfaces
+import Photos
+
+public struct GalleryViewModelAction {
+    public let close: ([PHAsset])-> Void
+    
+    public init(close: @escaping ([PHAsset]) -> Void) {
+        self.close = close
+    }
+}
 
 public struct GalleryViewModelInput {
     public let viewDidLoad: Observable<Void>
     public let itemSelected: Observable<Int>
+    public let cancelButtonTapped: Observable<Void>?
     
     public init(
         viewDidLoad: Observable<Void>,
-        itemSelected: Observable<Int>
+        itemSelected: Observable<Int>,
+        cancelButtonTapped: Observable<Void>?
     ) {
         self.viewDidLoad = viewDidLoad
         self.itemSelected = itemSelected
+        self.cancelButtonTapped = cancelButtonTapped
     }
 }
 
@@ -34,6 +46,7 @@ public struct GalleryViewModelOutput {
 }
 
 public protocol GalleryViewModel: ViewModel where Input == GalleryViewModelInput, Output == GalleryViewModelOutput {
+    var actions: GalleryViewModelAction { get }
     
     var fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase { get }
     var fetchAssetImageDataUsecase: FetchAssetImageDataUsecase { get }

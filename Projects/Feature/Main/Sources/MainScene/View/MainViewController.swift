@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FeatureSplashInterfaces
 import FeatureMainInterfaces
 import SharedUI
 

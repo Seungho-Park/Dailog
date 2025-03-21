@@ -49,15 +49,15 @@ public extension Coordinator {
         case .push:
             navigationController.pushViewController(vc, animated: animated)
         case .modal:
-            navigationController.topViewController?.present(vc, animated: animated)
+            navigationController.visibleViewController?.present(vc, animated: animated)
         }
         
         return vc
     }
     
     func close(animated: Bool, completion: (()-> Void)? = nil) {
-        if let presentedVC = navigationController.topViewController?.presentedViewController {
-            presentedVC.dismiss(animated: animated, completion: completion)
+        if navigationController.visibleViewController?.presentingViewController != nil {
+            navigationController.visibleViewController?.dismiss(animated: animated, completion: completion)
         } else if navigationController.viewControllers.count > 1 {
             navigationController.popViewController(animated: animated)
         }

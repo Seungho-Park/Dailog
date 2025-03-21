@@ -8,7 +8,7 @@
 import SharedUIInterfaces
 
 public protocol PhotoSceneFlowCoordinatorDependencies {    
-    func makeGalleryViewModel()-> any GalleryViewModel
+    func makeGalleryViewModel(actions: GalleryViewModelAction)-> any GalleryViewModel
 }
 
 public protocol PhotoSceneFlowCoordinator: Coordinator {

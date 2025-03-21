@@ -29,6 +29,7 @@ public final class GalleryViewController<VM: GalleryViewModel>: DailogViewContro
     }()
     
     public override func configure() {
+        self.navigationBar = ModalPickerNavigationBar(title: "사진")
         super.configure()
         
         collectionView.delegate = self
@@ -43,7 +44,8 @@ public final class GalleryViewController<VM: GalleryViewModel>: DailogViewContro
         let output = viewModel.transform(
             input: .init(
                 viewDidLoad: rx.viewDidLoad.asObservable(),
-                itemSelected: collectionView.rx.modelSelected(GalleryItemViewModel.self).map { $0.idx }.asObservable()
+                itemSelected: collectionView.rx.modelSelected(GalleryItemViewModel.self).map { $0.idx }.asObservable(),
+                cancelButtonTapped: navigationBar?.rx.tap.filter { $0 == .back }.map { _ in }.asObservable()
             )
         )
         
@@ -59,9 +61,6 @@ public final class GalleryViewController<VM: GalleryViewModel>: DailogViewContro
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        container.pin.all()
-        container.flex.layout()
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

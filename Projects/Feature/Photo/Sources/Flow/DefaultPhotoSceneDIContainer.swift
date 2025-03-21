@@ -30,10 +30,11 @@ public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
         )
     }
     
-    public func makeGalleryViewModel() -> any GalleryViewModel {
+    public func makeGalleryViewModel(actions: GalleryViewModelAction) -> any GalleryViewModel {
         return DefaultGalleryViewModel(
             fetchPhotoAssetsUsecase: makeFetchPhotoAssetsUsecase(),
-            fetchAssetImageDataUsecase: makeFetchAssetImageDataUsecase()
+            fetchAssetImageDataUsecase: makeFetchAssetImageDataUsecase(),
+            actions: actions
         )
     }
     

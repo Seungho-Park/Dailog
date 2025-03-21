@@ -15,6 +15,7 @@ import Photos
 import UIKit
 
 public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoordinator {
+    private var picker: UIImagePickerController?
     private let scene: PhotoScene
     private let completion: (([PHAsset])-> Void)?
     public let navigationController: UINavigationController
@@ -24,7 +25,7 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         scene: PhotoScene,
         navigationController: UINavigationController,
         dependencies: any PhotoSceneFlowCoordinatorDependencies,
-        completion: @escaping ([PHAsset])-> Void
+        completion: (([PHAsset])-> Void)?
     ) {
         self.scene = scene
         self.completion = completion
@@ -35,20 +36,32 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
     public func start() -> UIViewController {
         switch scene {
         case .gallery:
-            let vm = dependencies.makeGalleryViewModel() as! DefaultGalleryViewModel
+            let vm = dependencies.makeGalleryViewModel(
+                actions: .init(
+                    close: closeAction(assets:)
+                )
+            ) as! DefaultGalleryViewModel
             let vc = GalleryViewController<DefaultGalleryViewModel>.create(viewModel: vm)
-            navigationController.topViewController?.present(vc, animated: true)
+            vc.view.backgroundColor = .white
+            vc.modalPresentationStyle = .fullScreen
+            navigationController.visibleViewController?.present(vc, animated: true)
             return vc
         case .camera:
-            let picker = UIImagePickerController()
-            picker.sourceType = .camera
-            picker.delegate = self
-            picker.allowsEditing = false
-            picker.cameraCaptureMode = .photo
+            picker = UIImagePickerController.init()
+            picker?.sourceType = .camera
+            picker?.delegate = self
+            picker?.allowsEditing = false
+            picker?.cameraCaptureMode = .photo
             
-            self.navigationController.topViewController?.present(picker, animated: true, completion: nil)
-            return picker
+            self.navigationController.visibleViewController?.present(picker!, animated: true, completion: nil)
+            return picker!
         }
+    }
+    
+    private func closeAction(assets: [PHAsset]) {
+        print(assets)
+        completion?(assets)
+        close(animated: true)
     }
     
     deinit {
@@ -65,6 +78,7 @@ extension DefaultPhotoSceneFlowCoordinator: UIImagePickerControllerDelegate, UIN
             // 편집되지 않은 원본 이미지 처리
             print("원본 이미지: \(image)")
         }
+        completion?([])
     }
     
 }

@@ -14,7 +14,6 @@ import UIKit
 open class NavigationBar: UIView {
     public var items: [NavigationBarButton] = []
     public var title: String
-    public let backButton: NavigationBackButton = .init()
     
     public init(items: [NavigationBarButton] = [], title: String) {
         self.items = items

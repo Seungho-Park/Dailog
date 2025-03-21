@@ -16,15 +16,19 @@ import UIKit
 
 public final class DefaultGalleryViewModel: GalleryViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
+    public let actions: GalleryViewModelAction
+    
     public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
     public let fetchAssetImageDataUsecase: any FetchAssetImageDataUsecase
     
     public init(
         fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase,
-        fetchAssetImageDataUsecase: FetchAssetImageDataUsecase
+        fetchAssetImageDataUsecase: FetchAssetImageDataUsecase,
+        actions: GalleryViewModelAction
     ) {
         self.fetchPhotoAssetsUsecase = fetchPhotoAssetsUsecase
         self.fetchAssetImageDataUsecase = fetchAssetImageDataUsecase
+        self.actions = actions
     }
     
     public func transform(input: Input) -> Output {
@@ -74,6 +78,13 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
                 
                 photos.accept(values)
             }
+            .disposed(by: disposeBag)
+        
+        input.cancelButtonTapped?
+            .map { _ -> [PHAsset] in
+                return []
+            }
+            .bind(onNext: actions.close)
             .disposed(by: disposeBag)
         
         return .init(
