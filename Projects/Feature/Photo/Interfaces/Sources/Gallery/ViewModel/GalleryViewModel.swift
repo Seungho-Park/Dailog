@@ -13,9 +13,9 @@ import DomainPhotoInterfaces
 import Photos
 
 public struct GalleryViewModelAction {
-    public let close: ([PHAsset])-> Void
+    public let close: ([String])-> Void
     
-    public init(close: @escaping ([PHAsset]) -> Void) {
+    public init(close: @escaping ([String]) -> Void) {
         self.close = close
     }
 }
@@ -24,24 +24,30 @@ public struct GalleryViewModelInput {
     public let viewDidLoad: Observable<Void>
     public let itemSelected: Observable<Int>
     public let cancelButtonTapped: Observable<Void>?
+    public let selectButtonTapped: Observable<Void>?
     
     public init(
         viewDidLoad: Observable<Void>,
         itemSelected: Observable<Int>,
-        cancelButtonTapped: Observable<Void>?
+        cancelButtonTapped: Observable<Void>?,
+        selectButtonTapped: Observable<Void>?
     ) {
         self.viewDidLoad = viewDidLoad
         self.itemSelected = itemSelected
         self.cancelButtonTapped = cancelButtonTapped
+        self.selectButtonTapped = selectButtonTapped
     }
 }
 
 public struct GalleryViewModelOutput {
     public let cellItems: Driver<[GalleryItemViewModel]>
+    public let selectedCount: Driver<Int>
     public init(
-        cellItems: Driver<[GalleryItemViewModel]>
+        cellItems: Driver<[GalleryItemViewModel]>,
+        selectedCount: Driver<Int>
     ) {
         self.cellItems = cellItems
+        self.selectedCount = selectedCount
     }
 }
 
@@ -50,4 +56,5 @@ public protocol GalleryViewModel: ViewModel where Input == GalleryViewModelInput
     
     var fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase { get }
     var fetchAssetImageDataUsecase: FetchAssetImageDataUsecase { get }
+    var savePhotoUsecaes: SavePhotoUsecase { get }
 }

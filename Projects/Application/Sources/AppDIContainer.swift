@@ -25,10 +25,12 @@ import FeaturePhoto
 import FeaturePhotoInterfaces
 import CorePhotoInterfaces
 import CorePhoto
+import CoreStorage
 
 final class AppDIContainer {
     private let config = ApplicationConfig()
     private lazy var photoService: PhotoService = DefaultPhotoService()
+    private lazy var imageFileStorage = ImageFileStorage()
     
     func makeSplashSceneDIContainer()-> SplashSceneDIContainer {
         return DefaultSplashSceneDIContainer(
@@ -72,6 +74,6 @@ final class AppDIContainer {
     }
     
     private func makePhotoSceneDIContainer()-> PhotoSceneDIContainer {
-        return DefaultPhotoSceneDIContainer(dependencies: .init(photoService: photoService))
+        return DefaultPhotoSceneDIContainer(dependencies: .init(photoService: photoService, imageStorage: imageFileStorage))
     }
 }

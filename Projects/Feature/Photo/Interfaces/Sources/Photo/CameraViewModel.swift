@@ -6,16 +6,28 @@
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
+import Foundation
 import SharedUIInterfaces
+import DomainPhotoInterfaces
+import RxSwift
+import RxCocoa
 
 public struct CameraViewModelAction {
-    
-    public init() {  }
+    public let close: (String?)-> Void
+    public init(
+        close: @escaping (String?)-> Void
+    ) {
+        self.close = close
+    }
 }
 
 public struct CameraViewModelInput {
-    
-    public init() {  }
+    public let close: Observable<Data?>
+    public init(
+        close: Observable<Data?>
+    ) {
+        self.close = close
+    }
 }
 
 public struct CameraViewModelOutput {
@@ -25,4 +37,5 @@ public struct CameraViewModelOutput {
 
 public protocol CameraViewModel: ViewModel where Input == CameraViewModelInput, Output == CameraViewModelOutput {
     var actions: CameraViewModelAction { get }
+    var savePhotoUsecaes: SavePhotoUsecase { get }
 }

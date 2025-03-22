@@ -13,7 +13,7 @@ import UIKit
 import Photos
 
 public protocol WriteSceneFlowCoordinatorDependencies {
-    func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([PHAsset])-> Void)-> PhotoSceneFlowCoordinator
+    func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([String])-> Void)-> PhotoSceneFlowCoordinator
     
     func makeDiaryWriteViewModel(emotion: Emotion?, actions: DiaryWriteViewModelAction)-> any DiaryWriteViewModel
     func makeEmotionViewModel(actions: EmotionViewModelActions)-> any EmotionViewModel

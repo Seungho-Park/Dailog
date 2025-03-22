@@ -10,7 +10,7 @@ import Photos
 import DomainPhotoInterfaces
 import CorePhotoInterfaces
 
-public final class PhotoRepositoryImpl: PhotoRepository {
+public final class GalleryRepositoryImpl: GalleryRepository {
     
     private let photoService: PhotoService
     
@@ -22,11 +22,11 @@ public final class PhotoRepositoryImpl: PhotoRepository {
         photoService.requestAuthorization(completion: completion)
     }
     
-    public func fetchAllPhotos(size: CGSize, completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void) {
+    public func fetchAllPhotos(size: PhotoSize, completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void) {
         photoService.fetchPhotos(size: size, completion: completion)
     }
     
-    public func fetchAssetImageData(asset: PHAsset, completion: @escaping (Result<Data, PhotoServiceError>) -> Void) {
-        photoService.requestImageData(asset: asset, completion: completion)
+    public func fetchAssetImageData(asset: PHAsset, size: PhotoSize, completion: @escaping (Result<Data, PhotoServiceError>) -> Void) {
+        photoService.requestImageData(asset: asset, size: size, completion: completion)
     }
 }

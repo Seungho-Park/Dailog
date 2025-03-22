@@ -17,7 +17,7 @@ import UIKit
 public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoordinator {
     private var picker: UIImagePickerController?
     private let scene: PhotoScene
-    private let completion: (([PHAsset])-> Void)?
+    private let completion: (([String])-> Void)?
     public let navigationController: UINavigationController
     public let dependencies: any PhotoSceneFlowCoordinatorDependencies
     
@@ -25,7 +25,7 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         scene: PhotoScene,
         navigationController: UINavigationController,
         dependencies: any PhotoSceneFlowCoordinatorDependencies,
-        completion: (([PHAsset])-> Void)?
+        completion: (([String])-> Void)?
     ) {
         self.scene = scene
         self.completion = completion
@@ -47,7 +47,11 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
             navigationController.visibleViewController?.present(vc, animated: true)
             return vc
         case .camera:
-            let vm = dependencies.makeCameraViewModel(actions: .init())
+            let vm = dependencies.makeCameraViewModel(
+                actions: .init(
+                    close: closeCamera(fileName:)
+                )
+            )
             let vc = CameraViewController.create(viewModel: vm as! DefaultCameraViewModel)
             vc.modalPresentationStyle = .fullScreen
             navigationController.visibleViewController?.present(vc, animated: true, completion: nil)
@@ -55,8 +59,14 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         }
     }
     
-    private func closeAction(assets: [PHAsset]) {
-        print(assets)
+    private func closeCamera(fileName: String?) {
+        if let fileName = fileName {
+            completion?([fileName])
+        }
+        close(animated: true)
+    }
+    
+    private func closeAction(assets: [String]) {
         completion?(assets)
         close(animated: true)
     }

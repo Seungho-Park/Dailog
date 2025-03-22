@@ -24,7 +24,7 @@ public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([PHAsset]) -> Void) -> any PhotoSceneFlowCoordinator {
+    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([String]) -> Void) -> any PhotoSceneFlowCoordinator {
         return dependencies.photoSceneDIContainer.makePhotoSceneFlowCoordinator(scene: scene, navController: navigationController, completion: completion)
     }
     
@@ -45,6 +45,6 @@ public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
     }
     
     public func makeFetchPhotoAssetsUsecase() -> any FetchPhotoAssetsUsecase {
-        return FetchPhotoAssetsUsecaseImpl(repository: PhotoRepositoryImpl(photoService: dependencies.photoService))
+        return FetchPhotoAssetsUsecaseImpl(repository: GalleryRepositoryImpl(photoService: dependencies.photoService))
     }
 }

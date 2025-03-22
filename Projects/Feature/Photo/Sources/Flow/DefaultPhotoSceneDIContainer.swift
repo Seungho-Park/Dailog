@@ -21,7 +21,7 @@ public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navController: UINavigationController, completion: @escaping ([PHAsset]) -> Void) -> PhotoSceneFlowCoordinator  {
+    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navController: UINavigationController, completion: @escaping ([String]) -> Void) -> PhotoSceneFlowCoordinator  {
         return DefaultPhotoSceneFlowCoordinator(
             scene: scene,
             navigationController: navController,
@@ -34,23 +34,32 @@ public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
         return DefaultGalleryViewModel(
             fetchPhotoAssetsUsecase: makeFetchPhotoAssetsUsecase(),
             fetchAssetImageDataUsecase: makeFetchAssetImageDataUsecase(),
+            savePhotoUsecaes: makeSavePhotoUsecase(),
             actions: actions
         )
     }
     
     public func makeCameraViewModel(actions: CameraViewModelAction) -> any CameraViewModel {
-        return DefaultCameraViewModel(actions: actions)
+        return DefaultCameraViewModel(savePhotoUsecaes: makeSavePhotoUsecase(), actions: actions)
+    }
+    
+    public func makeSavePhotoUsecase() -> any SavePhotoUsecase {
+        return SavePhotoUsecaseImpl(repoisitory: makePhotoStorageRepository())
     }
     
     public func makeFetchPhotoAssetsUsecase() -> FetchPhotoAssetsUsecase {
-        return FetchPhotoAssetsUsecaseImpl(repository: makePhotoRepository())
+        return FetchPhotoAssetsUsecaseImpl(repository: makeGalleryRepository())
     }
     
     public func makeFetchAssetImageDataUsecase() -> any FetchAssetImageDataUsecase {
-        return FetchAssetImageDataUsecaseImpl(repository: makePhotoRepository())
+        return FetchAssetImageDataUsecaseImpl(repository: makeGalleryRepository())
     }
     
-    private func makePhotoRepository()-> PhotoRepository {
-        return PhotoRepositoryImpl(photoService: dependencies.photoService)
+    private func makeGalleryRepository()-> GalleryRepository {
+        return GalleryRepositoryImpl(photoService: dependencies.photoService)
+    }
+    
+    private func makePhotoStorageRepository()-> PhotoStorageRepository {
+        return PhotoStorageRepositoryImpl(fileStorage: dependencies.imageStorage, photoService: dependencies.photoService)
     }
 }

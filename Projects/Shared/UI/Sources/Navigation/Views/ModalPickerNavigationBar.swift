@@ -18,7 +18,7 @@ public final class ModalPickerNavigationBar: NavigationBar {
     
     private lazy var cancelButton: NavigationBarButton = {
         let button = NavigationBarButton(type: .back)
-        button.setTitle("Cancel", for: .normal)
+        button.setTitle("Cancel".localized, for: .normal)
         button.setTitleColor(.black, for: .normal)
         return button
     }()
@@ -32,9 +32,25 @@ public final class ModalPickerNavigationBar: NavigationBar {
         return label
     }()
     
+    private lazy var selectButton: NavigationBarButton = {
+        let button = NavigationBarButton(type: .confirm)
+        button.setTitle("Select".localized, for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.isEnabled = false
+        return button
+    }()
+    
+    public var canSelect: Bool {
+        get { selectButton.isEnabled }
+        set {
+            selectButton.isEnabled = newValue
+        }
+    }
+    
     convenience public init(title: String) {
         self.init(items: [], title: title)
         items.append(cancelButton)
+        items.append(selectButton)
         configure()
     }
     
@@ -54,6 +70,8 @@ public final class ModalPickerNavigationBar: NavigationBar {
                     .position(.absolute)
                     .horizontally(0)
                     .vertically(0)
+                flex.addItem().grow(1)
+                flex.addItem(selectButton)
             }
     }
     

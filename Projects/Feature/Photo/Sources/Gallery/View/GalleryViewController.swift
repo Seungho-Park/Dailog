@@ -45,7 +45,8 @@ public final class GalleryViewController<VM: GalleryViewModel>: DailogViewContro
             input: .init(
                 viewDidLoad: rx.viewDidLoad.asObservable(),
                 itemSelected: collectionView.rx.modelSelected(GalleryItemViewModel.self).map { $0.idx }.asObservable(),
-                cancelButtonTapped: navigationBar?.rx.tap.filter { $0 == .back }.map { _ in }.asObservable()
+                cancelButtonTapped: navigationBar?.rx.tap.filter { $0 == .back }.map { _ in }.asObservable(),
+                selectButtonTapped: navigationBar?.rx.tap.filter { $0 == .confirm }.map { _ in }.asObservable()
             )
         )
         
@@ -55,6 +56,13 @@ public final class GalleryViewController<VM: GalleryViewModel>: DailogViewContro
                 guard let cell = cell as? GalleryItemViewCell else { return cell }
                 cell.fill(viewModel: item)
                 return cell
+            }
+            .disposed(by: disposeBag)
+        
+        output.selectedCount
+            .drive { [weak self] count in
+                guard let self else { return }
+                (self.navigationBar as? ModalPickerNavigationBar)?.canSelect = count > 0
             }
             .disposed(by: disposeBag)
     }

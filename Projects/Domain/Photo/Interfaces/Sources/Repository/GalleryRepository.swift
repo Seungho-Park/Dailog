@@ -9,8 +9,8 @@
 import Photos
 import CorePhotoInterfaces
 
-public protocol PhotoRepository {
+public protocol GalleryRepository {
     func reuqestAuthorization(completion: @escaping (Result<Void, PhotoServiceError>)-> Void)
-    func fetchAllPhotos(size: CGSize, completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void)
-    func fetchAssetImageData(asset: PHAsset, completion: @escaping (Result<Data, PhotoServiceError>)-> Void)
+    func fetchAllPhotos(size: PhotoSize, completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void)
+    func fetchAssetImageData(asset: PHAsset, size: PhotoSize, completion: @escaping (Result<Data, PhotoServiceError>)-> Void)
 }

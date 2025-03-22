@@ -20,19 +20,22 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
     
     public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
     public let fetchAssetImageDataUsecase: any FetchAssetImageDataUsecase
+    public let savePhotoUsecaes: SavePhotoUsecase
     
     public init(
         fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase,
         fetchAssetImageDataUsecase: FetchAssetImageDataUsecase,
+        savePhotoUsecaes: SavePhotoUsecase,
         actions: GalleryViewModelAction
     ) {
         self.fetchPhotoAssetsUsecase = fetchPhotoAssetsUsecase
         self.fetchAssetImageDataUsecase = fetchAssetImageDataUsecase
+        self.savePhotoUsecaes = savePhotoUsecaes
         self.actions = actions
     }
     
     public func transform(input: Input) -> Output {
-        var selectedItems: [GalleryItemViewModel] = []
+        var selectedItems: BehaviorRelay<[GalleryItemViewModel]> = .init(value: [])
         let photos: BehaviorRelay<[GalleryItemViewModel]> = .init(value: [])
         
         let authResult = input.viewDidLoad
@@ -61,34 +64,50 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
         input.itemSelected
             .bind { idx in
                 var values = photos.value
-                if let idx = selectedItems.firstIndex(where: { item in
+                var items = selectedItems.value
+                if let idx = items.firstIndex(where: { item in
                     item.idx == idx
                 }) {
-                    values[selectedItems[idx].idx].selectedIdx = nil
-                    selectedItems.remove(at: idx)
+                    values[items[idx].idx].selectedIdx = nil
+                    items.remove(at: idx)
                     
-                    for i in 0..<selectedItems.count {
-                        selectedItems[i].selectedIdx = i + 1
-                        values[selectedItems[i].idx].selectedIdx = i + 1
+                    for i in 0..<items.count {
+                        items[i].selectedIdx = i + 1
+                        values[items[i].idx].selectedIdx = i + 1
                     }
                 } else {
-                    values[idx].selectedIdx = selectedItems.count + 1
-                    selectedItems.append(values[idx])
+                    values[idx].selectedIdx = items.count + 1
+                    items.append(values[idx])
                 }
                 
                 photos.accept(values)
+                selectedItems.accept(items)
             }
             .disposed(by: disposeBag)
         
         input.cancelButtonTapped?
-            .map { _ -> [PHAsset] in
+            .map { _ -> [String] in
                 return []
             }
             .bind(onNext: actions.close)
             .disposed(by: disposeBag)
         
+        input.selectButtonTapped?
+            .map { selectedItems.value }
+            .withUnretained(self)
+            .flatMap { owner, items in
+                Observable.from(items.map { $0.asset })
+                    .flatMap { owner.savePhotoUsecaes.execute(asset: $0).map { fileName-> String? in fileName }.catchAndReturn(nil) }
+                    .toArray()
+            }
+            .debug()
+            .map { $0.compactMap { $0 } }
+            .bind(onNext: actions.close)
+            .disposed(by: disposeBag)
+        
         return .init(
-            cellItems: photos.asDriver()
+            cellItems: photos.asDriver(),
+            selectedCount: selectedItems.asDriver().map { $0.count }
         )
     }
     

@@ -13,7 +13,6 @@ import CorePhotoInterfaces
 public final class DefaultPhotoService: PhotoService {
     private let photoManager: PHImageManager
     private let photoRequestOptions: PHImageRequestOptions
-    private var size: CGSize = .zero
     
     public init(photoManager: PHImageManager = PHCachingImageManager.default()) {
         self.photoManager = photoManager
@@ -38,8 +37,7 @@ public final class DefaultPhotoService: PhotoService {
         }
     }
     
-    public func fetchPhotos(size: CGSize = .init(width: 150, height: 150), completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void) {
-        self.size = size
+    public func fetchPhotos(size: PhotoSize, completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void) {
         guard PHPhotoLibrary.authorizationStatus(for: .readWrite) == .authorized else {
             completion(.failure(.unauthorized))
             return
@@ -55,13 +53,13 @@ public final class DefaultPhotoService: PhotoService {
         }
         
         if let cachingImageManager = photoManager as? PHCachingImageManager {
-            cachingImageManager.startCachingImages(for: assets, targetSize: size, contentMode: .aspectFill, options: photoRequestOptions)
+            cachingImageManager.startCachingImages(for: assets, targetSize: size.size, contentMode: .aspectFill, options: photoRequestOptions)
         }
         completion(.success(assets))
     }
     
-    public func requestImageData(asset: PHAsset, completion: @escaping (Result<Data, PhotoServiceError>) -> Void) {
-        photoManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: photoRequestOptions) { image, _ in
+    public func requestImageData(asset: PHAsset, size: PhotoSize, completion: @escaping (Result<Data, PhotoServiceError>) -> Void) {
+        photoManager.requestImage(for: asset, targetSize: size.size, contentMode: .aspectFill, options: photoRequestOptions) { image, _ in
             if let imageData = image?.pngData() {
                 completion(.success(imageData))
             } else {

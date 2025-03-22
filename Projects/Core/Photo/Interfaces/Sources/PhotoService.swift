@@ -10,7 +10,7 @@ import Photos
 public protocol PhotoService {
     
     func requestAuthorization(completion: @escaping (Result<Void, PhotoServiceError>)-> Void)
-    func fetchPhotos(size: CGSize, completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void)
-    func requestImageData(asset: PHAsset, completion: @escaping (Result<Data, PhotoServiceError>)-> Void)
+    func fetchPhotos(size: PhotoSize, completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void)
+    func requestImageData(asset: PHAsset, size: PhotoSize, completion: @escaping (Result<Data, PhotoServiceError>)-> Void)
     func clear()
 }
