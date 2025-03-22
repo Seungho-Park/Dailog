@@ -38,6 +38,10 @@ public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
         )
     }
     
+    public func makeCameraViewModel(actions: CameraViewModelAction) -> any CameraViewModel {
+        return DefaultCameraViewModel(actions: actions)
+    }
+    
     public func makeFetchPhotoAssetsUsecase() -> FetchPhotoAssetsUsecase {
         return FetchPhotoAssetsUsecaseImpl(repository: makePhotoRepository())
     }

@@ -47,14 +47,11 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
             navigationController.visibleViewController?.present(vc, animated: true)
             return vc
         case .camera:
-            picker = UIImagePickerController.init()
-            picker?.sourceType = .camera
-            picker?.delegate = self
-            picker?.allowsEditing = false
-            picker?.cameraCaptureMode = .photo
-            
-            self.navigationController.visibleViewController?.present(picker!, animated: true, completion: nil)
-            return picker!
+            let vm = dependencies.makeCameraViewModel(actions: .init())
+            let vc = CameraViewController.create(viewModel: vm as! DefaultCameraViewModel)
+            vc.modalPresentationStyle = .fullScreen
+            navigationController.visibleViewController?.present(vc, animated: true, completion: nil)
+            return vc
         }
     }
     
@@ -67,18 +64,4 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
     deinit {
         print("Deinit: \(Self.self)")
     }
-}
-
-extension DefaultPhotoSceneFlowCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.editedImage] as? UIImage {
-            print("사진 찍힘")
-        } else if let image = info[.originalImage] as? UIImage {
-            // 편집되지 않은 원본 이미지 처리
-            print("원본 이미지: \(image)")
-        }
-        completion?([])
-    }
-    
 }
