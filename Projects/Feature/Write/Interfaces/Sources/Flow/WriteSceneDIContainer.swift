@@ -11,17 +11,21 @@ import SharedUIInterfaces
 import CorePhotoInterfaces
 import DomainPhotoInterfaces
 import FeaturePhotoInterfaces
+import CoreStorageInterfaces
 
 public struct WriteSceneDIContainerDependencies {
     public let photoService: PhotoService
     public let photoSceneDIContainer: PhotoSceneDIContainer
+    public let imageStorage: FileStorage
     
     public init(
         photoService: PhotoService,
-        photoSceneDIContainer: PhotoSceneDIContainer
+        photoSceneDIContainer: PhotoSceneDIContainer,
+        imageStorage: FileStorage
     ) {
         self.photoService = photoService
         self.photoSceneDIContainer = photoSceneDIContainer
+        self.imageStorage = imageStorage
     }
 }
 
@@ -30,4 +34,5 @@ public protocol WriteSceneDIContainer: WriteSceneFlowCoordinatorDependencies {
     
     func makeDiaryWriteSceneFlowCoordinator(navigationController: UINavigationController)-> WriteSceneFlowCoordinator
     func makeFetchPhotoAssetsUsecase()-> FetchPhotoAssetsUsecase
+    func makeFetchPhotoDataUsecase()-> FetchPhotoDataUsecase
 }

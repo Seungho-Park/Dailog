@@ -11,18 +11,19 @@ import DomainWriteInterfaces
 import RxSwift
 import RxCocoa
 import DomainPhotoInterfaces
+import CoreStorageInterfaces
 
 public struct DiaryWriteViewModelAction {
     public let close: ()-> Void
     public let showSelectEmotion: ()-> Observable<Emotion?>
-    public let showPhotoAlbum: ()-> Void
-    public let showDeviceCamera: ()-> Void
+    public let showPhotoAlbum: ()-> Observable<[FileInfo]>
+    public let showDeviceCamera: ()-> Observable<[FileInfo]>
     
     public init(
         close: @escaping ()-> Void,
         showSelectEmotion: @escaping () -> Observable<Emotion?>,
-        showPhotoAlbum: @escaping ()-> Void,
-        showDeviceCamera: @escaping ()-> Void
+        showPhotoAlbum: @escaping ()-> Observable<[FileInfo]>,
+        showDeviceCamera: @escaping ()-> Observable<[FileInfo]>
     ) {
         self.close = close
         self.showSelectEmotion = showSelectEmotion
@@ -63,5 +64,6 @@ public struct DiaryWriteViewModelOutput {
 public protocol DiaryWriteViewModel: ViewModel where Input == DiaryWriteViewModelInput, Output == DiaryWriteViewModelOutput {
     var emotion: Emotion? { get }
     var fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase { get }
+    var fetchPhotoDataUsecase: FetchPhotoDataUsecase { get }
     var actions: DiaryWriteViewModelAction { get }
 }

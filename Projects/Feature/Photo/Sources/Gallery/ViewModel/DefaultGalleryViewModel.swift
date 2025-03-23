@@ -13,6 +13,7 @@ import Photos
 import FeaturePhotoInterfaces
 import DomainPhotoInterfaces
 import UIKit
+import CoreStorageInterfaces
 
 public final class DefaultGalleryViewModel: GalleryViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
@@ -35,7 +36,7 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
     }
     
     public func transform(input: Input) -> Output {
-        var selectedItems: BehaviorRelay<[GalleryItemViewModel]> = .init(value: [])
+        let selectedItems: BehaviorRelay<[GalleryItemViewModel]> = .init(value: [])
         let photos: BehaviorRelay<[GalleryItemViewModel]> = .init(value: [])
         
         let authResult = input.viewDidLoad
@@ -50,7 +51,7 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
             .filter { $0 }
             .withUnretained(self)
             .flatMap { owner, _ in
-                owner.fetchPhotoAssetsUsecase.execute(size: .init(width: 150, height: 150))
+                owner.fetchPhotoAssetsUsecase.execute(size: .thumbnail)
             }
             .withUnretained(self)
             .map { owner, items in
@@ -86,7 +87,7 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
             .disposed(by: disposeBag)
         
         input.cancelButtonTapped?
-            .map { _ -> [String] in
+            .map { _ -> [FileInfo] in
                 return []
             }
             .bind(onNext: actions.close)
@@ -97,10 +98,9 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
             .withUnretained(self)
             .flatMap { owner, items in
                 Observable.from(items.map { $0.asset })
-                    .flatMap { owner.savePhotoUsecaes.execute(asset: $0).map { fileName-> String? in fileName }.catchAndReturn(nil) }
+                    .flatMap { owner.savePhotoUsecaes.execute(asset: $0).map { fileName-> FileInfo? in fileName }.catchAndReturn(nil) }
                     .toArray()
             }
-            .debug()
             .map { $0.compactMap { $0 } }
             .bind(onNext: actions.close)
             .disposed(by: disposeBag)

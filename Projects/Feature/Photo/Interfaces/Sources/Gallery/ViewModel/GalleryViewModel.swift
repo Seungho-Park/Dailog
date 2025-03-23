@@ -11,11 +11,12 @@ import RxSwift
 import RxCocoa
 import DomainPhotoInterfaces
 import Photos
+import CoreStorageInterfaces
 
 public struct GalleryViewModelAction {
-    public let close: ([String])-> Void
+    public let close: ([FileInfo])-> Void
     
-    public init(close: @escaping ([String]) -> Void) {
+    public init(close: @escaping ([FileInfo]) -> Void) {
         self.close = close
     }
 }

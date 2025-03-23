@@ -12,20 +12,21 @@ import CorePhotoInterfaces
 import RxSwift
 
 public final class FetchPhotoAssetsUsecaseImpl: FetchPhotoAssetsUsecase {
+    
     private let repository: GalleryRepository
     
     public init(repository: GalleryRepository) {
         self.repository = repository
     }
     
-    public func execute(size: CGSize) -> Single<[PHAsset]> {
+    public func execute(size: PhotoSize) -> Single<[PHAsset]> {
         return Single<[PHAsset]>.create { [weak self] single in
             guard let self = self else {
                 single(.failure(PhotoServiceError.noResponse))
                 return Disposables.create()
             }
             
-            self.repository.fetchAllPhotos(size: .thumbnail) { result in
+            self.repository.fetchAllPhotos(size: size) { result in
                 switch result {
                 case .success(let assets):
                     single(.success(assets))

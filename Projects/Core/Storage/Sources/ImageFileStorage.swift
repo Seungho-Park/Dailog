@@ -28,14 +28,14 @@ public final class ImageFileStorage: FileStorage {
         print(filePath)
     }
     
-    public func save(data: Data?, completion: @escaping (Result<String, FileStorageError>)-> Void) {
+    public func save(data: Data?, completion: @escaping (Result<FileInfo, FileStorageError>)-> Void) {
         guard let data else {
             completion(.failure(.emptyData))
             return
         }
         
         var imageData = data
-        var fileExtension = "heic" // 기본적으로 HEIF로 저장
+        let fileExtension = "heic" // 기본적으로 HEIF로 저장
         
         // 1️⃣ PNG 데이터인지 확인 후 HEIF로 변환
         if isPNG(data: data), let convertedData = convertPNGToHEIF(data: data) {
@@ -54,10 +54,56 @@ public final class ImageFileStorage: FileStorage {
         
         // 3️⃣ 데이터 저장
         do {
-            try imageData.write(to: fileURL)
-            completion(.success(fileURL.path))  // 저장 성공 시 경로 반환
+            if !fileManager.fileExists(atPath: fileURL.path) {
+                fileManager.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
+            }
+                
+            let fileHandle = try FileHandle(forWritingTo: fileURL)
+            fileHandle.seekToEndOfFile()  // 파일 끝으로 이동
+            try fileHandle.write(contentsOf: imageData)  // 데이터 쓰기
+            try fileHandle.synchronize()
+            try fileHandle.close()
+            
+            completion(.success(FileInfo(fileName: filename, data: imageData)))
         } catch {
+            print(error)
             completion(.failure(.saveError(error)))  // 저장 실패 처리
+        }
+    }
+    
+    public func fetch(fileName: String, completion: @escaping (Result<FileInfo, FileStorageError>) -> Void) {
+        let filePath = filePath.appendingPathComponent(fileName)
+        print(filePath)
+        guard fileManager.fileExists(atPath: filePath.path()) else {
+            completion(.failure(.fileNotExist))
+            return
+        }
+        
+        do {
+            var imageData = Data()
+            let bufferSize = 1024 * 1024
+            let fileHandle = try FileHandle(forReadingFrom: filePath)
+            
+            while let chunk = try fileHandle.read(upToCount: bufferSize) {
+                if chunk.isEmpty { break }
+                imageData.append(chunk)
+            }
+            
+            try fileHandle.close()
+            completion(.success(FileInfo(fileName: fileName, data: imageData)))
+        } catch {
+            completion(.failure(.fetchError(error)))
+        }
+    }
+    
+    public func remove(fileName: String, completion: @escaping (Result<Bool, FileStorageError>) -> Void) {
+        let filePath = filePath.appendingPathComponent(fileName)
+        
+        do {
+            try fileManager.removeItem(at: filePath)
+            completion(.success(true))
+        } catch {
+            completion(.failure(.removeError(error)))
         }
     }
     

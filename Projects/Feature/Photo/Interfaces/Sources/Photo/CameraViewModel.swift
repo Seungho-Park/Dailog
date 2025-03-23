@@ -11,11 +11,12 @@ import SharedUIInterfaces
 import DomainPhotoInterfaces
 import RxSwift
 import RxCocoa
+import CoreStorageInterfaces
 
 public struct CameraViewModelAction {
-    public let close: (String?)-> Void
+    public let close: (FileInfo?)-> Void
     public init(
-        close: @escaping (String?)-> Void
+        close: @escaping (FileInfo?)-> Void
     ) {
         self.close = close
     }

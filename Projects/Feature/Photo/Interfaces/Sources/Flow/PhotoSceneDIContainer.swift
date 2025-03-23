@@ -11,15 +11,15 @@ import SharedUIInterfaces
 import CorePhotoInterfaces
 import DomainPhotoInterfaces
 import Photos
-import CoreStorage
+import CoreStorageInterfaces
 
 public struct PhotoSceneDIContainerDependencies {
     public let photoService: PhotoService
-    public let imageStorage: ImageFileStorage
+    public let imageStorage: FileStorage
     
     public init(
         photoService: PhotoService,
-        imageStorage: ImageFileStorage
+        imageStorage: FileStorage
     ) {
         self.photoService = photoService
         self.imageStorage = imageStorage
@@ -29,7 +29,7 @@ public struct PhotoSceneDIContainerDependencies {
 public protocol PhotoSceneDIContainer: PhotoSceneFlowCoordinatorDependencies {
     var dependencies: PhotoSceneDIContainerDependencies { get }
     
-    func makePhotoSceneFlowCoordinator(scene: PhotoScene, navController: UINavigationController, completion: @escaping ([String])-> Void)-> PhotoSceneFlowCoordinator
+    func makePhotoSceneFlowCoordinator(scene: PhotoScene, navController: UINavigationController, completion: @escaping ([FileInfo])-> Void)-> PhotoSceneFlowCoordinator
     func makeFetchPhotoAssetsUsecase() -> FetchPhotoAssetsUsecase
     func makeFetchAssetImageDataUsecase()-> FetchAssetImageDataUsecase
     func makeSavePhotoUsecase()-> SavePhotoUsecase

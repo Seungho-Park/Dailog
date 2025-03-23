@@ -20,22 +20,28 @@ public final class PhotoStorageRepositoryImpl: PhotoStorageRepository {
         self.photoService = photoService
     }
     
-    public func save(asset: PHAsset, completion: @escaping (Result<String, FileStorageError>) -> Void) {
+    public func save(asset: PHAsset, completion: @escaping (Result<FileInfo, FileStorageError>) -> Void) {
         photoService.requestImageData(asset: asset, size: .original) { [weak self] result in
-            guard let self else {
-                completion(.failure(.emptyData))
-                return
-            }
             switch result {
             case .success(let data):
-                self.fileStorage.save(data: data, completion: completion)
+                autoreleasepool { [weak self] in
+                    self?.fileStorage.save(data: data, completion: completion)
+                }
             case .failure(let error):
                 completion(.failure(.saveError(error)))
             }
         }
     }
     
-    public func save(data: Data?, completion: @escaping (Result<String, FileStorageError>) -> Void) {
+    public func save(data: Data?, completion: @escaping (Result<FileInfo, FileStorageError>) -> Void) {
         fileStorage.save(data: data, completion: completion)
+    }
+    
+    public func fetchPhoto(fileName: String, completion: @escaping (Result<FileInfo, FileStorageError>) -> Void) {
+        fileStorage.fetch(fileName: fileName, completion: completion)
+    }
+    
+    public func remove(fileName: String, completion: @escaping (Result<Bool, FileStorageError>) -> Void) {
+        fileStorage.remove(fileName: fileName, completion: completion)
     }
 }

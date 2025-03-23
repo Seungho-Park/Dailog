@@ -1,5 +1,5 @@
 //
-//  SavePhotoUsecase.swift
+//  FetchPhotoDataUsecase.swift
 //  DomainPhoto
 //
 //  Created by 박승호 on 3/23/25.
@@ -8,10 +8,8 @@
 
 import Foundation
 import RxSwift
-import Photos
 import CoreStorageInterfaces
 
-public protocol SavePhotoUsecase {
-    func execute(data: Data?)-> Single<FileInfo>
-    func execute(asset: PHAsset)-> Single<FileInfo>
+public protocol FetchPhotoDataUsecase {
+    func execute(fileName: String)-> Single<FileInfo>
 }

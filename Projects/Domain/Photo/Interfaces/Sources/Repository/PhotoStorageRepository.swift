@@ -10,6 +10,9 @@ import Photos
 import CoreStorageInterfaces
 
 public protocol PhotoStorageRepository {
-    func save(data: Data?, completion: @escaping (Result<String, FileStorageError>)-> Void)
-    func save(asset: PHAsset, completion: @escaping (Result<String, FileStorageError>)-> Void)
+    func save(data: Data?, completion: @escaping (Result<FileInfo, FileStorageError>)-> Void)
+    func save(asset: PHAsset, completion: @escaping (Result<FileInfo, FileStorageError>)-> Void)
+    
+    func fetchPhoto(fileName: String, completion: @escaping (Result<FileInfo, FileStorageError>)-> Void)
+    func remove(fileName: String, completion: @escaping (Result<Bool, FileStorageError>)-> Void)
 }

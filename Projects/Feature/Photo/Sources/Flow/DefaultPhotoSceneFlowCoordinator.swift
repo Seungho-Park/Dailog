@@ -13,11 +13,12 @@ import SharedUIInterfaces
 import FeaturePhotoInterfaces
 import Photos
 import UIKit
+import CoreStorageInterfaces
 
 public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoordinator {
     private var picker: UIImagePickerController?
     private let scene: PhotoScene
-    private let completion: (([String])-> Void)?
+    private let completion: (([FileInfo])-> Void)?
     public let navigationController: UINavigationController
     public let dependencies: any PhotoSceneFlowCoordinatorDependencies
     
@@ -25,7 +26,7 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         scene: PhotoScene,
         navigationController: UINavigationController,
         dependencies: any PhotoSceneFlowCoordinatorDependencies,
-        completion: (([String])-> Void)?
+        completion: (([FileInfo])-> Void)?
     ) {
         self.scene = scene
         self.completion = completion
@@ -49,7 +50,7 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         case .camera:
             let vm = dependencies.makeCameraViewModel(
                 actions: .init(
-                    close: closeCamera(fileName:)
+                    close: closeCamera(file:)
                 )
             )
             let vc = CameraViewController.create(viewModel: vm as! DefaultCameraViewModel)
@@ -59,14 +60,14 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         }
     }
     
-    private func closeCamera(fileName: String?) {
-        if let fileName = fileName {
-            completion?([fileName])
+    private func closeCamera(file: FileInfo?) {
+        if let file = file {
+            completion?([file])
         }
         close(animated: true)
     }
     
-    private func closeAction(assets: [String]) {
+    private func closeAction(assets: [FileInfo]) {
         completion?(assets)
         close(animated: true)
     }

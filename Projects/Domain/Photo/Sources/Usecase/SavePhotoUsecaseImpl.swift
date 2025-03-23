@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import DomainPhotoInterfaces
 import Photos
+import CoreStorageInterfaces
 
 public final class SavePhotoUsecaseImpl: SavePhotoUsecase {
     private let repoisitory: PhotoStorageRepository
@@ -18,11 +19,11 @@ public final class SavePhotoUsecaseImpl: SavePhotoUsecase {
         self.repoisitory = repoisitory
     }
     
-    public func execute(data: Data?) -> Single<String> {
-        return Single<String>.create { [unowned self] single in
+    public func execute(data: Data?) -> Single<FileInfo> {
+        return Single<FileInfo>.create { [unowned self] single in
             self.repoisitory.save(data: data) { result in
                 switch result {
-                case .success(let fileName): single(.success(fileName))
+                case .success(let file): single(.success(file))
                 case .failure(let error): single(.failure(error))
                 }
             }
@@ -30,11 +31,11 @@ public final class SavePhotoUsecaseImpl: SavePhotoUsecase {
         }
     }
     
-    public func execute(asset: PHAsset) -> Single<String> {
+    public func execute(asset: PHAsset) -> Single<FileInfo> {
         return .create { [unowned self] single in
             self.repoisitory.save(asset: asset) { result in
                 switch result {
-                case .success(let fileName): single(.success(fileName))
+                case .success(let file): single(.success(file))
                 case .failure(let error): single(.failure(error))
                 }
             }

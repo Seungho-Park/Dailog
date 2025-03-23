@@ -9,6 +9,7 @@
 import DomainPhotoInterfaces
 import FeaturePhotoInterfaces
 import RxSwift
+import CoreStorageInterfaces
 
 public final class DefaultCameraViewModel: CameraViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
@@ -29,7 +30,7 @@ public final class DefaultCameraViewModel: CameraViewModel {
                 return owner.savePhotoUsecaes.execute(data: data)
             }
             .debug()
-            .map { fileName-> String? in return fileName }
+            .map { file-> FileInfo? in return file }
             .catchAndReturn(nil)
             .bind(onNext: actions.close)
             .disposed(by: disposeBag)

@@ -12,6 +12,7 @@ import FeatureWriteInterfaces
 import RxSwift
 import DomainWriteInterfaces
 import PhotosUI
+import CoreStorageInterfaces
 
 public final class DefaultWriteSceneFlowCoordinator: NSObject, WriteSceneFlowCoordinator, UINavigationControllerDelegate {
     public var dependencies: WriteSceneFlowCoordinatorDependencies
@@ -71,18 +72,38 @@ public final class DefaultWriteSceneFlowCoordinator: NSObject, WriteSceneFlowCoo
         )
     }
     
-    public func showPhotoAlbumScene() {
-        let coordinator = dependencies.makePhotoSceneFlowCoordinator(scene: .gallery, navigationController: navigationController) { assets in
-            print("Gallery: \(assets)")
+    public func showPhotoAlbumScene()-> Observable<[FileInfo]> {
+        return .create { [weak self] observer in
+            guard let self else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            let coordinator = self.dependencies.makePhotoSceneFlowCoordinator(scene: .gallery, navigationController: navigationController) { fileNameList in
+                observer.onNext(fileNameList)
+                observer.onCompleted()
+            }
+            
+            coordinator.start()
+            return Disposables.create()
         }
-        coordinator.start()
     }
     
-    public func showDeviceCamera() {
-        let coordinator = dependencies.makePhotoSceneFlowCoordinator(scene: .camera, navigationController: navigationController) { assets in
-            print("Camera: \(assets)")
+    public func showDeviceCamera()-> Observable<[FileInfo]> {
+        return .create { [weak self] observer in
+            guard let self else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            let coordinator = self.dependencies.makePhotoSceneFlowCoordinator(scene: .camera, navigationController: navigationController) { fileNameList in
+                observer.onNext(fileNameList)
+                observer.onCompleted()
+            }
+            
+            coordinator.start()
+            return Disposables.create()
         }
-        coordinator.start()
     }
 }
 

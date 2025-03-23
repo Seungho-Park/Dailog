@@ -21,15 +21,18 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     
     public let emotion: Emotion?
     public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
+    public let fetchPhotoDataUsecase: FetchPhotoDataUsecase
     public let actions: DiaryWriteViewModelAction
     
     public init(
         emotion: Emotion?,
         fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase,
+        fetchPhotoDataUsecase: FetchPhotoDataUsecase,
         actions: DiaryWriteViewModelAction
     ) {
         self.emotion = emotion
         self.fetchPhotoAssetsUsecase = fetchPhotoAssetsUsecase
+        self.fetchPhotoDataUsecase = fetchPhotoDataUsecase
         self.actions = actions
     }
     
@@ -56,7 +59,7 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
         .filter { $0 }
         .withUnretained(self)
         .flatMap { owner, _ in
-            owner.fetchPhotoAssetsUsecase.execute(size: .init(width: 150, height: 150))
+            owner.fetchPhotoAssetsUsecase.execute(size: .thumbnail)
         }
         .catchAndReturn([])
         .bind(to: photoAssets)
@@ -67,11 +70,23 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
             .disposed(by: disposeBag)
         
         input.addPhotoButtonTapped
-            .bind(onNext: actions.showPhotoAlbum)
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                return owner.actions.showPhotoAlbum()
+            }
+            .subscribe {
+                print($0)
+            }
             .disposed(by: disposeBag)
         
         input.captureCameraButtonTapped
-            .bind(onNext: actions.showDeviceCamera)
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                owner.actions.showDeviceCamera()
+            }
+            .subscribe {
+                print($0)
+            }
             .disposed(by: disposeBag)
         
         return .init(

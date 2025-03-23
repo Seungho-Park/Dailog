@@ -24,7 +24,6 @@ public final class DefaultEmotionViewModel: EmotionViewModel {
     
     public func transform(input: EmotionViewModelInput) -> EmotionViewModelOutput {
         input.select
-            .debug()
             .bind(onNext: actions.selectEmotion)
             .disposed(by: disposeBag)
         

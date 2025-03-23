@@ -8,7 +8,8 @@
 
 import Photos
 import RxSwift
+import CorePhotoInterfaces
 
 public protocol FetchPhotoAssetsUsecase {
-    func execute(size: CGSize)-> Single<[PHAsset]>
+    func execute(size: PhotoSize)-> Single<[PHAsset]>
 }

@@ -14,6 +14,7 @@ import DomainWriteInterfaces
 import DomainPhotoInterfaces
 import DomainPhoto
 import Photos
+import CoreStorageInterfaces
 
 public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
     public let dependencies: WriteSceneDIContainerDependencies
@@ -24,7 +25,7 @@ public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([String]) -> Void) -> any PhotoSceneFlowCoordinator {
+    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([FileInfo]) -> Void) -> any PhotoSceneFlowCoordinator {
         return dependencies.photoSceneDIContainer.makePhotoSceneFlowCoordinator(scene: scene, navController: navigationController, completion: completion)
     }
     
@@ -36,6 +37,7 @@ public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
         return DefaultDiaryWriteViewModel(
             emotion: emotion,
             fetchPhotoAssetsUsecase: makeFetchPhotoAssetsUsecase(),
+            fetchPhotoDataUsecase: makeFetchPhotoDataUsecase(),
             actions: actions
         )
     }
@@ -44,7 +46,15 @@ public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
         return DefaultEmotionViewModel(actions: actions)
     }
     
+    public func makeFetchPhotoDataUsecase() -> any FetchPhotoDataUsecase {
+        return FetchPhotoDataUsecaseImpl(repository: makePhotoStorageRepository())
+    }
+    
     public func makeFetchPhotoAssetsUsecase() -> any FetchPhotoAssetsUsecase {
         return FetchPhotoAssetsUsecaseImpl(repository: GalleryRepositoryImpl(photoService: dependencies.photoService))
+    }
+    
+    private func makePhotoStorageRepository()-> PhotoStorageRepository {
+        return PhotoStorageRepositoryImpl(fileStorage: dependencies.imageStorage, photoService: dependencies.photoService)
     }
 }

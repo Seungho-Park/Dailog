@@ -12,6 +12,7 @@ import FeaturePhotoInterfaces
 import DomainPhotoInterfaces
 import DomainPhoto
 import Photos
+import CoreStorageInterfaces
 
 public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
     public let dependencies: PhotoSceneDIContainerDependencies
@@ -21,7 +22,7 @@ public final class DefaultPhotoSceneDIContainer: PhotoSceneDIContainer {
         self.dependencies = dependencies
     }
     
-    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navController: UINavigationController, completion: @escaping ([String]) -> Void) -> PhotoSceneFlowCoordinator  {
+    public func makePhotoSceneFlowCoordinator(scene: PhotoScene, navController: UINavigationController, completion: @escaping ([FileInfo]) -> Void) -> PhotoSceneFlowCoordinator  {
         return DefaultPhotoSceneFlowCoordinator(
             scene: scene,
             navigationController: navController,

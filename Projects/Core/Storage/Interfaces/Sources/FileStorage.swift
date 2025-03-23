@@ -12,8 +12,13 @@ public enum FileStorageError: Error {
     case emptyData
     case saveError(Error)
     case convertError
+    case fileNotExist
+    case fetchError(Error)
+    case removeError(Error)
 }
 
 public protocol FileStorage {
-    func save(data: Data?, completion: @escaping (Result<String, FileStorageError>)-> Void)
+    func save(data: Data?, completion: @escaping (Result<FileInfo, FileStorageError>)-> Void)
+    func fetch(fileName: String, completion: @escaping (Result<FileInfo, FileStorageError>)-> Void)
+    func remove(fileName: String, completion: @escaping (Result<Bool, FileStorageError>)-> Void)
 }
