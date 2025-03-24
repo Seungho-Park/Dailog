@@ -8,4 +8,5 @@
 
 public enum HistoryScene {
     case history(any HistoryViewModel)
+    case filter(any HistoryFilterViewModel)
 }

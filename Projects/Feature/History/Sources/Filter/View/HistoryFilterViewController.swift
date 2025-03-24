@@ -77,6 +77,8 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
+        bind()
     }
     
     public override func configure() {

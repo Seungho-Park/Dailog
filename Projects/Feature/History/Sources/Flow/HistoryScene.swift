@@ -19,6 +19,10 @@ extension FeatureHistoryInterfaces.HistoryScene: SharedUIInterfaces.Scene {
             vc.view.backgroundColor = .clear
             vc.tabBarItem = .init(title: "History".localized, image: UIImage(systemName: "list.bullet"), tag: 1)
             return vc
+        case .filter(let viewModel):
+            let vc = HistoryFilterViewController.create(viewModel: viewModel as! DefaultHistoryFilterViewModel)
+            vc.modalPresentationStyle = .overFullScreen
+            return vc
         }
     }
 }

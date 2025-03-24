@@ -11,9 +11,11 @@ import Foundation
 public struct FileInfo {
     public let fileName: String
     public let data: Data
+    public let createdAt: Date
     
-    public init(fileName: String, data: Data) {
+    public init(fileName: String, data: Data, createdAt: Date = Date()) {
         self.fileName = fileName
         self.data = data
+        self.createdAt = createdAt
     }
 }

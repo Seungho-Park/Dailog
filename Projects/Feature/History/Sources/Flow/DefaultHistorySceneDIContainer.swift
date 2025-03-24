@@ -25,4 +25,8 @@ extension DefaultHistorySceneDIContainer {
     public func makeHistoryViewModel(actions: HistoryViewModelAction) -> any HistoryViewModel {
         return DefaultHistoryViewModel(actions: actions)
     }
+    
+    public func makeHistoryFilterViewModel(actions: HistoryFilterViewModelAction) -> any HistoryFilterViewModel {
+        return DefaultHistoryFilterViewModel(actions: actions)
+    }
 }

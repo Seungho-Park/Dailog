@@ -11,7 +11,7 @@ import SharedUIInterfaces
 
 public final class FilterNavigationBar: NavigationBar {    
     private let container = UIView()
-    private lazy var filterButton = NavigationBarFilterButton()
+    private lazy var filterButton = NavigationBarSelectButton()
     
     public convenience init(title: String) {
         self.init(items: [], title: title)

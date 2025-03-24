@@ -33,6 +33,13 @@ public enum HistoryFilterType: Int {
 //    }
 }
 
+public struct HistoryFilterViewModelAction {
+    
+    public init() {
+        
+    }
+}
+
 public struct HistoryFilterViewModelInput {
     public let segmentChanged: Observable<Int>
     public let didSelectedPicker: Observable<(row: Int, component: Int)>
@@ -66,5 +73,5 @@ public struct HistoryFilterViewModelOutput {
 }
 
 public protocol HistoryFilterViewModel: ViewModel where Input == HistoryFilterViewModelInput, Output == HistoryFilterViewModelOutput {
-    
+    var actions: HistoryFilterViewModelAction { get }
 }

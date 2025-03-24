@@ -39,8 +39,8 @@ public final class NavigationBackButton: NavigationBarButton {
             .grow(1)
             .define { flex in
                 flex.addItem(backImage)
-                    .width(26)
-                    .height(26)
+                    .width(24)
+                    .height(24)
             }
             .marginHorizontal(8)
             .justifyContent(.center)

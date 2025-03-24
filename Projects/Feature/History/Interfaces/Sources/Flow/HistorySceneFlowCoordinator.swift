@@ -11,6 +11,7 @@ import RxSwift
 
 public protocol HistorySceneFlowCoordinatorDependencies {
     func makeHistoryViewModel(actions: HistoryViewModelAction)-> any HistoryViewModel
+    func makeHistoryFilterViewModel(actions: HistoryFilterViewModelAction)-> any HistoryFilterViewModel
 }
 
 public protocol HistorySceneFlowCoordinator: Coordinator {

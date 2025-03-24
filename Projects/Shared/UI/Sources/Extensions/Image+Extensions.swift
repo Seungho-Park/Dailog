@@ -21,4 +21,14 @@ public extension UIImage {
     
     static let dropDown = UIImage(named: "DropDown", in: .module, with: nil)
     static let close = UIImage(named: "Close", in: .module, with: nil)
+    static let closeWhite = UIImage(named: "CloseWhite", in: .module, with: nil)
+    static let check = UIImage(named: "Check", in: .module, with: nil)
+    
+    
+    func resize(size: CGSize)-> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { [weak self] context in
+            self?.draw(in: .init(origin: .zero, size: size))
+        }
+    }
 }

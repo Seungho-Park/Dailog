@@ -35,4 +35,5 @@ public protocol WriteSceneDIContainer: WriteSceneFlowCoordinatorDependencies {
     func makeDiaryWriteSceneFlowCoordinator(navigationController: UINavigationController)-> WriteSceneFlowCoordinator
     func makeFetchPhotoAssetsUsecase()-> FetchPhotoAssetsUsecase
     func makeFetchPhotoDataUsecase()-> FetchPhotoDataUsecase
+    func makeDeletePhotoFileUsecase()-> DeletePhotoFileUsecase
 }

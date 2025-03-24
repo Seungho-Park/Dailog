@@ -14,14 +14,14 @@ public final class DiaryWriteHeaderView: UIView {
     
     let emotionButton = EmotionButton(frame: .zero)
     
-    private let dateLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.numberOfLines = 1
-        label.text = "2025.03.17(월)"
-        label.textColor = .textColor
-        label.font = .cursive(sizeOf: 18, weight: .medium)
-        return label
-    }()
+//    private let dateLabel: UILabel = {
+//        let label = UILabel(frame: .zero)
+//        label.numberOfLines = 1
+//        label.text = "2025.03.17(월)"
+//        label.textColor = .textColor
+//        label.font = .cursive(sizeOf: 18, weight: .medium)
+//        return label
+//    }()
     
     public var emotion: Emotion? = nil {
         didSet {
@@ -37,13 +37,18 @@ public final class DiaryWriteHeaderView: UIView {
     
     private func configure() {
         addSubview(container)
+        
         container.flex
+            .addItem()
             .direction(.row)
             .define { flex in
                 flex.addItem(emotionButton)
-                flex.addItem().grow(1)
-                flex.addItem(dateLabel)
+                    .grow(1)
+//                flex.addItem().grow(1)
+//                flex.addItem(dateLabel)
             }
+            .grow(1)
+            .alignItems(Locale.direction == .leftToRight ? .end : .start)
             .paddingHorizontal(12)
     }
     

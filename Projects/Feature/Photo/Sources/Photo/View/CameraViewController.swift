@@ -71,25 +71,34 @@ public final class CameraViewController<VM: CameraViewModel>: DailogViewControll
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage, let data = selectedImage.jpegData(compressionQuality: 1) {
-            guard let source = CGImageSourceCreateWithData(data as CFData, nil),
-                  let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
-                return
-            }
-            
-            let imageDestinationData = NSMutableData()
-            guard let imageDestination = CGImageDestinationCreateWithData(imageDestinationData, AVFileType.heic as CFString, 1, nil) else {
-                return
-            }
-            
-            let options: [CFString: Any] = [
-                kCGImageDestinationLossyCompressionQuality: 1 // 압축 품질 (0.0 ~ 1.0)
-            ]
-            
-            CGImageDestinationAddImage(imageDestination, cgImage, options as CFDictionary)
-            CGImageDestinationFinalize(imageDestination)
-            
-            closeAction.accept(imageDestinationData as Data)
+        guard let selectedImage = info[.originalImage] as? UIImage,
+              let fixedImage = selectedImage.fixedOrientation(),
+              let imageData = fixedImage.jpegData(compressionQuality: 1),
+              let source = CGImageSourceCreateWithData(imageData as CFData, nil),
+              let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
+            return
         }
+        
+        let destinationData = NSMutableData()
+        guard let imageDestination = CGImageDestinationCreateWithData(destinationData, AVFileType.heic as CFString, 1, nil) else {
+            return
+        }
+        
+        CGImageDestinationAddImage(imageDestination, cgImage, [kCGImageDestinationLossyCompressionQuality: 1] as CFDictionary)
+        CGImageDestinationFinalize(imageDestination)
+        
+        closeAction.accept(destinationData as Data)
+    }
+}
+
+private extension UIImage {
+    func fixedOrientation() -> UIImage? {
+        guard imageOrientation != .up else { return self }
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        
+        draw(in: CGRect(origin: .zero, size: size))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }

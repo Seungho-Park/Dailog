@@ -38,8 +38,13 @@ public final class DefaultWriteSceneDIContainer: WriteSceneDIContainer {
             emotion: emotion,
             fetchPhotoAssetsUsecase: makeFetchPhotoAssetsUsecase(),
             fetchPhotoDataUsecase: makeFetchPhotoDataUsecase(),
+            deletePhotoFileUsecase: makeDeletePhotoFileUsecase(),
             actions: actions
         )
+    }
+    
+    public func makeDeletePhotoFileUsecase() -> any DeletePhotoFileUsecase {
+        return DeletePhotoFileUsecaseImpl(repository: makePhotoStorageRepository())
     }
     
     public func makeEmotionViewModel(actions: EmotionViewModelActions) -> any EmotionViewModel {

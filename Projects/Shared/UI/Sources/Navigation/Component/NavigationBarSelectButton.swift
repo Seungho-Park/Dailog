@@ -9,8 +9,18 @@
 import UIKit
 import SharedUIInterfaces
 
-public final class NavigationBarFilterButton: NavigationBarButton {
+public final class NavigationBarSelectButton: NavigationBarButton {
     private let container = UIView()
+    
+    public var text: String? {
+        get { textLabel.text }
+        set { textLabel.text = newValue }
+    }
+    
+    public var font: UIFont! {
+        get { textLabel.font }
+        set { textLabel.font = newValue }
+    }
     
     private lazy var textLabel: UILabel = {
         let label = UILabel.make(frame: .zero)

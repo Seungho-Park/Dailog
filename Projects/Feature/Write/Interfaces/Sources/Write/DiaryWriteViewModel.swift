@@ -37,27 +37,33 @@ public struct DiaryWriteViewModelInput {
     public let emotionButtonTapped: Observable<Void>
     public let addPhotoButtonTapped: Observable<Void>
     public let captureCameraButtonTapped: Observable<Void>
+    public let photoDeleteButtonTapped: Observable<String>
     
     public init(
         backButtonTapped: Observable<Void>?,
         emotionButtonTapped: Observable<Void>,
         addPhotoButtonTapped: Observable<Void>,
-        captureCameraButtonTapped: Observable<Void>
+        captureCameraButtonTapped: Observable<Void>,
+        photoDeleteButtonTapped: Observable<String>
     ) {
         self.backButtonTapped = backButtonTapped
         self.emotionButtonTapped = emotionButtonTapped
         self.addPhotoButtonTapped = addPhotoButtonTapped
         self.captureCameraButtonTapped = captureCameraButtonTapped
+        self.photoDeleteButtonTapped = photoDeleteButtonTapped
     }
 }
 
 public struct DiaryWriteViewModelOutput {
     public let emotion: Driver<Emotion?>
+    public let photos: Driver<[FileInfo]>
     
     public init(
-        emotion: Driver<Emotion?>
+        emotion: Driver<Emotion?>,
+        photos: Driver<[FileInfo]>
     ) {
         self.emotion = emotion
+        self.photos = photos
     }
 }
 
@@ -65,5 +71,6 @@ public protocol DiaryWriteViewModel: ViewModel where Input == DiaryWriteViewMode
     var emotion: Emotion? { get }
     var fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase { get }
     var fetchPhotoDataUsecase: FetchPhotoDataUsecase { get }
+    var deletePhotoFileUsecase: DeletePhotoFileUsecase { get }
     var actions: DiaryWriteViewModelAction { get }
 }

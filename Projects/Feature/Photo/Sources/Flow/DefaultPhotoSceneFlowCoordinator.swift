@@ -39,7 +39,7 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         case .gallery:
             let vm = dependencies.makeGalleryViewModel(
                 actions: .init(
-                    close: closeAction(assets:)
+                    close: closeAction(files:)
                 )
             ) as! DefaultGalleryViewModel
             let vc = GalleryViewController<DefaultGalleryViewModel>.create(viewModel: vm)

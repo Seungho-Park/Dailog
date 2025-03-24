@@ -32,6 +32,7 @@ final class AppDIContainer {
     private let config = ApplicationConfig()
     private lazy var photoService: PhotoService = DefaultPhotoService()
     private lazy var imageFileStorage: FileStorage = ImageFileStorage()
+    private lazy var coreDataStorage: CoreDataStorage = DefaultCoreDataStorage()
     
     func makeSplashSceneDIContainer()-> SplashSceneDIContainer {
         return DefaultSplashSceneDIContainer(
@@ -39,6 +40,10 @@ final class AppDIContainer {
                 mainSceneDIContainer: makeMainSceneDIContainer()
             )
         )
+    }
+    
+    func saveContext() {
+        coreDataStorage.save()
     }
     
     private func makeMainSceneDIContainer()-> MainSceneDIContainer {

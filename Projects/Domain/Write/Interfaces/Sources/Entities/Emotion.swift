@@ -8,8 +8,8 @@
 
 import SharedUI
 
-public enum Emotion: CaseIterable {
-    case happy
+public enum Emotion: Int16, CaseIterable {
+    case happy = 0
     case excited
     case normal
     case surprised
