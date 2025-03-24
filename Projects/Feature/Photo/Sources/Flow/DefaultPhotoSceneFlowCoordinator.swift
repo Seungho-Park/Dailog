@@ -67,8 +67,8 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
         close(animated: true)
     }
     
-    private func closeAction(assets: [FileInfo]) {
-        completion?(assets)
+    private func closeAction(files: [FileInfo]) {
+        completion?(files)
         close(animated: true)
     }
     

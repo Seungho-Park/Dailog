@@ -24,12 +24,10 @@ public final class DefaultCameraViewModel: CameraViewModel {
     
     public func transform(input: CameraViewModelInput) -> CameraViewModelOutput {
         input.close
-            .debug()
             .withUnretained(self)
             .flatMap { owner, data in
                 return owner.savePhotoUsecaes.execute(data: data)
             }
-            .debug()
             .map { file-> FileInfo? in return file }
             .catchAndReturn(nil)
             .bind(onNext: actions.close)

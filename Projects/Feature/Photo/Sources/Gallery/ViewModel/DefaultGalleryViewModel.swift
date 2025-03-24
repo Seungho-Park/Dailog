@@ -40,7 +40,6 @@ public final class DefaultGalleryViewModel: GalleryViewModel {
         let photos: BehaviorRelay<[GalleryItemViewModel]> = .init(value: [])
         
         let authResult = input.viewDidLoad
-            .debug()
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.requestPhotoLibraryPermission()
