@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FeatureWriteInterfaces
+import FeatureDiaryInterfaces
 import FeatureHomeInterfaces
 import DomainHomeInterfaces
 import DomainHome
@@ -34,7 +34,7 @@ public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
 }
 
 extension DefaultHomeSceneDIContainer {
-    public func makeWriteSceneFlowCoordinator(navigationController: UINavigationController) -> any WriteSceneFlowCoordinator {
+    public func makeWriteSceneFlowCoordinator(navigationController: UINavigationController) -> any DiarySceneFlowCoordinator {
         return dependencies.diaryWriteDIContainer.makeDiaryWriteSceneFlowCoordinator(navigationController: navigationController)
     }
     

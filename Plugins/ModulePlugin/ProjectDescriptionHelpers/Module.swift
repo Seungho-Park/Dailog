@@ -24,7 +24,7 @@ public extension Module {
         case reminder = "Reminder"
         case settings = "Settings"
         
-        case write = "Write"
+        case diary = "Diary"
         case photo = "Photo"
     }
 }
@@ -32,7 +32,7 @@ public extension Module {
 public extension Module {
     enum Domain: String {
         case home = "Home"
-        case write = "Write"
+        case diary = "Diary"
         case photo = "Photo"
     }
 }

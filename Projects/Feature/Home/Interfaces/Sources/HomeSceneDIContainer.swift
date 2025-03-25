@@ -9,12 +9,12 @@
 import UIKit
 import SharedUIInterfaces
 import DomainHomeInterfaces
-import FeatureWriteInterfaces
+import FeatureDiaryInterfaces
 
 public struct HomeSceneDIContainerDependencies {
-    public let diaryWriteDIContainer: WriteSceneDIContainer
+    public let diaryWriteDIContainer: DiarySceneDIContainer
     
-    public init(diaryWriteDIContainer: WriteSceneDIContainer) {
+    public init(diaryWriteDIContainer: DiarySceneDIContainer) {
         self.diaryWriteDIContainer = diaryWriteDIContainer
     }
 }

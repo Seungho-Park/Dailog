@@ -8,6 +8,12 @@
 
 import CoreData
 
+public enum CoreDataStorageError: Error {
+    case fetchError(Error)
+    case saveError(Error)
+    case removeError(Error)
+}
+
 public protocol CoreDataStorage {
     func save()
     func performBackgroundTask(_ block: @escaping (NSManagedObjectContext)-> Void)

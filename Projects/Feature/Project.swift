@@ -23,7 +23,7 @@ let project: Project = .makeProject(
                     .feature(implements: .history),
                     .feature(implements: .reminder),
                     .feature(implements: .settings),
-                    .feature(implements: .write),
+                    .feature(implements: .diary),
                     .feature(implements: .photo)
                 ]
             )

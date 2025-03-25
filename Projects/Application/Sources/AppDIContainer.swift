@@ -19,8 +19,8 @@ import FeatureReminder
 import FeatureReminderInterfaces
 import FeatureSettings
 import FeatureSettingsInterfaces
-import FeatureWrite
-import FeatureWriteInterfaces
+import FeatureDiary
+import FeatureDiaryInterfaces
 import FeaturePhoto
 import FeaturePhotoInterfaces
 import CorePhotoInterfaces
@@ -75,8 +75,8 @@ final class AppDIContainer {
         return DefaultSettingsSceneDIContainer()
     }
     
-    private func makeDiaryWriteSceneDIContainer()-> WriteSceneDIContainer {
-        return DefaultWriteSceneDIContainer(dependencies: .init(photoService: photoService, photoSceneDIContainer: makePhotoSceneDIContainer(), imageStorage: imageFileStorage))
+    private func makeDiaryWriteSceneDIContainer()-> DiarySceneDIContainer {
+        return DefaultDiarySceneDIContainer(dependencies: .init(photoService: photoService, photoSceneDIContainer: makePhotoSceneDIContainer(), imageStorage: imageFileStorage, diaryStorage: DiaryCoreDataStorage(coreDataStorage: coreDataStorage)))
     }
     
     private func makePhotoSceneDIContainer()-> PhotoSceneDIContainer {

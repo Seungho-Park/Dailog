@@ -2,7 +2,7 @@
 //  Project.swift
 //  Manifests
 //
-//  Created by 박승호 on 2/22/25.
+//  Created by 박승호 on 3/17/25.
 //
 
 import ProjectDescription
@@ -10,49 +10,42 @@ import ProjectDescriptionHelpers
 import ModulePlugin
 
 let project = Project.makeProject(
-    name: "Feature\(Module.Feature.home.rawValue)",
+    name: "Feature\(Module.Feature.diary.rawValue)",
     targets: [
         .feature(
-            interfaces: .home,
+            interfaces: .diary,
             factory: .init(
                 dependencies: [
                     .domain,
+                    .feature(interfaces: .photo)
+                ]
+            )
+        ),
+        .feature(
+            implements: .diary,
+            factory: .init(
+                dependencies: [
                     .feature(interfaces: .diary)
                 ]
             )
         ),
         .feature(
-            implements: .home,
+            testing: .diary,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .home)
+                    .feature(interfaces: .diary)
                 ]
             )
         ),
         .feature(
-            testing: .home,
+            tests: .diary,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .home)
+                    .feature(implements: .diary),
+                    .feature(testing: .diary)
                 ]
             )
         ),
-        .feature(
-            tests: .home,
-            factory: .init(
-                dependencies: [
-                    .feature(implements: .home),
-                    .feature(testing: .home)
-                ]
-            )
-        ),
-        .feature(
-            example: .home,
-            factory: .init(
-                dependencies: [
-                    .feature(implements: .home)
-                ]
-            )
-        )
+        .feature(example: .diary, factory: .init(dependencies: [.feature(implements: .diary)]))
     ]
 )

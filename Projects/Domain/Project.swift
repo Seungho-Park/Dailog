@@ -17,7 +17,7 @@ let project: Project = .makeProject(
                 dependencies: [
                     .core,
                     .domain(implements: .home),
-                    .domain(implements: .write),
+                    .domain(implements: .diary),
                     .domain(implements: .photo)
                 ]
             )
