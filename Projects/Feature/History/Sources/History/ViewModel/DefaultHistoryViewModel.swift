@@ -9,16 +9,28 @@
 import RxSwift
 import SharedUIInterfaces
 import FeatureHistoryInterfaces
+import DomainDiaryInterfaces
 
 public final class DefaultHistoryViewModel: HistoryViewModel {
+    public let fetchDiariesUsecase: FetchDiariesUsecase
     public let actions: HistoryViewModelAction
     public let disposeBag: DisposeBag = DisposeBag()
     
-    public init(actions: HistoryViewModelAction) {
+    public init(
+        fetchDiariesUsecase: FetchDiariesUsecase,
+        actions: HistoryViewModelAction
+    ) {
+        self.fetchDiariesUsecase = fetchDiariesUsecase
         self.actions = actions
     }
     
     public func transform(input: FeatureHistoryInterfaces.HistoryViewModelInput) -> FeatureHistoryInterfaces.HistoryViewModelOutput {
+        
+        fetchDiariesUsecase.execute(year: nil, month: nil, page: 1, count: 20)
+            .subscribe {
+                print($0)
+            }
+            .disposed(by: disposeBag)
         
         input.filterButtonTapped?
             .withUnretained(self)

@@ -91,7 +91,8 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
                 addPhotoButtonTapped: footerView.showGalleryButton.rx.tap.asObservable(),
                 captureCameraButtonTapped: footerView.showCameraButton.rx.tap.asObservable(),
                 photoDeleteButtonTapped: photoDeleteButtonTapped.asObservable(),
-                saveButtonTapped: navigationBar?.rx.tap.filter { $0 == .confirm }.map { _ in }.asObservable()
+                saveButtonTapped: navigationBar?.rx.tap.filter { $0 == .confirm }.map { _ in }.asObservable(),
+                textChanged: textView.rx.text.compactMap { $0 }.asObservable()
             )
         )
         
@@ -109,6 +110,10 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
             }
             .disposed(by: disposeBag)
         
+        output.contents
+            .drive(textView.rx.text)
+            .disposed(by: disposeBag)
+        
         output.photos
             .drive(photoCollectionView.rx.items) { view, row, item in
                 let cell = view.dequeueReusableCell(withReuseIdentifier: DiaryWritePhotoItemCell.identifier, for: .init(row: row, section: 0))
@@ -117,6 +122,11 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
                 cell.deleteButton.rx.tap.map { item.fileName }.bind(to: photoDeleteButtonTapped).disposed(by: cell.disposeBag)
                 return cell
             }
+            .disposed(by: disposeBag)
+        
+        output.date
+            .map { $0.formattedString() }
+            .drive((navigationBar as? DiaryWriteNavigationBar)!.rx.title)
             .disposed(by: disposeBag)
     }
     

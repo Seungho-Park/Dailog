@@ -27,7 +27,7 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
         transition(
             scene: DiaryWriteScene.write(
                 dependencies.makeDiaryWriteViewModel(
-                    emotion: nil,
+                    diary: nil,
                     actions: .init(
                         close: { [weak self] in self?.navigationController.popViewController(animated: true) },
                         showSelectEmotion: {

@@ -11,4 +11,5 @@ import CoreStorageInterfaces
 
 public protocol DiaryRepository {
     func save(diary: Diary, completion: @escaping (Result<Diary, CoreDataStorageError>)-> Void)
+    func fetchDiaries(year: Int?, month: Int?, page: Int, count: Int, completion: @escaping (Result<[Diary], CoreDataStorageError>)-> Void)
 }

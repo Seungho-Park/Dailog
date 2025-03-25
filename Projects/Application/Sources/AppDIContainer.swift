@@ -64,7 +64,10 @@ final class AppDIContainer {
     }
     
     private func makeHistorySceneDIContainer()-> HistorySceneDIContainer {
-        return DefaultHistorySceneDIContainer()
+        return DefaultHistorySceneDIContainer(
+            dependencies: .init(diaryStorage: DiaryCoreDataStorage(coreDataStorage: coreDataStorage))
+            
+        )
     }
     
     private func makeReminderSceneDIContainer()-> ReminderSceneDIContainer {

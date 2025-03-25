@@ -9,11 +9,14 @@
 import UIKit
 import SharedUIInterfaces
 import FeatureHistoryInterfaces
+import DomainDiary
+import DomainDiaryInterfaces
 
 public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
+    public let dependencies: HistorySceneDIContainerDependencies
     
-    public init() {
-        
+    public init(dependencies: HistorySceneDIContainerDependencies) {
+        self.dependencies = dependencies
     }
     
     public func makeHistorySceneFlowCoordinator(navigationController: UINavigationController) -> HistorySceneFlowCoordinator {
@@ -23,10 +26,21 @@ public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
 
 extension DefaultHistorySceneDIContainer {
     public func makeHistoryViewModel(actions: HistoryViewModelAction) -> any HistoryViewModel {
-        return DefaultHistoryViewModel(actions: actions)
+        return DefaultHistoryViewModel(
+            fetchDiariesUsecase: makeFetchDiariesUsecase(),
+            actions: actions
+        )
     }
     
     public func makeHistoryFilterViewModel(actions: HistoryFilterViewModelAction) -> any HistoryFilterViewModel {
         return DefaultHistoryFilterViewModel(actions: actions)
+    }
+    
+    public func makeFetchDiariesUsecase() -> FetchDiariesUsecase {
+        return FetchDiariesUsecaseImpl(repository: makeDiaryRepository())
+    }
+    
+    private func makeDiaryRepository()-> DiaryRepository {
+        return DiaryRepositoryImpl(storage: dependencies.diaryStorage)
     }
 }

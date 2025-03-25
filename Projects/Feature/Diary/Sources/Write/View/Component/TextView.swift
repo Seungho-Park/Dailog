@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 public final class TextView: UIView, UITextViewDelegate {
     private let container = UIView()
     
-    private let textView: UITextView = {
+    let textView: UITextView = {
         let view = UITextView(frame: .zero)
         view.backgroundColor = .clear
         view.font = .cursive(sizeOf: 20, weight: .medium)
@@ -30,6 +32,14 @@ public final class TextView: UIView, UITextViewDelegate {
         label.textColor = .placeholderText
         return label
     }()
+    
+    public var text: String? {
+        get { textView.text }
+        set {
+            textView.text = newValue
+            placeHolderLabel.isHidden = !(textView.text ?? "").isEmpty
+        }
+    }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,5 +85,11 @@ public final class TextView: UIView, UITextViewDelegate {
     
     public func textViewDidChange(_ textView: UITextView) {
         placeHolderLabel.isHidden = !(textView.text ?? "").isEmpty
+    }
+}
+
+public extension Reactive where Base: TextView {
+    var text: ControlProperty<String?> {
+        return base.textView.rx.text
     }
 }

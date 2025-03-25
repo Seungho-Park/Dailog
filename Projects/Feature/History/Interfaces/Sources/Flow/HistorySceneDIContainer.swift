@@ -8,7 +8,20 @@
 
 import UIKit
 import SharedUIInterfaces
+import DomainDiaryInterfaces
+import CoreStorage
+
+public struct HistorySceneDIContainerDependencies {
+    public let diaryStorage: DiaryCoreDataStorage
+    
+    public init(diaryStorage: DiaryCoreDataStorage) {
+        self.diaryStorage = diaryStorage
+    }
+}
 
 public protocol HistorySceneDIContainer: HistorySceneFlowCoordinatorDependencies {
+    var dependencies: HistorySceneDIContainerDependencies { get }
+    
     func makeHistorySceneFlowCoordinator(navigationController: UINavigationController) -> HistorySceneFlowCoordinator
+    func makeFetchDiariesUsecase()-> FetchDiariesUsecase
 }

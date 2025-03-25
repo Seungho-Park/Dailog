@@ -20,7 +20,7 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
     public let background: BackgroundType = .image(.bgLaunchScreen)
     
-    public let emotion: Emotion?
+    public let diary: Diary?
     public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
     public let fetchPhotoDataUsecase: FetchPhotoDataUsecase
     public let deletePhotoFileUsecase: DeletePhotoFileUsecase
@@ -28,14 +28,14 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public let actions: DiaryWriteViewModelAction
     
     public init(
-        emotion: Emotion?,
+        diary: Diary?,
         fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase,
         fetchPhotoDataUsecase: FetchPhotoDataUsecase,
         deletePhotoFileUsecase: DeletePhotoFileUsecase,
         saveDiaryUsecase: SaveDiaryUsecase,
         actions: DiaryWriteViewModelAction
     ) {
-        self.emotion = emotion
+        self.diary = diary
         self.fetchPhotoAssetsUsecase = fetchPhotoAssetsUsecase
         self.fetchPhotoDataUsecase = fetchPhotoDataUsecase
         self.deletePhotoFileUsecase = deletePhotoFileUsecase
@@ -44,7 +44,9 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     }
     
     public func transform(input: DiaryWriteViewModelInput) -> DiaryWriteViewModelOutput {
-        let emotion: BehaviorRelay<Emotion?> = .init(value: emotion)
+        let emotion: BehaviorRelay<Emotion?> = .init(value: diary?.emotion)
+        let contents: BehaviorRelay<String> = .init(value: diary?.contents ?? "")
+        let date: BehaviorRelay<Date> = .init(value: diary?.createdAt ?? Date())
         let photos: BehaviorRelay<[FileInfo]> = .init(value: [])
         
         Observable.merge(
@@ -113,8 +115,30 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.saveButtonTapped?
+            .withUnretained(self)
+            .map { owner, _ in
+                Diary(id: owner.diary?.id ?? UUID(), emotion: emotion.value, contents: contents.value, photos: photos.value.map { Photo(fileName: $0.fileName, memo: "", createdAt: $0.createdAt) }, createdAt: owner.diary?.createdAt ?? Date(), updatedAt: Date())
+            }
+            .withUnretained(self)
+            .flatMap { owner, diary in
+                owner.saveDiaryUsecase.execute(diary: diary)
+            }
+            .subscribe {
+                print($0)
+            }
+            .disposed(by: disposeBag)
+        
+        input.textChanged
+            .bind { text in
+                contents.accept(text.count > 500 ? String(text.prefix(500)) : text)
+            }
+            .disposed(by: disposeBag)
+        
         return .init(
             emotion: emotion.asDriver(),
+            contents: contents.asDriver(),
+            date: date.asDriver(),
             photos: photos.asDriver()
         )
     }

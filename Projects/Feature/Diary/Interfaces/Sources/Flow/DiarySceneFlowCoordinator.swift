@@ -17,7 +17,7 @@ import CoreStorageInterfaces
 public protocol DiarySceneFlowCoordinatorDependencies {
     func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([FileInfo])-> Void)-> PhotoSceneFlowCoordinator
     
-    func makeDiaryWriteViewModel(emotion: Emotion?, actions: DiaryWriteViewModelAction)-> any DiaryWriteViewModel
+    func makeDiaryWriteViewModel(diary: Diary?, actions: DiaryWriteViewModelAction)-> any DiaryWriteViewModel
     func makeEmotionViewModel(actions: EmotionViewModelActions)-> any EmotionViewModel
 }
 

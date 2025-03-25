@@ -25,7 +25,7 @@ public final class DiaryCoreDataStorage: DiaryStorage {
         fetchRequest.fetchOffset = (page - 1) * count
         
         // 정렬 조건 (예: 생성일 기준 내림차순)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         
         // 필터링 조건 설정
         if let year = year, let month = month {

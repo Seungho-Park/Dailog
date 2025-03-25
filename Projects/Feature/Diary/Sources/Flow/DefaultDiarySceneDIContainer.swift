@@ -34,9 +34,9 @@ public final class DefaultDiarySceneDIContainer: DiarySceneDIContainer {
         return DefaultDiarySceneFlowCoordinator(navigationController: navigationController, dependencies: self)
     }
     
-    public func makeDiaryWriteViewModel(emotion: Emotion?, actions: DiaryWriteViewModelAction) -> any DiaryWriteViewModel {
+    public func makeDiaryWriteViewModel(diary: Diary?, actions: DiaryWriteViewModelAction) -> any DiaryWriteViewModel {
         return DefaultDiaryWriteViewModel(
-            emotion: emotion,
+            diary: diary,
             fetchPhotoAssetsUsecase: makeFetchPhotoAssetsUsecase(),
             fetchPhotoDataUsecase: makeFetchPhotoDataUsecase(),
             deletePhotoFileUsecase: makeDeletePhotoFileUsecase(),

@@ -6,6 +6,7 @@
 //  Copyright © 2025 DevLabs Co. All rights reserved.
 //
 
+import Foundation
 import SharedUIInterfaces
 import DomainDiaryInterfaces
 import RxSwift
@@ -39,6 +40,7 @@ public struct DiaryWriteViewModelInput {
     public let captureCameraButtonTapped: Observable<Void>
     public let photoDeleteButtonTapped: Observable<String>
     public let saveButtonTapped: Observable<Void>?
+    public let textChanged: Observable<String>
     
     public init(
         backButtonTapped: Observable<Void>?,
@@ -46,7 +48,8 @@ public struct DiaryWriteViewModelInput {
         addPhotoButtonTapped: Observable<Void>,
         captureCameraButtonTapped: Observable<Void>,
         photoDeleteButtonTapped: Observable<String>,
-        saveButtonTapped: Observable<Void>?
+        saveButtonTapped: Observable<Void>?,
+        textChanged: Observable<String>
     ) {
         self.backButtonTapped = backButtonTapped
         self.emotionButtonTapped = emotionButtonTapped
@@ -54,24 +57,31 @@ public struct DiaryWriteViewModelInput {
         self.captureCameraButtonTapped = captureCameraButtonTapped
         self.photoDeleteButtonTapped = photoDeleteButtonTapped
         self.saveButtonTapped = saveButtonTapped
+        self.textChanged = textChanged
     }
 }
 
 public struct DiaryWriteViewModelOutput {
     public let emotion: Driver<Emotion?>
+    public let contents: Driver<String>
+    public let date: Driver<Date>
     public let photos: Driver<[FileInfo]>
     
     public init(
         emotion: Driver<Emotion?>,
+        contents: Driver<String>,
+        date: Driver<Date>,
         photos: Driver<[FileInfo]>
     ) {
         self.emotion = emotion
+        self.contents = contents
+        self.date = date
         self.photos = photos
     }
 }
 
 public protocol DiaryWriteViewModel: ViewModel where Input == DiaryWriteViewModelInput, Output == DiaryWriteViewModelOutput {
-    var emotion: Emotion? { get }
+    var diary: Diary? { get }
     var fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase { get }
     var fetchPhotoDataUsecase: FetchPhotoDataUsecase { get }
     var deletePhotoFileUsecase: DeletePhotoFileUsecase { get }

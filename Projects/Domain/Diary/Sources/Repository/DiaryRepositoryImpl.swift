@@ -26,4 +26,15 @@ public final class DiaryRepositoryImpl: DiaryRepository {
             }
         }
     }
+    
+    public func fetchDiaries(year: Int?, month: Int?, page: Int, count: Int, completion: @escaping (Result<[Diary], CoreDataStorageError>) -> Void) {
+        storage.fetchDiaries(year: year, month: month, page: page, count: count) { result in
+            switch result {
+            case .success(let dto):
+                completion(.success(dto.map { $0.toDomain() }))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

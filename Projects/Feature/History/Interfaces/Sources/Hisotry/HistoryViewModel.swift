@@ -9,6 +9,7 @@
 import SharedUIInterfaces
 import RxSwift
 import RxCocoa
+import DomainDiaryInterfaces
 
 public struct HistoryViewModelAction {
     public let showSelectFilter: ()-> Observable<HistoryFilterType?>
@@ -22,15 +23,18 @@ public struct HistoryViewModelAction {
 
 public struct HistoryViewModelInput {
     public let filterButtonTapped: Observable<Void>?
+    public let willDisplayCell: Observable<Int>
+    
     public init(
-        filterButtonTapped: Observable<Void>?
+        filterButtonTapped: Observable<Void>?,
+        willDisplayCell: Observable<Int>
     ) {
         self.filterButtonTapped = filterButtonTapped
+        self.willDisplayCell = willDisplayCell
     }
 }
 
 public struct HistoryViewModelOutput {
-    
     
     public init(
         
@@ -40,5 +44,6 @@ public struct HistoryViewModelOutput {
 }
 
 public protocol HistoryViewModel: ViewModel where Input == HistoryViewModelInput, Output == HistoryViewModelOutput {
+    var fetchDiariesUsecase: FetchDiariesUsecase { get }
     var actions: HistoryViewModelAction { get }
 }
