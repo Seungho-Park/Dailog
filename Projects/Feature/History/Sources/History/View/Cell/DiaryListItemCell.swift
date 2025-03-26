@@ -67,7 +67,7 @@ public final class DiaryListItemCell: UITableViewCell {
         
     private let photoImageView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleToFill
+        view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 16
         view.layer.masksToBounds = true
         return view
