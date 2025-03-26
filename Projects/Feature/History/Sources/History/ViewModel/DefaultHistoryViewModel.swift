@@ -92,7 +92,7 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
             var result: [DiaryListItemViewModel] = []
             for i in 0..<diaries.count {
                 let photo = photo[i]
-                result.append(DiaryListItemViewModel.init(id: diaries[i].id, content: diaries[i].contents, date: diaries[i].date, thumbnail: photo != nil ? .init(image: photo!.data, hasMultiple: diaries[i].photos.count > 1) : nil))
+                result.append(DiaryListItemViewModel.init(id: diaries[i].id, emotion: diaries[i].emotion, content: diaries[i].contents, date: diaries[i].date, thumbnail: photo != nil ? .init(image: photo!.data, hasMultiple: diaries[i].photos.count > 1) : nil))
             }
             return result
         }

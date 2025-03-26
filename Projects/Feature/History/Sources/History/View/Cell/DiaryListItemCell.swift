@@ -73,6 +73,13 @@ public final class DiaryListItemCell: UITableViewCell {
         return view
     }()
     
+    private let hasMultiImagesView: UIImageView = {
+        let view = UIImageView(image: UIImage(systemName: "square.fill.on.square.fill")?.withTintColor(.component(255, 255, 255), renderingMode: .alwaysOriginal))
+        view.contentMode = .scaleToFill
+        view.transform = .init(rotationAngle: .pi)
+        return view
+    }()
+    
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -87,7 +94,7 @@ public final class DiaryListItemCell: UITableViewCell {
             .flex
             .addItem()
             .marginHorizontal(20)
-            .marginTop(20)
+            .marginTop(30)
         
         let contentView = UIView()
         
@@ -135,14 +142,28 @@ public final class DiaryListItemCell: UITableViewCell {
                     .grow(1)
             }
             .grow(1)
+            .shrink(1)
         
         photoView
             .flex
             .define({ flex in
                 flex.addItem(photoImageView)
+                
+                let hasMultiple = flex.addItem(hasMultiImagesView)
+                    .position(.absolute)
+                    .top(5)
+                    .width(16)
+                    .aspectRatio(1)
+                
+                if Locale.direction == .leftToRight {
+                    hasMultiple.right(5)
+                } else {
+                    hasMultiple.left(5)
+                }
             })
             .width(100)
-            .aspectRatio(1)
+            .height(100)
+            .shrink(0)
         
         switch Locale.direction {
         case .leftToRight:
@@ -153,30 +174,35 @@ public final class DiaryListItemCell: UITableViewCell {
             contentView.flex.addItem(dataView)
         }
         
-        wrapView.addItem(contentView)
+        wrapView
+            .addItem(contentView)
         
         wrapView
             .addItem(separatorView)
             .height(1)
-            .marginTop(19)
+            .marginTop(29)
     }
     
     public func fill(viewModel: DiaryListItemViewModel) {
         contentsLabel.text = viewModel.content
-        contentsLabel.flex.markDirty()
         
         dateLabel.text = viewModel.date.formattedString()
-        dateLabel.flex.markDirty()
-        
-        emotionLabel.flex.markDirty()
-        emojiLabel.flex.markDirty()
+        emojiLabel.text = viewModel.emotion?.emoji ?? "🫥"
+        emotionLabel.text = viewModel.emotion?.string ?? "UnSelected".localized
         
         photoView.flex.isIncludedInLayout = viewModel.thumbnail?.image != nil
+        hasMultiImagesView.isHidden = !(viewModel.thumbnail?.hasMultiple == true)
         if let data = viewModel.thumbnail?.image {
             photoImageView.image = UIImage(data: data)
         } else {
             photoImageView.image = nil
         }
+        
+        photoView.flex.markDirty()
+        dateLabel.flex.markDirty()
+        contentsLabel.flex.markDirty()
+        emotionLabel.flex.markDirty()
+        emojiLabel.flex.markDirty()
     }
     
     public override func layoutSubviews() {

@@ -7,15 +7,18 @@
 //
 
 import Foundation
+import DomainDiaryInterfaces
 
 public struct DiaryListItemViewModel {
     public let id: UUID
     public let content: String
+    public let emotion: Emotion?
     public let date: Date
     public let thumbnail: Thumbnail?
     
-    public init(id: UUID, content: String, date: Date, thumbnail: Thumbnail?) {
+    public init(id: UUID, emotion: Emotion?, content: String, date: Date, thumbnail: Thumbnail?) {
         self.id = id
+        self.emotion = emotion
         self.content = content
         self.date = date
         self.thumbnail = thumbnail
