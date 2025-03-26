@@ -24,8 +24,8 @@ public final class DiaryCoreDataStorage: DiaryStorage {
         fetchRequest.fetchLimit = count
         fetchRequest.fetchOffset = (page - 1) * count
         
-        // 정렬 조건 (예: 생성일 기준 내림차순)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        // 정렬 조건 (예: 날짜 기준 내림차순)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         // 필터링 조건 설정
         if let year = year, let month = month {
@@ -35,14 +35,14 @@ public final class DiaryCoreDataStorage: DiaryStorage {
             let rangeOfMonth = calendar.range(of: .day, in: .month, for: startOfMonth)!
             let endOfMonth = calendar.date(from: DateComponents(year: year, month: month, day: rangeOfMonth.count))!
             
-            fetchRequest.predicate = NSPredicate(format: "createdAt >= %@ AND createdAt <= %@", startOfMonth as CVarArg, endOfMonth as CVarArg)
+            fetchRequest.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startOfMonth as CVarArg, endOfMonth as CVarArg)
         } else if let year = year {
             // 년도로만 필터링
             let calendar = Calendar.current
             let startOfYear = calendar.date(from: DateComponents(year: year, month: 1, day: 1))!
             let endOfYear = calendar.date(from: DateComponents(year: year, month: 12, day: 31))!
             
-            fetchRequest.predicate = NSPredicate(format: "createdAt >= %@ AND createdAt <= %@", startOfYear as CVarArg, endOfYear as CVarArg)
+            fetchRequest.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startOfYear as CVarArg, endOfYear as CVarArg)
         } else {
             // 전체 데이터를 필터링하지 않고 페이징 처리
             fetchRequest.predicate = nil
@@ -71,6 +71,7 @@ public final class DiaryCoreDataStorage: DiaryStorage {
                 diaryEntity.id = diary.id
                 diaryEntity.emotion = diary.emotion ?? -1
                 diaryEntity.contents = diary.contents
+                diaryEntity.date = diary.date
                 diaryEntity.createdAt = diary.createdAt
                 diaryEntity.updatedAt = diary.updatedAt
                 
@@ -141,7 +142,7 @@ public extension DiaryEntity {
         let photoDTOs = (self.photos as? Set<PhotoEntity>)?.map { $0.toDTO() }.sorted(by: { lhs, rhs in
             lhs.createdAt < rhs.createdAt
         }) ?? []
-        return .init(id: self.id!, emotion: self.emotion, contents: self.contents!, photos: photoDTOs, createdAt: self.createdAt!, updatedAt: self.updatedAt!)
+        return .init(id: self.id!, emotion: self.emotion, contents: self.contents!, date: self.date!, photos: photoDTOs, createdAt: self.createdAt!, updatedAt: self.updatedAt!)
     }
 }
 

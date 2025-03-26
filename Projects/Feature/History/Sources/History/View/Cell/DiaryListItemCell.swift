@@ -10,6 +10,7 @@ import UIKit
 import PinLayout
 import FlexLayout
 import DomainDiaryInterfaces
+import FeatureHistoryInterfaces
 
 public final class DiaryListItemCell: UITableViewCell {
     public static let identifier = "DiaryListItemCell"
@@ -60,8 +61,15 @@ public final class DiaryListItemCell: UITableViewCell {
         return label
     }()
     
-    private let photoView: UIImageView = {
+    private let photoView = {
+        UIView()
+    }()
+        
+    private let photoImageView: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleToFill
+        view.layer.cornerRadius = 16
+        view.layer.masksToBounds = true
         return view
     }()
     
@@ -78,8 +86,8 @@ public final class DiaryListItemCell: UITableViewCell {
         let wrapView = contentView
             .flex
             .addItem()
-            .marginHorizontal(12)
-            .marginTop(12)
+            .marginHorizontal(20)
+            .marginTop(20)
         
         let contentView = UIView()
         
@@ -104,9 +112,9 @@ public final class DiaryListItemCell: UITableViewCell {
                             .direction(.column)
                             .define { flex in
                                 flex.addItem(dateLabel)
-                                    .marginBottom(2.5)
+                                    .marginBottom(0.5)
                                 flex.addItem(emotionLabel)
-                                    .marginTop(2.5)
+                                    .marginTop(0.5)
                             }
                             .grow(1)
                         
@@ -128,14 +136,10 @@ public final class DiaryListItemCell: UITableViewCell {
             }
             .grow(1)
         
-        let imageView = UIView()
-        
-        imageView
+        photoView
             .flex
-            .backgroundColor(.cyan)
             .define({ flex in
-                flex.addItem(photoView)
-                    .backgroundColor(.red)
+                flex.addItem(photoImageView)
             })
             .width(100)
             .aspectRatio(1)
@@ -143,9 +147,9 @@ public final class DiaryListItemCell: UITableViewCell {
         switch Locale.direction {
         case .leftToRight:
             contentView.flex.addItem(dataView)
-            contentView.flex.addItem(imageView)
+            contentView.flex.addItem(photoView)
         case .rightToLeft:
-            contentView.flex.addItem(imageView)
+            contentView.flex.addItem(photoView)
             contentView.flex.addItem(dataView)
         }
         
@@ -154,15 +158,25 @@ public final class DiaryListItemCell: UITableViewCell {
         wrapView
             .addItem(separatorView)
             .height(1)
-            .marginHorizontal(12)
-            .marginTop(11)
+            .marginTop(19)
     }
     
-    public func fill() {
+    public func fill(viewModel: DiaryListItemViewModel) {
+        contentsLabel.text = viewModel.content
         contentsLabel.flex.markDirty()
+        
+        dateLabel.text = viewModel.date.formattedString()
         dateLabel.flex.markDirty()
+        
         emotionLabel.flex.markDirty()
         emojiLabel.flex.markDirty()
+        
+        photoView.flex.isIncludedInLayout = viewModel.thumbnail?.image != nil
+        if let data = viewModel.thumbnail?.image {
+            photoImageView.image = UIImage(data: data)
+        } else {
+            photoImageView.image = nil
+        }
     }
     
     public override func layoutSubviews() {

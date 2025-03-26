@@ -118,7 +118,7 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
         input.saveButtonTapped?
             .withUnretained(self)
             .map { owner, _ in
-                Diary(id: owner.diary?.id ?? UUID(), emotion: emotion.value, contents: contents.value, photos: photos.value.map { Photo(fileName: $0.fileName, memo: "", createdAt: $0.createdAt) }, createdAt: owner.diary?.createdAt ?? Date(), updatedAt: Date())
+                Diary(id: owner.diary?.id ?? UUID(), emotion: emotion.value, contents: contents.value, date: date.value, photos: photos.value.map { Photo(fileName: $0.fileName, memo: "", createdAt: $0.createdAt) }, createdAt: owner.diary?.createdAt ?? Date(), updatedAt: Date())
             }
             .withUnretained(self)
             .flatMap { owner, diary in

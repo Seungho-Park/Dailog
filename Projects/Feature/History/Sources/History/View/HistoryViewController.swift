@@ -54,15 +54,13 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
         
         let output = viewModel.transform(
             input: .init(
+                viewWillAppear: rx.viewWillAppear.map { _ in }.asObservable(),
                 filterButtonTapped: navigationBar?.rx.tap.compactMap { $0 }.filter { $0 == .filter }.map { _ in }.asObservable(),
                 willDisplayCell: tableView.rx.willDisplayCell.map { $0.indexPath.row }.asObservable()
             )
         )
         
-        let items = Observable<[Int]>.just([1,2,3,4])
-            .asDriver(onErrorJustReturn: [])
-        
-        items
+        output.items
             .drive { [weak self] items in
                 self?.tableView.isHidden = items.isEmpty
                 self?.emptyDataView.isHidden = !items.isEmpty
@@ -70,12 +68,12 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
             .disposed(by: disposeBag)
         
         
-        items
+        output.items
             .filter { !$0.isEmpty }
             .drive(tableView.rx.items) { view, row, item in
                 let cell = view.dequeueReusableCell(withIdentifier: DiaryListItemCell.identifier, for: .init(row: row, section: 0))
                 guard let cell = cell as? DiaryListItemCell else { return cell }
-                
+                cell.fill(viewModel: item)
                 return cell
             }
             .disposed(by: disposeBag)

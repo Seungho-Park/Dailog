@@ -11,6 +11,8 @@ import SharedUIInterfaces
 import FeatureHistoryInterfaces
 import DomainDiary
 import DomainDiaryInterfaces
+import DomainPhotoInterfaces
+import DomainPhoto
 
 public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
     public let dependencies: HistorySceneDIContainerDependencies
@@ -28,6 +30,7 @@ extension DefaultHistorySceneDIContainer {
     public func makeHistoryViewModel(actions: HistoryViewModelAction) -> any HistoryViewModel {
         return DefaultHistoryViewModel(
             fetchDiariesUsecase: makeFetchDiariesUsecase(),
+            fetchPhotoDataUsecase: makeFetchPhotoDataUsecase(),
             actions: actions
         )
     }
@@ -40,7 +43,15 @@ extension DefaultHistorySceneDIContainer {
         return FetchDiariesUsecaseImpl(repository: makeDiaryRepository())
     }
     
+    public func makeFetchPhotoDataUsecase() -> any FetchPhotoDataUsecase {
+        return FetchPhotoDataUsecaseImpl(repository: makePhotoStorageRepository())
+    }
+    
     private func makeDiaryRepository()-> DiaryRepository {
         return DiaryRepositoryImpl(storage: dependencies.diaryStorage)
+    }
+    
+    private func makePhotoStorageRepository()-> PhotoStorageRepository {
+        return PhotoStorageRepositoryImpl(fileStorage: dependencies.imageFileStorage, photoService: dependencies.photoService)
     }
 }

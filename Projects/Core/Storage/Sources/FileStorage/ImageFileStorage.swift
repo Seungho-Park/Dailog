@@ -73,8 +73,8 @@ public final class ImageFileStorage: FileStorage {
     
     public func fetch(fileName: String, completion: @escaping (Result<FileInfo, FileStorageError>) -> Void) {
         let filePath = filePath.appendingPathComponent(fileName)
-        print(filePath)
-        guard fileManager.fileExists(atPath: filePath.path()) else {
+        print(filePath.path(percentEncoded: false))
+        guard fileManager.fileExists(atPath: filePath.path(percentEncoded: false)) else {
             completion(.failure(.fileNotExist))
             return
         }

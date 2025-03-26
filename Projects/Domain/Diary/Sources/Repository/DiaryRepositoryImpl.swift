@@ -17,7 +17,7 @@ public final class DiaryRepositoryImpl: DiaryRepository {
     }
     
     public func save(diary: Diary, completion: @escaping (Result<Diary, CoreDataStorageError>) -> Void) {
-        storage.save(diary: .init(id: diary.id, emotion: diary.emotion?.rawValue, contents: diary.contents, photos: diary.photos.map { PhotoStorageDTO(fileName: $0.fileName, memo: $0.memo, createdAt: $0.createdAt) }, createdAt: diary.createdAt, updatedAt: diary.updatedAt)) { result in
+        storage.save(diary: .init(id: diary.id, emotion: diary.emotion?.rawValue, contents: diary.contents, date: diary.date, photos: diary.photos.map { PhotoStorageDTO(fileName: $0.fileName, memo: $0.memo, createdAt: $0.createdAt) }, createdAt: diary.createdAt, updatedAt: diary.updatedAt)) { result in
             switch result {
             case .success(let dto):
                 completion(.success(dto.toDomain()))
