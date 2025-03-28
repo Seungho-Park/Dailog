@@ -19,39 +19,34 @@ public enum HistoryFilterType {
 }
 
 public struct HistoryFilterViewModelAction {
+    public let selectFilter: (HistoryFilterType?)-> Void
     
-    public init() {
-        
+    public init(selectFilter: @escaping (HistoryFilterType?)-> Void) {
+        self.selectFilter = selectFilter
     }
 }
 
 public struct HistoryFilterViewModelInput {
-    public let segmentChanged: Observable<Int>
-    public let didSelectedPicker: Observable<(row: Int, component: Int)>
-    public let applyButtonTapped: Observable<Void>
+    public let outsideTapped: Observable<Void>
+    public let applyButtonTapped: Observable<HistoryFilterType>
     
     public init(
-        segmentChanged: Observable<Int>,
-        didSelectedPicker: Observable<(row: Int, component: Int)>,
-        applyButtonTapped: Observable<Void>
+        outsideTapped: Observable<Void>,
+        applyButtonTapped: Observable<HistoryFilterType>
     ) {
-        self.segmentChanged = segmentChanged
-        self.didSelectedPicker = didSelectedPicker
+        self.outsideTapped = outsideTapped
         self.applyButtonTapped = applyButtonTapped
     }
 }
 
 public struct HistoryFilterViewModelOutput {
-    public let filterType: Driver<HistoryFilterType>
     public let years: Driver<[Int]>
     public let months: Driver<[Int]>
     
     public init(
-        filterType: Driver<HistoryFilterType>,
         years: Driver<[Int]>,
         months: Driver<[Int]>
     ) {
-        self.filterType = filterType
         self.years = years
         self.months = months
     }

@@ -58,7 +58,7 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
         return btn
     }()
     
-    private var filterType: HistoryFilterType = .all
+    private let tapOutside: PublishRelay<Void> = .init()
     private var years: [Int] = []
     private var months: [Int] = []
     
@@ -76,9 +76,6 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configure()
-        bind()
     }
     
     public override func configure() {
@@ -113,29 +110,34 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     public override func bind() {
         super.bind()
         
-        let output = viewModel.transform(
-            input: .init(
-                segmentChanged: segmentControl.rx.selectedSegmentIndex.asObservable(),
-                didSelectedPicker: pickerView.rx.itemSelected.map { (row: $0.row, component: $0.component) }.asObservable(),
-                applyButtonTapped: applyButton.rx.tap.asObservable()
-            )
-        )
-        
-        output.filterType
-            .map { type in
-                if case .all = type { return 0 }
-                else if case .year = type { return 1 }
-                else { return 2 }
-            }
-            .drive(segmentControl.rx.selectedSegmentIndex)
-            .disposed(by: disposeBag)
-        
-        output.filterType
-            .drive { [weak self] type in
-                self?.filterType = type
+        segmentControl.rx.selectedSegmentIndex
+            .asDriver()
+            .drive { [weak self] _ in
                 self?.pickerView.reloadAllComponents()
             }
             .disposed(by: disposeBag)
+        
+        let output = viewModel.transform(
+            input: .init(
+                outsideTapped: tapOutside.asObservable(),
+                applyButtonTapped: applyButton.rx.tap.withUnretained(self).map { owner, _ in
+                    switch self.segmentControl.selectedSegmentIndex {
+                    case 0: return .all
+                    case 1: return .year(owner.years[owner.pickerView.selectedRow(inComponent: 0)])
+                    case 2:
+                        let year = owner.pickerView.selectedRow(inComponent: 0)
+                        let month = owner.pickerView.selectedRow(inComponent: 1)
+                        if Locale.dateType == .mm_yyyy {
+                            return .month(owner.months[month], owner.years[year])
+                        } else {
+                            return .month(owner.years[year], owner.months[month])
+                        }
+                    default: return .all
+                    }
+                }
+                .asObservable()
+            )
+        )
         
         output.years
             .drive { [weak self] in self?.years = $0 }
@@ -147,9 +149,8 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if case .all = filterType { return 1 }
-        else if case .year = filterType { return years.count }
-        else { return months.count }
+        if segmentControl.selectedSegmentIndex == 2 { return 2 }
+        else { return 1 }
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -167,7 +168,7 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     
     @objc
     private func touchedOutside() {
-        dismiss(animated: false)
+        tapOutside.accept(())
     }
     
     @objc
@@ -185,7 +186,7 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
             }
         case .ended:
             if velocity.y > 1000 {
-                dismiss(animated: false, completion: nil)
+                tapOutside.accept(())
             } else {
                 UIView.animate(withDuration: 0.2) { [weak self] in
                     self?.container.frame.origin.y = viewHeight - containerHeight
@@ -234,6 +235,10 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
             super.dismiss(animated: false, completion: completion)
         }
     }
+    
+    deinit {
+        print("Deinit: \(Self.self)")
+    }
 }
 
 
@@ -251,9 +256,14 @@ private extension HistoryFilterViewController {
     private func getNumberOfRows(forComponent component: Int) -> Int {
         switch component {
         case 0:
-            if case .all = filterType { return 1 }
-            else if case .month = filterType, Locale.dateType == .mm_yyyy { return months.count }
-            else { return years.count }
+            switch segmentControl.selectedSegmentIndex {
+            case 0: return 1
+            case 1: return years.count
+            case 2:
+                if Locale.dateType == .mm_yyyy { return months.count }
+                else { return years.count }
+            default: return 1
+            }
         case 1:
             return Locale.dateType == .mm_yyyy ? years.count : months.count
         default:
@@ -275,8 +285,8 @@ private extension HistoryFilterViewController {
 
     private func getText(forRow row: Int, inComponent component: Int) -> String {
         if component == 0 {
-            if case .all = filterType { return "All".localized }
-            if case .month = filterType, Locale.dateType == .mm_yyyy {
+            if segmentControl.selectedSegmentIndex == 0 { return "All".localized }
+            if segmentControl.selectedSegmentIndex == 2 && Locale.dateType == .mm_yyyy {
                 return months[row].monthString
             }
             
@@ -287,8 +297,7 @@ private extension HistoryFilterViewController {
     }
 
     private func getTextAlignment(forComponent component: Int) -> NSTextAlignment {
-        if case .all = filterType { return .center }
-        if case .year = filterType { return .center }
+        if segmentControl.selectedSegmentIndex < 2 { return .center }
         
         if component == 0 {
             return Locale.direction == .leftToRight ? .right : .left

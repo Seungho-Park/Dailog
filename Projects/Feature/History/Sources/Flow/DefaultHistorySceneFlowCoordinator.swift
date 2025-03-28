@@ -34,12 +34,30 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
     }
     
     public func showSelectFilterScene() -> Observable<HistoryFilterType?> {
-        transition(scene: HistoryScene.filter(dependencies.makeHistoryFilterViewModel(actions: .init())), transitionStyle: .modal, animated: false)
-        
-//        let vc = HistoryFilterViewController<DefaultHistoryFilterViewModel>(viewModel: DefaultHistoryFilterViewModel())
-//        vc.modalPresentationStyle = .overFullScreen
-//        self.navigationController.visibleViewController?.present(vc, animated: false)
-        
-        return Observable.just(nil)
+        return Observable<HistoryFilterType?>.create { [weak self] observer in
+            guard let self else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            transition(
+                scene: HistoryScene.filter(
+                    dependencies.makeHistoryFilterViewModel(
+                        actions: .init(
+                            selectFilter: { [weak self] type in
+                                self?.close(animated: false) {
+                                    observer.onNext(type)
+                                    observer.onCompleted()
+                                }
+                            }
+                        )
+                    )
+                ),
+                transitionStyle: .modal,
+                animated: false
+            )
+            
+            return Disposables.create()
+        }
     }
 }
