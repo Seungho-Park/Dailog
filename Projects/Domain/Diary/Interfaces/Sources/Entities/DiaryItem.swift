@@ -9,6 +9,18 @@
 import Foundation
 import CoreStorageInterfaces
 
+public struct Diaries {
+    public let currentPage: Int
+    public let totalPages: Int
+    public let diaries: [Diary]
+    
+    public init(currentPage: Int, totalPages: Int, diaries: [Diary]) {
+        self.currentPage = currentPage
+        self.totalPages = totalPages
+        self.diaries = diaries
+    }
+}
+
 public struct Diary {
     public let id: UUID
     public let emotion: Emotion?
@@ -30,7 +42,13 @@ public struct Diary {
 }
 
 public extension DiaryStorageDTO {
-    func toDomain() -> Diary {
+    func toDomain() -> Diaries {
+        return .init(currentPage: self.currentPage, totalPages: self.totalPage, diaries: self.diaries.map { $0.toDomain() })
+    }
+}
+
+public extension DiaryStorageDTO.DiaryItem {
+    func toDomain()-> Diary {
         return .init(id: self.id, emotion: self.emotion != nil ? Emotion(rawValue: self.emotion!) : nil, contents: self.contents, date: self.date, photos: self.photos.map { $0.toDomain() }, createdAt: self.createdAt, updatedAt: self.updatedAt)
     }
 }

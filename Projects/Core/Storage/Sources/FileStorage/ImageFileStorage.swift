@@ -25,7 +25,9 @@ public final class ImageFileStorage: FileStorage {
     
     public init(fileManager: FileManager = .default) {
         self.fileManager = fileManager
+        #if DEBUG
         print(filePath)
+        #endif
     }
     
     public func save(data: Data?, completion: @escaping (Result<FileInfo, FileStorageError>)-> Void) {
@@ -66,14 +68,12 @@ public final class ImageFileStorage: FileStorage {
             
             completion(.success(FileInfo(fileName: filename, data: imageData)))
         } catch {
-            print(error)
             completion(.failure(.saveError(error)))  // 저장 실패 처리
         }
     }
     
     public func fetch(fileName: String, completion: @escaping (Result<FileInfo, FileStorageError>) -> Void) {
         let filePath = filePath.appendingPathComponent(fileName)
-        print(filePath.path(percentEncoded: false))
         guard fileManager.fileExists(atPath: filePath.path(percentEncoded: false)) else {
             completion(.failure(.fileNotExist))
             return

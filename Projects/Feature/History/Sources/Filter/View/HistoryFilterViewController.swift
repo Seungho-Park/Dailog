@@ -122,13 +122,17 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
         )
         
         output.filterType
-            .map { $0.rawValue }
+            .map { type in
+                if case .all = type { return 0 }
+                else if case .year = type { return 1 }
+                else { return 2 }
+            }
             .drive(segmentControl.rx.selectedSegmentIndex)
             .disposed(by: disposeBag)
         
         output.filterType
-            .drive { [weak self]
-                type in self?.filterType = type
+            .drive { [weak self] type in
+                self?.filterType = type
                 self?.pickerView.reloadAllComponents()
             }
             .disposed(by: disposeBag)
@@ -143,7 +147,9 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return filterType == .month ? 2 : 1
+        if case .all = filterType { return 1 }
+        else if case .year = filterType { return years.count }
+        else { return months.count }
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -245,9 +251,9 @@ private extension HistoryFilterViewController {
     private func getNumberOfRows(forComponent component: Int) -> Int {
         switch component {
         case 0:
-            return filterType == .all ? 1 : (
-                filterType == .month && Locale.dateType == .mm_yyyy ? months.count : years.count
-            )
+            if case .all = filterType { return 1 }
+            else if case .month = filterType, Locale.dateType == .mm_yyyy { return months.count }
+            else { return years.count }
         case 1:
             return Locale.dateType == .mm_yyyy ? years.count : months.count
         default:
@@ -269,9 +275,8 @@ private extension HistoryFilterViewController {
 
     private func getText(forRow row: Int, inComponent component: Int) -> String {
         if component == 0 {
-            guard filterType != .all else { return "All".localized }
-            
-            if filterType == .month && Locale.dateType == .mm_yyyy {
+            if case .all = filterType { return "All".localized }
+            if case .month = filterType, Locale.dateType == .mm_yyyy {
                 return months[row].monthString
             }
             
@@ -282,7 +287,8 @@ private extension HistoryFilterViewController {
     }
 
     private func getTextAlignment(forComponent component: Int) -> NSTextAlignment {
-        guard filterType == .month else { return .center }
+        if case .all = filterType { return .center }
+        if case .year = filterType { return .center }
         
         if component == 0 {
             return Locale.direction == .leftToRight ? .right : .left

@@ -14,7 +14,7 @@ import DomainDiaryInterfaces
 import PhotosUI
 import CoreStorageInterfaces
 
-public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoordinator, UINavigationControllerDelegate {
+public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoordinator {
     public var dependencies: DiarySceneFlowCoordinatorDependencies
     public var navigationController: UINavigationController
     
@@ -104,15 +104,5 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
             coordinator.start()
             return Disposables.create()
         }
-    }
-}
-
-extension DefaultDiarySceneFlowCoordinator: PHPickerViewControllerDelegate, UIImagePickerControllerDelegate {
-    public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        print("result: \(results)")
-    }
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print(info)
     }
 }

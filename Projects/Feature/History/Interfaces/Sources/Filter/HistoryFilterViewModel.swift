@@ -12,25 +12,10 @@ import SharedUI
 import RxSwift
 import RxCocoa
 
-public enum HistoryFilterType: Int {
+public enum HistoryFilterType {
     case all
-    case year
-    case month
-    
-//    public func toDateString()-> String {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale.getLocaleFromLangCode()
-//        switch self {
-//        case .all: return "All".localized
-//        case .year(let year):
-//            
-//        case .month(let year, let month):
-//            dateFormatter.dateFormat = "yyyy-M"
-//            let date = dateFormatter.date(from: "\(year)-\(month)")
-//            dateFormatter.setLocalizedDateFormatFromTemplate("yyyy MMMM")
-//            return dateFormatter.string(from: date!)
-//        }
-//    }
+    case year(Int)
+    case month(Int, Int)
 }
 
 public struct HistoryFilterViewModelAction {

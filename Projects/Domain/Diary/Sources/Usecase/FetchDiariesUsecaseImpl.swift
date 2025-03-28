@@ -16,7 +16,7 @@ public final class FetchDiariesUsecaseImpl: FetchDiariesUsecase {
         self.repository = repository
     }
     
-    public func execute(year: Int?, month: Int?, page: Int, count: Int) -> Single<[Diary]> {
+    public func execute(year: Int?, month: Int?, page: Int, count: Int) -> Single<Diaries> {
         return .create { [unowned self] single in
             
             repository.fetchDiaries(year: year, month: month, page: page, count: count) { result in

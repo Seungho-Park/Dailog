@@ -48,9 +48,8 @@ public final class EmotionButton: UIView {
     
     public var selected: Emotion? = nil {
         didSet {
-            emotionLabel.flex.display(selected != nil ? .flex : .none)
             emotionDescLabel.text = selected == nil ? "UnSelected".localized : selected!.string
-            emotionLabel.text = selected == nil ? "" : selected!.emoji
+            emotionLabel.text = selected == nil ? "🫥" : selected!.emoji
             
             emotionLabel.flex.markDirty()
             emotionDescLabel.flex.markDirty()

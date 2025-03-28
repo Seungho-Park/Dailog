@@ -26,8 +26,15 @@ public final class DefaultHistoryFilterViewModel: HistoryFilterViewModel {
         let years: BehaviorRelay<[Int]> = .init(value: Array(1970...Calendar.current.component(.year, from: Date())))
         let month: BehaviorRelay<[Int]> = .init(value: Array(1...12))
         
+        let selectedYear: BehaviorRelay<Int> = .init(value: years.value.count-1)
+        let selectedMonth: BehaviorRelay<Int> = .init(value: month.value.count-1)
+        
         input.segmentChanged
-            .map { HistoryFilterType(rawValue: $0)! }
+            .map {
+                if $0 == 0 { return HistoryFilterType.all }
+                else if $0 == 1 { return HistoryFilterType.year(years.value[selectedYear.value]) }
+                else { return HistoryFilterType.month(years.value[selectedYear.value], month.value[selectedMonth.value]) }
+            }
             .bind(to: filterType)
             .disposed(by: disposeBag)
         

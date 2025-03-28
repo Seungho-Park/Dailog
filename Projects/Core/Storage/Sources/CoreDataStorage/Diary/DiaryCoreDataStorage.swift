@@ -16,7 +16,7 @@ public final class DiaryCoreDataStorage: DiaryStorage {
         self.coreDataStorage = coreDataStorage
     }
     
-    public func fetchDiaries(year: Int?, month: Int?, page: Int, count: Int, completion: @escaping (Result<[DiaryStorageDTO], CoreDataStorageError>)-> Void) {
+    public func fetchDiaries(year: Int?, month: Int?, page: Int, count: Int, completion: @escaping (Result<DiaryStorageDTO, CoreDataStorageError>)-> Void) {
         // FetchRequest 설정
         let fetchRequest: NSFetchRequest<DiaryEntity> = DiaryEntity.fetchRequest()
         
@@ -50,15 +50,22 @@ public final class DiaryCoreDataStorage: DiaryStorage {
         
         coreDataStorage.performBackgroundTask { context in
             do {
+                let totalCountRequest: NSFetchRequest<DiaryEntity> = DiaryEntity.fetchRequest()
+                totalCountRequest.predicate = fetchRequest.predicate
+                totalCountRequest.includesSubentities = false
+                        
+                let totalCount = try context.count(for: totalCountRequest)
+                let totalPages = Int(ceil(Double(totalCount) / Double(count)))
+                
                 let diaries = try context.fetch(fetchRequest)
-                completion(.success(diaries.map { $0.toDTO() }))
+                completion(.success(.init(currentPage: page, totalPage: totalPages, diaries: diaries.map { $0.toDTO() })))
             } catch {
                 completion(.failure(.fetchError(error)))
             }
         }
     }
     
-    public func save(diary: DiaryStorageDTO, completion: @escaping (Result<DiaryStorageDTO, CoreDataStorageError>) -> Void) {
+    public func save(diary: DiaryStorageDTO.DiaryItem, completion: @escaping (Result<DiaryStorageDTO.DiaryItem, CoreDataStorageError>) -> Void) {
         coreDataStorage.performBackgroundTask { context in
             let fetchRequest: NSFetchRequest<DiaryEntity> = DiaryEntity.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "id == %@", diary.id as CVarArg)
@@ -108,7 +115,7 @@ public final class DiaryCoreDataStorage: DiaryStorage {
         }
     }
     
-    public func remove(diary: DiaryStorageDTO, completion: @escaping (Result<DiaryStorageDTO, CoreDataStorageError>)-> Void) {
+    public func remove(diary: DiaryStorageDTO.DiaryItem, completion: @escaping (Result<DiaryStorageDTO.DiaryItem, CoreDataStorageError>)-> Void) {
         coreDataStorage.performBackgroundTask { context in
             let fetchRequest: NSFetchRequest<DiaryEntity> = DiaryEntity.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "id == %@", diary.id as CVarArg)
@@ -129,19 +136,21 @@ public final class DiaryCoreDataStorage: DiaryStorage {
 }
 
 public extension DiaryEntity {
-    convenience init(dto: DiaryStorageDTO, context: NSManagedObjectContext) {
+    convenience init(entity: DiaryStorageDTO.DiaryItem, insertInto context: NSManagedObjectContext) {
         self.init(context: context)
-        self.id = dto.id
-        self.emotion = dto.emotion ?? -1
-        self.contents = dto.contents
-        self.createdAt = dto.createdAt
-        self.updatedAt = dto.updatedAt
+        self.id = entity.id
+        self.contents = entity.contents
+        self.emotion = entity.emotion ?? -1
+        self.createdAt = entity.createdAt
+        self.updatedAt = entity.updatedAt
+        self.date = entity.date
     }
     
-    func toDTO()-> DiaryStorageDTO {
+    func toDTO()-> DiaryStorageDTO.DiaryItem {
         let photoDTOs = (self.photos as? Set<PhotoEntity>)?.map { $0.toDTO() }.sorted(by: { lhs, rhs in
             lhs.createdAt < rhs.createdAt
         }) ?? []
+        
         return .init(id: self.id!, emotion: self.emotion, contents: self.contents!, date: self.date!, photos: photoDTOs, createdAt: self.createdAt!, updatedAt: self.updatedAt!)
     }
 }

@@ -32,76 +32,51 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
     }
     
     public func transform(input: FeatureHistoryInterfaces.HistoryViewModelInput) -> FeatureHistoryInterfaces.HistoryViewModelOutput {
-        let diaries: BehaviorRelay<[UUID:Diary]> = .init(value: [:])
-        let itemViewModels: BehaviorRelay<[DiaryListItemViewModel]> = .init(value: [])
-        let currentPage: BehaviorRelay<Int> = .init(value: 0)
+        let currentPage = BehaviorRelay<Int>(value: 1)
+        let diariesRelay = BehaviorRelay<[Diary]>(value: [])
         
-        input.viewWillAppear
-            .map { 1 }
-            .bind(to: currentPage)
-            .disposed(by: disposeBag)
-        
-        input.willDisplayCell
-            .filter { diaries.value.count > 0 && diaries.value.count == $0 }
-            .map { _ in currentPage.value + 1 }
-            .bind(to: currentPage)
-            .disposed(by: disposeBag)
-        
-        let response = currentPage
-            .filter { $0 > 0 }
+        let loadNextPage = input.willDisplayCell
+            .withLatestFrom(diariesRelay) { (index, diaries) -> Bool in
+                return index >= Int(Double(diaries.count) * 0.8) // 80% 스크롤 시 로드
+            }
             .distinctUntilChanged()
-            .withUnretained(self)
-            .flatMap { owner, page in
-                owner.fetchDiariesUsecase.execute(year: nil, month: nil, page: page, count: 20)
-            }
-            .catchAndReturn([])
-            .share()
+            .filter { $0 }
+            .withLatestFrom(currentPage)
+            .map { $0 + 1 } // 다음 페이지 요청
+            .filter { $0 <= diariesRelay.value.count }
         
-        response
-            .bind { list in
-                var values = diaries.value
-                list.forEach {
-                    values.updateValue($0, forKey: $0.id)
-                }
-                diaries.accept(values)
+        let fetchNewDiaries = Observable
+            .merge(
+                input.viewWillAppear.map { 1 },
+                loadNextPage
+            )
+            .withUnretained(self)
+            .flatMapLatest { owner, page in
+                return owner.fetchDiariesUsecase.execute(year: nil, month: nil, page: page, count: 20)
+                    .catchAndReturn(Diaries(currentPage: page, totalPages: 1, diaries: []))
             }
+            .share(replay: 1)
+        
+        fetchNewDiaries
+            .subscribe(onNext: { diaries in
+                if diaries.currentPage == 1 {
+                    diariesRelay.accept(diaries.diaries) // 첫 페이지는 덮어쓰기
+                } else {
+                    diariesRelay.accept(diariesRelay.value + diaries.diaries) // 페이징 데이터 추가
+                }
+                currentPage.accept(diaries.currentPage)
+            })
             .disposed(by: disposeBag)
         
-        Observable.zip(
-            response.asObservable(),
-            response
-                .withUnretained(self)
-                .flatMap { owner, diaries in
-                    Observable.from(diaries)
-                        .withUnretained(owner)
-                        .flatMap { owner, diary in
-                            guard let fileName = diary.photos.first?.fileName else {
-                                return Observable<FileInfo?>.just(nil)
-                            }
-                            
-                            return owner.fetchPhotoDataUsecase.execute(fileName: fileName)
-                                .map { fileInfo-> FileInfo? in return fileInfo }
-                                .debug()
-                                .catchAndReturn(nil)
-                                .asObservable()
-                        }
-                        .toArray()
+        let items = diariesRelay
+            .withUnretained(self)
+            .flatMapLatest { owner, diaries -> Observable<[DiaryListItemViewModel]> in
+                let itemObservables = diaries.map { diary in
+                    owner.loadThumbnail(for: diary)
                 }
-        )
-        .map { diaries, photo in
-            var result: [DiaryListItemViewModel] = []
-            for i in 0..<diaries.count {
-                let photo = photo[i]
-                result.append(DiaryListItemViewModel.init(id: diaries[i].id, emotion: diaries[i].emotion, content: diaries[i].contents, date: diaries[i].date, thumbnail: photo != nil ? .init(image: photo!.data, hasMultiple: diaries[i].photos.count > 1) : nil))
+                return Observable.zip(itemObservables)
             }
-            return result
-        }
-        .bind {
-            var value = itemViewModels.value
-            value.append(contentsOf: $0)
-            itemViewModels.accept(value)
-        }
-        .disposed(by: disposeBag)
+            .asDriver(onErrorJustReturn: [])
         
         input.filterButtonTapped?
             .withUnretained(self)
@@ -114,7 +89,41 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
             .disposed(by: disposeBag)
         
         return .init(
-            items: itemViewModels.asDriver()
+            items: items
         )
+    }
+    
+    private func loadThumbnail(for diary: Diary) -> Observable<DiaryListItemViewModel> {
+        guard let firstPhoto = diary.photos.first else {
+            return Observable.just(DiaryListItemViewModel(
+                id: diary.id,
+                emotion: diary.emotion,
+                content: diary.contents,
+                date: diary.date,
+                thumbnail: nil
+            ))
+        }
+        
+        return fetchPhotoDataUsecase.execute(fileName: firstPhoto.fileName)
+            .map { fileInfo in
+                DiaryListItemViewModel(
+                    id: diary.id,
+                    emotion: diary.emotion,
+                    content: diary.contents,
+                    date: diary.date,
+                    thumbnail: DiaryListItemViewModel.Thumbnail(
+                        image: fileInfo.data,
+                        hasMultiple: diary.photos.count > 1
+                    )
+                )
+            }
+            .catchAndReturn(DiaryListItemViewModel(
+                id: diary.id,
+                emotion: diary.emotion,
+                content: diary.contents,
+                date: diary.date,
+                thumbnail: nil
+            ))
+            .asObservable()
     }
 }
