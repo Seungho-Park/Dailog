@@ -14,7 +14,12 @@ public final class NavigationBarSelectButton: NavigationBarButton {
     
     public var text: String? {
         get { textLabel.text }
-        set { textLabel.text = newValue }
+        set {
+            textLabel.text = newValue
+            
+            textLabel.flex.markDirty()
+            container.flex.layout()
+        }
     }
     
     public var font: UIFont! {

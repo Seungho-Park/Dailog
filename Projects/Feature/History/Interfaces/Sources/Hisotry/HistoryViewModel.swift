@@ -13,10 +13,10 @@ import DomainDiaryInterfaces
 import DomainPhotoInterfaces
 
 public struct HistoryViewModelAction {
-    public let showSelectFilter: ()-> Observable<HistoryFilterType?>
+    public let showSelectFilter: (HistoryFilterType)-> Observable<HistoryFilterType?>
     
     public init(
-        showSelectFilter: @escaping () -> Observable<HistoryFilterType?>
+        showSelectFilter: @escaping (HistoryFilterType) -> Observable<HistoryFilterType?>
     ) {
         self.showSelectFilter = showSelectFilter
     }
@@ -40,11 +40,14 @@ public struct HistoryViewModelInput {
 
 public struct HistoryViewModelOutput {
     public let items: Driver<[DiaryListItemViewModel]>
+    public let filter: Driver<String>
     
     public init(
-        items: Driver<[DiaryListItemViewModel]>
+        items: Driver<[DiaryListItemViewModel]>,
+        filter: Driver<String>
     ) {
         self.items = items
+        self.filter = filter
     }
 }
 

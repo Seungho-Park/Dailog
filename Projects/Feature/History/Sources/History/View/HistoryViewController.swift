@@ -62,7 +62,6 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
         
         output.items
             .drive { [weak self] items in
-                print(items)
                 self?.tableView.isHidden = items.isEmpty
                 self?.emptyDataView.isHidden = !items.isEmpty
             }
@@ -76,6 +75,10 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
                 cell.fill(viewModel: item)
                 return cell
             }
+            .disposed(by: disposeBag)
+        
+        output.filter
+            .drive(((navigationBar as? FilterNavigationBar)?.rx.title)!)
             .disposed(by: disposeBag)
     }
 }

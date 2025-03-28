@@ -128,7 +128,7 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
                         let year = owner.pickerView.selectedRow(inComponent: 0)
                         let month = owner.pickerView.selectedRow(inComponent: 1)
                         if Locale.dateType == .mm_yyyy {
-                            return .month(owner.months[month], owner.years[year])
+                            return .month(owner.years[month], owner.months[year])
                         } else {
                             return .month(owner.years[year], owner.months[month])
                         }
@@ -146,6 +146,34 @@ public final class HistoryFilterViewController<VM: HistoryFilterViewModel>: Dail
         output.months
             .drive { [weak self] in self?.months = $0 }
             .disposed(by: disposeBag)
+        
+        output.filter
+            .drive(segmentControl.rx.selectedSegmentIndex)
+            .disposed(by: disposeBag)
+        
+        Driver.combineLatest(
+            segmentControl.rx.selectedSegmentIndex.asDriver(),
+            output.selectedYearIdx,
+            output.selectedMonthIdx
+        )
+        .drive { [weak self] idx, yearIdx, monthIdx in
+            switch idx {
+            case 0: break
+            case 1:
+                self?.pickerView.selectRow(yearIdx, inComponent: 0, animated: false)
+            case 2:
+                switch Locale.dateType {
+                case .mm_yyyy:
+                    self?.pickerView.selectRow(yearIdx, inComponent: 1, animated: false)
+                    self?.pickerView.selectRow(monthIdx, inComponent: 0, animated: false)
+                case .yyyy_mm:
+                    self?.pickerView.selectRow(yearIdx, inComponent: 0, animated: false)
+                    self?.pickerView.selectRow(monthIdx, inComponent: 1, animated: false)
+                }
+            default: break
+            }
+        }
+        .disposed(by: disposeBag)
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {

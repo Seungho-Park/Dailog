@@ -13,6 +13,15 @@ public final class FilterNavigationBar: NavigationBar {
     private let container = UIView()
     private lazy var filterButton = NavigationBarSelectButton()
     
+    public override var title: String {
+        didSet {
+            filterButton.text = title
+            
+            filterButton.flex.markDirty()
+            container.flex.layout()
+        }
+    }
+    
     public convenience init(title: String) {
         self.init(items: [], title: title)
         self.title = title

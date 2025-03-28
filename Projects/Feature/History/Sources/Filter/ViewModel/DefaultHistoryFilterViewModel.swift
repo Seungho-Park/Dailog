@@ -17,13 +17,31 @@ public final class DefaultHistoryFilterViewModel: HistoryFilterViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
     public let actions: HistoryFilterViewModelAction
     
-    public init(actions: HistoryFilterViewModelAction) {
+    private let filter: HistoryFilterType
+    
+    public init(filter: HistoryFilterType, actions: HistoryFilterViewModelAction) {
+        self.filter = filter
         self.actions = actions
     }
     
     public func transform(input: FeatureHistoryInterfaces.HistoryFilterViewModelInput) -> FeatureHistoryInterfaces.HistoryFilterViewModelOutput {
         let years: BehaviorRelay<[Int]> = .init(value: Array(1970...Calendar.current.component(.year, from: Date())))
         let month: BehaviorRelay<[Int]> = .init(value: Array(1...12))
+        
+        var yearIdx: Int = Calendar.current.component(.year, from: Date())-1970
+        var monthIdx: Int = Calendar.current.component(.month, from: Date())-1
+        
+        switch filter {
+        case .all: break
+        case .year(let year): yearIdx = year - 1970
+        case .month(let year, let month):
+            yearIdx = year - 1970
+            monthIdx = month - 1
+        }
+        
+        let selectedYearIdx: BehaviorRelay<Int> = .init(value: yearIdx)
+        let selectedMonthIdx: BehaviorRelay<Int> = .init(value: monthIdx)
+        
         
         input.outsideTapped
             .map { _-> HistoryFilterType? in
@@ -38,7 +56,16 @@ public final class DefaultHistoryFilterViewModel: HistoryFilterViewModel {
         
         return .init(
             years: years.asDriver(),
-            months: month.asDriver()
+            months: month.asDriver(),
+            filter: Observable.just(filter).map {
+                switch $0 {
+                case .all: return 0
+                case .year: return 1
+                case .month: return 2
+                }
+            }.asDriver(onErrorJustReturn: 0),
+            selectedYearIdx: selectedYearIdx.asDriver(),
+            selectedMonthIdx: selectedMonthIdx.asDriver()
         )
     }
     

@@ -27,13 +27,13 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
         return HistoryScene.history(
             dependencies.makeHistoryViewModel(
                 actions: .init(
-                    showSelectFilter: showSelectFilterScene
+                    showSelectFilter: showSelectFilterScene(filter:)
                 )
             )
         ).instantiate()
     }
     
-    public func showSelectFilterScene() -> Observable<HistoryFilterType?> {
+    public func showSelectFilterScene(filter: HistoryFilterType) -> Observable<HistoryFilterType?> {
         return Observable<HistoryFilterType?>.create { [weak self] observer in
             guard let self else {
                 observer.onCompleted()
@@ -43,6 +43,7 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
             transition(
                 scene: HistoryScene.filter(
                     dependencies.makeHistoryFilterViewModel(
+                        filter: filter,
                         actions: .init(
                             selectFilter: { [weak self] type in
                                 self?.close(animated: false) {

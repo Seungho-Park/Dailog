@@ -92,7 +92,7 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
         input.filterButtonTapped?
             .withUnretained(self)
             .flatMap { owner, _ in
-                owner.actions.showSelectFilter()
+                owner.actions.showSelectFilter(filter.value)
             }
             .compactMap { $0 }
             .bind(to: filter)
@@ -108,7 +108,29 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
                     }
                     return Observable.zip(itemObservables)
                 }
-                .asDriver(onErrorJustReturn: [])
+                .asDriver(onErrorJustReturn: []),
+            
+            filter: filter
+                .map {
+                    switch $0 {
+                    case .all: return "All".localized
+                    case .year(let year):
+                        let formatter = DateFormatter()
+                        formatter.locale = Locale.getLocaleFromLangCode()
+                        formatter.dateFormat = "yyyy"
+                        let date = formatter.date(from: "\(year)")
+                        formatter.setLocalizedDateFormatFromTemplate("yyyy")
+                        return formatter.string(from: date!)
+                    case .month(let year, let month):
+                        let formatter = DateFormatter()
+                        formatter.locale = Locale.getLocaleFromLangCode()
+                        formatter.dateFormat = "yyyyMM"
+                        let date = formatter.date(from: "\(year)\(String(format: "%02d", month))")
+                        formatter.setLocalizedDateFormatFromTemplate("yyyy MMM")
+                        return formatter.string(from: date!)
+                    }
+                }
+                .asDriver(onErrorJustReturn: "All".localized)
         )
     }
     

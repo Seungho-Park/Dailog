@@ -35,8 +35,8 @@ extension DefaultHistorySceneDIContainer {
         )
     }
     
-    public func makeHistoryFilterViewModel(actions: HistoryFilterViewModelAction) -> any HistoryFilterViewModel {
-        return DefaultHistoryFilterViewModel(actions: actions)
+    public func makeHistoryFilterViewModel(filter: HistoryFilterType, actions: HistoryFilterViewModelAction) -> any HistoryFilterViewModel {
+        return DefaultHistoryFilterViewModel(filter: filter, actions: actions)
     }
     
     public func makeFetchDiariesUsecase() -> FetchDiariesUsecase {
