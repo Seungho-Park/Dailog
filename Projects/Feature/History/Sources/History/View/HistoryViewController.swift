@@ -62,6 +62,7 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
         
         output.items
             .drive { [weak self] items in
+                print(items)
                 self?.tableView.isHidden = items.isEmpty
                 self?.emptyDataView.isHidden = !items.isEmpty
             }
@@ -69,7 +70,6 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
         
         
         output.items
-            .filter { !$0.isEmpty }
             .drive(tableView.rx.items) { view, row, item in
                 let cell = view.dequeueReusableCell(withIdentifier: DiaryListItemCell.identifier, for: .init(row: row, section: 0))
                 guard let cell = cell as? DiaryListItemCell else { return cell }

@@ -33,29 +33,49 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
     
     public func transform(input: FeatureHistoryInterfaces.HistoryViewModelInput) -> FeatureHistoryInterfaces.HistoryViewModelOutput {
         let currentPage = BehaviorRelay<Int>(value: 1)
+        let totalPages = BehaviorRelay(value: 1)
         let diariesRelay = BehaviorRelay<[Diary]>(value: [])
+        let filter: BehaviorRelay<HistoryFilterType> = .init(value: .all)
+        
         
         let loadNextPage = input.willDisplayCell
             .withLatestFrom(diariesRelay) { (index, diaries) -> Bool in
-                return index >= Int(Double(diaries.count) * 0.8) // 80% 스크롤 시 로드
+                return !diaries.isEmpty && index == diaries.count-1
             }
             .distinctUntilChanged()
             .filter { $0 }
             .withLatestFrom(currentPage)
             .map { $0 + 1 } // 다음 페이지 요청
-            .filter { $0 <= diariesRelay.value.count }
+            .filter { $0 <= totalPages.value }
         
-        let fetchNewDiaries = Observable
-            .merge(
-                input.viewWillAppear.map { 1 },
-                loadNextPage
+        let fetchNewDiaries =
+        Observable.merge(
+            Observable.merge(
+                input.viewWillAppear,
+                filter.map { _ in }.asObservable()
             )
+            .map { 1 },
+            loadNextPage
+            )
+            .debug()
             .withUnretained(self)
             .flatMapLatest { owner, page in
-                return owner.fetchDiariesUsecase.execute(year: nil, month: nil, page: page, count: 20)
+                var year: Int? = nil
+                var month: Int? = nil
+                switch filter.value {
+                case .all: break
+                case .year(let value):
+                    year = value
+                    month = nil
+                case .month(let yValue, let mValue):
+                    year = yValue
+                    month = mValue
+                }
+                
+                return owner.fetchDiariesUsecase.execute(year: year, month: month, page: page, count: 20)
                     .catchAndReturn(Diaries(currentPage: page, totalPages: 1, diaries: []))
             }
-            .share(replay: 1)
+            .share()
         
         fetchNewDiaries
             .subscribe(onNext: { diaries in
@@ -65,31 +85,30 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
                     diariesRelay.accept(diariesRelay.value + diaries.diaries) // 페이징 데이터 추가
                 }
                 currentPage.accept(diaries.currentPage)
+                totalPages.accept(diaries.totalPages)
             })
             .disposed(by: disposeBag)
-        
-        let items = diariesRelay
-            .withUnretained(self)
-            .flatMapLatest { owner, diaries -> Observable<[DiaryListItemViewModel]> in
-                let itemObservables = diaries.map { diary in
-                    owner.loadThumbnail(for: diary)
-                }
-                return Observable.zip(itemObservables)
-            }
-            .asDriver(onErrorJustReturn: [])
         
         input.filterButtonTapped?
             .withUnretained(self)
             .flatMap { owner, _ in
                 owner.actions.showSelectFilter()
             }
-            .subscribe {
-                print($0)
-            }
+            .compactMap { $0 }
+            .bind(to: filter)
             .disposed(by: disposeBag)
         
         return .init(
-            items: items
+            items: diariesRelay
+                .withUnretained(self)
+                .flatMapLatest { owner, diaries -> Observable<[DiaryListItemViewModel]> in
+                    if diaries.isEmpty { return Observable.just([]) }
+                    let itemObservables = diaries.map { diary in
+                        owner.loadThumbnail(for: diary)
+                    }
+                    return Observable.zip(itemObservables)
+                }
+                .asDriver(onErrorJustReturn: [])
         )
     }
     

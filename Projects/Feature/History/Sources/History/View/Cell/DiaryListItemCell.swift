@@ -184,7 +184,12 @@ public final class DiaryListItemCell: UITableViewCell {
     }
     
     public func fill(viewModel: DiaryListItemViewModel) {
-        contentsLabel.text = viewModel.content
+        let lines = viewModel.content.components(separatedBy: "\n")
+        if lines.count <= 4 {
+            contentsLabel.text = lines.joined(separator: "\n")
+        } else {
+            contentsLabel.text = lines[..<4].joined(separator: "\n") + "..."
+        }
         
         dateLabel.text = viewModel.date.formattedString()
         emojiLabel.text = viewModel.emotion?.emoji ?? "🫥"
