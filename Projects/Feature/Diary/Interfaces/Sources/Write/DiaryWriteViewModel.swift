@@ -19,17 +19,20 @@ public struct DiaryWriteViewModelAction {
     public let showSelectEmotion: ()-> Observable<Emotion?>
     public let showPhotoAlbum: ()-> Observable<[FileInfo]>
     public let showDeviceCamera: ()-> Observable<[FileInfo]>
+    public let showDatePicker: ()-> Observable<Date?>
     
     public init(
         close: @escaping ()-> Void,
         showSelectEmotion: @escaping () -> Observable<Emotion?>,
         showPhotoAlbum: @escaping ()-> Observable<[FileInfo]>,
-        showDeviceCamera: @escaping ()-> Observable<[FileInfo]>
+        showDeviceCamera: @escaping ()-> Observable<[FileInfo]>,
+        showDatePicker: @escaping ()-> Observable<Date?>
     ) {
         self.close = close
         self.showSelectEmotion = showSelectEmotion
         self.showPhotoAlbum = showPhotoAlbum
         self.showDeviceCamera = showDeviceCamera
+        self.showDatePicker = showDatePicker
     }
 }
 
@@ -41,6 +44,7 @@ public struct DiaryWriteViewModelInput {
     public let photoDeleteButtonTapped: Observable<String>
     public let saveButtonTapped: Observable<Void>?
     public let textChanged: Observable<String>
+    public let dateChangeButtonTapped: Observable<Void>?
     
     public init(
         backButtonTapped: Observable<Void>?,
@@ -49,7 +53,8 @@ public struct DiaryWriteViewModelInput {
         captureCameraButtonTapped: Observable<Void>,
         photoDeleteButtonTapped: Observable<String>,
         saveButtonTapped: Observable<Void>?,
-        textChanged: Observable<String>
+        textChanged: Observable<String>,
+        dateChangeButtonTapped: Observable<Void>?
     ) {
         self.backButtonTapped = backButtonTapped
         self.emotionButtonTapped = emotionButtonTapped
@@ -58,6 +63,7 @@ public struct DiaryWriteViewModelInput {
         self.photoDeleteButtonTapped = photoDeleteButtonTapped
         self.saveButtonTapped = saveButtonTapped
         self.textChanged = textChanged
+        self.dateChangeButtonTapped = dateChangeButtonTapped
     }
 }
 

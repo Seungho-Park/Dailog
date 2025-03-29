@@ -18,6 +18,10 @@ extension FeatureDiaryInterfaces.DiaryWriteScene: SharedUIInterfaces.Scene {
             return DiaryWriteViewController<DefaultDiaryWriteViewModel>.create(viewModel: viewModel as! DefaultDiaryWriteViewModel)
         case .emotion(let viewModel):
             return EmotionViewController<DefaultEmotionViewModel>.create(viewModel: viewModel as! DefaultEmotionViewModel)
+        case .datePicker(let viewModel):
+            let vc = DatePickerViewController.create(viewModel: viewModel as! DefaultDatePickerViewModel)
+            vc.modalPresentationStyle = .overFullScreen
+            return vc
         }
     }
 }

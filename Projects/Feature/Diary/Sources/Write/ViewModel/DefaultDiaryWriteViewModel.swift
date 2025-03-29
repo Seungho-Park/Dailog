@@ -135,6 +135,16 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.dateChangeButtonTapped?
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                owner.actions.showDatePicker()
+            }
+            .subscribe {
+                print($0)
+            }
+            .disposed(by: disposeBag)
+        
         return .init(
             emotion: emotion.asDriver(),
             contents: contents.asDriver(),

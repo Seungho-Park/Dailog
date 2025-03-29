@@ -18,6 +18,7 @@ public final class FilterNavigationBar: NavigationBar {
             filterButton.text = title
             
             filterButton.flex.markDirty()
+            filterButton.flex.layout()
             container.flex.layout()
         }
     }
@@ -33,14 +34,12 @@ public final class FilterNavigationBar: NavigationBar {
         self.addSubview(container)
         
         container.flex
-            .addItem()
-            .grow(1)
             .direction(.row)
-            .alignItems(.center)
             .define { flex in
                 flex.addItem(filterButton)
             }
             .justifyContent(Locale.direction == .leftToRight ? .start : .end)
+            .alignItems(.center)
             .marginHorizontal(12)
     }
     

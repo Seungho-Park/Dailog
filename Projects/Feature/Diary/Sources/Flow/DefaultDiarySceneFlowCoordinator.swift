@@ -46,7 +46,8 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
                             }
                         },
                         showPhotoAlbum: showPhotoAlbumScene,
-                        showDeviceCamera: showDeviceCamera
+                        showDeviceCamera: showDeviceCamera,
+                        showDatePicker: showDatePicker
                     )
                 )
             ),
@@ -102,6 +103,31 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
             }
             
             coordinator.start()
+            return Disposables.create()
+        }
+    }
+    
+    public func showDatePicker() -> Observable<Date?> {
+        return Observable<Date?>.create { [weak self] observer in
+            guard let self else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            self.transition(
+                scene: DiaryWriteScene.datePicker(
+                    dependencies.makeDatePickerViewModel(
+                        actions: .init(close: { [weak self] date in
+                            observer.onNext(date)
+                            observer.onCompleted()
+                            self?.close(animated: false)
+                        })
+                    )
+                ),
+                transitionStyle: .modal,
+                animated: false
+            )
+            
             return Disposables.create()
         }
     }

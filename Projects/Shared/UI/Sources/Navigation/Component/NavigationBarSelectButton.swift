@@ -16,7 +16,6 @@ public final class NavigationBarSelectButton: NavigationBarButton {
         get { textLabel.text }
         set {
             textLabel.text = newValue
-            
             textLabel.flex.markDirty()
             container.flex.layout()
         }
@@ -61,13 +60,10 @@ public final class NavigationBarSelectButton: NavigationBarButton {
         
         container
             .flex
-            .addItem()
             .direction(.row)
-            .grow(1)
             .define { flex in
                 if Locale.direction == .leftToRight {
                     flex.addItem(textLabel)
-                        .vertically(1)
                     
                     flex.addItem(dropDownImage)
                         .width(18)
@@ -79,7 +75,6 @@ public final class NavigationBarSelectButton: NavigationBarButton {
                         .marginRight(5)
                     
                     flex.addItem(textLabel)
-                        .vertically(1)
                 }
             }
             .alignItems(.center)
