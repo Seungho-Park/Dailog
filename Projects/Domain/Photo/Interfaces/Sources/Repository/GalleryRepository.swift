@@ -13,4 +13,5 @@ public protocol GalleryRepository {
     func reuqestAuthorization(completion: @escaping (Result<Void, PhotoServiceError>)-> Void)
     func fetchAllPhotos(size: PhotoSize, completion: @escaping (Result<[PHAsset], PhotoServiceError>)-> Void)
     func fetchAssetImageData(asset: PHAsset, size: PhotoSize, completion: @escaping (Result<Data, PhotoServiceError>)-> Void)
+    func clear()
 }

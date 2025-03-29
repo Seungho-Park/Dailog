@@ -153,7 +153,7 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
                     content: diary.contents,
                     date: diary.date,
                     thumbnail: DiaryListItemViewModel.Thumbnail(
-                        image: fileInfo.data,
+                        image: fileInfo.data.resizeImageData(maxPixelSize: 200),
                         hasMultiple: diary.photos.count > 1
                     )
                 )

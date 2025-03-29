@@ -68,6 +68,7 @@ public final class EmotionViewController<VM: EmotionViewModel>: DailogViewContro
     }
     
     public override func configure() {
+        self.navigationBar = ModalNavigationBar()
         super.configure()
         
         container.flex
@@ -101,7 +102,8 @@ public final class EmotionViewController<VM: EmotionViewModel>: DailogViewContro
             input: .init(
                 select: Observable<Emotion?>.merge(
                     skipButton.rx.tap.map { _-> Emotion? in nil }.asObservable(),
-                    collectionView.rx.modelSelected(Emotion.self).map { emotion-> Emotion? in return emotion }.asObservable()
+                    collectionView.rx.modelSelected(Emotion.self).map { emotion-> Emotion? in return emotion }.asObservable(),
+                    navigationBar!.rx.tap.filter { $0 == .back }.map { _ -> Emotion? in nil }.asObservable()
                 )
             )
         )

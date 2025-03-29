@@ -29,4 +29,8 @@ public final class GalleryRepositoryImpl: GalleryRepository {
     public func fetchAssetImageData(asset: PHAsset, size: PhotoSize, completion: @escaping (Result<Data, PhotoServiceError>) -> Void) {
         photoService.requestImageData(asset: asset, size: size, completion: completion)
     }
+    
+    public func clear() {
+        photoService.clear()
+    }
 }

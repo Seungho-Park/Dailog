@@ -17,7 +17,9 @@ extension FeatureDiaryInterfaces.DiaryWriteScene: SharedUIInterfaces.Scene {
         case .write(let viewModel):
             return DiaryWriteViewController<DefaultDiaryWriteViewModel>.create(viewModel: viewModel as! DefaultDiaryWriteViewModel)
         case .emotion(let viewModel):
-            return EmotionViewController<DefaultEmotionViewModel>.create(viewModel: viewModel as! DefaultEmotionViewModel)
+            let vc = EmotionViewController<DefaultEmotionViewModel>.create(viewModel: viewModel as! DefaultEmotionViewModel)
+            vc.modalPresentationStyle = .fullScreen
+            return vc
         case .datePicker(let viewModel):
             let vc = DatePickerViewController.create(viewModel: viewModel as! DefaultDatePickerViewModel)
             vc.modalPresentationStyle = .overFullScreen

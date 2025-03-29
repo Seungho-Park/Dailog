@@ -94,55 +94,44 @@ public final class DiaryListItemCell: UITableViewCell {
             .flex
             .addItem()
             .marginHorizontal(20)
-            .marginTop(30)
+            .marginTop(25)
         
         let contentView = UIView()
         
         contentView
             .flex
-            .direction(.row)
-            .alignItems(.center)
+            .direction(.column)
+            .grow(1)
         
         let dataView = UIView()
         
         dataView
             .flex
-            .direction(.column)
+            .direction(.row)
+            .alignItems(.center)
             .define { flex in
-                flex
-                    .addItem()
-                    .direction(.row)
-                    .define { flex in
-                        let labels = UIView()
-                        
-                        labels.flex
-                            .direction(.column)
-                            .define { flex in
-                                flex.addItem(dateLabel)
-                                    .marginBottom(0.5)
-                                flex.addItem(emotionLabel)
-                                    .marginTop(0.5)
-                            }
-                            .grow(1)
-                        
-                        switch Locale.direction {
-                        case .leftToRight:
-                            flex.addItem(emojiLabel).marginRight(5)
-                            flex.addItem(labels).marginLeft(5)
-                        case .rightToLeft:
-                            flex.addItem(labels).marginRight(5)
-                            flex.addItem(emojiLabel).marginLeft(5)
-                        }
-                    }
-                    .marginBottom(5)
+                let labels = UIView()
                 
-                flex.addItem(contentsLabel)
-                    .marginTop(5)
-                    .marginHorizontal(6)
+                labels.flex
+                    .direction(.column)
+                    .define { flex in
+                        flex.addItem(dateLabel)
+                            .marginBottom(0.5)
+                        flex.addItem(emotionLabel)
+                            .marginTop(0.5)
+                    }
                     .grow(1)
+                
+                switch Locale.direction {
+                case .leftToRight:
+                    flex.addItem(emojiLabel).marginRight(5)
+                    flex.addItem(labels).marginLeft(5)
+                case .rightToLeft:
+                    flex.addItem(labels).marginRight(5)
+                    flex.addItem(emojiLabel).marginLeft(5)
+                }
             }
-            .grow(1)
-            .shrink(1)
+            .marginBottom(5)
         
         photoView
             .flex
@@ -161,17 +150,43 @@ public final class DiaryListItemCell: UITableViewCell {
                     hasMultiple.left(5)
                 }
             })
-            .width(100)
-            .height(100)
+            .width(60)
+            .height(60)
             .shrink(0)
+        
+        contentView.flex.addItem(dataView)
         
         switch Locale.direction {
         case .leftToRight:
-            contentView.flex.addItem(dataView)
-            contentView.flex.addItem(photoView)
+            contentView.flex
+                .addItem()
+                .direction(.row)
+                .alignItems(.start)
+                .define { flex in
+                    flex.addItem(contentsLabel)
+                        .marginTop(5)
+                        .marginLeft(6)
+                        .marginRight(10)
+                        .grow(1)
+                        .shrink(1)
+                    
+                    flex.addItem(photoView)
+                }
         case .rightToLeft:
-            contentView.flex.addItem(photoView)
-            contentView.flex.addItem(dataView)
+            contentView.flex
+                .addItem()
+                .direction(.row)
+                .alignItems(.start)
+                .define { flex in
+                    flex.addItem(photoView)
+                    
+                    flex.addItem(contentsLabel)
+                        .marginTop(5)
+                        .marginLeft(10)
+                        .marginRight(6)
+                        .grow(1)
+                        .shrink(1)
+                }
         }
         
         wrapView
@@ -180,7 +195,7 @@ public final class DiaryListItemCell: UITableViewCell {
         wrapView
             .addItem(separatorView)
             .height(1)
-            .marginTop(29)
+            .marginTop(24)
     }
     
     public func fill(viewModel: DiaryListItemViewModel) {
@@ -193,7 +208,7 @@ public final class DiaryListItemCell: UITableViewCell {
         
         dateLabel.text = viewModel.date.formattedString()
         emojiLabel.text = viewModel.emotion?.emoji ?? "🫥"
-        emotionLabel.text = viewModel.emotion?.string ?? "UnSelected".localized
+        emotionLabel.text = viewModel.emotion?.string ?? "Not Selected".localized
         
         photoView.flex.isIncludedInLayout = viewModel.thumbnail?.image != nil
         hasMultiImagesView.isHidden = !(viewModel.thumbnail?.hasMultiple == true)
