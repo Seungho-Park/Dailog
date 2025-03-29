@@ -13,9 +13,11 @@ import FeatureDiaryInterfaces
 
 public final class DefaultDatePickerViewModel: DatePickerViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
+    public let date: Date
     public let actions: DatePickerAction
     
-    public init(actions: DatePickerAction) {
+    public init(date: Date = Date(), actions: DatePickerAction) {
+        self.date = date
         self.actions = actions
     }
     
@@ -29,7 +31,9 @@ public final class DefaultDatePickerViewModel: DatePickerViewModel {
             .bind(onNext: actions.close)
             .disposed(by: disposeBag)
         
-        return .init()
+        return .init(
+            date: Observable.just(date).asDriver(onErrorJustReturn: Date())
+        )
     }
     
     

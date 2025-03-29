@@ -45,8 +45,8 @@ public final class DefaultDiarySceneDIContainer: DiarySceneDIContainer {
         )
     }
     
-    public func makeDatePickerViewModel(actions: DatePickerAction) -> any DatePickerViewModel {
-        return DefaultDatePickerViewModel(actions: actions)
+    public func makeDatePickerViewModel(date: Date, actions: DatePickerAction) -> any DatePickerViewModel {
+        return DefaultDatePickerViewModel(date: date, actions: actions)
     }
     
     public func makeDeletePhotoFileUsecase() -> any DeletePhotoFileUsecase {

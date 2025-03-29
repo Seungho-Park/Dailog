@@ -33,10 +33,14 @@ public struct DatePickerViewModelInput {
 }
 
 public struct DatePickerViewModelOutput {
+    public let date: Driver<Date>
     
-    public init() {  }
+    public init(date: Driver<Date>) {
+        self.date = date
+    }
 }
 
 public protocol DatePickerViewModel: ViewModel where Input == DatePickerViewModelInput, Output == DatePickerViewModelOutput {
+    var date: Date { get }
     var actions: DatePickerAction { get }
 }

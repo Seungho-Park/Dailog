@@ -19,14 +19,14 @@ public struct DiaryWriteViewModelAction {
     public let showSelectEmotion: ()-> Observable<Emotion?>
     public let showPhotoAlbum: ()-> Observable<[FileInfo]>
     public let showDeviceCamera: ()-> Observable<[FileInfo]>
-    public let showDatePicker: ()-> Observable<Date?>
+    public let showDatePicker: (Date)-> Observable<Date?>
     
     public init(
         close: @escaping ()-> Void,
         showSelectEmotion: @escaping () -> Observable<Emotion?>,
         showPhotoAlbum: @escaping ()-> Observable<[FileInfo]>,
         showDeviceCamera: @escaping ()-> Observable<[FileInfo]>,
-        showDatePicker: @escaping ()-> Observable<Date?>
+        showDatePicker: @escaping (Date)-> Observable<Date?>
     ) {
         self.close = close
         self.showSelectEmotion = showSelectEmotion

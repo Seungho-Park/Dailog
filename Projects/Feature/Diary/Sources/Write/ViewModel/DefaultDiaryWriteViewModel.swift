@@ -138,11 +138,10 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
         input.dateChangeButtonTapped?
             .withUnretained(self)
             .flatMap { owner, _ in
-                owner.actions.showDatePicker()
+                owner.actions.showDatePicker(date.value)
             }
-            .subscribe {
-                print($0)
-            }
+            .compactMap { $0 }
+            .bind(to: date)
             .disposed(by: disposeBag)
         
         return .init(

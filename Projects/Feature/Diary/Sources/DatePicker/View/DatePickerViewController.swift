@@ -78,7 +78,8 @@ public final class DatePickerViewController<VM: DatePickerViewModel>: DailogView
             .flex
             .define { flex in
                 flex.addItem(datePicker)
-                    .margin(12)
+                    .marginHorizontal(12)
+                    .marginBottom(12)
                     .grow(1)
                 
                 flex.addItem(applyButton)
@@ -99,6 +100,10 @@ public final class DatePickerViewController<VM: DatePickerViewModel>: DailogView
                 }.asObservable()
             )
         )
+        
+        output.date
+            .drive(datePicker.rx.date)
+            .disposed(by: disposeBag)
     }
     
     @objc

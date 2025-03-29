@@ -47,7 +47,7 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
                         },
                         showPhotoAlbum: showPhotoAlbumScene,
                         showDeviceCamera: showDeviceCamera,
-                        showDatePicker: showDatePicker
+                        showDatePicker: showDatePicker(date:)
                     )
                 )
             ),
@@ -107,7 +107,7 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
         }
     }
     
-    public func showDatePicker() -> Observable<Date?> {
+    public func showDatePicker(date: Date) -> Observable<Date?> {
         return Observable<Date?>.create { [weak self] observer in
             guard let self else {
                 observer.onCompleted()
@@ -117,6 +117,7 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
             self.transition(
                 scene: DiaryWriteScene.datePicker(
                     dependencies.makeDatePickerViewModel(
+                        date: date,
                         actions: .init(close: { [weak self] date in
                             observer.onNext(date)
                             observer.onCompleted()

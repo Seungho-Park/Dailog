@@ -19,7 +19,7 @@ public protocol DiarySceneFlowCoordinatorDependencies {
     
     func makeDiaryWriteViewModel(diary: Diary?, actions: DiaryWriteViewModelAction)-> any DiaryWriteViewModel
     func makeEmotionViewModel(actions: EmotionViewModelActions)-> any EmotionViewModel
-    func makeDatePickerViewModel(actions: DatePickerAction)-> any DatePickerViewModel
+    func makeDatePickerViewModel(date: Date, actions: DatePickerAction)-> any DatePickerViewModel
 }
 
 public protocol DiarySceneFlowCoordinator: Coordinator {
@@ -28,5 +28,5 @@ public protocol DiarySceneFlowCoordinator: Coordinator {
     func showSelectEmotionScene(completion: @escaping (Emotion?)-> Void)
     func showPhotoAlbumScene()-> Observable<[FileInfo]>
     func showDeviceCamera()-> Observable<[FileInfo]>
-    func showDatePicker()-> Observable<Date?>
+    func showDatePicker(date: Date)-> Observable<Date?>
 }
