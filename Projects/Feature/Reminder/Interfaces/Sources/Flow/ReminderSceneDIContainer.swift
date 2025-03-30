@@ -8,7 +8,23 @@
 
 import UIKit
 import SharedUIInterfaces
+import DomainDiaryInterfaces
+import CoreStorageInterfaces
+
+public struct ReminderSceneDependencies {
+    public let diaryStorage: DiaryStorage
+    
+    public init(
+        diaryStorage: DiaryStorage
+    ) {
+        self.diaryStorage = diaryStorage
+    }
+}
 
 public protocol ReminderSceneDIContainer: ReminderSceneFlowCoordinatorDependencies {
+    var dependencies: ReminderSceneDependencies { get }
+    
     func makeReminderSceneFlowCoordinator(navigationController: UINavigationController)-> ReminderSceneFlowCoordinator
+    
+    func makeFetchDiariesUsecase()-> FetchDiariesUsecase
 }

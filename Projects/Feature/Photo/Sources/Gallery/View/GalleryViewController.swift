@@ -25,16 +25,18 @@ public final class GalleryViewController<VM: GalleryViewModel>: DailogViewContro
         view.register(GalleryItemViewCell.self, forCellWithReuseIdentifier: GalleryItemViewCell.identifier)
         view.allowsSelection = true
         view.allowsMultipleSelection = true
+        view.backgroundColor = .clear
         return view
     }()
     
     public override func configure() {
-        self.navigationBar = ModalPickerNavigationBar(title: "사진")
+        self.navigationBar = ModalPickerNavigationBar(title: "Gallery".localized)
         super.configure()
         
         collectionView.delegate = self
         
         container.flex.addItem(collectionView)
+            .marginTop(1)
             .grow(1)
     }
     

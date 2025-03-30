@@ -55,10 +55,10 @@ public final class DiaryCoreDataStorage: DiaryStorage {
                 totalCountRequest.includesSubentities = false
                         
                 let totalCount = try context.count(for: totalCountRequest)
-                let totalPages = Int(ceil(Double(totalCount) / Double(count)))
+                let totalPages = count == 0 ? 1 : Int(ceil(Double(totalCount) / Double(count)))
                 
                 let diaries = try context.fetch(fetchRequest)
-                completion(.success(.init(currentPage: page, totalPage: totalPages, diaries: diaries.map { $0.toDTO() })))
+                completion(.success(.init(currentPage: page <= 0 ? 1 : page, totalPage: totalPages, diaries: diaries.map { $0.toDTO() })))
             } catch {
                 completion(.failure(.fetchError(error)))
             }

@@ -18,8 +18,18 @@ public final class ModalPickerNavigationBar: NavigationBar {
     
     private lazy var cancelButton: NavigationBarButton = {
         let button = NavigationBarButton(type: .back)
-        button.setTitle("Cancel".localized, for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        var config = UIButton.Configuration.plain()
+        button.configuration = config
+        
+        button.configurationUpdateHandler = { btn in
+            btn.configuration?.attributedTitle = AttributedString(
+                "Cancel".localized,
+                attributes: .init([
+                    .font: UIFont.cursive(sizeOf: 18, weight: .medium),
+                    .foregroundColor: btn.state != .highlighted ? UIColor.white : UIColor.white.withAlphaComponent(0.6)
+                ])
+            )
+        }
         return button
     }()
     
@@ -27,15 +37,26 @@ public final class ModalPickerNavigationBar: NavigationBar {
         let label = UILabel()
         label.numberOfLines = 1
         label.text = "Title"
-        label.textColor = .black
         label.textAlignment = .center
+        label.font = .cursive(sizeOf: 22, weight: .medium)
+        label.textColor = .white
         return label
     }()
     
     private lazy var selectButton: NavigationBarButton = {
         let button = NavigationBarButton(type: .confirm)
-        button.setTitle("Select".localized, for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        var config = UIButton.Configuration.plain()
+        button.configuration = config
+        
+        button.configurationUpdateHandler = { btn in
+            btn.configuration?.attributedTitle = AttributedString(
+                "Select".localized,
+                attributes: .init([
+                    .font: UIFont.cursive(sizeOf: 18, weight: .medium),
+                    .foregroundColor: btn.state != .highlighted ? UIColor.white : UIColor.white.withAlphaComponent(0.6)
+                ])
+            )
+        }
         button.isEnabled = false
         return button
     }()
@@ -59,7 +80,7 @@ public final class ModalPickerNavigationBar: NavigationBar {
         titleLabel.text = title
         container
             .flex
-            .backgroundColor(.cyan)
+            .backgroundColor(.softCoral)
             .addItem()
             .grow(1)
             .direction(.row)

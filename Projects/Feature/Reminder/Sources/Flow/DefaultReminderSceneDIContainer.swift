@@ -9,15 +9,33 @@
 import UIKit
 import FeatureReminderInterfaces
 import SharedUIInterfaces
+import DomainDiaryInterfaces
+import DomainDiary
 
 public final class DefaultReminderSceneDIContainer: ReminderSceneDIContainer {
-    public init() {  }
+    public let dependencies: ReminderSceneDependencies
+    
+    public init(
+        dependencies: ReminderSceneDependencies
+    ) {
+        self.dependencies = dependencies
+    }
     
     public func makeReminderSceneFlowCoordinator(navigationController: UINavigationController)-> ReminderSceneFlowCoordinator {
         return DefaultReminderSceneFlowCoordinator(navigationController: navigationController, dependencies: self)
     }
     
     public func makeReminderViewModel() -> any ReminderViewModel {
-        return DefaultReminderViewModel()
+        return DefaultReminderViewModel(
+            fetchDiariesUsecase: makeFetchDiariesUsecase()
+        )
+    }
+    
+    public func makeFetchDiariesUsecase() -> FetchDiariesUsecase {
+        return FetchDiariesUsecaseImpl(repository: makeDiaryRepository())
+    }
+    
+    private func makeDiaryRepository()-> DiaryRepository {
+        return DiaryRepositoryImpl(storage: dependencies.diaryStorage)
     }
 }

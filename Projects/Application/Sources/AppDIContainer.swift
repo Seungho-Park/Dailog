@@ -33,6 +33,7 @@ final class AppDIContainer {
     private lazy var photoService: PhotoService = DefaultPhotoService()
     private lazy var imageFileStorage: FileStorage = ImageFileStorage()
     private lazy var coreDataStorage: CoreDataStorage = DefaultCoreDataStorage()
+    private lazy var diaryStorage: DiaryStorage = DiaryCoreDataStorage(coreDataStorage: coreDataStorage)
     
     func makeSplashSceneDIContainer()-> SplashSceneDIContainer {
         return DefaultSplashSceneDIContainer(
@@ -75,7 +76,9 @@ final class AppDIContainer {
     }
     
     private func makeReminderSceneDIContainer()-> ReminderSceneDIContainer {
-        return DefaultReminderSceneDIContainer()
+        return DefaultReminderSceneDIContainer(
+            dependencies: .init(diaryStorage: diaryStorage)
+        )
     }
     
     private func makeSettingsSceneDIContainer()-> SettingsSceneDIContainer {
@@ -83,7 +86,7 @@ final class AppDIContainer {
     }
     
     private func makeDiaryWriteSceneDIContainer()-> DiarySceneDIContainer {
-        return DefaultDiarySceneDIContainer(dependencies: .init(photoService: photoService, photoSceneDIContainer: makePhotoSceneDIContainer(), imageStorage: imageFileStorage, diaryStorage: DiaryCoreDataStorage(coreDataStorage: coreDataStorage)))
+        return DefaultDiarySceneDIContainer(dependencies: .init(photoService: photoService, photoSceneDIContainer: makePhotoSceneDIContainer(), imageStorage: imageFileStorage, diaryStorage: diaryStorage))
     }
     
     private func makePhotoSceneDIContainer()-> PhotoSceneDIContainer {

@@ -57,7 +57,6 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
             .map { 1 },
             loadNextPage
             )
-            .debug()
             .withUnretained(self)
             .flatMapLatest { owner, page in
                 var year: Int? = nil

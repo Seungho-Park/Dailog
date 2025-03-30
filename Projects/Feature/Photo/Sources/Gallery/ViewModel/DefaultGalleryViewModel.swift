@@ -17,6 +17,7 @@ import CoreStorageInterfaces
 
 public final class DefaultGalleryViewModel: GalleryViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
+    public let background: BackgroundType = .image(.bgLaunchScreen)
     public let actions: GalleryViewModelAction
     
     public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase

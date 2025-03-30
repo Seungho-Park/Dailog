@@ -16,7 +16,7 @@ extension FeatureReminderInterfaces.ReminderScene: SharedUIInterfaces.Scene {
     public func instantiate() -> UIViewController {
         switch self {
         case .reminder(let vm):
-            let vc = UIViewController(nibName: nil, bundle: nil)
+            let vc = ReminderViewController.create(viewModel: vm as! DefaultReminderViewModel)
             vc.tabBarItem = UITabBarItem(title: "Reminder".localized, image: UIImage(systemName: "text.page.badge.magnifyingglass"), tag: 2)
             return vc
         }

@@ -44,7 +44,7 @@ public final class DefaultPhotoSceneFlowCoordinator: NSObject, PhotoSceneFlowCoo
             ) as! DefaultGalleryViewModel
             let vc = GalleryViewController<DefaultGalleryViewModel>.create(viewModel: vm)
             vc.view.backgroundColor = .white
-            vc.modalPresentationStyle = .fullScreen
+            vc.modalPresentationStyle = .automatic
             navigationController.visibleViewController?.present(vc, animated: true)
             return vc
         case .camera:
