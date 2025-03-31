@@ -11,6 +11,7 @@ import SharedUI
 import FeatureReminderInterfaces
 import RxSwift
 import RxCocoa
+import FlexLayout
 
 public final class ReminderViewController<VM: ReminderViewModel>: DailogViewController<VM> {
     
@@ -19,6 +20,7 @@ public final class ReminderViewController<VM: ReminderViewModel>: DailogViewCont
         label.numberOfLines = 1
         label.font = .cursive(sizeOf: 22, weight: .medium)
         label.textColor = .title
+        label.textAlignment = .center
         return label
     }()
     
@@ -58,12 +60,28 @@ public final class ReminderViewController<VM: ReminderViewModel>: DailogViewCont
             .alignItems(.center)
             .define { flex in
                 flex.addItem(leftArrowButton)
-                flex.addItem(dateLabel)
-                
-                    .marginHorizontal(20)
+                flex.addItem(dateLabel).width(150)
                 flex.addItem(rightArrowButton)
             }
             .height(50)
+        
+        container
+            .flex
+            .addItem()
+            .direction(.row)
+            .border(1, .title)
+            .cornerRadius(8)
+            .marginHorizontal(20)
+            .marginTop(15)
+            .alignItems(.center)
+            .height(100)
+            .define { flex in
+                flex.addItem().grow(1)
+                flex.addItem().width(1).height(70%).backgroundColor(.title)
+                flex.addItem().grow(1)
+                flex.addItem().width(1).height(70%).backgroundColor(.title)
+                flex.addItem().grow(1)
+            }
     }
     
     public override func bind() {
@@ -86,5 +104,12 @@ public final class ReminderViewController<VM: ReminderViewModel>: DailogViewCont
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+}
+
+private extension ReminderViewController {
+    func makeTitleLabel(_ text: String)-> UILabel {
+        let label = UILabel(frame: .zero)
+        return label
     }
 }
