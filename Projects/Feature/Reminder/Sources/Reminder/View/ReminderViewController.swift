@@ -100,6 +100,7 @@ public final class ReminderViewController<VM: ReminderViewModel>: DailogViewCont
     
     private let chartView = EmotionChartView(frame: .zero)
     private let timeGraphView = TimeGraphView(frame: .zero)
+    private let monthlyReport = WeekDayWriteCharView(frame: .zero)
     
     public override func configure() {
         super.configure()
@@ -193,6 +194,11 @@ public final class ReminderViewController<VM: ReminderViewModel>: DailogViewCont
                     .height(100%)
                     .paddingVertical(20)
             }
+        
+        contentsView
+            .flex
+            .addItem(monthlyReport)
+            .marginTop(30)
         
         contentsView
             .flex
@@ -296,6 +302,12 @@ public final class ReminderViewController<VM: ReminderViewModel>: DailogViewCont
                 self?.chartView.flex.markDirty()
                 self?.contentsView.flex.layout(mode: .adjustHeight)
                 self?.scrollView.contentSize = self?.contentsView.frame.size ?? .zero
+            }
+            .disposed(by: disposeBag)
+        
+        output.monthlyReport
+            .drive { [weak self] data in
+                self?.monthlyReport.fill(data: data)
             }
             .disposed(by: disposeBag)
     }

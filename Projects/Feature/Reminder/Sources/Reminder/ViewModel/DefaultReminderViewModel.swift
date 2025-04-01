@@ -65,7 +65,39 @@ public final class DefaultReminderViewModel: ReminderViewModel {
                     emotions[emotion, default: 0] += 1
                 }
                 return emotions
-            }.asDriver(onErrorJustReturn: [:])
+            }.asDriver(onErrorJustReturn: [:]),
+            monthlyReport: diaries
+                .map { diaries in
+                    var result: [String:Int] = [
+                        "Sun":0,
+                        "Mon":0,
+                        "Tue":0,
+                        "Wed":0,
+                        "Thu":0,
+                        "Fri":0,
+                        "Sat":0
+                    ]
+                    
+                    var calendar = Calendar.current
+                    calendar.firstWeekday = 1
+                    
+                    for diary in diaries {
+                        let weekDay = calendar.component(.weekday, from: diary.date)
+                        switch weekDay {
+                        case 1: result["Sun"]! += 1
+                        case 2: result["Mon"]! += 1
+                        case 3: result["Tue"]! += 1
+                        case 4: result["Wed"]! += 1
+                        case 5: result["Thu"]! += 1
+                        case 6: result["Fri"]! += 1
+                        case 7: result["Sat"]! += 1
+                        default: break
+                        }
+                    }
+                    
+                    return result
+                }
+                .asDriver(onErrorJustReturn: [:])
         )
     }
 }

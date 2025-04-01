@@ -55,7 +55,7 @@ public final class TimeGraphView: UIView {
                     .marginBottom(12)
                 
                 flex.addItem(wrapChartView)
-                    .height(250)
+                    .height(200)
                     .paddingHorizontal(20)
                     .define { flex in
                         flex.addItem(chartView)
@@ -108,7 +108,7 @@ public final class TimeGraphView: UIView {
         dataSet.valueFormatter = DefaultValueFormatter(formatter: intFormatter)
         
         chartView.notifyDataSetChanged()
-        wrapChartView.flex.height(250)
+        wrapChartView.flex.height(200)
         chartView.flex.border(0, .clear)
         chartView.flex.cornerRadius(0)
     }

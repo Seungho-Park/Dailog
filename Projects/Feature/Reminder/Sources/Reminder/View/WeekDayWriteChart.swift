@@ -1,5 +1,5 @@
 //
-//  EmotionChartView.swift
+//  WeekDayWriteChart.swift
 //  FeatureReminder
 //
 //  Created by 박승호 on 4/1/25.
@@ -12,7 +12,7 @@ import DGCharts
 import FlexLayout
 import DomainDiaryInterfaces
 
-public final class EmotionChartView: UIView {
+public final class WeekDayWriteCharView: UIView {
     private let container = UIView()
     
     private let chartView: BarChartView = {
@@ -59,7 +59,7 @@ public final class EmotionChartView: UIView {
                 
                 flex.addItem(wrapChartView)
                     .marginTop(12)
-                    .height(200)
+                    .height(250)
                     .define { flex in
                         flex.addItem(chartView).grow(1)
                     }
@@ -111,7 +111,7 @@ public final class EmotionChartView: UIView {
         
         chartView.notifyDataSetChanged()
         
-        wrapChartView.flex.height(200)
+        wrapChartView.flex.height(250)
         chartView.flex.border(0, .clear)
         chartView.flex.cornerRadius(0)
     }

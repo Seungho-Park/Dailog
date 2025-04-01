@@ -1268,6 +1268,41 @@
         }
       }
     },
+    "Weekly Report" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التقرير الأسبوعي"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "週間レポート"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요일별 작성횟수"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "รายงานประจำสัปดาห์"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Báo cáo hàng tuần"
+          }
+        }
+      }
+    },
     "Write Diary PlaceHolder" : {
       "extractionState" : "manual",
       "localizations" : {
