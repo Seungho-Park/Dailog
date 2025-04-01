@@ -7,6 +7,7 @@
 //
 
 import SharedUI
+import UIKit
 
 public enum Emotion: Int16, CaseIterable {
     case happy = 0
@@ -41,6 +42,19 @@ public enum Emotion: Int16, CaseIterable {
         case .surprised: return "😮"
         case .sad: return "😢"
         case .normal: return "😐"
+        }
+    }
+    
+    public var color: UIColor {
+        switch self {
+        case .happy: return UIColor.yellow
+        case .angry: return .red
+        case .bad: return .systemPink
+        case .scared: return .gray
+        case .sad: return .purple
+        case .normal: return .green
+        case .excited: return .orange
+        case .surprised: return .cyan
         }
     }
 }

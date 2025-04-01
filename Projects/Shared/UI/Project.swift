@@ -21,7 +21,8 @@ let project: Project = .makeProject(
                     .SPM.PinLayout,
                     .SPM.RxCocoa,
                     .SPM.RxSwift,
-                    .SPM.RxRelay
+                    .SPM.RxRelay,
+                    .SPM.Charts
                 ]
             )
         ),

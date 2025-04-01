@@ -16,5 +16,6 @@ public extension ProjectDescription.TargetDependency {
         public static let PinLayout: TargetDependency = .external(name: "PinLayout")
         public static let FirebaseAnalytics: TargetDependency = .external(name: "FirebaseAnalytics")
         public static let FirebaseCrashlytics: TargetDependency = .external(name: "FirebaseCrashlytics")
+        public static let Charts: TargetDependency = .external(name: "DGCharts")
     }
 }

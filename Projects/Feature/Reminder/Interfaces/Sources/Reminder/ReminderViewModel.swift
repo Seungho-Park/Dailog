@@ -12,13 +12,16 @@ import SharedUIInterfaces
 import DomainDiaryInterfaces
 
 public struct ReminderViewModelInput {
+    public let viewWillAppear: Observable<Void>
     public let prevDateButtonTapped: Observable<Void>
     public let nextDateButtonTapped: Observable<Void>
     
     public init(
+        viewWillAppear: Observable<Void>,
         prevDateButtonTapped: Observable<Void>,
         nextDateButtonTapped: Observable<Void>
     ) {
+        self.viewWillAppear = viewWillAppear
         self.prevDateButtonTapped = prevDateButtonTapped
         self.nextDateButtonTapped = nextDateButtonTapped
     }
@@ -26,11 +29,17 @@ public struct ReminderViewModelInput {
 
 public struct ReminderViewModelOutput {
     public let date: Driver<String>
+    public let diaries: Driver<[Diary]>
+    public let emotions: Driver<[Emotion:Int]>
     
     public init(
-        date: Driver<String>
+        date: Driver<String>,
+        diaries: Driver<[Diary]>,
+        emotion: Driver<[Emotion:Int]>
     ) {
         self.date = date
+        self.diaries = diaries
+        self.emotions = emotion
     }
 }
 
