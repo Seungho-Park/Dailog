@@ -26,6 +26,7 @@ public extension Module {
         
         case diary = "Diary"
         case photo = "Photo"
+        case pinCode = "PinCode"
     }
 }
 

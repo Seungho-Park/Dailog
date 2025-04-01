@@ -21,6 +21,17 @@ public final class DefaultSettingsSceneFlowCoordinator: SettingsSceneFlowCoordin
     
     @discardableResult
     public func start() -> UIViewController {
-        return SettingsScene.settings(dependencies.makeSettingsViewModel()).instantiate()
+        return SettingsScene.settings(
+            dependencies.makeSettingsViewModel(
+                actions: .init(
+                    showPinCodeScene: showPinCodeScene(isNew:)
+                )
+            )
+        ).instantiate()
+    }
+    
+    private func showPinCodeScene(isNew: Bool) {
+        let coordinator = dependencies.makePinCodeSceneCoordinator(navigationController: navigationController)
+        coordinator.start()
     }
 }

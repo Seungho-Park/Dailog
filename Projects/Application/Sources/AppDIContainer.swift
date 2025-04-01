@@ -14,6 +14,8 @@ import FeatureHome
 import FeatureHomeInterfaces
 import FeatureHistory
 import FeatureHistoryInterfaces
+import FeaturePinCodeInterfaces
+import FeaturePinCode
 import SharedUIInterfaces
 import FeatureReminder
 import FeatureReminderInterfaces
@@ -82,7 +84,9 @@ final class AppDIContainer {
     }
     
     private func makeSettingsSceneDIContainer()-> SettingsSceneDIContainer {
-        return DefaultSettingsSceneDIContainer()
+        return DefaultSettingsSceneDIContainer(
+            dependencies: .init(pinCodeSceneDIContainer: makePinCodeSceneDIContainer)
+        )
     }
     
     private func makeDiaryWriteSceneDIContainer()-> DiarySceneDIContainer {
@@ -91,5 +95,9 @@ final class AppDIContainer {
     
     private func makePhotoSceneDIContainer()-> PhotoSceneDIContainer {
         return DefaultPhotoSceneDIContainer(dependencies: .init(photoService: photoService, imageStorage: imageFileStorage))
+    }
+    
+    private func makePinCodeSceneDIContainer()-> PinCodeSceneDIContainer {
+        return DefaultPinCodeSceneDIContainer(dependencies: .init())
     }
 }

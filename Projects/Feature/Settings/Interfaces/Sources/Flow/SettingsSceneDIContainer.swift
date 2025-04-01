@@ -8,7 +8,18 @@
 
 import UIKit
 import SharedUIInterfaces
+import FeaturePinCodeInterfaces
+
+public struct SettingsSceneDIContainerDependencies {
+    public let pinCodeSceneDIContainer: ()-> PinCodeSceneDIContainer
+    
+    public init(pinCodeSceneDIContainer: @escaping () -> PinCodeSceneDIContainer) {
+        self.pinCodeSceneDIContainer = pinCodeSceneDIContainer
+    }
+}
 
 public protocol SettingsSceneDIContainer: SettingsSceneFlowCoordinatorDependencies {
+    var dependencies: SettingsSceneDIContainerDependencies { get }
+    
     func makeSettingsSceneFlowCoordinator(navigationController: UINavigationController)-> SettingsSceneFlowCoordinator
 }

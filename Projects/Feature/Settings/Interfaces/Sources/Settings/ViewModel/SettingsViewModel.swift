@@ -8,6 +8,16 @@
 
 import SharedUIInterfaces
 
+public struct SettingsViewModelAction {
+    public let showPinCodeScene: (Bool)-> Void
+    
+    public init(
+        showPinCodeScene: @escaping (Bool)-> Void
+    ) {
+        self.showPinCodeScene = showPinCodeScene
+    }
+}
+
 public struct SettingsViewModelInput {
     public init() {  }
 }
@@ -19,4 +29,5 @@ public struct SettingsViewModelOutput {
 
 public protocol SettingsViewModel: ViewModel where Input == SettingsViewModelInput, Output == SettingsViewModelOutput {
     
+    var actions: SettingsViewModelAction { get }
 }

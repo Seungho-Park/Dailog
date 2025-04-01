@@ -23,6 +23,15 @@ public final class SettingsViewController<VM: SettingsViewModel>: DailogViewCont
         scrollView.addSubview(contentView)
     }
     
+    public override func bind() {
+        super.bind()
+        
+        rx.viewDidAppear.subscribe { [weak self] _ in
+            _ = self?.viewModel.transform(input: .init())
+        }
+        .disposed(by: disposeBag)
+    }
+    
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

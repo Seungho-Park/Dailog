@@ -2,7 +2,7 @@
 //  Project.swift
 //  Manifests
 //
-//  Created by 박승호 on 2/22/25.
+//  Created by 박승호 on 4/2/25.
 //
 
 import ProjectDescription
@@ -10,47 +10,46 @@ import ProjectDescriptionHelpers
 import ModulePlugin
 
 let project = Project.makeProject(
-    name: "Feature\(Module.Feature.settings.rawValue)",
+    name: "Feature\(Module.Feature.pinCode.rawValue)",
     targets: [
         .feature(
-            interfaces: .settings,
+            interfaces: .pinCode,
             factory: .init(
                 dependencies: [
-                    .domain,
+                    .domain
+                ]
+            )
+        ),
+        .feature(
+            implements: .pinCode,
+            factory: .init(
+                dependencies: [
                     .feature(interfaces: .pinCode)
                 ]
             )
         ),
         .feature(
-            implements: .settings,
+            testing: .pinCode,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .settings)
+                    .feature(interfaces: .pinCode)
                 ]
             )
         ),
         .feature(
-            testing: .settings,
+            tests: .pinCode,
             factory: .init(
                 dependencies: [
-                    .feature(interfaces: .settings)
+                    .feature(implements: .pinCode),
+                    .feature(testing: .pinCode)
                 ]
             )
         ),
         .feature(
-            tests: .settings,
+            example: .pinCode,
             factory: .init(
                 dependencies: [
-                    .feature(implements: .settings),
-                    .feature(testing: .settings)
-                ]
-            )
-        ),
-        .feature(
-            example: .settings,
-            factory: .init(
-                dependencies: [
-                    .feature(implements: .settings)
+                    .feature(implements: .pinCode)
                 ]
             )
         )

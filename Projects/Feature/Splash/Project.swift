@@ -17,7 +17,8 @@ let project: Project = .makeProject(
             factory: .init(
                 dependencies: [
                     .domain,
-                    .feature(interfaces: .main)
+                    .feature(interfaces: .main),
+                    .feature(interfaces: .pinCode)
                 ]
             )
         ),

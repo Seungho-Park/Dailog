@@ -7,9 +7,12 @@
 //
 
 import SharedUIInterfaces
+import FeaturePinCodeInterfaces
+import UIKit
 
 public protocol SettingsSceneFlowCoordinatorDependencies {
-    func makeSettingsViewModel()-> any SettingsViewModel
+    func makePinCodeSceneCoordinator(navigationController: UINavigationController)-> PinCodeSceneFlowCoordinator
+    func makeSettingsViewModel(actions: SettingsViewModelAction)-> any SettingsViewModel
 }
 
 public protocol SettingsSceneFlowCoordinator: Coordinator {

@@ -24,7 +24,8 @@ let project: Project = .makeProject(
                     .feature(implements: .reminder),
                     .feature(implements: .settings),
                     .feature(implements: .diary),
-                    .feature(implements: .photo)
+                    .feature(implements: .photo),
+                    .feature(implements: .pinCode)
                 ]
             )
         )
