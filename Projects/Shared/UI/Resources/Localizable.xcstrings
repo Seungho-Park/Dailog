@@ -439,6 +439,17 @@
         }
       }
     },
+    "Delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        }
+      }
+    },
     "Diary Count" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -797,6 +808,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Màn hình khóa"
+          }
+        }
+      }
+    },
+    "Modify" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정"
           }
         }
       }

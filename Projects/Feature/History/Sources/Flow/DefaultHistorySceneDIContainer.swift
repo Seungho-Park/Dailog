@@ -28,9 +28,9 @@ public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
 }
 
 extension DefaultHistorySceneDIContainer {
-    public func makeWriteSceneFlowCoordinator(navigationController: UINavigationController) -> any DiarySceneFlowCoordinator {
+    public func makeWriteSceneFlowCoordinator(diary: Diary?, navigationController: UINavigationController) -> any DiarySceneFlowCoordinator {
         let diContainer = dependencies.diarySceneDIContainer
-        return diContainer.makeDiaryWriteSceneFlowCoordinator(navigationController: navigationController)
+        return diContainer.makeDiaryWriteSceneFlowCoordinator(diary: diary, navigationController: navigationController)
     }
     
     public func makeHistoryViewModel(actions: HistoryViewModelAction) -> any HistoryViewModel {

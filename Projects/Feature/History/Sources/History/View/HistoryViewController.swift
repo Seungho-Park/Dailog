@@ -94,7 +94,8 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
                 viewWillAppear: rx.viewWillAppear.map { _ in }.asObservable(),
                 filterButtonTapped: navigationBar?.rx.tap.compactMap { $0 }.filter { $0 == .filter }.map { _ in }.asObservable(),
                 willDisplayCell: tableView.rx.willDisplayCell.map { $0.indexPath.row }.asObservable(),
-                writeDiaryButtonTapped: writeButton.rx.tap.asObservable()
+                writeDiaryButtonTapped: writeButton.rx.tap.asObservable(),
+                diaryItemTapped: tableView.rx.modelSelected(DiaryListItemViewModel.self).asObservable()
             )
         )
         

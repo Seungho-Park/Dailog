@@ -10,4 +10,5 @@ public enum NavigationItem {
     case back
     case filter
     case confirm
+    case more
 }

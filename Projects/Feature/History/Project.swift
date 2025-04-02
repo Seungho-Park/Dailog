@@ -16,7 +16,8 @@ let project = Project.makeProject(
             interfaces: .history,
             factory: .init(
                 dependencies: [
-                    .domain
+                    .domain,
+                    .feature(interfaces: .diary)
                 ]
             )
         ),

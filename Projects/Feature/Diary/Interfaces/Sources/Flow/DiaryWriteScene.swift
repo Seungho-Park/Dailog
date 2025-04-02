@@ -10,4 +10,5 @@ public enum DiaryWriteScene {
     case write(any DiaryWriteViewModel)
     case emotion(any EmotionViewModel)
     case datePicker(any DatePickerViewModel)
+    case detail(any DiaryDetailViewModel)
 }

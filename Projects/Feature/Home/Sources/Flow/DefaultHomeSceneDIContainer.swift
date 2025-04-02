@@ -35,7 +35,7 @@ public final class DefaultHomeSceneDIContainer: HomeSceneDIContainer {
 
 extension DefaultHomeSceneDIContainer {
     public func makeWriteSceneFlowCoordinator(navigationController: UINavigationController) -> any DiarySceneFlowCoordinator {
-        return dependencies.diaryWriteDIContainer.makeDiaryWriteSceneFlowCoordinator(navigationController: navigationController)
+        return dependencies.diaryWriteDIContainer.makeDiaryWriteSceneFlowCoordinator(diary: nil, navigationController: navigationController)
     }
     
     public func makeHomeViewModel(actions: HomeViewModelAction) -> any HomeViewModel {

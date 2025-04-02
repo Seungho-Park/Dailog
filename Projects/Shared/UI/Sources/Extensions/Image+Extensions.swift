@@ -15,6 +15,7 @@ public extension UIImage {
     static let forward = UIImage(named: "Forward", in: .module, with: nil)
     
     static let backspace = UIImage(named: "Backspace", in: .module, with: nil)
+    static let more = UIImage(named: "More", in: .module, with: nil)
     
     static let backHighlighted = UIImage(named: "BackHighlight", in: .module, with: nil)
     static let gallery = UIImage(named: "Gallery", in: .module, with: nil)

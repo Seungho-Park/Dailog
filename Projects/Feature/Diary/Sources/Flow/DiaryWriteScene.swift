@@ -24,6 +24,8 @@ extension FeatureDiaryInterfaces.DiaryWriteScene: SharedUIInterfaces.Scene {
             let vc = DatePickerViewController.create(viewModel: viewModel as! DefaultDatePickerViewModel)
             vc.modalPresentationStyle = .overFullScreen
             return vc
+        case .detail(let vm):
+            return DiaryDetailViewController.create(viewModel: vm as! DefaultDiaryDetailViewModel)
         }
     }
 }

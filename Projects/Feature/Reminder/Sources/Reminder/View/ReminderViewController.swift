@@ -186,7 +186,7 @@ public final class ReminderViewController<VM: ReminderViewModel>: DailogViewCont
                             .marginTop(12)
                             .define { flex in
                                 flex.addItem(characterCountLabel)
-                                flex.addItem(makeTitleLabel("Characters", 12))
+                                flex.addItem(makeTitleLabel("Characters".localized, 12))
                                     .marginTop(5)
                             }
                             .justifyContent(.center)

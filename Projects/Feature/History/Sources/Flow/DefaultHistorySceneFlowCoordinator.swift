@@ -11,6 +11,7 @@ import FeatureHistoryInterfaces
 import SharedUI
 import RxSwift
 import RxCocoa
+import DomainDiaryInterfaces
 
 public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinator {
     public var dependencies: any HistorySceneFlowCoordinatorDependencies
@@ -28,7 +29,8 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
             dependencies.makeHistoryViewModel(
                 actions: .init(
                     showSelectFilter: showSelectFilterScene(filter:),
-                    showWriteDiaryScene: showWriteDiaryScene
+                    showWriteDiaryScene: showWriteDiaryScene,
+                    showDiaryDetailScene: showDiaryDetailScene(diary:)
                 )
             )
         ).instantiate()
@@ -64,7 +66,12 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
     }
     
     public func showWriteDiaryScene() {
-        let coordinator = dependencies.makeWriteSceneFlowCoordinator(navigationController: navigationController)
+        let coordinator = dependencies.makeWriteSceneFlowCoordinator(diary: nil, navigationController: navigationController)
+        coordinator.start()
+    }
+    
+    public func showDiaryDetailScene(diary: Diary) {
+        let coordinator = dependencies.makeWriteSceneFlowCoordinator(diary: diary, navigationController: navigationController)
         coordinator.start()
     }
 }

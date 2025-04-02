@@ -13,7 +13,7 @@ import RxCocoa
 public final class TextView: UIView, UITextViewDelegate {
     private let container = UIView()
     
-    let textView: UITextView = {
+    public let textView: UITextView = {
         let view = UITextView(frame: .zero)
         view.backgroundColor = .clear
         view.font = .cursive(sizeOf: 20, weight: .medium)
@@ -91,5 +91,9 @@ public final class TextView: UIView, UITextViewDelegate {
 public extension Reactive where Base: TextView {
     var text: ControlProperty<String?> {
         return base.textView.rx.text
+    }
+    
+    var textChanged: ControlEvent<String?> {
+        return base.textView.rx.text.changed
     }
 }

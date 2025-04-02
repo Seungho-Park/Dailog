@@ -93,7 +93,7 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
                 captureCameraButtonTapped: footerView.showCameraButton.rx.tap.asObservable(),
                 photoDeleteButtonTapped: photoDeleteButtonTapped.asObservable(),
                 saveButtonTapped: navigationBar?.rx.tap.filter { $0 == .confirm }.map { _ in }.asObservable(),
-                textChanged: textView.rx.text.compactMap { $0 }.asObservable(),
+                textChanged: textView.rx.textChanged.compactMap { $0 }.asObservable(),
                 dateChangeButtonTapped: navigationBar?.rx.tap.filter { $0 == .filter }.map { _ in }.asObservable()
             )
         )
@@ -113,7 +113,10 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
             .disposed(by: disposeBag)
         
         output.contents
-            .drive(textView.rx.text)
+            .debug()
+            .drive { [weak self] text in
+                self?.textView.text = text
+            }
             .disposed(by: disposeBag)
         
         output.photos

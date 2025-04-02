@@ -79,9 +79,9 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
         fetchNewDiaries
             .subscribe(onNext: { diaries in
                 if diaries.currentPage == 1 {
-                    diariesRelay.accept(diaries.diaries) // 첫 페이지는 덮어쓰기
+                    diariesRelay.accept(diaries.diaries)
                 } else {
-                    diariesRelay.accept(diariesRelay.value + diaries.diaries) // 페이징 데이터 추가
+                    diariesRelay.accept(diariesRelay.value + diaries.diaries)
                 }
                 currentPage.accept(diaries.currentPage)
                 totalPages.accept(diaries.totalPages)
@@ -99,6 +99,15 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
         
         input.writeDiaryButtonTapped
             .bind(onNext: actions.showWriteDiaryScene)
+            .disposed(by: disposeBag)
+        
+        input.diaryItemTapped
+            .compactMap { item in
+                diariesRelay.value.first { diary in
+                    diary.id == item.id
+                }
+            }
+            .bind(onNext: actions.showDiaryDetailScene)
             .disposed(by: disposeBag)
         
         return .init(

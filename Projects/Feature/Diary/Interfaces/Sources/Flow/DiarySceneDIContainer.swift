@@ -36,9 +36,11 @@ public struct DiarySceneDIContainerDependencies {
 public protocol DiarySceneDIContainer: DiarySceneFlowCoordinatorDependencies {
     var dependencies: DiarySceneDIContainerDependencies { get }
     
-    func makeDiaryWriteSceneFlowCoordinator(navigationController: UINavigationController)-> DiarySceneFlowCoordinator
+    func makeDiaryWriteSceneFlowCoordinator(diary: Diary?, navigationController: UINavigationController)-> DiarySceneFlowCoordinator
     func makeFetchPhotoAssetsUsecase()-> FetchPhotoAssetsUsecase
     func makeFetchPhotoDataUsecase()-> FetchPhotoDataUsecase
     func makeDeletePhotoFileUsecase()-> DeletePhotoFileUsecase
     func makeSaveDiaryUsecase()-> SaveDiaryUsecase
+    
+    func makeDeleteDiaryUsecase()-> DeleteDiaryUsecase
 }

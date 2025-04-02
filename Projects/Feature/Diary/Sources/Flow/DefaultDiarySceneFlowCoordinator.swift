@@ -15,45 +15,65 @@ import PhotosUI
 import CoreStorageInterfaces
 
 public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoordinator {
+    public var diary: Diary?
     public var dependencies: DiarySceneFlowCoordinatorDependencies
     public var navigationController: UINavigationController
     
-    public init(navigationController: UINavigationController, dependencies: DiarySceneFlowCoordinatorDependencies) {
+    public init(diary: Diary?, navigationController: UINavigationController, dependencies: DiarySceneFlowCoordinatorDependencies) {
+        self.diary = diary
         self.navigationController = navigationController
         self.dependencies = dependencies
     }
     
     public func start() -> UIViewController {
-        transition(
-            scene: DiaryWriteScene.write(
-                dependencies.makeDiaryWriteViewModel(
-                    diary: nil,
-                    actions: .init(
-                        close: { [weak self] in self?.navigationController.popViewController(animated: true) },
-                        showSelectEmotion: {
-                            return Observable<Emotion?>.create { [weak self] observer in
-                                guard let self = self else {
-                                    observer.onCompleted()
+        if let diary = diary {
+            return transition(
+                scene: DiaryWriteScene.detail(
+                    dependencies.makeDiaryDetailViewModel(
+                        diary: diary,
+                        actions: .init(
+                            close: close,
+                            showOptionMenu: showOptionMenu(completion:),
+                            showDiaryWriteScene: showDiaryWriteScene(diary:)
+                        )
+                    )
+                ),
+                transitionStyle: .push,
+                animated: true
+            )
+        } else {
+            return transition(
+                scene: DiaryWriteScene.write(
+                    dependencies.makeDiaryWriteViewModel(
+                        diary: nil,
+                        actions: .init(
+                            close: close,
+                            showSelectEmotion: {
+                                return Observable<Emotion?>.create { [weak self] observer in
+                                    guard let self = self else {
+                                        observer.onCompleted()
+                                        return Disposables.create()
+                                    }
+                                    
+                                    self.showSelectEmotionScene { emotion in
+                                        observer.onNext(emotion)
+                                        observer.onCompleted()
+                                    }
+                                    
                                     return Disposables.create()
                                 }
-                                
-                                self.showSelectEmotionScene { emotion in
-                                    observer.onNext(emotion)
-                                    observer.onCompleted()
-                                }
-                                
-                                return Disposables.create()
-                            }
-                        },
-                        showPhotoAlbum: showPhotoAlbumScene,
-                        showDeviceCamera: showDeviceCamera,
-                        showDatePicker: showDatePicker(date:)
+                            },
+                            showPhotoAlbum: showPhotoAlbumScene,
+                            showDeviceCamera: showDeviceCamera,
+                            showDatePicker: showDatePicker(date:),
+                            showDiaryDetail: showDiaryDetailScene(diary:)
+                        )
                     )
-                )
-            ),
-            transitionStyle: .push,
-            animated: true
-        )
+                ),
+                transitionStyle: .push,
+                animated: true
+            )
+        }
     }
     
     public func showSelectEmotionScene(completion: @escaping (Emotion?)-> Void) {
@@ -131,5 +151,79 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
             
             return Disposables.create()
         }
+    }
+    
+    private func close() {
+        self.close(animated: true)
+    }
+    
+    private func showOptionMenu(completion: @escaping (DiaryOption)-> Void) {
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        controller.addAction(.init(title: "Cancel".localized, style: .cancel) { _ in
+            completion(.cancel)
+        })
+        controller.addAction(.init(title: "Modify".localized, style: .default) { _ in
+            completion(.modify)
+        })
+        controller.addAction(.init(title: "Delete".localized, style: .destructive) { _ in
+            completion(.delete)
+        })
+        self.navigationController.visibleViewController?.present(controller, animated: true)
+    }
+    
+    private func showDiaryDetailScene(diary: Diary) {
+        close(animated: false)
+        
+        transition(
+            scene: DiaryWriteScene.detail(
+                dependencies.makeDiaryDetailViewModel(
+                    diary: diary,
+                    actions: .init(
+                        close: close,
+                        showOptionMenu: showOptionMenu(completion:),
+                        showDiaryWriteScene: showDiaryWriteScene(diary:)
+                    )
+                )
+            ),
+            transitionStyle: .push,
+            animated: true
+        )
+    }
+    
+    private func showDiaryWriteScene(diary: Diary) {
+        close(animated: false)
+        
+        transition(
+            scene: DiaryWriteScene.write(
+                dependencies.makeDiaryWriteViewModel(
+                    diary: diary,
+                    actions: .init(
+                        close: close,
+                        showSelectEmotion: {
+                            return Observable<Emotion?>.create { [weak self] observer in
+                                guard let self = self else {
+                                    observer.onCompleted()
+                                    return Disposables.create()
+                                }
+                                
+                                self.showSelectEmotionScene { emotion in
+                                    observer.onNext(emotion)
+                                    observer.onCompleted()
+                                }
+                                
+                                return Disposables.create()
+                            }
+                        },
+                        showPhotoAlbum: showPhotoAlbumScene,
+                        showDeviceCamera: showDeviceCamera,
+                        showDatePicker: showDatePicker(date:),
+                        showDiaryDetail: showDiaryDetailScene(diary:)
+                    )
+                )
+            ),
+            transitionStyle: .push,
+            animated: true
+        )
     }
 }

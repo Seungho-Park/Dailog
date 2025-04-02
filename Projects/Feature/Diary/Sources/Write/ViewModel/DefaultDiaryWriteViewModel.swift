@@ -44,10 +44,35 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     }
     
     public func transform(input: DiaryWriteViewModelInput) -> DiaryWriteViewModelOutput {
-        let emotion: BehaviorRelay<Emotion?> = .init(value: diary?.emotion)
-        let contents: BehaviorRelay<String> = .init(value: diary?.contents ?? "")
-        let date: BehaviorRelay<Date> = .init(value: diary?.createdAt ?? Date())
+        let emotion: BehaviorRelay<Emotion?> = .init(value: nil)
+        let contents: BehaviorRelay<String> = .init(value: "")
+        let date: BehaviorRelay<Date> = .init(value: Date())
         let photos: BehaviorRelay<[FileInfo]> = .init(value: [])
+        
+        let diary = Observable.just(diary)
+            .compactMap { $0 }
+            .share()
+        
+        diary.map { $0.emotion }
+            .bind(to: emotion)
+            .disposed(by: disposeBag)
+        diary.map { $0.contents }
+            .bind(to: contents)
+            .disposed(by: disposeBag)
+        diary.map { $0.date }
+            .bind(to: date)
+            .disposed(by: disposeBag)
+        diary.map { $0.photos }
+            .withUnretained(self)
+            .flatMap { owner, photos in
+                Observable.from(photos)
+                    .flatMap { [unowned owner] photo in
+                        owner.fetchPhotoDataUsecase.execute(fileName: photo.fileName)
+                    }
+                    .toArray()
+            }
+            .bind(to: photos)
+            .disposed(by: disposeBag)
         
         Observable.merge(
             input.emotionButtonTapped,
@@ -80,6 +105,22 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
         .disposed(by: disposeBag)
         
         input.backButtonTapped?
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                if owner.diary == nil {
+                    return Observable.from(photos.value)
+                        .flatMap { [unowned owner] photo in
+                            owner.deletePhotoFileUsecase.execute(fileName: photo.fileName)
+                        }
+                        .toArray()
+                } else {
+                    return Single.create { single in
+                        single(.success([]))
+                        return Disposables.create()
+                    }
+                }
+            }
+            .map { _ in }
             .bind(onNext: actions.close)
             .disposed(by: disposeBag)
         
@@ -124,9 +165,8 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
             .flatMap { owner, diary in
                 owner.saveDiaryUsecase.execute(diary: diary)
             }
-            .subscribe {
-                print($0)
-            }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(onNext: actions.showDiaryDetail)
             .disposed(by: disposeBag)
         
         input.textChanged
