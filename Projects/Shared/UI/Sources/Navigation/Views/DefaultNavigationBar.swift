@@ -15,12 +15,18 @@ import RxCocoa
 
 public final class DefaultNavigationBar: NavigationBar {
     private let container = UIView()
-    private let backButton: NavigationBackButton = .init()
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.font = .cursive(sizeOf: 22, weight: .medium)
+        label.textColor = .navigationTitle
+        return label
+    }()
     
     public init(title: String = "") {
         super.init(title: title)
         
-        self.items.append(backButton)
+        titleLabel.text = title
         self.addSubview(container)
         configure()
     }
@@ -30,12 +36,12 @@ public final class DefaultNavigationBar: NavigationBar {
             .addItem()
             .direction(.row)
             .define { flex in
-                flex.addItem(backButton)
+                flex.addItem(titleLabel)
                 
             }
             .grow(1)
             .alignItems(.center)
-            .justifyContent(Locale.direction == .leftToRight ? .start : .end)
+            .justifyContent(.center)
     }
     
     public override func layoutSubviews() {

@@ -13,6 +13,7 @@ import DomainDiary
 import DomainDiaryInterfaces
 import DomainPhotoInterfaces
 import DomainPhoto
+import FeatureDiaryInterfaces
 
 public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
     public let dependencies: HistorySceneDIContainerDependencies
@@ -27,6 +28,11 @@ public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
 }
 
 extension DefaultHistorySceneDIContainer {
+    public func makeWriteSceneFlowCoordinator(navigationController: UINavigationController) -> any DiarySceneFlowCoordinator {
+        let diContainer = dependencies.diarySceneDIContainer
+        return diContainer.makeDiaryWriteSceneFlowCoordinator(navigationController: navigationController)
+    }
+    
     public func makeHistoryViewModel(actions: HistoryViewModelAction) -> any HistoryViewModel {
         return DefaultHistoryViewModel(
             fetchDiariesUsecase: makeFetchDiariesUsecase(),

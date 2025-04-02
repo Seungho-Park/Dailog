@@ -97,6 +97,10 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
             .bind(to: filter)
             .disposed(by: disposeBag)
         
+        input.writeDiaryButtonTapped
+            .bind(onNext: actions.showWriteDiaryScene)
+            .disposed(by: disposeBag)
+        
         return .init(
             items: diariesRelay
                 .withUnretained(self)

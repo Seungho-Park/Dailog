@@ -34,7 +34,6 @@ public final class DefaultHomeSceneFlowCoordinator: HomeSceneFlowCoordinator {
     
     private func showWriteDiaryScene() {
         let coordinator = dependencies.makeWriteSceneFlowCoordinator(navigationController: navigationController)
-        
         coordinator.start()
     }
 }

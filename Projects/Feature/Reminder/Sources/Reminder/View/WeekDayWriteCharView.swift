@@ -46,7 +46,7 @@ public final class WeekDayWriteCharView: UIView {
                 label.text = "Weekly Report".localized
                 label.textColor = .title
                 label.numberOfLines = 1
-                label.font = .cursive(sizeOf: 22, weight: .bold)
+                label.font = .cursive(sizeOf: 24, weight: .medium)
                 
                 flex.addItem(label)
                     .marginHorizontal(12)

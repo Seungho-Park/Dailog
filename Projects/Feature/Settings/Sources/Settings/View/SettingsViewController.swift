@@ -17,19 +17,50 @@ public final class SettingsViewController<VM: SettingsViewModel>: DailogViewCont
     private let contentView = UIView()
     
     public override func configure() {
+        self.navigationBar = DefaultNavigationBar(title: "Settings".localized)
         super.configure()
         
         container.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        
+        contentView
+            .flex
+            .addItem(SystemSettingView(frame: .zero))
+        
+        contentView
+            .flex
+            .addItem()
+            .height(0.5)
+            .marginVertical(20)
+            .backgroundColor(.lightGray)
+        
+        contentView
+            .flex
+            .addItem(SecuritySettingView(frame: .zero))
+        
+        contentView
+            .flex
+            .addItem()
+            .height(0.5)
+            .marginVertical(20)
+            .backgroundColor(.lightGray)
+        
+        contentView
+            .flex
+            .addItem(AppInfoView(frame: .zero))
+        
+        contentView
+            .flex.addItem().backgroundColor(.cyan)
+            .height(500)
     }
     
     public override func bind() {
         super.bind()
         
-        rx.viewDidAppear.subscribe { [weak self] _ in
-            _ = self?.viewModel.transform(input: .init())
-        }
-        .disposed(by: disposeBag)
+//        rx.viewDidAppear.subscribe { [weak self] _ in
+//            _ = self?.viewModel.transform(input: .init())
+//        }
+//        .disposed(by: disposeBag)
     }
     
     public override func viewDidLayoutSubviews() {

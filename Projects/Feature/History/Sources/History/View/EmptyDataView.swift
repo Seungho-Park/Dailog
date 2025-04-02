@@ -37,26 +37,6 @@ public final class EmptyDataView: UIView {
         return label
     }()
     
-    private let writeButton: UIButton = {
-        let btn = UIButton(frame: .zero)
-        var config = UIButton.Configuration.filled()
-        btn.configuration = config
-        btn.layer.masksToBounds = true
-        btn.configurationUpdateHandler = { btn in
-            btn.configuration?.attributedTitle = AttributedString(
-                "+",
-                attributes: .init(
-                    [
-                        NSAttributedString.Key.foregroundColor : btn.state != .highlighted ? UIColor.btnTextColor : UIColor.btnTextColor.withAlphaComponent(0.6),
-                        NSAttributedString.Key.font: UIFont.cursive(sizeOf: 48, weight: .medium)
-                    ]
-                )
-            )
-            btn.configuration?.baseBackgroundColor = btn.state == .highlighted ? .softCoralHighlight : .softCoral
-        }
-        return btn
-    }()
-    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -92,24 +72,11 @@ public final class EmptyDataView: UIView {
                     .marginTop(10)
             }
             .marginBottom(40%)
-        
-        container
-            .flex
-            .addItem()
-            .grow(1)
-            .define { flex in
-                flex.addItem(writeButton)
-                    .width(60)
-                    .height(60)
-            }
-            .justifyContent(.end)
-            .alignItems(.end)
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        writeButton.layer.cornerRadius = writeButton.frame.width/2
         container.pin.all()
         container.flex.layout()
     }

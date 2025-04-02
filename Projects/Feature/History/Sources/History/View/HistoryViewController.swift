@@ -27,6 +27,26 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
         return table
     }()
     
+    private let writeButton: UIButton = {
+        let btn = UIButton(frame: .zero)
+        var config = UIButton.Configuration.filled()
+        btn.configuration = config
+        btn.layer.masksToBounds = true
+        btn.configurationUpdateHandler = { btn in
+            btn.configuration?.attributedTitle = AttributedString(
+                "+",
+                attributes: .init(
+                    [
+                        NSAttributedString.Key.foregroundColor : btn.state != .highlighted ? UIColor.btnTextColor : UIColor.btnTextColor.withAlphaComponent(0.6),
+                        NSAttributedString.Key.font: UIFont.cursive(sizeOf: 36, weight: .medium)
+                    ]
+                )
+            )
+            btn.configuration?.baseBackgroundColor = btn.state == .highlighted ? .softCoralHighlight : .softCoral
+        }
+        return btn
+    }()
+    
     public override func configure() {
         self.navigationBar = FilterNavigationBar(title: "전체")
         super.configure()
@@ -43,6 +63,23 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
                     .horizontally(0)
                     .vertically(0)
             }
+        
+        container
+            .flex
+            .define { flex in
+                let item = flex.addItem(writeButton)
+                    .position(.absolute)
+                    .width(48)
+                    .height(48)
+                    .cornerRadius(24)
+                    .bottom(12)
+                
+                if Locale.direction == .leftToRight {
+                    item.right(12)
+                } else {
+                    item.left(12)
+                }
+            }
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -56,7 +93,8 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
             input: .init(
                 viewWillAppear: rx.viewWillAppear.map { _ in }.asObservable(),
                 filterButtonTapped: navigationBar?.rx.tap.compactMap { $0 }.filter { $0 == .filter }.map { _ in }.asObservable(),
-                willDisplayCell: tableView.rx.willDisplayCell.map { $0.indexPath.row }.asObservable()
+                willDisplayCell: tableView.rx.willDisplayCell.map { $0.indexPath.row }.asObservable(),
+                writeDiaryButtonTapped: writeButton.rx.tap.asObservable()
             )
         )
         
@@ -80,5 +118,9 @@ public class HistoryViewController<VM: HistoryViewModel>: DailogViewController<V
         output.filter
             .drive(((navigationBar as? FilterNavigationBar)?.rx.title)!)
             .disposed(by: disposeBag)
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
 }

@@ -14,11 +14,14 @@ import DomainPhotoInterfaces
 
 public struct HistoryViewModelAction {
     public let showSelectFilter: (HistoryFilterType)-> Observable<HistoryFilterType?>
+    public let showWriteDiaryScene: ()-> Void
     
     public init(
-        showSelectFilter: @escaping (HistoryFilterType) -> Observable<HistoryFilterType?>
+        showSelectFilter: @escaping (HistoryFilterType) -> Observable<HistoryFilterType?>,
+        showWriteDiaryScene: @escaping ()-> Void
     ) {
         self.showSelectFilter = showSelectFilter
+        self.showWriteDiaryScene = showWriteDiaryScene
     }
 }
 
@@ -26,15 +29,18 @@ public struct HistoryViewModelInput {
     public let viewWillAppear: Observable<Void>
     public let filterButtonTapped: Observable<Void>?
     public let willDisplayCell: Observable<Int>
+    public let writeDiaryButtonTapped: Observable<Void>
     
     public init(
         viewWillAppear: Observable<Void>,
         filterButtonTapped: Observable<Void>?,
-        willDisplayCell: Observable<Int>
+        willDisplayCell: Observable<Int>,
+        writeDiaryButtonTapped: Observable<Void>
     ) {
         self.viewWillAppear = viewWillAppear
         self.filterButtonTapped = filterButtonTapped
         self.willDisplayCell = willDisplayCell
+        self.writeDiaryButtonTapped = writeDiaryButtonTapped
     }
 }
 

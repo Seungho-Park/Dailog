@@ -27,7 +27,8 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
         return HistoryScene.history(
             dependencies.makeHistoryViewModel(
                 actions: .init(
-                    showSelectFilter: showSelectFilterScene(filter:)
+                    showSelectFilter: showSelectFilterScene(filter:),
+                    showWriteDiaryScene: showWriteDiaryScene
                 )
             )
         ).instantiate()
@@ -60,5 +61,10 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
             
             return Disposables.create()
         }
+    }
+    
+    public func showWriteDiaryScene() {
+        let coordinator = dependencies.makeWriteSceneFlowCoordinator(navigationController: navigationController)
+        coordinator.start()
     }
 }

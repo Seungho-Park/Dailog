@@ -13,17 +13,21 @@ import CoreStorage
 import CoreStorageInterfaces
 import CorePhotoInterfaces
 import DomainPhotoInterfaces
+import FeatureDiaryInterfaces
 
 public struct HistorySceneDIContainerDependencies {
+    public let diarySceneDIContainer: DiarySceneDIContainer
     public let diaryStorage: DiaryCoreDataStorage
     public let imageFileStorage: FileStorage
     public let photoService: PhotoService
     
     public init(
+        diarySceneDIContainer: DiarySceneDIContainer,
         diaryStorage: DiaryCoreDataStorage,
         imageFileStorage: FileStorage,
         photoService: PhotoService
     ) {
+        self.diarySceneDIContainer = diarySceneDIContainer
         self.diaryStorage = diaryStorage
         self.imageFileStorage = imageFileStorage
         self.photoService = photoService
