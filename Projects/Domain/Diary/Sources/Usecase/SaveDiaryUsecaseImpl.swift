@@ -16,7 +16,7 @@ public final class SaveDiaryUsecaseImpl: SaveDiaryUsecase {
         self.repository = repository
     }
     
-    public func execute(diary: Diary) -> Single<Diary> {
+    public func execute(diary: NewDiary) -> Single<NewDiary> {
         return .create { [unowned self] single in
             self.repository.save(diary: diary) { result in
                 switch result {

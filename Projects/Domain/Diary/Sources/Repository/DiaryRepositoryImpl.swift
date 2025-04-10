@@ -10,14 +10,16 @@ import DomainDiaryInterfaces
 import CoreStorageInterfaces
 
 public final class DiaryRepositoryImpl: DiaryRepository {
-    private let storage: DiaryStorage
+    private let storage: NewDiaryStorage
     
-    public init(storage: DiaryStorage) {
+    public init(storage: NewDiaryStorage) {
         self.storage = storage
     }
     
-    public func save(diary: Diary, completion: @escaping (Result<Diary, CoreDataStorageError>) -> Void) {
-        storage.save(diary: .init(id: diary.id, emotion: diary.emotion?.rawValue, contents: diary.contents, date: diary.date, photos: diary.photos.map { PhotoStorageDTO(fileName: $0.fileName, memo: $0.memo, createdAt: $0.createdAt) }, createdAt: diary.createdAt, updatedAt: diary.updatedAt)) { result in
+    public func save(diary: NewDiary, completion: @escaping (Result<NewDiary, CoreDataStorageError>) -> Void) {
+        storage.saveDiary(
+            diary: .init(id: diary.id, emotion: diary.emotion?.rawValue, contents: diary.contents.map { DiaryContentDTO(id: $0.id, type: $0.type, text: $0.text, orderIdx: $0.orderIdx, photo: $0.photo.map { PhotoDTO(fileName: $0.fileName, memo: $0.memo, width: $0.width, createdAt: $0.createdAt) }) }, thumbnail: diary.thumbnail.map { DiaryContentDTO(id: $0.id, type: $0.type, text: $0.text, orderIdx: $0.orderIdx, photo: $0.photo.map { PhotoDTO(fileName: $0.fileName, memo: $0.memo, width: $0.width, createdAt: $0.createdAt) }) }, date: diary.date, createdAt: diary.createdAt, updatedAt: diary.updatedAt)
+        ) { result in
             switch result {
             case .success(let dto):
                 completion(.success(dto.toDomain()))
@@ -27,7 +29,7 @@ public final class DiaryRepositoryImpl: DiaryRepository {
         }
     }
     
-    public func fetchDiaries(year: Int?, month: Int?, page: Int, count: Int, completion: @escaping (Result<Diaries, CoreDataStorageError>) -> Void) {
+    public func fetchDiaries(year: Int?, month: Int?, page: Int, count: Int, completion: @escaping (Result<NewDiaries, CoreDataStorageError>) -> Void) {
         storage.fetchDiaries(year: year, month: month, page: page, count: count) { result in
             switch result {
             case .success(let dto):
@@ -38,8 +40,8 @@ public final class DiaryRepositoryImpl: DiaryRepository {
         }
     }
     
-    public func delete(diary: Diary, completion: @escaping (Result<Bool, CoreDataStorageError>) -> Void) {
-        storage.remove(diary: .init(id: diary.id, emotion: diary.emotion?.rawValue, contents: diary.contents, date: diary.date, photos: diary.photos.map { PhotoStorageDTO(fileName: $0.fileName, memo: $0.memo, createdAt: $0.createdAt) }, createdAt: diary.createdAt, updatedAt: diary.updatedAt)) { result in
+    public func delete(diary: NewDiary, completion: @escaping (Result<Bool, CoreDataStorageError>) -> Void) {
+        storage.deleteDiary(id: diary.id) { result in
             switch result {
             case .success: completion(.success(true))
             case .failure(let error): completion(.failure(error))

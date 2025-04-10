@@ -99,10 +99,10 @@ public final class DiaryDetailViewController<VM: DiaryDetailViewModel>: DailogVi
             .drive(emotionLabel.rx.text)
             .disposed(by: disposeBag)
         
-        output.diary
-            .map { $0.contents }
-            .drive(contentsLabel.rx.text)
-            .disposed(by: disposeBag)
+//        output.diary
+//            .map { $0.contents }
+//            .drive(contentsLabel.rx.text)
+//            .disposed(by: disposeBag)
     }
     
     public override func viewDidLayoutSubviews() {

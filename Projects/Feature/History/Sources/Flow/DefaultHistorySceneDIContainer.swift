@@ -28,7 +28,7 @@ public final class DefaultHistorySceneDIContainer: HistorySceneDIContainer {
 }
 
 extension DefaultHistorySceneDIContainer {
-    public func makeWriteSceneFlowCoordinator(diary: Diary?, navigationController: UINavigationController) -> any DiarySceneFlowCoordinator {
+    public func makeWriteSceneFlowCoordinator(diary: NewDiary?, navigationController: UINavigationController) -> any DiarySceneFlowCoordinator {
         let diContainer = dependencies.diarySceneDIContainer
         return diContainer.makeDiaryWriteSceneFlowCoordinator(diary: diary, navigationController: navigationController)
     }

@@ -16,12 +16,12 @@ public struct DiaryDetailViewModelAction {
     
     public let close: ()-> Void
     public let showOptionMenu: (@escaping (DiaryOption)-> Void)-> Void
-    public let showDiaryWriteScene: (Diary)-> Void
+    public let showDiaryWriteScene: (NewDiary)-> Void
     
     public init(
         close: @escaping ()-> Void,
         showOptionMenu: @escaping (@escaping (DiaryOption)-> Void)-> Void,
-        showDiaryWriteScene: @escaping (Diary)-> Void
+        showDiaryWriteScene: @escaping (NewDiary)-> Void
     ) {
         self.close = close
         self.showOptionMenu = showOptionMenu
@@ -44,17 +44,17 @@ public struct DiaryDetailViewModelInput {
 }
 
 public struct DiaryDetailViewModelOutput {
-    public let diary: Driver<Diary>
+    public let diary: Driver<NewDiary>
     
     public init(
-        diary: Driver<Diary>
+        diary: Driver<NewDiary>
     ) {
         self.diary = diary
     }
 }
 
 public protocol DiaryDetailViewModel: ViewModel where Input == DiaryDetailViewModelInput, Output == DiaryDetailViewModelOutput {
-    var diary: Diary { get }
+    var diary: NewDiary { get }
     var actions: DiaryDetailViewModelAction { get }
     
     var deleteDiaryUsecase: DeleteDiaryUsecase { get }

@@ -13,9 +13,11 @@ import RxSwift
 
 public final class FetchPhotoAssetsUsecaseImpl: FetchPhotoAssetsUsecase {
     
+    public let isAutoClear: Bool
     private let repository: GalleryRepository
     
-    public init(repository: GalleryRepository) {
+    public init(isAutoClear: Bool = false, repository: GalleryRepository) {
+        self.isAutoClear = isAutoClear
         self.repository = repository
     }
     
@@ -35,7 +37,11 @@ public final class FetchPhotoAssetsUsecaseImpl: FetchPhotoAssetsUsecase {
                 }
             }
             
-            return Disposables.create()
+            return Disposables.create { [weak self] in
+                if self?.isAutoClear == true {
+                    self?.repository.clear()
+                }
+            }
         }
     }
 }

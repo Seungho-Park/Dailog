@@ -194,7 +194,7 @@ public final class DiaryListItemCell: UITableViewCell {
         
         wrapView
             .addItem(separatorView)
-            .height(1)
+            .height(0.5)
             .marginTop(24)
     }
     

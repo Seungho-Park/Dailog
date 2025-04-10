@@ -11,8 +11,10 @@ import SharedUI
 import RxSwift
 import RxCocoa
 import FeatureDiaryInterfaces
+import GoogleMobileAds
 
 public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogViewController<VM>, UICollectionViewDelegateFlowLayout {
+    var bannerView: BannerView!
     
     private let headerView = DiaryWriteHeaderView(frame: .zero)
     private let footerView = DiaryWriteFooterView(frame: .zero)
@@ -113,7 +115,6 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
             .disposed(by: disposeBag)
         
         output.contents
-            .debug()
             .drive { [weak self] text in
                 self?.textView.text = text
             }
@@ -133,6 +134,10 @@ public final class DiaryWriteViewController<VM: DiaryWriteViewModel>: DailogView
             .map { $0.formattedString() }
             .drive((navigationBar as? DiaryWriteNavigationBar)!.rx.title)
             .disposed(by: disposeBag)
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

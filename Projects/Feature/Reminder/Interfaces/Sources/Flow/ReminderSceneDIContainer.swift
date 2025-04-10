@@ -12,10 +12,10 @@ import DomainDiaryInterfaces
 import CoreStorageInterfaces
 
 public struct ReminderSceneDependencies {
-    public let diaryStorage: DiaryStorage
+    public let diaryStorage: NewDiaryStorage
     
     public init(
-        diaryStorage: DiaryStorage
+        diaryStorage: NewDiaryStorage
     ) {
         self.diaryStorage = diaryStorage
     }

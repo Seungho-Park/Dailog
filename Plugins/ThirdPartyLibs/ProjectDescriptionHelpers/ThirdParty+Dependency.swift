@@ -17,5 +17,6 @@ public extension ProjectDescription.TargetDependency {
         public static let FirebaseAnalytics: TargetDependency = .external(name: "FirebaseAnalytics")
         public static let FirebaseCrashlytics: TargetDependency = .external(name: "FirebaseCrashlytics")
         public static let Charts: TargetDependency = .external(name: "DGCharts")
+        public static let ADMob: TargetDependency = .external(name: "GoogleMobileAds")
     }
 }

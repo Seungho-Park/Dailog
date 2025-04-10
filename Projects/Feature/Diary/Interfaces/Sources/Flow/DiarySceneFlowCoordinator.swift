@@ -17,14 +17,14 @@ import CoreStorageInterfaces
 public protocol DiarySceneFlowCoordinatorDependencies {
     func makePhotoSceneFlowCoordinator(scene: PhotoScene, navigationController: UINavigationController, completion: @escaping ([FileInfo])-> Void)-> PhotoSceneFlowCoordinator
     
-    func makeDiaryWriteViewModel(diary: Diary?, actions: DiaryWriteViewModelAction)-> any DiaryWriteViewModel
-    func makeDiaryDetailViewModel(diary: Diary, actions: DiaryDetailViewModelAction)-> any DiaryDetailViewModel
+    func makeDiaryWriteViewModel(diary: NewDiary?, actions: DiaryWriteViewModelAction)-> any DiaryWriteViewModel
+    func makeDiaryDetailViewModel(diary: NewDiary, actions: DiaryDetailViewModelAction)-> any DiaryDetailViewModel
     func makeEmotionViewModel(actions: EmotionViewModelActions)-> any EmotionViewModel
     func makeDatePickerViewModel(date: Date, actions: DatePickerAction)-> any DatePickerViewModel
 }
 
 public protocol DiarySceneFlowCoordinator: Coordinator {
-    var diary: Diary? { get }
+    var diary: NewDiary? { get }
     var dependencies: DiarySceneFlowCoordinatorDependencies { get }
     
     func showSelectEmotionScene(completion: @escaping (Emotion?)-> Void)

@@ -20,7 +20,7 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
     public let background: BackgroundType = .image(.bgLaunchScreen)
     
-    public let diary: Diary?
+    public let diary: NewDiary?
     public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
     public let fetchPhotoDataUsecase: FetchPhotoDataUsecase
     public let deletePhotoFileUsecase: DeletePhotoFileUsecase
@@ -28,7 +28,7 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public let actions: DiaryWriteViewModelAction
     
     public init(
-        diary: Diary?,
+        diary: NewDiary?,
         fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase,
         fetchPhotoDataUsecase: FetchPhotoDataUsecase,
         deletePhotoFileUsecase: DeletePhotoFileUsecase,
@@ -49,30 +49,30 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
         let date: BehaviorRelay<Date> = .init(value: Date())
         let photos: BehaviorRelay<[FileInfo]> = .init(value: [])
         
-        let diary = Observable.just(diary)
-            .compactMap { $0 }
-            .share()
-        
-        diary.map { $0.emotion }
-            .bind(to: emotion)
-            .disposed(by: disposeBag)
-        diary.map { $0.contents }
-            .bind(to: contents)
-            .disposed(by: disposeBag)
-        diary.map { $0.date }
-            .bind(to: date)
-            .disposed(by: disposeBag)
-        diary.map { $0.photos }
-            .withUnretained(self)
-            .flatMap { owner, photos in
-                Observable.from(photos)
-                    .flatMap { [unowned owner] photo in
-                        owner.fetchPhotoDataUsecase.execute(fileName: photo.fileName)
-                    }
-                    .toArray()
-            }
-            .bind(to: photos)
-            .disposed(by: disposeBag)
+//        let diary = Observable.just(diary)
+//            .compactMap { $0 }
+//            .share()
+//        
+//        diary.map { $0.emotion }
+//            .bind(to: emotion)
+//            .disposed(by: disposeBag)
+//        diary.map { $0.contents }
+//            .bind(to: contents)
+//            .disposed(by: disposeBag)
+//        diary.map { $0.date }
+//            .bind(to: date)
+//            .disposed(by: disposeBag)
+//        diary.map { $0.photos }
+//            .withUnretained(self)
+//            .flatMap { owner, photos in
+//                Observable.from(photos)
+//                    .flatMap { [unowned owner] photo in
+//                        owner.fetchPhotoDataUsecase.execute(fileName: photo.fileName)
+//                    }
+//                    .toArray()
+//            }
+//            .bind(to: photos)
+//            .disposed(by: disposeBag)
         
         Observable.merge(
             input.emotionButtonTapped,
@@ -156,18 +156,18 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.saveButtonTapped?
-            .withUnretained(self)
-            .map { owner, _ in
-                Diary(id: owner.diary?.id ?? UUID(), emotion: emotion.value, contents: contents.value, date: date.value, photos: photos.value.map { Photo(fileName: $0.fileName, memo: "", createdAt: $0.createdAt) }, createdAt: owner.diary?.createdAt ?? Date(), updatedAt: Date())
-            }
-            .withUnretained(self)
-            .flatMap { owner, diary in
-                owner.saveDiaryUsecase.execute(diary: diary)
-            }
-            .observe(on: MainScheduler.asyncInstance)
-            .bind(onNext: actions.showDiaryDetail)
-            .disposed(by: disposeBag)
+//        input.saveButtonTapped?
+//            .withUnretained(self)
+//            .map { owner, _ in
+//                Diary(id: owner.diary?.id ?? UUID(), emotion: emotion.value, contents: contents.value, date: date.value, photos: photos.value.map { Photo(fileName: $0.fileName, memo: "", createdAt: $0.createdAt) }, createdAt: owner.diary?.createdAt ?? Date(), updatedAt: Date())
+//            }
+//            .withUnretained(self)
+//            .flatMap { owner, diary in
+//                owner.saveDiaryUsecase.execute(diary: diary)
+//            }
+//            .observe(on: MainScheduler.asyncInstance)
+//            .bind(onNext: actions.showDiaryDetail)
+//            .disposed(by: disposeBag)
         
         input.textChanged
             .bind { text in

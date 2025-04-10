@@ -11,5 +11,6 @@ import RxSwift
 import CorePhotoInterfaces
 
 public protocol FetchPhotoAssetsUsecase {
+    var isAutoClear: Bool { get }
     func execute(size: PhotoSize)-> Single<[PHAsset]>
 }

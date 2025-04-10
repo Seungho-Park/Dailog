@@ -15,12 +15,12 @@ import DomainPhotoInterfaces
 public struct HistoryViewModelAction {
     public let showSelectFilter: (HistoryFilterType)-> Observable<HistoryFilterType?>
     public let showWriteDiaryScene: ()-> Void
-    public let showDiaryDetailScene: (Diary)-> Void
+    public let showDiaryDetailScene: (NewDiary)-> Void
     
     public init(
         showSelectFilter: @escaping (HistoryFilterType) -> Observable<HistoryFilterType?>,
         showWriteDiaryScene: @escaping ()-> Void,
-        showDiaryDetailScene: @escaping (Diary)-> Void
+        showDiaryDetailScene: @escaping (NewDiary)-> Void
     ) {
         self.showSelectFilter = showSelectFilter
         self.showWriteDiaryScene = showWriteDiaryScene

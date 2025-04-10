@@ -9,9 +9,10 @@
 import UIKit
 import FeatureMainInterfaces
 import SharedUI
+import GoogleMobileAds
+import PinLayout
 
 public final class MainViewController<VM: MainViewModel>: DailogViewController<VM>, UITabBarControllerDelegate, UIViewControllerAnimatedTransitioning {
-    
     private lazy var tabController: UITabBarController = {
         let tabBar = UITabBarController()
         tabBar.view.backgroundColor = .clear
@@ -23,21 +24,19 @@ public final class MainViewController<VM: MainViewModel>: DailogViewController<V
         get { tabController.viewControllers ?? [] }
         set {
             tabController.viewControllers = newValue
-//            switch Locale.direction {
-//            case .leftToRight:
-//                if tabController.selectedIndex != 0 {
-//                    tabController.selectedIndex = 0
-//                }
-//            case .rightToLeft:
-//                if tabController.selectedIndex != newValue.count-1 {
-//                    tabController.selectedIndex = newValue.count-1
-//                }
-//            }
         }
     }
     
     public override func viewDidLoad() {
+//        let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
+//        let adaptiveSize = currentOrientationAnchoredAdaptiveBanner(width: viewWidth)
+//        bannerView = BannerView(adSize: adaptiveSize)
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174"
+//        bannerView.rootViewController = self
         super.viewDidLoad()
+        
+//        bannerView.delegate = self
+//        bannerView.load(Request())
     }
     
     public override func configure() {

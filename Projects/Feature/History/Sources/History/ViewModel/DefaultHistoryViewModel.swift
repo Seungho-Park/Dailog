@@ -34,7 +34,7 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
     public func transform(input: FeatureHistoryInterfaces.HistoryViewModelInput) -> FeatureHistoryInterfaces.HistoryViewModelOutput {
         let currentPage = BehaviorRelay<Int>(value: 1)
         let totalPages = BehaviorRelay(value: 1)
-        let diariesRelay = BehaviorRelay<[Diary]>(value: [])
+        let diariesRelay = BehaviorRelay<[NewDiary]>(value: [])
         let filter: BehaviorRelay<HistoryFilterType> = .init(value: .all)
         
         
@@ -72,7 +72,7 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
                 }
                 
                 return owner.fetchDiariesUsecase.execute(year: year, month: month, page: page, count: 20)
-                    .catchAndReturn(Diaries(currentPage: page, totalPages: 1, diaries: []))
+                    .catchAndReturn(NewDiaries(currentPage: page, totalPages: 1, diaries: []))
             }
             .share()
         
@@ -113,13 +113,7 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
         return .init(
             items: diariesRelay
                 .withUnretained(self)
-                .flatMapLatest { owner, diaries -> Observable<[DiaryListItemViewModel]> in
-                    if diaries.isEmpty { return Observable.just([]) }
-                    let itemObservables = diaries.map { diary in
-                        owner.loadThumbnail(for: diary)
-                    }
-                    return Observable.zip(itemObservables)
-                }
+                .map { _ in [] }
                 .asDriver(onErrorJustReturn: []),
             
             filter: filter
@@ -146,37 +140,37 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
         )
     }
     
-    private func loadThumbnail(for diary: Diary) -> Observable<DiaryListItemViewModel> {
-        guard let firstPhoto = diary.photos.first else {
-            return Observable.just(DiaryListItemViewModel(
-                id: diary.id,
-                emotion: diary.emotion,
-                content: diary.contents,
-                date: diary.date,
-                thumbnail: nil
-            ))
-        }
-        
-        return fetchPhotoDataUsecase.execute(fileName: firstPhoto.fileName)
-            .map { fileInfo in
-                DiaryListItemViewModel(
-                    id: diary.id,
-                    emotion: diary.emotion,
-                    content: diary.contents,
-                    date: diary.date,
-                    thumbnail: DiaryListItemViewModel.Thumbnail(
-                        image: fileInfo.data.resizeImageData(maxPixelSize: 200),
-                        hasMultiple: diary.photos.count > 1
-                    )
-                )
-            }
-            .catchAndReturn(DiaryListItemViewModel(
-                id: diary.id,
-                emotion: diary.emotion,
-                content: diary.contents,
-                date: diary.date,
-                thumbnail: nil
-            ))
-            .asObservable()
-    }
+//    private func loadThumbnail(for diary: NewDiary) -> Observable<DiaryListItemViewModel> {
+//        guard let firstPhoto = diary.thumbnail else {
+//            return Observable.just(DiaryListItemViewModel(
+//                id: diary.id,
+//                emotion: diary.emotion,
+//                content: "",
+//                date: diary.date,
+//                thumbnail: nil
+//            ))
+//        }
+//        
+//        return fetchPhotoDataUsecase.execute(fileName: firstPhoto.fileName)
+//            .map { fileInfo in
+//                DiaryListItemViewModel(
+//                    id: diary.id,
+//                    emotion: diary.emotion,
+//                    content: diary.contents,
+//                    date: diary.date,
+//                    thumbnail: DiaryListItemViewModel.Thumbnail(
+//                        image: fileInfo.data.resizeImageData(maxPixelSize: 200),
+//                        hasMultiple: diary.photos.count > 1
+//                    )
+//                )
+//            }
+//            .catchAndReturn(DiaryListItemViewModel(
+//                id: diary.id,
+//                emotion: diary.emotion,
+//                content: diary.contents,
+//                date: diary.date,
+//                thumbnail: nil
+//            ))
+//            .asObservable()
+//    }
 }

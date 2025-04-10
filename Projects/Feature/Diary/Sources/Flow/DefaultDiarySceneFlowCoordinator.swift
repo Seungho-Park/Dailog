@@ -15,11 +15,11 @@ import PhotosUI
 import CoreStorageInterfaces
 
 public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoordinator {
-    public var diary: Diary?
+    public var diary: NewDiary?
     public var dependencies: DiarySceneFlowCoordinatorDependencies
     public var navigationController: UINavigationController
     
-    public init(diary: Diary?, navigationController: UINavigationController, dependencies: DiarySceneFlowCoordinatorDependencies) {
+    public init(diary: NewDiary?, navigationController: UINavigationController, dependencies: DiarySceneFlowCoordinatorDependencies) {
         self.diary = diary
         self.navigationController = navigationController
         self.dependencies = dependencies
@@ -172,7 +172,7 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
         self.navigationController.visibleViewController?.present(controller, animated: true)
     }
     
-    private func showDiaryDetailScene(diary: Diary) {
+    private func showDiaryDetailScene(diary: NewDiary) {
         close(animated: false)
         
         transition(
@@ -191,7 +191,7 @@ public final class DefaultDiarySceneFlowCoordinator: NSObject, DiarySceneFlowCoo
         )
     }
     
-    private func showDiaryWriteScene(diary: Diary) {
+    private func showDiaryWriteScene(diary: NewDiary) {
         close(animated: false)
         
         transition(

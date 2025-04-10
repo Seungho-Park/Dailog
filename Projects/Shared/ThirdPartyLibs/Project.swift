@@ -20,7 +20,8 @@ let project: Project = .makeProject(
                     .SPM.RxSwift,
                     .SPM.RxRelay,
                     .SPM.FirebaseAnalytics,
-                    .SPM.FirebaseCrashlytics
+                    .SPM.FirebaseCrashlytics,
+                    .SPM.ADMob
                 ]
             )
         )

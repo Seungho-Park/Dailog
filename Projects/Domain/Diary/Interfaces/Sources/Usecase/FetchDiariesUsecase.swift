@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 public protocol FetchDiariesUsecase {
-    func execute(year: Int?, month: Int?, page: Int, count: Int)-> Single<Diaries>
+    func execute(year: Int?, month: Int?, page: Int, count: Int)-> Single<NewDiaries>
 }

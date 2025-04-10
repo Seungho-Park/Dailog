@@ -17,13 +17,13 @@ public final class DefaultDiaryDetailViewModel: DiaryDetailViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
     public let background: BackgroundType = .image(.bgLaunchScreen)
     
-    public let diary: Diary
+    public let diary: NewDiary
     public let deleteDiaryUsecase: DeleteDiaryUsecase
     public let deletePhotoFileUsecase: DeletePhotoFileUsecase
     public let actions: DiaryDetailViewModelAction
     
     public init(
-        diary: Diary,
+        diary: NewDiary,
         deleteDiaryUsecase: DeleteDiaryUsecase,
         deletePhotoFileUsecase: DeletePhotoFileUsecase,
         actions: DiaryDetailViewModelAction
@@ -66,7 +66,8 @@ public final class DefaultDiaryDetailViewModel: DiaryDetailViewModel {
             .catchAndReturn(false)
             .filter { $0 }
             .withUnretained(self)
-            .map { owner, _ in return owner.diary.photos }
+            .map { owner, _ in return owner.diary.contents.filter { $0.type == "image" } }
+            .map { $0.compactMap { $0.photo } }
             .withUnretained(self)
             .flatMap { owner, photos in
                 Observable.from(photos)
