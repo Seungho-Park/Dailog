@@ -76,7 +76,7 @@ public final class NewDiaryCoreDataStorage: NewDiaryStorage {
                 diaryEntity.id = diary.id
                 diaryEntity.createdAt = diary.createdAt
                 diaryEntity.updatedAt = Date()
-                                
+                
                 if let existingContents = diaryEntity.contents as? Set<DiaryContentEntity> {
                     existingContents.forEach {
                         if let photo = $0.photo {
