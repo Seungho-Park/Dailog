@@ -70,7 +70,7 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
         coordinator.start()
     }
     
-    public func showDiaryDetailScene(diary: NewDiary) {
+    public func showDiaryDetailScene(diary: Diary) {
         let coordinator = dependencies.makeWriteSceneFlowCoordinator(diary: diary, navigationController: navigationController)
         coordinator.start()
     }

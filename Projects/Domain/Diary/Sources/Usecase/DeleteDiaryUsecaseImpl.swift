@@ -16,7 +16,7 @@ public final class DeleteDiaryUsecaseImpl: DeleteDiaryUsecase {
         self.repository = repository
     }
     
-    public func execute(diary: NewDiary) -> Single<Bool> {
+    public func execute(diary: Diary) -> Single<Bool> {
         return Single<Bool>.create { [unowned self] single in
             self.repository.delete(diary: diary) { result in
                 switch result {

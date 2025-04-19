@@ -18,13 +18,13 @@ public struct DiarySceneDIContainerDependencies {
     public let photoService: PhotoService
     public let photoSceneDIContainer: PhotoSceneDIContainer
     public let imageStorage: FileStorage
-    public let diaryStorage: NewDiaryStorage
+    public let diaryStorage: DiaryStorage
     
     public init(
         photoService: PhotoService,
         photoSceneDIContainer: PhotoSceneDIContainer,
         imageStorage: FileStorage,
-        diaryStorage: NewDiaryStorage
+        diaryStorage: DiaryStorage
     ) {
         self.photoService = photoService
         self.photoSceneDIContainer = photoSceneDIContainer
@@ -36,7 +36,7 @@ public struct DiarySceneDIContainerDependencies {
 public protocol DiarySceneDIContainer: DiarySceneFlowCoordinatorDependencies {
     var dependencies: DiarySceneDIContainerDependencies { get }
     
-    func makeDiaryWriteSceneFlowCoordinator(diary: NewDiary?, navigationController: UINavigationController)-> DiarySceneFlowCoordinator
+    func makeDiaryWriteSceneFlowCoordinator(diary: Diary?, navigationController: UINavigationController)-> DiarySceneFlowCoordinator
     func makeFetchPhotoAssetsUsecase(isAutoClearCache: Bool)-> FetchPhotoAssetsUsecase
     func makeFetchPhotoDataUsecase()-> FetchPhotoDataUsecase
     func makeDeletePhotoFileUsecase()-> DeletePhotoFileUsecase

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public protocol ViewModelBinable: NSObjectProtocol {
-    associatedtype ViewModelType
+    associatedtype ViewModelType: ViewModel
     
     var viewModel: ViewModelType! { get set }
     

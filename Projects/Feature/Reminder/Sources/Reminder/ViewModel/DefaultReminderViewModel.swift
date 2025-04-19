@@ -24,7 +24,7 @@ public final class DefaultReminderViewModel: ReminderViewModel {
     }
     
     public func transform(input: ReminderViewModelInput) -> ReminderViewModelOutput {
-        let diaries: BehaviorRelay<[NewDiary]> = .init(value: [])
+        let diaries: BehaviorRelay<[Diary]> = .init(value: [])
         let date: BehaviorRelay<Date> = .init(value: .now)
         
         Observable.merge(

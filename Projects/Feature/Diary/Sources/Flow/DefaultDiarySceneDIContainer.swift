@@ -30,11 +30,11 @@ public final class DefaultDiarySceneDIContainer: DiarySceneDIContainer {
         return dependencies.photoSceneDIContainer.makePhotoSceneFlowCoordinator(scene: scene, navController: navigationController, completion: completion)
     }
     
-    public func makeDiaryWriteSceneFlowCoordinator(diary: NewDiary?, navigationController: UINavigationController)-> DiarySceneFlowCoordinator {
+    public func makeDiaryWriteSceneFlowCoordinator(diary: Diary?, navigationController: UINavigationController)-> DiarySceneFlowCoordinator {
         return DefaultDiarySceneFlowCoordinator(diary: diary, navigationController: navigationController, dependencies: self)
     }
     
-    public func makeDiaryWriteViewModel(diary: NewDiary?, actions: DiaryWriteViewModelAction) -> any DiaryWriteViewModel {
+    public func makeDiaryWriteViewModel(diary: Diary?, actions: DiaryWriteViewModelAction) -> any DiaryWriteViewModel {
         return DefaultDiaryWriteViewModel(
             diary: diary,
             fetchPhotoAssetsUsecase: makeFetchPhotoAssetsUsecase(isAutoClearCache: true),
@@ -45,7 +45,7 @@ public final class DefaultDiarySceneDIContainer: DiarySceneDIContainer {
         )
     }
     
-    public func makeDiaryDetailViewModel(diary: NewDiary, actions: FeatureDiaryInterfaces.DiaryDetailViewModelAction) -> any FeatureDiaryInterfaces.DiaryDetailViewModel {
+    public func makeDiaryDetailViewModel(diary: Diary, actions: FeatureDiaryInterfaces.DiaryDetailViewModelAction) -> any FeatureDiaryInterfaces.DiaryDetailViewModel {
         return DefaultDiaryDetailViewModel(
             diary: diary,
             deleteDiaryUsecase: makeDeleteDiaryUsecase(),

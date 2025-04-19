@@ -9,5 +9,5 @@
 import RxSwift
 
 public protocol DeleteDiaryUsecase {
-    func execute(diary: NewDiary)-> Single<Bool>
+    func execute(diary: Diary)-> Single<Bool>
 }

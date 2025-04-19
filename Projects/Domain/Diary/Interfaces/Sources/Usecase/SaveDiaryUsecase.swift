@@ -11,6 +11,6 @@ import RxSwift
 
 public protocol SaveDiaryUsecase {
     func execute(
-        diary: NewDiary
-    )-> Single<NewDiary>
+        diary: Diary
+    )-> Single<Diary>
 }

@@ -35,7 +35,7 @@ final class AppDIContainer {
     private lazy var photoService: PhotoService = DefaultPhotoService()
     private lazy var imageFileStorage: FileStorage = ImageFileStorage()
     private lazy var coreDataStorage: CoreDataStorage = DefaultCoreDataStorage()
-    private lazy var diaryStorage: NewDiaryStorage = NewDiaryCoreDataStorage(coreDataStorage: coreDataStorage)
+    private lazy var diaryStorage: DiaryStorage = DiaryCoreDataStorage(coreDataStorage: coreDataStorage)
     
     func makeSplashSceneDIContainer()-> SplashSceneDIContainer {
         return DefaultSplashSceneDIContainer(

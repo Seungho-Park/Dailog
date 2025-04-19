@@ -29,13 +29,13 @@ public struct ReminderViewModelInput {
 
 public struct ReminderViewModelOutput {
     public let date: Driver<String>
-    public let diaries: Driver<[NewDiary]>
+    public let diaries: Driver<[Diary]>
     public let emotions: Driver<[Emotion:Int]>
     public let monthlyReport: Driver<[String:Int]>
     
     public init(
         date: Driver<String>,
-        diaries: Driver<[NewDiary]>,
+        diaries: Driver<[Diary]>,
         emotion: Driver<[Emotion:Int]>,
         monthlyReport: Driver<[String:Int]>
     ) {

@@ -17,13 +17,13 @@ public final class DefaultDiaryDetailViewModel: DiaryDetailViewModel {
     public let disposeBag: DisposeBag = DisposeBag()
     public let background: BackgroundType = .image(.bgLaunchScreen)
     
-    public let diary: NewDiary
+    public let diary: Diary
     public let deleteDiaryUsecase: DeleteDiaryUsecase
     public let deletePhotoFileUsecase: DeletePhotoFileUsecase
     public let actions: DiaryDetailViewModelAction
     
     public init(
-        diary: NewDiary,
+        diary: Diary,
         deleteDiaryUsecase: DeleteDiaryUsecase,
         deletePhotoFileUsecase: DeletePhotoFileUsecase,
         actions: DiaryDetailViewModelAction
@@ -57,29 +57,29 @@ public final class DefaultDiaryDetailViewModel: DiaryDetailViewModel {
             }
             .share()
         
-        optionSelect?
-            .filter { $0 == .delete }
-            .withUnretained(self)
-            .flatMap { owner, _ in
-                owner.deleteDiaryUsecase.execute(diary: owner.diary)
-            }
-            .catchAndReturn(false)
-            .filter { $0 }
-            .withUnretained(self)
-            .map { owner, _ in return owner.diary.contents.filter { $0.type == "image" } }
-            .map { $0.compactMap { $0.photo } }
-            .withUnretained(self)
-            .flatMap { owner, photos in
-                Observable.from(photos)
-                    .flatMap { [unowned owner] photo in
-                        owner.deletePhotoFileUsecase.execute(fileName: photo.fileName)
-                    }
-                    .toArray()
-            }
-            .map { _ in }
-            .observe(on: MainScheduler.asyncInstance)
-            .bind(onNext: actions.close)
-            .disposed(by: disposeBag)
+//        optionSelect?
+//            .filter { $0 == .delete }
+//            .withUnretained(self)
+//            .flatMap { owner, _ in
+//                owner.deleteDiaryUsecase.execute(diary: owner.diary)
+//            }
+//            .catchAndReturn(false)
+//            .filter { $0 }
+//            .withUnretained(self)
+//            .map { owner, _ in return owner.diary.contents.filter { $0.type == "image" } }
+//            .map { $0.compactMap { $0.image } }
+//            .withUnretained(self)
+//            .flatMap { owner, photos in
+//                Observable.from(photos)
+//                    .flatMap { [unowned owner] photo in
+//                        owner.deletePhotoFileUsecase.execute(fileName: photo.fileName)
+//                    }
+//                    .toArray()
+//            }
+//            .map { _ in }
+//            .observe(on: MainScheduler.asyncInstance)
+//            .bind(onNext: actions.close)
+//            .disposed(by: disposeBag)
         
         optionSelect?
             .filter { $0 == .modify }

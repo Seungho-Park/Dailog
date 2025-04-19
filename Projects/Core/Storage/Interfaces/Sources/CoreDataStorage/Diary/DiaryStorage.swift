@@ -8,6 +8,6 @@
 
 public protocol DiaryStorage {
     func fetchDiaries(year: Int?, month: Int?, page: Int, count: Int, completion: @escaping (Result<DiaryStorageDTO, CoreDataStorageError>)-> Void)
-    func save(diary: DiaryStorageDTO.DiaryItem, completion: @escaping (Result<DiaryStorageDTO.DiaryItem, CoreDataStorageError>)-> Void)
-    func remove(diary: DiaryStorageDTO.DiaryItem, completion: @escaping (Result<DiaryStorageDTO.DiaryItem, CoreDataStorageError>)-> Void)
+    func save(diary: DiaryDTO, completion: @escaping (Result<DiaryDTO, CoreDataStorageError>)-> Void)
+    func remove(diary: DiaryDTO, completion: @escaping (Result<DiaryDTO, CoreDataStorageError>)-> Void)
 }

@@ -34,7 +34,7 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
     public func transform(input: FeatureHistoryInterfaces.HistoryViewModelInput) -> FeatureHistoryInterfaces.HistoryViewModelOutput {
         let currentPage = BehaviorRelay<Int>(value: 1)
         let totalPages = BehaviorRelay(value: 1)
-        let diariesRelay = BehaviorRelay<[NewDiary]>(value: [])
+        let diariesRelay = BehaviorRelay<[Diary]>(value: [])
         let filter: BehaviorRelay<HistoryFilterType> = .init(value: .all)
         
         
@@ -72,7 +72,7 @@ public final class DefaultHistoryViewModel: HistoryViewModel {
                 }
                 
                 return owner.fetchDiariesUsecase.execute(year: year, month: month, page: page, count: 20)
-                    .catchAndReturn(NewDiaries(currentPage: page, totalPages: 1, diaries: []))
+                    .catchAndReturn(Diaries(currentPage: page, totalPages: 1, diaries: []))
             }
             .share()
         

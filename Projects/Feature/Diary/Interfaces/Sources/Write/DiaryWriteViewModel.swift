@@ -20,7 +20,7 @@ public struct DiaryWriteViewModelAction {
     public let showPhotoAlbum: ()-> Observable<[FileInfo]>
     public let showDeviceCamera: ()-> Observable<[FileInfo]>
     public let showDatePicker: (Date)-> Observable<Date?>
-    public let showDiaryDetail: (NewDiary)-> Void
+    public let showDiaryDetail: (Diary)-> Void
     
     public init(
         close: @escaping ()-> Void,
@@ -28,7 +28,7 @@ public struct DiaryWriteViewModelAction {
         showPhotoAlbum: @escaping ()-> Observable<[FileInfo]>,
         showDeviceCamera: @escaping ()-> Observable<[FileInfo]>,
         showDatePicker: @escaping (Date)-> Observable<Date?>,
-        showDiaryDetail: @escaping (NewDiary)-> Void
+        showDiaryDetail: @escaping (Diary)-> Void
     ) {
         self.close = close
         self.showSelectEmotion = showSelectEmotion
@@ -90,7 +90,7 @@ public struct DiaryWriteViewModelOutput {
 }
 
 public protocol DiaryWriteViewModel: ViewModel where Input == DiaryWriteViewModelInput, Output == DiaryWriteViewModelOutput {
-    var diary: NewDiary? { get }
+    var diary: Diary? { get }
     var fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase { get }
     var fetchPhotoDataUsecase: FetchPhotoDataUsecase { get }
     var deletePhotoFileUsecase: DeletePhotoFileUsecase { get }

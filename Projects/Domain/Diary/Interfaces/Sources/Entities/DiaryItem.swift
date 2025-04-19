@@ -24,31 +24,97 @@ public struct Diaries {
 public struct Diary {
     public let id: UUID
     public let emotion: Emotion?
-    public let contents: String
+    public let contents: [DiaryContent]
     public let date: Date
-    public let photos: [Photo]
     public let createdAt: Date
     public let updatedAt: Date
     
-    public init(id: UUID, emotion: Emotion?, contents: String, date: Date, photos: [Photo], createdAt: Date, updatedAt: Date) {
+    
+    public init(id: UUID, emotion: Emotion?, contents: [DiaryContent], date: Date, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.emotion = emotion
         self.contents = contents
         self.date = date
-        self.photos = photos
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
 }
 
-public extension DiaryStorageDTO {
-    func toDomain() -> Diaries {
-        return .init(currentPage: self.currentPage, totalPages: self.totalPage, diaries: self.diaries.map { $0.toDomain() })
+public extension Diary {
+    func toDTO()-> DiaryDTO {
+        .init(
+            id: id,
+            emotion: emotion?.rawValue ?? -1,
+            contents: contents.map { $0.toDTO() },
+            date: date,
+            createdAt: createdAt,
+            updatedAt: updatedAt
+        )
     }
 }
 
-public extension DiaryStorageDTO.DiaryItem {
+public extension DiaryContent {
+    func toDTO()-> DiaryContentDTO {
+        return .init(id: id, type: type, orderIdx: orderIdx, text: text, image: image?.toDTO())
+    }
+}
+
+public extension DiaryImage {
+    func toDTO()-> DiaryPhotoDTO {
+        return .init(id: id, path: path, width: width, height: height)
+    }
+}
+
+public struct DiaryContent {
+    public let id: UUID
+    public let type: String
+    public let text: String?
+    public let orderIdx: Int
+    public let image: DiaryImage?
+    
+    public init(id: UUID, type: String, text: String?, orderIdx: Int, image: DiaryImage?) {
+        self.id = id
+        self.type = type
+        self.text = text
+        self.orderIdx = orderIdx
+        self.image = image
+    }
+}
+
+public struct DiaryImage {
+    public let id: UUID
+    public let width: Double
+    public let height: Double
+    public let path: String
+    
+    public init(id: UUID, width: Double, height: Double, path: String) {
+        self.id = id
+        self.width = width
+        self.height = height
+        self.path = path
+    }
+}
+
+public extension DiaryStorageDTO {
+    func toDomain() -> Diaries {
+        return .init(currentPage: page, totalPages: totalPage, diaries: diaries.map { $0.toDomain() })
+    }
+}
+
+public extension DiaryDTO {
     func toDomain()-> Diary {
-        return .init(id: self.id, emotion: self.emotion != nil ? Emotion(rawValue: self.emotion!) : nil, contents: self.contents, date: self.date, photos: self.photos.map { $0.toDomain() }, createdAt: self.createdAt, updatedAt: self.updatedAt)
+        return .init(id: id, emotion: Emotion(rawValue: emotion), contents: contents.map { $0.toDomain() }, date: date, createdAt: createdAt, updatedAt: updatedAt)
+    }
+}
+
+public extension DiaryContentDTO {
+    func toDomain()-> DiaryContent {
+        return .init(id: id, type: type, text: text, orderIdx: orderIdx, image: image?.toDomain())
+    }
+}
+
+public extension DiaryPhotoDTO {
+    func toDomain()-> DiaryImage {
+        return .init(id: id, width: width, height: height, path: path)
     }
 }

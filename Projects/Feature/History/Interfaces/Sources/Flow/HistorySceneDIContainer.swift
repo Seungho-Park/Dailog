@@ -17,13 +17,13 @@ import FeatureDiaryInterfaces
 
 public struct HistorySceneDIContainerDependencies {
     public let diarySceneDIContainer: DiarySceneDIContainer
-    public let diaryStorage: NewDiaryStorage
+    public let diaryStorage: DiaryStorage
     public let imageFileStorage: FileStorage
     public let photoService: PhotoService
     
     public init(
         diarySceneDIContainer: DiarySceneDIContainer,
-        diaryStorage: NewDiaryStorage,
+        diaryStorage: DiaryStorage,
         imageFileStorage: FileStorage,
         photoService: PhotoService
     ) {

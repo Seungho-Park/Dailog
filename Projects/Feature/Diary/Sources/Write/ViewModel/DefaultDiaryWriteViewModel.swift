@@ -20,7 +20,7 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public var disposeBag: DisposeBag = DisposeBag()
     public let background: BackgroundType = .image(.bgLaunchScreen)
     
-    public let diary: NewDiary?
+    public let diary: Diary?
     public let fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase
     public let fetchPhotoDataUsecase: FetchPhotoDataUsecase
     public let deletePhotoFileUsecase: DeletePhotoFileUsecase
@@ -28,7 +28,7 @@ public final class DefaultDiaryWriteViewModel: DiaryWriteViewModel {
     public let actions: DiaryWriteViewModelAction
     
     public init(
-        diary: NewDiary?,
+        diary: Diary?,
         fetchPhotoAssetsUsecase: FetchPhotoAssetsUsecase,
         fetchPhotoDataUsecase: FetchPhotoDataUsecase,
         deletePhotoFileUsecase: DeletePhotoFileUsecase,

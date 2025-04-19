@@ -13,7 +13,7 @@ import UIKit
 import DomainDiaryInterfaces
 
 public protocol HistorySceneFlowCoordinatorDependencies {
-    func makeWriteSceneFlowCoordinator(diary: NewDiary?, navigationController: UINavigationController)-> DiarySceneFlowCoordinator
+    func makeWriteSceneFlowCoordinator(diary: Diary?, navigationController: UINavigationController)-> DiarySceneFlowCoordinator
     func makeHistoryViewModel(actions: HistoryViewModelAction)-> any HistoryViewModel
     func makeHistoryFilterViewModel(filter: HistoryFilterType, actions: HistoryFilterViewModelAction)-> any HistoryFilterViewModel
 }
