@@ -11,3 +11,5 @@ clear:
 	rm -rf **/**/**/Derived
 	rm -rf **/**/Derived
 	rm -rf **/Derived
+	rm -rf *.xcodeproj
+	rm -rf Derived

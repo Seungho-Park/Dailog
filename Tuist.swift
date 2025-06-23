@@ -1,16 +1,9 @@
 import ProjectDescription
 
 let tuist = Tuist(
-    project: .tuist(
-        compatibleXcodeVersions: [
-            .upToNextMajor("16.0")
-        ],
-        swiftVersion: "6.0",
-        plugins: [
-            .local(path: .relativeToRoot("Plugins/ModulePlugin")),
-            .local(path: .relativeToRoot("Plugins/ThirdPartyLibs"))
-        ],
-        generationOptions: .options(),
-        installOptions: .options()
-    )
+//    Create an account with "tuist auth login" and a project with "tuist project create"
+//    then uncomment the section below and set the project full-handle.
+//    * Read more: https://docs.tuist.io/guides/quick-start/gather-insights
+//
+//    fullHandle: "{account_handle}/{project_handle}",
 )
