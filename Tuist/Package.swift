@@ -5,9 +5,6 @@ import PackageDescription
     import struct ProjectDescription.PackageSettings
 
     let packageSettings = PackageSettings(
-        // Customize the product types for specific package product
-        // Default is .staticFramework
-        // productTypes: ["Alamofire": .framework,]
         productTypes: [:]
     )
 #endif
@@ -15,6 +12,7 @@ import PackageDescription
 let package = Package(
     name: "Dailog",
     dependencies: [
-        .package(url: "https://github.com/uber/needle.git", .upToNextMajor(from: "0.25.1"))
+        .package(url: "https://github.com/uber/needle.git", .upToNextMajor(from: "0.25.1")),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "11.15.0"))
     ]
 )
