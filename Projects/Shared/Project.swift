@@ -15,7 +15,7 @@ let project = Project.makeProject(
         .shared(
             .init(
                 dependencies: [
-                    
+                    .shared(implements: .app)
                 ]
             )
         )

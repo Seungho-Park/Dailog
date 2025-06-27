@@ -39,6 +39,7 @@ public extension Module {
 public extension Module {
     enum Shared: String {
         case ui = "UI"
+        case app = "App"
         
         public static let name: String = "Shared"
     }

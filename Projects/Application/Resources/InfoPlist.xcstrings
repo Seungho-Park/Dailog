@@ -18,6 +18,18 @@
           }
         }
       }
+    },
+    "NSLocationUsageDescription" : {
+      "comment" : "Privacy - Location Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dailog 앱 사용을 위해서 위치 권한이 필요해요!"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
