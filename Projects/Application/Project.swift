@@ -39,7 +39,7 @@ let project: Project = .makeProject(
                         """,
                         name: "Needle Generator",
                         outputPaths: [
-                            "$PROJECT_DIR/Projects/Application/Sources/Generated/NeedleGenerated.swift"
+                            "$PROJECT_DIR/Sources/Generated/NeedleGenerated.swift"
                         ],
                         basedOnDependencyAnalysis: true
                     ),
