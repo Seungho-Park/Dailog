@@ -6,3 +6,4 @@
 //
 
 @_exported import SharedApp
+@_exported import SharedUI
