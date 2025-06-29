@@ -17,6 +17,7 @@ let project = Project.makeProject(
         .shared(
             implements: .ui,
             factory: .init(
+                resources: ["Resources/**"],
                 dependencies: [
                     .shared(interfaces: .ui)
                 ]
