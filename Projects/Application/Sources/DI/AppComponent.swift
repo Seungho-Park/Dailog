@@ -6,8 +6,16 @@
 //
 
 import UIKit
+import Feature
 import Shared
 
 final class AppComponent: BootstrapComponent {
     
+    var rootViewController: UIViewController {
+        return featureComponent.coordinator.start()
+    }
+    
+    public var featureComponent: FeatureBuilder {
+        shared { FeatureComponent(parent: self) }
+    }
 }

@@ -1,5 +1,5 @@
 //
-//  UIImage+Extension.swift
+//  Dailog+UIImage.swift
 //  SharedUI
 //
 //  Created by 박승호 on 6/30/25.
