@@ -1,0 +1,20 @@
+import UIKit
+import SharedUI
+
+public final class Default{{ name }}SceneFlowCoordinator: {{ name }}SceneFlowCoordinator {
+    public let navigationController: UINavigationController
+    public let builder: {{ name }}Builder
+    
+    public init(
+        navigationController: UINavigationController,
+        builder: {{ name }}Builder
+    ) {
+        self.navigationController = navigationController
+        self.builder = builder
+    }
+    
+    @discardableResult
+    public func start() -> UIViewController {
+        return .init()
+    }
+}

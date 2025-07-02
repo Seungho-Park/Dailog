@@ -10,19 +10,14 @@ import UIKit
 open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBindable {
     public var viewModel: VM!
     public let backgroundView = UIImageView(frame: .zero)
+    public let rootContainerView = UIView(frame: .zero)
     
     open override func viewDidLoad() {
         super.viewDidLoad()
         
         print("\(self): \(#function)")
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(backgroundView)
-        NSLayoutConstraint.activate([
-            backgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
+        view.addSubview(rootContainerView)
         
         backgroundView.image = .viewBackground
         
@@ -59,5 +54,18 @@ open class DailogViewController<VM: ViewModel>: UIViewController, ViewModelBinda
     
     open func configure() {
         
+    }
+    
+    open func layout() {
+        backgroundView.pin.all()
+        rootContainerView.pin.all()
+        
+        rootContainerView.flex.layout()
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        layout()
     }
 }

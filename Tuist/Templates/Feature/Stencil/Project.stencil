@@ -1,0 +1,50 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+import ModuleDependencies
+
+let project: Project = .makeProject(
+    name: "Feature{{ name }}",
+    targets: [
+        .feature(
+            interface: .{{ name | lowerFirstLetter }},
+            factory: .init(
+                dependencies: [
+                    .domain
+                ]
+            )
+        ),
+        .feature(
+            implements: .{{ name | lowerFirstLetter }},
+            factory: .init(
+                dependencies: [
+                    .feature(interfaces: .{{ name | lowerFirstLetter }}),
+                ]
+            )
+        ),
+        .feature(
+            testing: .{{ name | lowerFirstLetter }},
+            factory: .init(
+                dependencies: [
+                    .feature(interfaces: .{{ name | lowerFirstLetter }})
+                ]
+            )
+        ),
+        .feature(
+            tests: .{{ name | lowerFirstLetter }},
+            factory: .init(
+                dependencies: [
+                    .feature(implements: .{{ name | lowerFirstLetter }}),
+                    .feature(testing: .{{ name | lowerFirstLetter }})
+                ]
+            )
+        ),
+        .feature(
+            example: .{{ name | lowerFirstLetter }},
+            factory: .init(
+                dependencies: [
+                    .feature(implements: .{{ name | lowerFirstLetter }})
+                ]
+            )
+        )
+    ]
+)

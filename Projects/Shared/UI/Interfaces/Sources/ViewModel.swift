@@ -10,5 +10,7 @@ public protocol ViewModel {
     associatedtype Input
     associatedtype Output
     
+    var action: Action { get }
+    
     func transform(input: Input)-> Output
 }

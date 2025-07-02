@@ -19,8 +19,20 @@ public final class FeatureFlowCoordinator: Coordinator {
     
     @discardableResult
     public func start() -> UIViewController {
-        transition(builder.splashViewController, style: .root, animated: true)
+        transition(
+            builder.makeSplashViewController(
+                action: .init(
+                    showMainTabBarScene: showMainTabBarScene
+                )
+            ),
+            style: .root,
+            animated: true
+        )
         
         return navigationController
+    }
+    
+    private func showMainTabBarScene() {
+        transition(builder.makeMainTabBarViewController(action: .init()), style: .root)
     }
 }

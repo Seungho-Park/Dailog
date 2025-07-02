@@ -13,7 +13,15 @@ import ThirdPartyDependencies
 let project = Project.makeProject(
     name: "\(Module.Shared.name)\(Module.Shared.ui.rawValue)",
     targets: [
-        .shared(interface: .ui, factory: .init(dependencies: [])),
+        .shared(
+            interface: .ui,
+            factory: .init(
+                dependencies: [
+                    .SPM.PinLayout,
+                    .SPM.FlexLayout
+                ]
+            )
+        ),
         .shared(
             implements: .ui,
             factory: .init(

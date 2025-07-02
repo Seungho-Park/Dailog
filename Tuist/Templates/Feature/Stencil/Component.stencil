@@ -1,0 +1,5 @@
+import NeedleFoundation
+
+public final class {{ name }}Component: Component<{{ name }}Dependency>, {{ name }}Builder {
+
+}

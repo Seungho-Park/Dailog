@@ -15,7 +15,9 @@ let project = Project.makeProject(
         .feature(
             .init(
                 dependencies: [
-                    .domain
+                    .domain,
+                    .feature(implements: .home),
+                    .feature(implements: .history)
                 ]
             )
         )

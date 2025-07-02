@@ -19,14 +19,28 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_splash" translatesAutoresizingMaskIntoConstraints="NO" id="OZz-ej-TKq">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Bz9-dj-i6n">
+                                <rect key="frame" x="0.0" y="271" width="393" height="54.666666666666686"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILOG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zF5-s7-z49">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="54.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="48"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="OZz-ej-TKq" secondAttribute="bottom" id="P1b-Lg-UBF"/>
+                            <constraint firstItem="Bz9-dj-i6n" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.7" id="Uec-Kl-S5b"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="Bz9-dj-i6n" secondAttribute="trailing" id="aG6-yj-HBY"/>
                             <constraint firstAttribute="trailing" secondItem="OZz-ej-TKq" secondAttribute="trailing" id="aIg-xt-KVP"/>
                             <constraint firstItem="OZz-ej-TKq" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="gFk-DU-FEv"/>
                             <constraint firstItem="OZz-ej-TKq" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="jKg-ja-Dh0"/>
+                            <constraint firstItem="Bz9-dj-i6n" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="sHR-Rh-fNm"/>
                         </constraints>
                     </view>
                 </viewController>

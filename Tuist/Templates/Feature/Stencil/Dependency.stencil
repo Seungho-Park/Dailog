@@ -1,0 +1,9 @@
+import NeedleFoundation
+
+public protocol {{ name }}Dependency: Dependency {
+
+}
+
+public protocol {{ name }}Builder {
+
+}

@@ -5,12 +5,16 @@
 //  Created by 박승호 on 7/2/25.
 //
 
+import Foundation
 import SharedUI
 
 public struct SplashViewModelAction {
+    public let showMainTabBarScene: ()-> Void
     
-    public init() {
-        
+    public init(
+        showMainTabBarScene: @escaping ()-> Void
+    ) {
+        self.showMainTabBarScene = showMainTabBarScene
     }
 }
 
@@ -29,9 +33,18 @@ public struct SplashViewModelOutput {
 }
 
 public final class SplashViewModel: ViewModel {
-    public typealias Action = SplashViewModelAction
+    public var action: SplashViewModelAction
+    
+    public init(action: SplashViewModelAction) {
+        self.action = action
+    }
     
     public func transform(input: SplashViewModelInput) -> SplashViewModelOutput {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.action.showMainTabBarScene()
+        }
+        
         return .init()
     }
 }
