@@ -13,12 +13,13 @@ public protocol FeatureDependency: Dependency {
 
 public protocol FeatureBuilder {
     var coordinator: FeatureFlowCoordinator { get }
+    var splashViewController: SplashViewController { get }
 }
 
 public final class FeatureComponent: Component<FeatureDependency>, FeatureBuilder {
     public override init(parent: any Scope) {
         super.init(parent: parent)
-        print("12341234")
+        
     }
     
     public var navigationController: UINavigationController {
@@ -36,5 +37,9 @@ public final class FeatureComponent: Component<FeatureDependency>, FeatureBuilde
                 builder: self
             )
         }
+    }
+    
+    public var splashViewController: SplashViewController {
+        return SplashViewController.create(viewModel: .init())
     }
 }

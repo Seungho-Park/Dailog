@@ -6,6 +6,7 @@
 //
 
 public protocol ViewModel {
+    associatedtype Action
     associatedtype Input
     associatedtype Output
     
