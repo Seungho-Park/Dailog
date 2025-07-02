@@ -39,9 +39,9 @@ let project: Project = .makeProject(
                         """,
                         name: "Needle Generator",
                         outputPaths: [
-                            "$PROJECT_DIR/Sources/Generated/NeedleGenerated.swift"
+                            "$(SRCROOT)/Sources/Generated/NeedleGenerated.swift"
                         ],
-                        basedOnDependencyAnalysis: true
+                        basedOnDependencyAnalysis: false
                     ),
                     // MARK: - Firebase Crashlytics
                     .post(
