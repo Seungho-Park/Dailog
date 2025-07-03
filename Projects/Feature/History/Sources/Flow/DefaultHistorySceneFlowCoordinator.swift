@@ -15,6 +15,6 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
     
     @discardableResult
     public func start() -> UIViewController {
-        return .init()
+        return builder.makeHistoryViewController(action: .init())
     }
 }

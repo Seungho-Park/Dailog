@@ -15,6 +15,6 @@ public final class DefaultHomeSceneFlowCoordinator: HomeSceneFlowCoordinator {
     
     @discardableResult
     public func start() -> UIViewController {
-        return .init()
+        return builder.makeHomeViewController(action: .init())
     }
 }
