@@ -6,7 +6,7 @@ public protocol HomeDependency: Dependency {
 }
 
 public protocol HomeBuilder {
-    var coordinator: HomeSceneFlowCoordinator { get }
+    func makeHomeSceneFlowCoordinator(dependencies: HomeSceneFlowCoordinatorDependencies)-> HomeSceneFlowCoordinator
     
     func makeHomeViewController(action: HomeViewModelAction)-> HomeViewController
 }

@@ -17,7 +17,8 @@ let project = Project.makeProject(
                 dependencies: [
                     .domain,
                     .feature(implements: .home),
-                    .feature(implements: .history)
+                    .feature(implements: .history),
+                    .feature(implements: .diary)
                 ]
             )
         )

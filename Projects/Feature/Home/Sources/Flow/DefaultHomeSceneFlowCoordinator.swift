@@ -1,15 +1,15 @@
 import UIKit
 import SharedUI
 
-public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinator {
+public final class DefaultHomeSceneFlowCoordinator: HomeSceneFlowCoordinator {
     public let navigationController: UINavigationController
-    public let builder: HistoryBuilder
-    public weak var dependencies: HistorySceneFlowCoordinatorDependencies?
+    public weak var dependencies: HomeSceneFlowCoordinatorDependencies?
+    public let builder: HomeBuilder
     
     public init(
         navigationController: UINavigationController,
-        builder: HistoryBuilder,
-        dependencies: HistorySceneFlowCoordinatorDependencies
+        builder: HomeBuilder,
+        dependencies: HomeSceneFlowCoordinatorDependencies
     ) {
         self.navigationController = navigationController
         self.builder = builder
@@ -18,6 +18,6 @@ public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinat
     
     @discardableResult
     public func start() -> UIViewController {
-        return builder.makeHistoryViewController(action: .init())
+        return builder.makeHomeViewController(action: .init())
     }
 }

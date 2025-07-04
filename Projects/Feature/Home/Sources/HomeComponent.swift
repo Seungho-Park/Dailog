@@ -1,8 +1,9 @@
 import NeedleFoundation
 
 public final class HomeComponent: Component<HomeDependency>, HomeBuilder {
-    public var coordinator: any HomeSceneFlowCoordinator {
-        return DefaultHomeSceneFlowCoordinator(navigationController: dependency.navigationController, builder: self)
+    
+    public func makeHomeSceneFlowCoordinator(dependencies: any HomeSceneFlowCoordinatorDependencies) -> any HomeSceneFlowCoordinator {
+        return DefaultHomeSceneFlowCoordinator(navigationController: dependency.navigationController, builder: self, dependencies: dependencies)
     }
     
     public func makeHomeViewController(action: HomeViewModelAction) -> any HomeViewController {

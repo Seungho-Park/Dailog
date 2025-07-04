@@ -6,7 +6,6 @@ public protocol HistoryDependency: Dependency {
 }
 
 public protocol HistoryBuilder {
-    var coordinator: HistorySceneFlowCoordinator { get }
-    
+    func makeHistorySceneFlowCoordinator(dependencies: HistorySceneFlowCoordinatorDependencies)-> HistorySceneFlowCoordinator
     func makeHistoryViewController(action: HistoryViewModelAction)-> HistoryViewController
 }

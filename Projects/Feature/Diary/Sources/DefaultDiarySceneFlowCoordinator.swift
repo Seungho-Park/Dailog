@@ -1,13 +1,13 @@
 import UIKit
 import SharedUI
 
-public final class DefaultHomeSceneFlowCoordinator: HomeSceneFlowCoordinator {
+public final class DefaultDiarySceneFlowCoordinator: DiarySceneFlowCoordinator {
     public let navigationController: UINavigationController
-    public let builder: HomeBuilder
+    public let builder: DiaryBuilder
     
     public init(
         navigationController: UINavigationController,
-        builder: HomeBuilder
+        builder: DiaryBuilder
     ) {
         self.navigationController = navigationController
         self.builder = builder
@@ -15,6 +15,6 @@ public final class DefaultHomeSceneFlowCoordinator: HomeSceneFlowCoordinator {
     
     @discardableResult
     public func start() -> UIViewController {
-        return builder.makeHomeViewController(action: .init())
+        return .init()
     }
 }

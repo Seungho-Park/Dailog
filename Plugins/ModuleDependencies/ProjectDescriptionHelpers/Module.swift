@@ -16,6 +16,7 @@ public extension Module {
     enum Feature: String {
         case home = "Home"
         case history = "History"
+        case diary = "Diary"
         
         public static let name: String = "Feature"
     }
