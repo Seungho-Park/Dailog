@@ -6,8 +6,6 @@
 //
 
 import SharedApp
-import FeatureHome
-import FeatureHistory
 
 public protocol FeatureDependency: Dependency {
     
@@ -52,11 +50,14 @@ public final class FeatureComponent: Component<FeatureDependency>, FeatureBuilde
         vc.viewControllers = [
             homeBuilder.makeHomeSceneFlowCoordinator(dependencies: self).start(),
             historyBuilder.makeHistorySceneFlowCoordinator(dependencies: self).start(),
+            settingsBuilder.makeSettingsSceneFlowCoordinator().start()
         ]
         return vc
     }
 }
 
+
+// MARK: - Builder
 extension FeatureComponent {
     public var homeBuilder: HomeBuilder {
         shared {
@@ -67,6 +68,18 @@ extension FeatureComponent {
     public var historyBuilder: HistoryBuilder {
         shared {
             HistoryComponent(parent: self)
+        }
+    }
+    
+    public var settingsBuilder: SettingsBuilder {
+        shared {
+            SettingsComponent(parent: self)
+        }
+    }
+    
+    public var diaryBuilder: DiaryBuilder {
+        shared {
+            DiaryComponent(parent: self)
         }
     }
 }

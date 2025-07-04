@@ -17,6 +17,7 @@ public extension Module {
         case home = "Home"
         case history = "History"
         case diary = "Diary"
+        case settings = "Settings"
         
         public static let name: String = "Feature"
     }

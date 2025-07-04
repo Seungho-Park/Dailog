@@ -21,6 +21,19 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
+private class SettingsDependency30c79bfa92df32d4b425Provider: SettingsDependency {
+    var navigationController: UINavigationController {
+        return featureComponent.navigationController
+    }
+    private let featureComponent: FeatureComponent
+    init(featureComponent: FeatureComponent) {
+        self.featureComponent = featureComponent
+    }
+}
+/// ^->AppComponent->FeatureComponent->SettingsComponent
+private func factorya83ae6d156ac23c26b7b88746407249bf4c57657(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SettingsDependency30c79bfa92df32d4b425Provider(featureComponent: parent1(component) as! FeatureComponent)
+}
 private class HomeDependencye3ac70f14506542acd23Provider: HomeDependency {
     var navigationController: UINavigationController {
         return featureComponent.navigationController
@@ -58,8 +71,24 @@ private class FeatureDependency1817fbd339445fa1fdd4Provider: FeatureDependency {
 private func factory9e7954469b0a05c0b761e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
     return FeatureDependency1817fbd339445fa1fdd4Provider()
 }
+private class DiaryDependencyd64bbfcf4d3f845f2d59Provider: DiaryDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->FeatureComponent->DiaryComponent
+private func factory131c9dcf6c130926ffd8e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return DiaryDependencyd64bbfcf4d3f845f2d59Provider()
+}
 
 #else
+extension SettingsComponent: NeedleFoundation.Registration {
+    public func registerItems() {
+        keyPathToName[\SettingsDependency.navigationController] = "navigationController-UINavigationController"
+    }
+}
 extension HomeComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\HomeDependency.navigationController] = "navigationController-UINavigationController"
@@ -77,6 +106,13 @@ extension FeatureComponent: NeedleFoundation.Registration {
         localTable["coordinator-FeatureFlowCoordinator"] = { [unowned self] in self.coordinator as Any }
         localTable["homeBuilder-HomeBuilder"] = { [unowned self] in self.homeBuilder as Any }
         localTable["historyBuilder-HistoryBuilder"] = { [unowned self] in self.historyBuilder as Any }
+        localTable["settingsBuilder-SettingsBuilder"] = { [unowned self] in self.settingsBuilder as Any }
+        localTable["diaryBuilder-DiaryBuilder"] = { [unowned self] in self.diaryBuilder as Any }
+    }
+}
+extension DiaryComponent: NeedleFoundation.Registration {
+    public func registerItems() {
+
     }
 }
 extension AppComponent: NeedleFoundation.Registration {
@@ -101,9 +137,11 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 #if !NEEDLE_DYNAMIC
 
 @inline(never) private func register1() {
+    registerProviderFactory("^->AppComponent->FeatureComponent->SettingsComponent", factorya83ae6d156ac23c26b7b88746407249bf4c57657)
     registerProviderFactory("^->AppComponent->FeatureComponent->HomeComponent", factory6128bf102011e8ea2ddd88746407249bf4c57657)
     registerProviderFactory("^->AppComponent->FeatureComponent->HistoryComponent", factory203a3d41758e2594589f88746407249bf4c57657)
     registerProviderFactory("^->AppComponent->FeatureComponent", factory9e7954469b0a05c0b761e3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->FeatureComponent->DiaryComponent", factory131c9dcf6c130926ffd8e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
 }
 #endif

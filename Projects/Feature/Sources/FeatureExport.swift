@@ -7,3 +7,5 @@
 
 @_exported import FeatureHome
 @_exported import FeatureHistory
+@_exported import FeatureSettings
+@_exported import FeatureDiary

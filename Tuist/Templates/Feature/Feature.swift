@@ -32,11 +32,11 @@ let featureTemplate = Template(
             templatePath: "Stencil/Export.stencil"
         ),
         .file(
-            path: "Projects/Feature/\(nameAttribute)/Sources/Default\(nameAttribute)SceneFlowCoordinator.swift",
+            path: "Projects/Feature/\(nameAttribute)/Sources/Flow/Default\(nameAttribute)SceneFlowCoordinator.swift",
             templatePath: "Stencil/Coordinator.stencil"
         ),
         .file(
-            path: "Projects/Feature/\(nameAttribute)/Interfaces/Sources/\(nameAttribute)SceneFlowCoordinator.swift",
+            path: "Projects/Feature/\(nameAttribute)/Interfaces/Sources/Flow/\(nameAttribute)SceneFlowCoordinator.swift",
             templatePath: "Stencil/CoordinatorInterface.stencil"
         ),
         .file(

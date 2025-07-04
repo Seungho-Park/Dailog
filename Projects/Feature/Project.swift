@@ -18,6 +18,7 @@ let project = Project.makeProject(
                     .domain,
                     .feature(implements: .home),
                     .feature(implements: .history),
+                    .feature(implements: .settings),
                     .feature(implements: .diary)
                 ]
             )
