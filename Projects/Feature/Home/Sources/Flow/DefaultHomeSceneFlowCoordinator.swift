@@ -3,8 +3,8 @@ import SharedUI
 
 public final class DefaultHomeSceneFlowCoordinator: HomeSceneFlowCoordinator {
     public let navigationController: UINavigationController
-    public weak var dependencies: HomeSceneFlowCoordinatorDependencies?
     public let builder: HomeBuilder
+    public let dependencies: HomeSceneFlowCoordinatorDependencies
     
     public init(
         navigationController: UINavigationController,

@@ -1,10 +1,10 @@
 import UIKit
 import SharedUI
 
-public protocol HistorySceneFlowCoordinatorDependencies: AnyObject {
+public protocol HistorySceneFlowCoordinatorDependencies {
     
 }
 
 public protocol HistorySceneFlowCoordinator: Coordinator {
-    var dependencies: HistorySceneFlowCoordinatorDependencies? { get }
+    var dependencies: HistorySceneFlowCoordinatorDependencies { get }
 }

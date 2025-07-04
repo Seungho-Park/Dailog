@@ -20,7 +20,7 @@ public protocol FeatureBuilder {
     func makeMainTabBarViewController(action: MainTabBarViewModelAction)-> MainTabBarViewController
 }
 
-public final class FeatureComponent: Component<FeatureDependency>, FeatureBuilder, HomeSceneFlowCoordinatorDependencies, HistorySceneFlowCoordinatorDependencies {
+public final class FeatureComponent: Component<FeatureDependency>, FeatureBuilder {
     public override init(parent: any Scope) {
         super.init(parent: parent)
         

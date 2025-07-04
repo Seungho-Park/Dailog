@@ -4,7 +4,7 @@ import SharedUI
 public final class DefaultHistorySceneFlowCoordinator: HistorySceneFlowCoordinator {
     public let navigationController: UINavigationController
     public let builder: HistoryBuilder
-    public weak var dependencies: HistorySceneFlowCoordinatorDependencies?
+    public let dependencies: HistorySceneFlowCoordinatorDependencies
     
     public init(
         navigationController: UINavigationController,
